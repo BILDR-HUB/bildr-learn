@@ -33,6 +33,11 @@
 |------|--------|
 | [[cloud/12-faktoros-alkalmazas-epites|12 Faktoros alkalmazas epites]] | Cloud-native alkalmazások 12 alapelve — portábilis, skálázható, könnyen deployolható app-ok építése |
 | [[cloud/deployment-checklist|Deployment checklist]] | Deployment előtti ellenőrző lista: Supabase + Vercel, Railway, Hostinger stack-ekhez |
+| [[cloud/blue-green-deployment|Blue-Green és Canary Deployment]] | Zero-downtime deploy stratégiák — blue-green, canary, rolling deployment |
+| [[cloud/domain-es-dns-kezeles|Domain és DNS kezelés]] | Custom domain beállítás, SSL tanúsítványok, DNS rekordok |
+| [[cloud/monitoring-es-logging|Monitoring és Logging]] | Hogyan tudd meg ha valami elromlik production-ben, structured logging |
+| [[cloud/statuspage-es-incident-management|Statuspage és Incident Management]] | Ügyfelek tájékoztatása leállásokról, postmortem kultúra |
+| [[cloud/cost-estimation|Hosting költségbecslés]] | Mikor melyik platform éri meg SMB szemszögből, rejtett költségek |
 
 ---
 
@@ -42,6 +47,21 @@
 |------|--------|
 | [[backend/hono|Hono]] | Ultragyors edge-natív API framework — Cloudflare Workers, Deno, Bun, Node.js |
 | [[backend/express|Express]] | Klasszikus Node.js web framework — a backend fejlesztés kiindulópontja |
+
+## Cloud szolgáltatók
+
+| Note | Leírás |
+|------|--------|
+| [[cloud/aws-gcp-basics|Felhő szolgáltatók alapjai]] | AWS, GCP, Azure alapok — mikor érdemes váltani managed platformokról |
+
+## CI/CD és Deploy stratégiák
+
+| Note | Leírás |
+|------|--------|
+| [[cloud/ci-cd-pipelines|CI/CD Pipelines]] | GitHub Actions, automatikus testing és deploy |
+| [[cloud/gitops|GitOps]] | Git-alapú deployment stratégia — ArgoCD, Flux, Kubernetes-hez |
+| [[cloud/saas-mvp-deployment|SaaS MVP Deployment]] | Leggyorsabb út ötlettől a production-ig, stack választás üzleti szempontból |
+| [[cloud/ai-assisted-deployment|AI-assisted Deployment]] | Claude Code automatizált deploy scriptek, Dockerfile és infra-as-code generálás |
 
 ## Kapcsolódó note-ok
 
@@ -53,6 +73,7 @@
 | [[foundations/git-es-github|Git es GitHub]] | Push-to-deploy flow GitHub-ról indul |
 | n8n workflow automatizálás | VPS-en futó automatizációs rendszer |
 | [[backend/edge-function|Edge function]] | Edge computing koncepció — hogyan működik |
+| [[toolbox/grafana|Grafana]] | Monitoring és dashboard-ok VPS-hez |
 
 ---
 
@@ -76,12 +97,12 @@ Ajánlott sorrend ha nulláról kezded:
 
 ## Hézagok
 
-- [ ] CI/CD pipelines — GitHub Actions, automatikus testing és deploy
-- [ ] AWS/GCP basics — felhő szolgáltatók alapjai, mikor érdemes váltani
-- [ ] Blue-green deployment — zero-downtime deploy stratégia
-- [ ] Domain és DNS kezelés — custom domain beállítás, SSL tanúsítványok
-- [ ] Monitoring és logging — hogyan tudd meg ha valami elromlik production-ben
-- [ ] AI-assisted deployment — Claude Code automatizált deploy scriptek, infra-as-code generálás
-- [ ] Cost estimation — hosting költségbecslés, mikor melyik platform éri meg (SMB szemszögből)
-- [ ] SaaS MVP deployment — leggyorsabb út ötlettől a production-ig, stack választás üzleti szempontból
-- [ ] Statuspage és incident management — ügyfelek tájékoztatása leállásokról, postmortem kultúra
+- [x] CI/CD pipelines → [[cloud/ci-cd-pipelines|CI/CD Pipelines]] — GitHub Actions, automatikus testing és deploy
+- [x] AWS/GCP basics → [[cloud/aws-gcp-basics|Felhő szolgáltatók alapjai]] — felhő szolgáltatók alapjai, mikor érdemes váltani
+- [x] Blue-green deployment → [[cloud/blue-green-deployment|Blue-Green és Canary Deployment]] — zero-downtime deploy stratégia
+- [x] Domain és DNS kezelés → [[cloud/domain-es-dns-kezeles|Domain és DNS kezelés]] — custom domain beállítás, SSL tanúsítványok
+- [x] Monitoring és logging → [[cloud/monitoring-es-logging|Monitoring és Logging]] — hogyan tudd meg ha valami elromlik production-ben
+- [x] AI-assisted deployment → [[cloud/ai-assisted-deployment|AI-assisted Deployment]] — Claude Code automatizált deploy scriptek, infra-as-code generálás
+- [x] Cost estimation → [[cloud/cost-estimation|Hosting költségbecslés]] — hosting költségbecslés, mikor melyik platform éri meg (SMB szemszögből)
+- [x] SaaS MVP deployment → [[cloud/saas-mvp-deployment|SaaS MVP Deployment]] — leggyorsabb út ötlettől a production-ig, stack választás üzleti szempontból
+- [x] Statuspage és incident management → [[cloud/statuspage-es-incident-management|Statuspage és Incident Management]] — ügyfelek tájékoztatása leállásokról, postmortem kultúra

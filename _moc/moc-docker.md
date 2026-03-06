@@ -10,12 +10,24 @@
 | Note | Leírás |
 |------|--------|
 | [[cloud/docker-alapok|Docker alapok]] | Mi az a Docker, miért kell, Dockerfile írás, image-ek, konténerek, volume-ok, hálózatok |
+| [[cloud/docker-multi-stage-builds|Docker Multi-stage Builds]] | Optimalizált, kisebb image-ek production-re — több build fázis, csak a szükséges output |
+| [[cloud/registry-kezeles|Registry kezelés]] | Docker Hub, GitHub Container Registry, privát registry-k — image-ek tárolása és megosztása |
+| [[cloud/docker-networking|Docker Networking]] | Bridge, host, overlay network-ök — konténerek közötti kommunikáció részletesen |
+| [[cloud/docker-security|Docker Security]] | Best practice-ek: non-root user, image scanning, secret kezelés, minimal base image |
 
 ## Orchestration
 
 | Note | Leírás |
 |------|--------|
 | [[cloud/docker-compose|Docker Compose]] | Több konténer kezelése egyetlen `docker-compose.yml` fájlból: service-ek, network-ök, volume-ok összekötése |
+| [[cloud/docker-swarm|Docker Swarm]] | Docker natív orchestration — több gépre, automatikus load balancing, Kubernetes alternatíva |
+
+## Fejlesztői környezet
+
+| Note | Leírás |
+|------|--------|
+| [[toolbox/dev-containers|Dev Containers]] | VS Code / Claude Code integrált fejlesztői konténerek — egységes dev környezet a csapatnak |
+| [[cloud/ai-fejlesztoi-kornyezet-dockerben|AI fejlesztői környezet Dockerben]] | GPU passthrough, ML model serving konténerizálva — CUDA + PyTorch Docker-ben |
 
 ---
 
@@ -24,9 +36,11 @@
 | Note | Kapcsolat |
 |------|-----------|
 | [[cloud/kubernetes-bevezeto|Kubernetes bevezeto]] | A Docker Compose "nagy testvére" — több gépre, production-re |
-| Projekt-szintű izoláció | A Docker a legteljesebb izolációs megoldás |
+| [[foundations/projekt-szintu-izolacio|Projekt-szintű izoláció]] | A Docker a legteljesebb izolációs megoldás |
 | [[cloud/railway|Railway]] | Railway alatt Docker konténerek futnak — amit Docker-ben buildelsz, Railway-en deployolod |
 | [[toolbox/tailscale|Tailscale]] | VPS-en futó Docker konténerek elérése biztonságos alagúton keresztül |
+| [[cloud/ci-cd-pipelines|CI/CD Pipelines]] | Docker image build és push automatizálása GitHub Actions-zel |
+| [[cloud/traefik|Traefik]] | Docker-native reverse proxy — automatikus service discovery és SSL |
 
 ---
 
@@ -35,15 +49,19 @@
 Ajánlott sorrend ha nulláról kezded:
 1. [[cloud/docker-alapok|Docker alapok]] — konténerizáció koncepció, Dockerfile, image build, `docker run` parancsok
 2. [[cloud/docker-compose|Docker Compose]] — multi-service setup, `docker-compose.yml` szintaxis, service-ek összekötése
+3. [[cloud/docker-multi-stage-builds|Docker Multi-stage Builds]] — optimalizált production image-ek
+4. [[cloud/docker-networking|Docker Networking]] — hogyan kommunikálnak a konténerek
+5. [[cloud/docker-security|Docker Security]] — biztonságos konténerizáció
+6. [[cloud/registry-kezeles|Registry kezelés]] — image-ek tárolása és CI/CD integráció
 
 ---
 
 ## Hézagok
 
-- [ ] Multi-stage builds — optimalizált, kisebb image-ek production-re
-- [ ] Docker Swarm — Docker natív orchestration (Kubernetes alternatíva)
-- [ ] Registry kezelés — Docker Hub, GitHub Container Registry, privát registry-k
-- [ ] Docker networking deep dive — bridge, host, overlay network-ök részletesen
-- [ ] Docker security — best practice-ek, non-root user, image scanning
-- [ ] AI fejlesztői környezet Docker-ben — GPU passthrough, ML model serving konténerizálva
-- [ ] Dev containers — VS Code / Claude Code integrált fejlesztői konténerek
+- [x] Multi-stage builds → [[cloud/docker-multi-stage-builds|Docker Multi-stage Builds]] — optimalizált, kisebb image-ek production-re
+- [x] Docker Swarm → [[cloud/docker-swarm|Docker Swarm]] — Docker natív orchestration (Kubernetes alternatíva)
+- [x] Registry kezelés → [[cloud/registry-kezeles|Registry kezelés]] — Docker Hub, GitHub Container Registry, privát registry-k
+- [x] Docker networking deep dive → [[cloud/docker-networking|Docker Networking]] — bridge, host, overlay network-ök részletesen
+- [x] Docker security → [[cloud/docker-security|Docker Security]] — best practice-ek, non-root user, image scanning
+- [x] AI fejlesztői környezet Docker-ben → [[cloud/ai-fejlesztoi-kornyezet-dockerben|AI fejlesztői környezet Dockerben]] — GPU passthrough, ML model serving konténerizálva
+- [x] Dev containers → [[toolbox/dev-containers|Dev Containers]] — VS Code / Claude Code integrált fejlesztői konténerek
