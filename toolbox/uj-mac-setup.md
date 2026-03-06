@@ -9,9 +9,9 @@ kapcsolodo:
   - "[[_moc/moc-environment-setup|MOC - Environment Setup]]"
 ---
 
-# Uj Mac setup — fejlesztoi kornyezet
+# Új Mac setup — fejlesztoi környezet
 
-Checklist es utmutato uj Mac beallitasahoz. Ezt kovesd sorban.
+Checklist és utmutato új Mac beállításahoz. Ezt kovesd sorban.
 
 ---
 
@@ -21,7 +21,7 @@ Checklist es utmutato uj Mac beallitasahoz. Ezt kovesd sorban.
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Apple Silicon után add hozzá a PATH-hoz (az installer mondja meg):
+Apple Silicon után add hozzá a PATH-hoz (az installer mondja még):
 ```bash
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc && source ~/.zshrc
 ```
@@ -35,7 +35,7 @@ brew install claude
 claude --version  # ellenőrzés
 ```
 
-> [!warning] Ne használj npm-es telepítést
+> [!warning] Ne használj npm-és telepítést
 > A Homebrew natív verzió az ajánlott. Ne futtasd az `npm install -g @anthropic-ai/claude-code` parancsot mellé — ütközés lesz.
 
 ---

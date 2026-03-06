@@ -7,7 +7,7 @@ datum: 2026-03-06
 szint: "🧱 Brick"
 kapcsolodo:
   - "[[cloud/railway|Railway]]"
-  - "[[foundations/bash-es-linux-parancssor|Bash es Linux parancssor]]"
+  - "[[foundations/bash-es-linux-parancssor|Bash és Linux parancssor]]"
   - "[[_moc/moc-deployment|MOC - Deployment]]"
 ---
 
@@ -15,39 +15,39 @@ kapcsolodo:
 
 **Kategoria:** `hosting` / `VPS`
 **URL:** https://hostinger.com
-**Ar/Terv:** KVM 1 (~$5/ho, 1 vCPU, 4GB RAM) / KVM 2 (~$8/ho, 2 vCPU, 8GB RAM)
+**Ar/Terv:** KVM 1 (~$5/hó, 1 vCPU, 4GB RAM) / KVM 2 (~$8/hó, 2 vCPU, 8GB RAM)
 
 ---
 
-## Mi ez es mire jo?
+## Mi ez és mire jó?
 
 > [!tldr] Egy mondatban
-> A Hostinger egy olcso VPS (Virtual Private Server) hosting -- **sajat Linux szervered van felhoben**, ahol barmit futtathatsz, teljes root hozzaferessel.
+> A Hostinger egy olcso VPS (Virtual Private Server) hosting -- **saját Linux szervered van felhőben**, ahol bármit futtathatsz, teljes root hozzáféréssel.
 
-A [[cloud/railway|Railway]] es a [[cloud/vercel|Vercel]] managed platform: ok kezelik az infrastrukturat, de dragabbak es korlatozottabbak. A Hostinger VPS-en te vagy a sysadmin -- olcsobb, de tobbet kell kezzel konfiguralni.
+A [[cloud/railway|Railway]] és a [[cloud/vercel|Vercel]] managed platform: ok kezelik az infrastrukturat, de dragabbak és korlátozottabbak. A Hostinger VPS-en te vagy a sysadmin -- olcsobb, de többet kell kezzel konfigurálni.
 
 **Mikor jobb, mint a Railway:**
 - Hosszan futo background service-ek (pl. n8n)
-- Fix havi ar, nem usage-alapu billing (nem lep meg a szamla)
-- Teljes kontroll: barmilyen port, barmilyen service
-- Olcsobb ha sok memoriat/CPU-t hasznalsz
+- Fix havi ar, nem usage-alapu billing (nem lep még a szamla)
+- Teljes kontroll: bármilyen port, bármilyen service
+- Olcsobb ha sok memoriat/CPU-t használsz
 
 **Mikor rosszabb, mint a Railway:**
 - Nincs automatikus deploy GitHub-bol (kezzel kell SSH-val)
-- Nincs managed adatbazis → sajat PostgreSQL-t kell uzemeltetni
-- Sysadmin feladatok: frissitesek, tuzfal, backup = te csinálod
+- Nincs managed adatbázis → saját PostgreSQL-t kell üzemeltetni
+- Sysadmin feladatok: frissítesek, tuzfal, backup = te csinálod
 
 ---
 
-## Setup -- lepesrol lepesre
+## Setup -- lépésrol lépésre
 
 ### 1. VPS megvasarlasa
 
-- hostinger.com → VPS Hosting → KVM csomag valasztas
+- hostinger.com → VPS Hosting → KVM csomag választas
 - OS: Ubuntu 22.04 LTS (ajanlott)
 - Region: EU (Amsterdam / Frankfurt a legkozelebb)
 
-### 2. SSH hozzaferes beallitasa
+### 2. SSH hozzáférés beállítása
 
 ```bash
 # Helyi gepen: SSH kulcs generalas (ha meg nincs)
@@ -67,7 +67,7 @@ Host myserver
 
 Ezutan: `ssh myserver` -- kesz.
 
-### 3. Alap szerver konfiguracio (Ubuntu)
+### 3. Alap szerver konfigurácio (Ubuntu)
 
 ```bash
 ssh myserver
@@ -86,7 +86,7 @@ apt install fail2ban -y
 systemctl enable fail2ban
 ```
 
-### 4. Service telepites Docker-rel
+### 4. Service telepítes Docker-rel
 
 ```bash
 # Docker telepites
@@ -108,19 +108,19 @@ docker run -d \
 
 ## Best Practices
 
-### Biztonsag
+### Biztonság
 
-- **Ne hasznalj root-ot mindenre** -- hozz letre kulon usert az alkalmazasoknak
+- **Ne használj root-ot mindenre** -- hozz letre kulon usert az alkalmazásoknak
 - **SSH kulcsos autentikacio** -- jelszavas SSH-t tiltsd le
-- **UFW tuzfal** -- csak a szukseges portokat nyisd ki
-- **Tailscale** -- ha csak sajat gepedrol kell elerni a szervert, Tailscale-lel biztonsagosabb (nem kell publikus port)
+- **UFW tuzfal** -- csak a szükséges portokat nyisd ki
+- **Tailscale** -- ha csak saját gépedrol kell elerni a szervert, Tailscale-lel biztonságosabb (nem kell publikus port)
 
-### Backup strategia
+### Backup stratégia
 
-- Hostinger dashboard-ban: Snapshots (heti automatikus, de manualist is csinalhatsz deploy elott)
+- Hostinger dashboard-ban: Snapshots (heti automatikus, de manuálist is csinálhatsz deploy elott)
 - Adatok backup: `docker volume` → `tar` → remote storage
 
-### Frissitesek
+### Frissítesek
 
 ```bash
 # Rendszer frissites (havi rutinkent)
@@ -167,9 +167,9 @@ reboot
 ## Kapcsolodo
 
 - [[cloud/railway|Railway]] -- managed hosting alternativa, dragabb de kevesebb sysadmin munka
-- Tailscale -- VPN a VPS biztonsagos eleresehez publikus port nelkul
+- Tailscale -- VPN a VPS biztonságos eléréséhez publikus port nelkul
 - n8n workflow automatizalas -- a Hostinger VPS-en fut
-- [[foundations/bash-es-linux-parancssor|Bash es Linux parancssor]] -- SSH, tuzfal, szerver parancsok
+- [[foundations/bash-es-linux-parancssor|Bash és Linux parancssor]] -- SSH, tuzfal, szerver parancsok
 - [[_moc/moc-deployment|MOC - Deployment]]
 
 ---

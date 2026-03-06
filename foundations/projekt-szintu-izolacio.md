@@ -12,32 +12,32 @@ datum: 2026-02-08
 szint: "🌱 Newcomer"
 ---
 
-# Projekt-szintu izolacio
+# Projekt-szintű izolácio
 
 ## Mirol van szo?
 
-A modern fejlesztesben minden projektet **izolaltan** kezelunk -- sajat fuggosegekkel, sajat verzioval, sajat konfiguracioval. Ez megakadalyozza, hogy az egyik projekt eltorje a masikat.
+A modern fejlesztesben minden projektet **izoláltan** kezelunk -- saját függőségekkel, saját verzióval, saját konfigurácioval. Ez megakadalyozza, hogy az egyik projekt eltorje a másikat.
 
-A regi megkozelites: egy gep = egy globalis konfiguracio. A modern: egy projekt = egy izolalt kornyezet.
+A regi megkozelites: egy gep = egy globális konfigurácio. A modern: egy projekt = egy izolált környezet.
 
 ---
 
-## Izolacio tipusai
+## Izolácio tipusai
 
-| Szint | Regi (globalis) | Modern (izolalt) | Eszkoz |
+| Szint | Regi (globális) | Modern (izolált) | Eszkoz |
 |---|---|---|---|
-| **Node.js verzio** | `brew install node` | `.nvmrc` per projekt | fnm, nvm |
+| **Node.js verzió** | `brew install node` | `.nvmrc` per projekt | fnm, nvm |
 | **Node csomagok** | `npm install -g` | `devDependencies` + `npx` | npm, pnpm |
-| **Python verzio** | `brew install python` | `.python-version` per projekt | pyenv |
-| **Python csomagok** | `pip install` globalisan | `venv` per projekt | venv, uv |
-| **Env valtozok** | rendszerszintu export | `.env.local` per projekt | dotenv |
-| **Futtatokornyezet** | kozvetlenul a gepen | kontenerben | Docker |
+| **Python verzió** | `brew install python` | `.python-version` per projekt | pyenv |
+| **Python csomagok** | `pip install` globálisan | `venv` per projekt | venv, uv |
+| **Env változók** | rendszerszintu export | `.env.local` per projekt | dotenv |
+| **Futtatokornyezet** | kozvetlenul a gépen | konténerben | Docker |
 
 ---
 
-## Miert fontos?
+## Miért fontos?
 
-**Gyakorlati pelda:** Van egy Next.js 16 projekted (Node 24 kell) es egy masik projekted (Node 22 kell). Ha globalisan valtod a Node-ot:
+**Gyakorlati példa:** Van egy Next.js 16 projekted (Node 24 kell) és egy másik projekted (Node 22 kell). Ha globálisan valtod a Node-ot:
 
 ```
 brew link node@24   -> az egyik mukodik, a masik eltorik
@@ -57,13 +57,13 @@ cd projekt-b/    -> automatikusan Node 22 (.nvmrc)
 
 ## A "Holy Trinity" -- amit mindig allits be projekt elejen
 
-### 1. `.nvmrc` -- Node verzio
+### 1. `.nvmrc` -- Node verzió
 
 ```
 24
 ```
 
-### 2. `.env.example` -- szukseges env valtozok dokumentalva
+### 2. `.env.example` -- szükséges env változók dokumentalva
 
 ```bash
 NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
@@ -71,7 +71,7 @@ DATABASE_URL=
 API_KEY=
 ```
 
-### 3. `package.json` -- csomagok es scriptek lokalisan
+### 3. `package.json` -- csomagok és scriptek lokálisan
 
 ```json
 {
@@ -88,15 +88,15 @@ API_KEY=
 
 ## Mikor NE izolalj?
 
-- **Brew** tovabbra is jo globalis CLI toolokra (git, ffmpeg, htop)
-- **Egy projekthez** nem kell verziokotes -- ha csak egyet fejlesztesz, a globalis is eleg
-- **Ne over-engineerelj** -- Docker dev kornyezethez csak akkor, ha tenyleg kell (pl. adatbazis, Redis)
+- **Brew** tovabbra is jó globális CLI toolokra (git, ffmpeg, htop)
+- **Egy projekthez** nem kell verziókotes -- ha csak egyet fejlesztesz, a globális is eleg
+- **Ne over-engineerelj** -- Docker dev környezethez csak akkor, ha tényleg kell (pl. adatbázis, Redis)
 
 ---
 
 ## Kapcsolodo
 
-- [[foundations/python-venv|Python venv]] -- Python izolacio
+- [[foundations/python-venv|Python venv]] -- Python izolácio
 - [[cloud/docker-alapok|Docker alapok]]
 - [[frontend/nextjs|Next.js]]
 - [[_moc/moc-environment-setup|MOC - Environment Setup]]

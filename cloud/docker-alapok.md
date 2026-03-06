@@ -7,24 +7,24 @@ szint: "🌱 Newcomer"
 kapcsolodo:
   - "[[cloud/docker-compose|Docker Compose]]"
   - "[[cloud/kubernetes-bevezeto|Kubernetes bevezeto]]"
-  - "[[foundations/halozatok-es-ip-cimek|Halozatok es IP cimek]]"
+  - "[[foundations/halozatok-es-ip-cimek|Hálózatok és IP cimek]]"
   - "[[_moc/moc-docker|MOC - Docker]]"
   - "[[_moc/moc-deployment|MOC - Deployment]]"
 ---
 
 # Docker alapok
 
-## Osszefoglalo
+## Összefoglaló
 
-A Docker lehetove teszi, hogy alkalmazasokat izolalt kontenerekben futtass. Minden kontener tartalmazza az appot es az osszes fuggoseget, igy barhol ugyanugy fut -- legyen az a sajat geped, egy szerver, vagy a felho.
+A Docker lehetővé teszi, hogy alkalmazásokat izolált konténerekben futtass. Minden konténer tartalmazza az appot és az összes függőséget, így bárhol ugyanúgy fut -- legyen az a saját géped, egy szerver, vagy a felhő.
 
 ## Jegyzetek
 
-### Mi az a Docker es miert kell?
+### Mi az a Docker és miért kell?
 
-- Megoldja a "nalam mukodik" problemat -- a kontener mindenhol ugyanugy fut
-- Konnyu, gyors, nem egy teljes virtualis gep (VM) -- csak az app es ami kell hozza
-- Fejleszteshez, teszteleshez es deployhoz is ugyanaz az environment
+- Megoldja a "nálam működik" problémat -- a konténer mindenhol ugyanúgy fut
+- Könnyű, gyors, nem egy teljes virtuális gep (VM) -- csak az app és ami kell hozzá
+- Fejleszteshez, teszteléshez és deployhoz is ugyanaz az environment
 
 ## Build flow
 
@@ -41,7 +41,7 @@ graph TD
 
 ### Dockerfile -- az uzembehelyezesi leiras
 
-A `Dockerfile` egy lepesenkenti recept ami megmondja hogyan epuljon fel a kontener.
+A `Dockerfile` egy lépésenkenti recept ami megmondja hogyan epuljon fel a konténer.
 
 ```dockerfile
 FROM node:20-alpine       # Alap image (mibol indulunk ki)
@@ -53,28 +53,28 @@ EXPOSE 3000               # Melyik portot hasznalja
 CMD ["npm", "start"]      # Mit futtasson indulaskor
 ```
 
-**UFS (Union File System):** A Dockerfile egymas utani retegeket (layer) hoz letre. Minden `RUN`, `COPY`, `ADD` parancs egy uj reteg. Ha egy reteg nem valtozik, Docker cache-bol hasznalja -- ezert gyorsabb a rebuild.
+**UFS (Union File System):** A Dockerfile egymas utani retegeket (layer) hoz letre. Minden `RUN`, `COPY`, `ADD` parancs egy új reteg. Ha egy reteg nem valtozik, Docker cache-bol használja -- ezert gyorsabb a rebuild.
 
 > [!tip] Cache-barat sorrend a Dockerfile-ban
-> Mindig a **ritkan valtozo dolgok jonnek elore** (pl. `COPY package.json` + `RUN npm install`), es a **surun valtozo kod utoljara** (`COPY . .`). Ha forditva csinálod, minden kodvaltozasnal ujra telepiti az osszes csomagot.
+> Mindig a **ritkan változó dolgok jonnek elore** (pl. `COPY package.json` + `RUN npm install`), és a **surun változó kod utoljara** (`COPY . .`). Ha forditva csinálod, minden kodvaltozasnal ujra telepíti az összes csomagot.
 
 ### Docker image kezeles
 
-| Parancs | Mit csinal |
+| Parancs | Mit csinál |
 |---------|------------|
-| `docker build -t appnev .` | Image epitese a Dockerfile-bol |
-| `docker tag nginx nginx:v1.0` | Image megjelolese nevvel es verzioval |
+| `docker build -t appnev .` | Image építese a Dockerfile-bol |
+| `docker tag nginx nginx:v1.0` | Image megjelolese nevvel és verzióval |
 | `docker images` | Helyi image-ek listazasa |
 
-### Kontener futtatasa
+### Konténer futtatasa
 
-| Parancs | Mit csinal |
+| Parancs | Mit csinál |
 |---------|------------|
-| `docker run image-nev` | Kontener inditasa |
-| `docker run -d image-nev` | Hatterben futtatas (detached) |
-| `docker run -p 3000:3000 image-nev` | Port kivezetese (host:kontener) |
-| `docker ps` | Futo kontenerek listazasa |
-| `docker stop kontener-id` | Kontener leallitasa |
+| `docker run image-nev` | Konténer indítasa |
+| `docker run -d image-nev` | Háttérben futtatas (detached) |
+| `docker run -p 3000:3000 image-nev` | Port kivezetese (host:konténer) |
+| `docker ps` | Futo konténerek listazasa |
+| `docker stop kontener-id` | Konténer leallitasa |
 
 ### Volumeok -- adat megosztas
 
@@ -82,21 +82,21 @@ CMD ["npm", "start"]      # Mit futtasson indulaskor
 docker run -v /host-home/dir:/container/home/dir image-nev
 ```
 
-A `-v` (volume) osszekoti a sajat geped egy konyvtarat a kontener egy konyvtaraval. Igy:
-- A kontener a sajat konyvtaradba ment adatot
-- Ha a kontener meghal, az adat megmarad
-- Fejleszteskor a kodod valtozasait is latja a kontener
+A `-v` (volume) osszekoti a saját géped egy könyvtárat a konténer egy könyvtáraval. Így:
+- A konténer a saját könyvtáradba ment adatot
+- Ha a konténer meghal, az adat megmarad
+- Fejleszteskor a kódod változásait is látja a konténer
 
-### Registry -- image-ek tarolasa es megosztasa
+### Registry -- image-ek tárolása és megosztasa
 
-A registry egy kozponti hely ahova feltoltod az image-eket es ahonnan masok (vagy a szerver) lehuzzak.
+A registry egy kozponti hely ahova feltoltod az image-eket és ahonnan masok (vagy a szerver) lehuzzak.
 
-| Registry | Mire jo |
+| Registry | Mire jó |
 |----------|---------|
-| Docker Hub | Publikus registry, alapertelmezett |
-| GitHub Container Registry | [[foundations/git-es-github|Git es GitHub]]-hoz kotott, privat is lehet |
+| Docker Hub | Publikus registry, alapértelmezett |
+| GitHub Container Registry | [[foundations/git-es-github|Git és GitHub]]-hoz kotott, privat is lehet |
 | GitLab Container Registry | GitLab projektekhez |
-| Sajat/ceges registry | Pl. sajat hosted registry |
+| Saját/ceges registry | Pl. saját hosted registry |
 
 ```bash
 docker login registry-url                       # Bejelentkezes
@@ -118,15 +118,15 @@ pkill -f "next dev"
 ```
 
 ## Fo tanulsagok
-- A Dockerfile retegekbol all -- a sorrend szamit a cache hatekonysaga miatt
-- Volume nelkul a kontener adatai elvesznek ha a kontener megall
+- A Dockerfile retegekbol all -- a sorrend szamit a cache hatékonysaga miatt
+- Volume nelkul a konténer adatai elvesznek ha a konténer megall
 - A registry olyan mint a GitHub, csak image-eknek -- push/pull logika
-- Mindig adj verziot a tag-nek (`app:1.0`), ne csak `latest`-et hasznalj
+- Mindig adj verziót a tag-nek (`app:1.0`), ne csak `latest`-et használj
 
 ## Kapcsolodo anyagok
 - [[cloud/docker-compose|Docker Compose]]
 - [[cloud/kubernetes-bevezeto|Kubernetes bevezeto]]
-- [[foundations/halozatok-es-ip-cimek|Halozatok es IP cimek]]
+- [[foundations/halozatok-es-ip-cimek|Hálózatok és IP cimek]]
 - Tailscale
 - [[_moc/moc-docker|MOC - Docker]]
 - [[_moc/moc-deployment|MOC - Deployment]]
@@ -134,7 +134,7 @@ pkill -f "next dev"
 - [Bash set flags magyarazat](https://gist.github.com/mohanpedala/585292a6bf844c4b9c94635a1038ced3)
 - [ByteByteGo YouTube](https://www.youtube.com/@ByteByteGo)
 
-## Takaritas es karbantartas
+## Takaritas és karbantartas
 
 ### Minden futo container leallitasa
 
@@ -142,7 +142,7 @@ pkill -f "next dev"
 docker stop $(docker ps -q)
 ```
 
-### Minden container torlese (volume MARAD)
+### Minden container törlése (volume MARAD)
 
 ```bash
 docker rm $(docker ps -aq)
@@ -156,10 +156,10 @@ docker compose down
 ```
 
 > [!warning] Figyelem
-> A `docker compose down` alapbol NEM torli a volume-okat. Csak a `--volumes` / `-v` flag torolne -- azt ne hasznald, hacsak nem szandekos.
+> A `docker compose down` alapbol NEM torli a volume-okat. Csak a `--volumes` / `-v` flag törölne -- azt ne használd, hacsak nem szandekos.
 
 ### Hasznos takarito parancsok (volume-okhoz nem nyulnak)
 
-- `docker system prune` -- torli a leallitott containereket, nem hasznalt networkokat, dangling image-eket
-- `docker image prune -a` -- torli az osszes nem hasznalt image-et (helyet szabadit)
+- `docker system prune` -- torli a leallitott containereket, nem használt networkokat, dangling image-eket
+- `docker image prune -a` -- torli az összes nem használt image-et (helyet szabadit)
 - `docker volume ls` -- megnézheted milyen volume-jaid vannak

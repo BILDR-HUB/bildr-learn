@@ -13,7 +13,7 @@ kapcsolodo:
 
 ## Mi ez?
 
-Az **Edge Function** egy szerver-oldali fuggveny, ami nem egy kozponti szerveren fut, hanem a **felhasznalohoz legkozelebbi CDN edge node-on**. Globalisan elosztva, minimalis latency-vel — tehat ha valaki Tokiobol keri le az oldalt, a Tokio melletti edge node-on fut a kod, nem New Yorkban.
+Az **Edge Function** egy szerver-oldali fuggveny, ami nem egy kozponti szerveren fut, hanem a **felhasználóhoz legkozelebbi CDN edge node-on**. Globálisan elosztva, minimalis latency-vel — tehát ha valaki Tokiobol keri le az oldalt, a Tokio melletti edge node-on fut a kod, nem New Yorkban.
 
 ```mermaid
 graph LR
@@ -36,13 +36,13 @@ graph LR
 
 | Szempont | Tradicionalis szerver | Serverless (Lambda) | Edge Function |
 |---|---|---|---|
-| **Hol fut** | Fix szerveren (pl. EU) | Cloud regioban (1-2 helyen) | CDN edge-en (globalisan) |
+| **Hol fut** | Fix szerveren (pl. EU) | Cloud regioban (1-2 helyen) | CDN edge-en (globálisan) |
 | **Cold start** | Nincs (mindig fut) | 100-500ms | ~0ms (instant) |
-| **Latency** | Regiofuggo | Regiofuggo | Minimalis (kozel a userhez) |
-| **Runtime** | Node.js, Python, barmi | Node.js, Python, etc. | V8 Isolate (limitalt) |
+| **Latency** | Regiofuggo | Regiofuggo | Minimalis (közel a userhez) |
+| **Runtime** | Node.js, Python, bármi | Node.js, Python, etc. | V8 Isolate (limitalt) |
 | **Futasido limit** | Nincs | 15 perc (AWS Lambda) | 30mp ([[cloud/vercel|Vercel]]) |
 | **Memoria** | GB-ok | 128MB-10GB | 128MB (limitalt) |
-| **Adatbazis hozzaferes** | Kozvetlen | Kozvetlen | Limitalt (connection pooling kell) |
+| **Adatbázis hozzáférés** | Kozvetlen | Kozvetlen | Limitalt (connection pooling kell) |
 | **Ar** | Fix havi | Per request | Per request (olcso) |
 
 > [!warning] Edge function limitaciok
@@ -50,27 +50,27 @@ graph LR
 
 ---
 
-## Mikor hasznald?
+## Mikor használd?
 
-**Edge function idealis:**
-- **Auth middleware** — token ellenorzes minden request elott ([[frontend/nextjs|Next.js]] middleware)
-- **Geo-routing** — orszag alapjan mas tartalmat mutat
-- **A/B teszteles** — keres szinten dont melyik verziot mutatja
+**Edge function ideális:**
+- **Auth middleware** — token ellenőrzes minden request elott ([[frontend/nextjs|Next.js]] middleware)
+- **Geo-routing** — orszag alapján mas tartalmat mutat
+- **A/B tesztelés** — keres szintén dönt melyik verziót mutatja
 - **Header manipulacio** — security headers, CORS, redirect
-- **Rate limiting** — keresek szurese a szerverre jutas elott
-- **Personalizacio** — felhasznalo alapjan modositott response
+- **Rate limiting** — keresek szűrese a szerverre jutas elott
+- **Personalizacio** — felhasználó alapján módosított response
 
-**Edge function NEM idealis:**
+**Edge function NEM ideális:**
 - Nehez szamitasok (ML inference, kepfeldolgozas)
-- Hosszu futásu feladatok (email kuldes, PDF generalas)
-- Kozvetlen adatbazis muveletek (bar egyre jobb — [[database/supabase|Supabase]] Edge Functions ezt kezeli)
-- Node.js-specifikus konyvtarak hasznalata
+- Hosszu futásu feladatok (email küldés, PDF generalas)
+- Kozvetlen adatbázis műveletek (bar egyre jobb — [[database/supabase|Supabase]] Edge Functions ezt kezeli)
+- Node.js-specifikus könyvtárak használata
 
 ---
 
 ## Vercel Edge Functions
 
-A [[cloud/vercel|Vercel]] platformon az Edge Functions a [[frontend/nextjs|Next.js]] middleware-en es az Edge API Route-okon keresztul erheto el.
+A [[cloud/vercel|Vercel]] platformon az Edge Functions a [[frontend/nextjs|Next.js]] middleware-en és az Edge API Route-okon keresztul erheto el.
 
 ### Next.js Middleware (edge-en fut)
 
@@ -118,7 +118,7 @@ export async function GET(request: Request) {
 
 ## Supabase Edge Functions
 
-A [[database/supabase|Supabase]] sajat Edge Functions rendszert kinal **Deno** runtime-mal:
+A [[database/supabase|Supabase]] saját Edge Functions rendszert kinal **Deno** runtime-mal:
 
 ```typescript
 // supabase/functions/hello-world/index.ts
@@ -143,7 +143,7 @@ supabase functions deploy hello-world
 ```
 
 > [!info] Deno vs V8 Isolate
-> A Supabase Edge Functions **Deno**-t hasznal (nem V8 Isolate-et mint a Vercel). Ez azt jelenti, hogy tobb Node.js-kompatibilis API erheto el, de a latency kicsit magasabb mert nem CDN edge-en fut, hanem a Supabase regioban.
+> A Supabase Edge Functions **Deno**-t használ (nem V8 Isolate-et mint a Vercel). Ez azt jelenti, hogy több Node.js-kompatibilis API erheto el, de a latency kicsit magasabb mert nem CDN edge-en fut, hanem a Supabase regioban.
 
 ---
 
@@ -152,6 +152,6 @@ supabase functions deploy hello-world
 - [[backend/hono|Hono]] — edge-nativ API framework (Cloudflare Workers-re)
 - [[cloud/cloudflare|Cloudflare]] — edge computing platform (Workers, D1, R2)
 - [[backend/express|Express]] — klasszikus Node.js framework (NEM fut edge-en)
-- [[frontend/nextjs|Next.js]] — middleware es API routes edge runtime-mal
+- [[frontend/nextjs|Next.js]] — middleware és API routes edge runtime-mal
 - [[cloud/vercel|Vercel]] — Edge Functions hosting
 - [[database/supabase|Supabase]] — Edge Functions Deno-val

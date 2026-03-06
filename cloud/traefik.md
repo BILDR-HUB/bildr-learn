@@ -10,7 +10,7 @@ kapcsolodo:
   - "[[cloud/docker-compose|Docker Compose]]"
   - "[[cloud/docker-alapok|Docker alapok]]"
   - "[[cloud/hostinger|Hostinger]]"
-  - "[[foundations/halozatok-es-ip-cimek|Halozatok es IP cimek]]"
+  - "[[foundations/halozatok-es-ip-cimek|Hálózatok és IP cimek]]"
 ---
 
 # Traefik
@@ -21,24 +21,24 @@ kapcsolodo:
 
 ---
 
-## Mi ez es mire jo?
+## Mi ez és mire jó?
 
 > [!tldr] Egy mondatban
-> A Traefik egy **Docker-native reverse proxy** -- automatikusan felismeri a futo kontenereket, es konfig irasa nelkul iranyitja felejuk a forgalmat. Az SSL tanusitvanyt is automatikusan kezeli Let's Encrypt-tel.
+> A Traefik egy **Docker-native reverse proxy** -- automatikusan felismeri a futo konténereket, és konfig irasa nelkul iranyitja felejuk a forgalmat. Az SSL tanúsítványt is automatikusan kezeli Let's Encrypt-tel.
 
-Az [[cloud/nginx|Nginx]]-nel manualisan irsz konfig fajlt minden service-hez. A Traefik-nel a konfig a Docker label-ekben el -- a service-ek magukat "regisztraljak" a proxy-ba indulaskor.
+Az [[cloud/nginx|Nginx]]-nel manuálisan irsz konfig fájlt minden service-hez. A Traefik-nel a konfig a Docker label-ekben el -- a service-ek magukat "regisztraljak" a proxy-ba indulaskor.
 
 **Mikor jobb mint az Nginx:**
-- [[cloud/docker-compose|Docker Compose]]-ban sok service fut, mindegyiknek sajat domain/path kell
+- [[cloud/docker-compose|Docker Compose]]-ban sok service fut, mindegyiknek saját domain/path kell
 - Automatikus Let's Encrypt SSL kell, certbot nelkul
-- Dinamikus kornyezet -- service-ek jonnek-mennek (pl. staging/prod egyszerre)
-- Nem akarsz minden domain-hoz kulon konfig fajlt irni
+- Dinamikus környezet -- service-ek jonnek-mennek (pl. staging/prod egyszerre)
+- Nem akarsz minden domain-hoz kulon konfig fájlt irni
 
 **Mikor jobb az [[cloud/nginx|Nginx]]:**
-- Egyszeru statikus fajl hosting kell
-- Finomhangolt teljesitmeny / caching / rate limiting kell
-- Nem Docker-es deploymentnel (bare metal, systemd service)
-- Ismered az Nginx-et es a Docker label szintaxis idegen
+- Egyszerű statikus fájl hosting kell
+- Finomhangolt teljesítmény / caching / rate limiting kell
+- Nem Docker-és deploymentnel (bare metal, systemd service)
+- Ismered az Nginx-et és a Docker label szintaxis idegen
 
 ---
 
@@ -46,17 +46,17 @@ Az [[cloud/nginx|Nginx]]-nel manualisan irsz konfig fajlt minden service-hez. A 
 
 | Szempont | Nginx | Traefik |
 |---|---|---|
-| **Konfig helye** | `/etc/nginx/sites-available/` fajlok | Docker label-ek a `docker-compose.yml`-ben |
-| **Uj service hozzaadasa** | Uj konfig fajl + reload | Label hozzaadasa + `docker compose up` |
+| **Konfig helye** | `/etc/nginx/sites-available/` fájlok | Docker label-ek a `docker-compose.yml`-ben |
+| **Új service hozzáadasa** | Új konfig fájl + reload | Label hozzáadasa + `docker compose up` |
 | **SSL** | Certbot kezzel, megujitas cron | Automatikus, beepitett ACME |
-| **Docker integracio** | Nincs nativ | Teljes -- kontenereket figyeli |
-| **Statikus fajl** | Nativ, gyors | Nem az erossege |
+| **Docker integracio** | Nincs nativ | Teljes -- konténereket figyeli |
+| **Statikus fájl** | Nativ, gyors | Nem az erossege |
 | **Tanulasi gorbe** | Kozepes (konfig szintaxis) | Alacsony ha Docker-t ismered |
 | **Tipikus use case** | VPS, bare metal, statikus site | Docker Compose stack-ek |
 
 ---
 
-## Architektura
+## Architektúra
 
 ```mermaid
 graph LR
@@ -68,11 +68,11 @@ graph LR
     T -.->|auto SSL| LE[Let's Encrypt ACME]
 ```
 
-A Traefik a Docker sockethez csatlakozik es **valos idoben figyeli** a kontenereket. Ha egy kontener elindul a megfelelo label-ekkel, a Traefik automatikusan elkezdi ra iranyitani a forgalmat -- ujrainditas nelkul.
+A Traefik a Docker sockethez csatlakozik és **valós idoben figyeli** a konténereket. Ha egy konténer elindul a megfelelő label-ekkel, a Traefik automatikusan elkezdi ra iranyitani a forgalmat -- ujrainditas nelkul.
 
 ---
 
-## Setup -- lepesrol lepesre
+## Setup -- lépésrol lépésre
 
 ### 1. Alapstruktura
 
@@ -181,7 +181,7 @@ docker compose up -d
 # Traefik azonnal eszreveszi, SSL tanusitvanyt igenyel, forgalom indul
 ```
 
-### 5. Tobb service egy szerveren
+### 5. Több service egy szerveren
 
 ```yaml
 services:
@@ -224,9 +224,9 @@ networks:
 
 ## Middleware -- extra funkciok
 
-A middleware-ek a keres es a service kozott futnak -- auth, redirect, rate limit stb.
+A middleware-ek a keres és a service kozott futnak -- auth, redirect, rate limit stb.
 
-### Basic Auth vedelem (pl. dashboard, admin felulet)
+### Basic Auth védelem (pl. dashboard, admin felület)
 
 ```bash
 # Jelszo hash generalasa
@@ -249,7 +249,7 @@ labels:
 ```
 
 > [!tip] IP whitelist + Tailscale
-> A Traefik IP whitelist middleware-rel es Tailscale IP-vel konnyen vedhetsz belso service-eket (pl. Grafana, admin panelek) -- csak a Tailscale halozatbol elerheto.
+> A Traefik IP whitelist middleware-rel és Tailscale IP-vel konnyen vedhetsz belső service-eket (pl. Grafana, admin panelek) -- csak a Tailscale hálózatbol elérheto.
 
 ---
 
@@ -271,16 +271,16 @@ labels:
 ## Buktatok
 
 > [!bug] `acme.json` permission
-> Ha az `acme.json`-on nem `chmod 600` van, a Traefik nem indul el es/vagy a Let's Encrypt nem mukodik. Ez a leggyakoribb hiba first-time setup-nal.
+> Ha az `acme.json`-on nem `chmod 600` van, a Traefik nem indul el és/vagy a Let's Encrypt nem működik. Ez a leggyakoribb hiba first-time setup-nal.
 
 > [!warning] `exposedByDefault: false`
-> Mindig allitsd be! Alapbol a Traefik **minden** kontenert expose-ol. `false`-szal csak a `traefik.enable=true` label-es service-ek latszanak kivulrol.
+> Mindig allitsd be! Alapbol a Traefik **minden** konténert expose-ol. `false`-szal csak a `traefik.enable=true` label-és service-ek latszanak kivulrol.
 
 > [!warning] Let's Encrypt rate limit
-> Let's Encrypt production-nal van 5 tanusitvany/domain/het limit. Teszteles kozben hasznald a staging ACME szervert: `caServer: https://acme-staging-v02.api.letsencrypt.org/directory` -- ez nem er bele a limitbe, de a tanusitvany nem trusted.
+> Let's Encrypt production-nal van 5 tanúsítvány/domain/het limit. Tesztelés kozben használd a staging ACME szervert: `caServer: https://acme-staging-v02.api.letsencrypt.org/directory` -- ez nem er bele a limitbe, de a tanúsítvány nem trusted.
 
-> [!bug] Tobb `docker-compose.yml` -- network csatlakozas
-> Ha az app egy kulon `docker-compose.yml`-ben van (nem ugyanabban mint a Traefik), kotelezo a kozos `proxy` external network. Kulonben a Traefik latja a label-t, de nem tud csatlakozni a kontenerhez → 502.
+> [!bug] Több `docker-compose.yml` -- network csatlakozas
+> Ha az app egy kulon `docker-compose.yml`-ben van (nem ugyanabban mint a Traefik), kötelező a kozos `proxy` external network. Különben a Traefik látja a label-t, de nem tud csatlakozni a konténerhez → 502.
 
 ---
 
@@ -309,8 +309,8 @@ cat /opt/traefik/acme.json | jq '.letsencrypt.Certificates[].domain'
 
 ## Kapcsolodo
 
-- [[cloud/nginx|Nginx]] -- alternativa, jobb statikus fajlokhoz es nem-Docker deploymentnel
-- [[cloud/docker-compose|Docker Compose]] -- Traefik Docker Compose stack-ekkel mukodik a legjobban
-- [[cloud/docker-alapok|Docker alapok]] -- Traefik a Docker socket-en keresztul ismeri fel a kontenereket
+- [[cloud/nginx|Nginx]] -- alternativa, jobb statikus fájlokhoz és nem-Docker deploymentnel
+- [[cloud/docker-compose|Docker Compose]] -- Traefik Docker Compose stack-ekkel működik a legjobban
+- [[cloud/docker-alapok|Docker alapok]] -- Traefik a Docker socket-en keresztul ismeri fel a konténereket
 - [[cloud/hostinger|Hostinger]] -- a VPS ahol a Traefik fut
-- Grafana -- Traefik moge teheto, IP whitelist middleware-rel vedheto
+- Grafana -- Traefik mögé teheto, IP whitelist middleware-rel vedheto

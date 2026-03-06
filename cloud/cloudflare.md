@@ -19,18 +19,18 @@ kapcsolodo:
 
 **Kategoria:** `hosting` (edge platform)
 **URL:** https://www.cloudflare.com
-**Ar/Terv:** Workers Paid: $5/ho (10M request, 5GB DB, R2 storage)
+**Ar/Terv:** Workers Paid: $5/hó (10M request, 5GB DB, R2 storage)
 
 ---
 
-## Mi ez es mire jo?
+## Mi ez és mire jó?
 
-A **Cloudflare** egy **edge computing platform** -- az appod nem egy szerveren fut, hanem a vilag 300+ adatkozpontjaban egyszerre, a felhasznalohoz legkozelebb.
+A **Cloudflare** egy **edge computing platform** -- az appod nem egy szerveren fut, hanem a vilag 300+ adatkozpontjaban egyszerre, a felhasználóhoz legkozelebb.
 
-**Egyszeru analogia:**
+**Egyszerű analogia:**
 
 A [[cloud/vercel|Vercel]] olyan, mint egy etterem: egy helyrol szolgalsz ki mindenkit.
-A Cloudflare olyan, mint egy **franchise halozat**: minden varosban van egy konyha, es mindig a legkozelebbi szolgal ki.
+A Cloudflare olyan, mint egy **franchise hálózat**: minden varosban van egy konyha, és mindig a legkozelebbi szolgal ki.
 
 ```mermaid
 graph TD
@@ -53,24 +53,24 @@ graph TD
 ```
 
 > [!tldr] Egy mondatban
-> A Cloudflare egy platform ahol a kodod a felhasznalohoz legkozelebbi szerveren fut, es a $5/ho plan szinte barmilyen kis-kozepes apphoz eleg.
+> A Cloudflare egy platform ahol a kódod a felhasználóhoz legkozelebbi szerveren fut, és a $5/hó plan szinte bármilyen kis-kozepes apphoz eleg.
 
 ---
 
-## Cloudflare szolgaltatasok attekintese
+## Cloudflare szolgáltatasok attekintese
 
-A Cloudflare nem egy eszkoz, hanem egy **okoszisztema**. A $5/ho plan ezeket mind tartalmazza:
+A Cloudflare nem egy eszkoz, hanem egy **okoszisztema**. A $5/hó plan ezeket mind tartalmazza:
 
-| Szolgaltatas | Mi ez | Analogia |
+| Szolgáltatas | Mi ez | Analogia |
 |---|---|---|
 | **Workers** | Kod futtatasa az edge-en | Mint a [[cloud/vercel|Vercel]] Serverless Functions, de gyorsabb |
-| **Pages** | Statikus weboldal hosting | Mint a Vercel, de frontend-re optimalizalva |
-| **D1** | SQLite adatbazis a felhoben | Mint a [[database/supabase|Supabase]] PostgreSQL, de egyszerubb es olcsobb |
-| **R2** | Fajl tarolas (kepek, PDF-ek) | Mint az AWS S3, de **nincs egress fee** |
-| **KV** | Kulcs-ertek tar | Mint a [[database/redis|Redis]], de serverless |
-| **Queues** | Uzenet sor (aszinkron feldolgozas) | Mint az AWS SQS |
-| **Durable Objects** | Allapotmegorzo mini-szerverek | Nincs hasonlo mashol -- egyedi CF koncepcio |
-| **Cron Triggers** | Utemezett feladatok | Mint a cron job, de serverless |
+| **Pages** | Statikus weboldal hosting | Mint a Vercel, de frontend-re optimalizálva |
+| **D1** | SQLite adatbázis a felhőben | Mint a [[database/supabase|Supabase]] PostgreSQL, de egyszerűbb és olcsobb |
+| **R2** | Fájl tárolás (kepek, PDF-ek) | Mint az AWS S3, de **nincs egress fee** |
+| **KV** | Kulcs-érték tar | Mint a [[database/redis|Redis]], de serverless |
+| **Queues** | Üzenet sor (aszinkron feldolgozas) | Mint az AWS SQS |
+| **Durable Objects** | Állapotmegorzo mini-szerverek | Nincs hasonlo mashol -- egyedi CF koncepcio |
+| **Cron Triggers** | Ütemezett feladatok | Mint a cron job, de serverless |
 
 ---
 
@@ -78,62 +78,62 @@ A Cloudflare nem egy eszkoz, hanem egy **okoszisztema**. A $5/ho plan ezeket min
 
 | Szempont | **Cloudflare** | [[cloud/vercel|Vercel]] | [[cloud/railway|Railway]] |
 |----------|-----------|--------|---------|
-| **Ar** | $5/ho | $20/ho (Pro) | Pay-as-you-go (~$5-20/ho) |
-| **Frontend** | Pages (statikus) | Next.js nativ (SSR) | Docker (barmi) |
-| **Backend** | Workers (edge) | Serverless Functions | Docker kontener |
-| **Adatbazis** | D1 (SQLite) | Nincs (kulso kell) | PostgreSQL, MySQL |
+| **Ar** | $5/hó | $20/hó (Pro) | Pay-as-you-go (~$5-20/hó) |
+| **Frontend** | Pages (statikus) | Next.js nativ (SSR) | Docker (bármi) |
+| **Backend** | Workers (edge) | Serverless Functions | Docker konténer |
+| **Adatbázis** | D1 (SQLite) | Nincs (külső kell) | PostgreSQL, MySQL |
 | **File storage** | R2 (S3-kompatibilis) | Nincs | Volume mount |
 | **Cron jobs** | Cron Triggers (15 perc CPU) | Vercel Cron (60s limit) | Nativ cron |
 | **Cold start** | ~0ms (V8 isolate) | 100-500ms | Nincs (always-on) |
-| **Mire jo** | API-k, edge logika, belso toolok | Next.js fullstack appok | Barmilyen backend |
-| **Mire NEM jo** | Nehez szamitasok, Node.js-only lib-ek | Hosszu futasi ideju processek | Ha olcso hosting kell |
+| **Mire jó** | API-k, edge logika, belső toolok | Next.js fullstack appok | Bármilyen backend |
+| **Mire NEM jó** | Nehez szamitasok, Node.js-only lib-ek | Hosszu futasi ideju processek | Ha olcso hosting kell |
 
 > [!tip] Mikor melyiket valaszd?
-> **Cloudflare ($5/ho):** Belso tool, API, kis SaaS → [[backend/hono|Hono]] + React + D1
-> **Vercel ($0-20/ho):** Marketing oldal, [[frontend/nextjs|Next.js]] fullstack app → Next.js + Supabase
-> **Railway ($5-20/ho):** Ha Docker kell, sajat Postgres, hosszu futasu job-ok
+> **Cloudflare ($5/hó):** Belső tool, API, kis SaaS → [[backend/hono|Hono]] + React + D1
+> **Vercel ($0-20/hó):** Marketing oldal, [[frontend/nextjs|Next.js]] fullstack app → Next.js + Supabase
+> **Railway ($5-20/hó):** Ha Docker kell, saját Postgres, hosszu futasu job-ok
 
 ---
 
-## $5/ho plan -- mit kapsz?
+## $5/hó plan -- mit kapsz?
 
-| Eroforras | Mennyit kapsz | Mennyit hasznalsz (belso tool) | Eleg? |
+| Erőforrás | Mennyit kapsz | Mennyit használsz (belső tool) | Eleg? |
 |---|---|---|---|
-| **Requests** | 10M/ho | ~10-50K/ho | Boven |
-| **CPU ido** | 30M ms/ho | ~100K ms/ho | Boven |
+| **Requests** | 10M/hó | ~10-50K/hó | Boven |
+| **CPU ido** | 30M ms/hó | ~100K ms/hó | Boven |
 | **D1 storage** | 5 GB | < 1 GB (evekig) | Boven |
-| **D1 reads** | 25 milliard/ho | ~100K/ho | Boven |
-| **D1 writes** | 50M/ho | ~10K/ho | Boven |
-| **R2 storage** | $0.015/GB/ho | ~1-5 GB (PDF-ek) | ~$0.07/ho |
+| **D1 reads** | 25 milliard/hó | ~100K/hó | Boven |
+| **D1 writes** | 50M/hó | ~10K/hó | Boven |
+| **R2 storage** | $0.015/GB/hó | ~1-5 GB (PDF-ek) | ~$0.07/hó |
 | **Cron Triggers** | 15 perc CPU/trigger | < 1 perc | Boven |
 
-> [!success] Osszköltseg egy belso toolra
-> **$5/ho fix + ~$0.10 R2** = osszesen **~$5.10/ho**
-> Osszehasonlitasul: Vercel Pro = $20/ho + Supabase Pro = $25/ho = **$45/ho**
+> [!success] Osszköltseg egy belső toolra
+> **$5/hó fix + ~$0.10 R2** = összesen **~$5.10/hó**
+> Összehasonlítasul: Vercel Pro = $20/hó + Supabase Pro = $25/hó = **$45/hó**
 
 ---
 
-## Cloudflare Access -- belso appok vedelme
+## Cloudflare Access -- belső appok védelme
 
-A belso appok legfontosabb kerdese: **ki ferhet hozza?** A Cloudflare Access (Zero Trust) megoldja ezt **kod irasa nelkul**.
+A belső appok legfontosabb kerdese: **ki ferhet hozzá?** A Cloudflare Access (Zero Trust) megoldja ezt **kod irasa nelkul**.
 
-**Hogyan mukodik:**
+**Hogyan működik:**
 1. A Workers app ele teszel egy Access policy-t a Cloudflare dashboardon
 2. Aki megnyitja az app URL-jet, Cloudflare bejelentkeztet (Google, GitHub, stb.)
-3. Csak az engedelyezett email/domain felhasznalok fernek hozza
-4. **Nem kell auth kodot irnod** -- nincs [[backend/clerk|Clerk]], nincs Auth.js, nincs [[backend/jwt|JWT]] kezeles
+3. Csak az engedélyezett email/domain felhasználók fernek hozzá
+4. **Nem kell auth kódot irnod** -- nincs [[backend/clerk|Clerk]], nincs Auth.js, nincs [[backend/jwt|JWT]] kezeles
 
 | Szempont | Cloudflare Access | [[backend/clerk|Clerk]] / Auth.js |
 |---|---|---|
-| **Koltseg** | Ingyenes (≤ 50 user) | Clerk: $25/ho (Pro) |
-| **Beallitas** | Dashboard: 5 perc | Kod: orak |
-| **Kod szukseges?** | Nem | Igen (middleware, session, stb.) |
+| **Költség** | Ingyenes (≤ 50 user) | Clerk: $25/hó (Pro) |
+| **Beállítás** | Dashboard: 5 perc | Kod: orak |
+| **Kod szükséges?** | Nem | Igen (middleware, session, stb.) |
 | **SSO** | Google Workspace, Azure AD, GitHub | Provider-fuggo |
-| **Mire jo** | Belso tool hozzaferes-vedelem | Publikus app user kezeles |
+| **Mire jó** | Belső tool hozzáférés-védelem | Publikus app user kezeles |
 
 > [!tip] < 10 fos csapatnak tokeletes
-> A Free plan 50 user-t tamogat. Egy belso tool-nal (5-10 ember) **soha nem kell fizetni az auth-ert**.
-> Google Workspace-szel integralva: "csak @cegnev.hu email-ek ferjenek hozza" = 2 kattintas.
+> A Free plan 50 user-t tamogat. Egy belső tool-nal (5-10 ember) **soha nem kell fizetni az auth-ert**.
+> Google Workspace-szel integralva: "csak @cegnev.hu email-ek ferjenek hozzá" = 2 kattintas.
 
 ```mermaid
 sequenceDiagram
@@ -151,9 +151,9 @@ sequenceDiagram
 
 ---
 
-## Ceges belso appok -- use case-ek
+## Ceges belső appok -- use case-ek
 
-A Cloudflare Workers **legjobban belso tooloknal es kis SaaS appknal teljesit**. Alabb konkret use case-ek:
+A Cloudflare Workers **legjobban belső tooloknal és kis SaaS appknal teljesit**. Alabb konkret use case-ek:
 
 ### Pozitiv use case-ek (ezekre tokeletes)
 
@@ -185,14 +185,14 @@ Workers (webhook fogadas) + Queues (feldolgozas) + D1 (log)
 Koltseg: $5/ho
 ```
 
-#### 5. Fajlkezelo / document management
+#### 5. Fájlkezelo / document management
 
 ```
 Hono API + R2 (fajlok) + D1 (metadata) + Access
 Koltseg: $5/ho + ~$0.015/GB storage
 ```
 
-#### 6. API gateway / belso microservice hub
+#### 6. API gateway / belső microservice hub
 
 ```
 Workers (routing) + Service Bindings (inter-worker hivas)
@@ -201,25 +201,25 @@ Koltseg: $5/ho
 
 ---
 
-## Mikor NE hasznald a Cloudflare-t -- negativ peldak
+## Mikor NE használd a Cloudflare-t -- negativ példak
 
 > [!danger] Fontos
-> A Cloudflare Workers **nem mindenre jo**. Ezekben az esetekben **rosszabb valasztas** mint az alternativak.
+> A Cloudflare Workers **nem mindenre jó**. Ezekben az esetekben **rosszabb választas** mint az alternativak.
 
 ### 1. Nehez szamitasok (CPU-intenziv feladatok)
-**Problema:** Workers-on **30 mp CPU time limit** van, es **128 MB memoria**.
+**Probléma:** Workers-on **30 mp CPU time limit** van, és **128 MB memoria**.
 
-### 2. PostgreSQL-t igenylo appok
-**Problema:** A D1 SQLite alapu → **egy writer egyszerre**, max 10GB.
+### 2. PostgreSQL-t igénylo appok
+**Probléma:** A D1 SQLite alapu → **egy writer egyszerre**, max 10GB.
 **Alternativa:** [[database/supabase|Supabase]] (PostgreSQL) vagy Neon
 
 ### 3. WebSocket-heavy appok (real-time)
 **Alternativa:** VPS (Node.js + Socket.io), [[database/supabase|Supabase]] Realtime
 
 ### 4. Node.js-specifikus library-k
-**Problema:** Workers V8 isolate-ban fut, **nem Node.js-ben**. Sok npm csomag nem mukodik.
+**Probléma:** Workers V8 isolate-ban fut, **nem Node.js-ben**. Sok npm csomag nem működik.
 
-### 5. Self-hosting / on-premise kovetelmeny
+### 5. Self-hosting / on-premise követelmeny
 **Alternativa:** VPS (Hetzner) + [[cloud/docker-alapok|Docker]]
 
 ### 6. Long-running background processek
@@ -227,20 +227,20 @@ Koltseg: $5/ho
 
 ---
 
-## Setup -- lepesrol lepesre
+## Setup -- lépésrol lépésre
 
-### 1. Regisztracio
+### 1. Regisztrácio
 - https://dash.cloudflare.com → Sign up
-- Workers & Pages → Overview → Workers Paid plan ($5/ho)
+- Workers & Pages → Overview → Workers Paid plan ($5/hó)
 
-### 2. CLI (Wrangler) telepites
+### 2. CLI (Wrangler) telepítes
 
 ```bash
 npm install -g wrangler
 wrangler login
 ```
 
-### 3. Projekt letrehozas
+### 3. Projekt létrehozas
 
 ```bash
 # Hono API Worker
@@ -262,9 +262,9 @@ cd my-api && wrangler deploy
 
 ---
 
-## D1 -- az adatbazis
+## D1 -- az adatbázis
 
-A **D1** egy **SQLite adatbazis a felhoben**.
+A **D1** egy **SQLite adatbázis a felhőben**.
 
 **[[database/drizzle|Drizzle]] + D1** integracio:
 
@@ -282,15 +282,15 @@ const invoices = await db.select().from(schema.invoices)
 
 ## Best Practices
 
-### Biztonsag
+### Biztonság
 
-- **Secrets:** `wrangler secret put API_KEY` -- titkos kulcsokat soha ne a kodba tedd
-- A D1, R2, KV **nem publikusan elerheto** -- csak a Worker-eden belulrol ered el
+- **Secrets:** `wrangler secret put API_KEY` -- titkos kulcsokat soha ne a kódba tedd
+- A D1, R2, KV **nem publikusan elérheto** -- csak a Worker-eden belulrol ered el
 - Workers automatikusan HTTPS -- nincs HTTP opcio
 
-### Koltsegoptimalizalas
+### Költségoptimalizalas
 
-- A $5/ho plan szinte minden belso toolra **boven eleg**
+- A $5/hó plan szinte minden belső toolra **boven eleg**
 - R2 **egress ingyenes** -- ha sok PDF-et toltesz le, nem fizetsz extra savszelessegert
 - Cron Trigger-ek a plan-ban vannak, nem kell kulon fizetni
 
@@ -337,13 +337,13 @@ wrangler secret list              # meglevo titkos kulcsok listaja
 ## Kapcsolodo anyagok
 
 - [[cloud/nextjs-on-cloudflare-workers|Next.js on Cloudflare Workers]] -- fullstack Next.js futtatasa CF Workers-on (OpenNext adapter)
-- ViNext -- Next.js reimplementacio Vite-on, kiserleti, 4.4x gyorsabb build
+- ViNext -- Next.js reimplementacio Vite-on, kísérleti, 4.4x gyorsabb build
 - [[cloud/vercel|Vercel]] -- alternativ hosting (Next.js-re jobb, de dragabb)
 - [[backend/hono|Hono]] -- Cloudflare-nativ API framework
 - [[backend/express|Express]] -- regi Node.js framework (nem fut CF-en)
-- Edge function -- miert jo az edge computing
-- [[database/drizzle|Drizzle]] -- ORM ami D1-gyel is mukodik
+- Edge function -- miért jó az edge computing
+- [[database/drizzle|Drizzle]] -- ORM ami D1-gyel is működik
 - [[cloud/railway|Railway]] -- alternativ hosting (Docker, PostgreSQL)
-- [[database/supabase|Supabase]] -- alternativ adatbazis platform
-- Vercel + Supabase → Cloudflare migracio -- valos projekt retrospektiv a migraciorol
-- [[_moc/moc-deployment|MOC - Deployment]] -- deployment strategiak
+- [[database/supabase|Supabase]] -- alternativ adatbázis platform
+- Vercel + Supabase → Cloudflare migrácio -- valós projekt retrospektiv a migráciorol
+- [[_moc/moc-deployment|MOC - Deployment]] -- deployment stratégiak

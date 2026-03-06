@@ -5,7 +5,7 @@ tags:
 kapcsolodo:
   - "[[cloud/docker-alapok|Docker alapok]]"
   - "[[cloud/docker-compose|Docker Compose]]"
-  - "[[foundations/git-es-github|Git es GitHub]]"
+  - "[[foundations/git-es-github|Git és GitHub]]"
   - "[[frontend/nextjs|Next.js]]"
   - "[[cloud/vercel|Vercel]]"
   - "[[cloud/railway|Railway]]"
@@ -18,10 +18,10 @@ szint: "🧱 Brick"
 
 # Szoftverfejlesztes alapjai
 
-Egy komplett workflow guide AI-asszisztalt szoftverfejleszteshez, ahol AI agentek vegzik a kodolast, te pedig orchestralod a folyamatot. A lenyeg nem a kod irasa, hanem a **kontextus menedzsment** -- mennyi szabadsagot adsz a modellnek, hogyan strukturalod a projektet, es hogyan tartod kezben a parhuzamos munkat.
+Egy komplett workflow guide AI-asszisztalt szoftverfejleszteshez, ahol AI agentek vegzik a kódolast, te pedig orchestralod a folyamatot. A lényeg nem a kod irasa, hanem a **kontextus menedzsment** -- mennyi szabadsagot adsz a modellnek, hogyan struktúralod a projektet, és hogyan tartod kezben a párhuzamos munkat.
 
 > [!tldr] TL;DR
-> A szoftverfejlesztes 2026-ban: te vagy a "rendezo", az AI az "operator". A sikeresseged azon mulik, hogy mennyire pontos a "forgatokonyved" (PRD, plan.md, CLAUDE.md) -- nem azon, hogy tudsz-e kodolni.
+> A szoftverfejlesztes 2026-ban: te vagy a "rendezo", az AI az "operator". A sikeresseged azon mulik, hogy mennyire pontos a "forgatokonyved" (PRD, plan.md, CLAUDE.md) -- nem azon, hogy tudsz-e kódolni.
 
 ---
 
@@ -52,41 +52,41 @@ graph TD
     style MONITOR fill:#3b82f6,color:white
 ```
 
-A fazisok egymasra epulnek, de nem linearisak -- iteralsz. A fejlesztes kozben visszatersz a plan.md-hez, deploy utan jon az uj feature, stb.
+A fazisok egymasra epulnek, de nem linearisak -- iteralsz. A fejlesztes kozben visszatersz a plan.md-hez, deploy utan jon az új feature, stb.
 
 ---
 
-## 1. Kickoff -- problema megertese
+## 1. Kickoff -- probléma megertese
 
-Az elso lepes: tisztazni **mit akarunk epiteni**. Nem kodrol van szo, hanem a problema megerteserol. Ez lehet sajat otlet, belso igeny, vagy ugyfel brief.
+Az első lépés: tisztazni **mit akarunk építeni**. Nem kodrol van szo, hanem a probléma megerteserol. Ez lehet saját otlet, belső igény, vagy ugyfel brief.
 
 ### Milyen kerdeseket kell feltenni
 
-| Kerdes | Miert fontos |
+| Kerdes | Miért fontos |
 |--------|-------------|
-| **Ki fogja hasznalni?** | Mas UI kell 5 belso usernek mint 5000 kulso felhasznalonak |
-| **Mi a fo problema amit megold?** | Ha ezt nem tudod, az app felesleges feature-okkel lesz tele |
-| **Mi a minimum ami mukodik?** (MVP) | Nem kell mindent egyszerre megcsinalni |
-| **Van-e meglevo rendszer amit ki kell valtani?** | Migracio, adatimport, kompatibilitas |
-| **Mi a budget / timeline?** | Stack valasztast es scope-ot befolyasolja |
-| **Milyen integracio kell?** | API-k, kulso szolgaltatasok, auth provider-ek |
+| **Ki fogja használni?** | Mas UI kell 5 belső usernek mint 5000 külső felhasználónak |
+| **Mi a fo probléma amit megold?** | Ha ezt nem tudod, az app felesleges feature-okkel lesz tele |
+| **Mi a minimum ami működik?** (MVP) | Nem kell mindent egyszerre megcsinalni |
+| **Van-e meglevo rendszer amit ki kell valtani?** | Migrácio, adatimport, kompatibilitas |
+| **Mi a budget / timeline?** | Stack választast és scope-ot befolyasolja |
+| **Milyen integracio kell?** | API-k, külső szolgáltatasok, auth provider-ek |
 
 ### Kickoff output
 
 A kickoff vegen legyen egy rovid dokumentum ami tartalmazza:
-- Problema leirasa (2-3 mondat)
+- Probléma leirasa (2-3 mondat)
 - Celcsoport
 - Fo feature lista (max 10 pont az MVP-hez)
-- Integracio igenyek
+- Integracio igények
 - Sikerkriteriumok -- honnan tudjuk hogy kesz?
 
 ---
 
 ## 2. PRD -- Product Requirements Document
 
-A kickoff outputja egy **PRD** -- ez a "mit csinaljon az app" dokumentum. Azert fontos, mert ebbol fog dolgozni az AI agent -- ha a PRD pontatlan, a kod is az lesz.
+A kickoff outputja egy **PRD** -- ez a "mit csináljon az app" dokumentum. Azert fontos, mert ebbol fog dolgozni az AI agent -- ha a PRD pontatlan, a kod is az lesz.
 
-### PRD struktura
+### PRD struktúra
 
 ```markdown
 # [Projekt nev] -- PRD
@@ -124,24 +124,24 @@ Lepesrol lepesre: mit csinal a user az appal?
 Honnan tudjuk, hogy kesz es jo?
 ```
 
-### Milyen reszletesseg kell az agenthez?
+### Milyen részletesseg kell az agenthez?
 
-| Reszletesseg | Mikor | Eredmeny |
+| Részletesseg | Mikor | Eredmeny |
 |-------------|-------|---------|
-| **Vazlatos** (5-10 mondat) | Gyors prototipus, kiserletezzes | Agent szabadon dont, sok kerdes jon |
-| **Kozepes** (1-2 oldal) | Legtobb projekt | Jo egyensuly szabadsag es irany kozott |
-| **Reszletes** (3+ oldal) | Ugyfel projekt, kritikus app | Agent pontosan azt csinalja amit kersz |
+| **Vazlatos** (5-10 mondat) | Gyors prototipus, kísérletezzes | Agent szabadon dönt, sok kerdes jon |
+| **Kozepes** (1-2 oldal) | Legtobb projekt | Jó egyensuly szabadsag és irany kozott |
+| **Részletes** (3+ oldal) | Ugyfel projekt, kritikus app | Agent pontosan azt csinálja amit kersz |
 
-> [!tip] PRD es az AI agent
-> A PRD nem az agentnek szol kozvetlenul -- a `plan.md` igen. A PRD neked es az ugyfelnek szol, a plan.md az agent szamara van leforditva.
+> [!tip] PRD és az AI agent
+> A PRD nem az agentnek szol kozvetlenul -- a `plan.md` igen. A PRD neked és az ugyfelnek szol, a plan.md az agent szamara van leforditva.
 
 ---
 
 ## 3. plan.md -- technikai terv
 
-A PRD-bol keszul a **technikai terv**. Ez mar az agent szamara irodik -- lepesrol lepesre leirja mit kell implementalni.
+A PRD-bol készül a **technikai terv**. Ez már az agent szamara irodik -- lépésrol lépésre leirja mit kell implementalni.
 
-### plan.md struktura
+### plan.md struktúra
 
 ```markdown
 # [Projekt nev] -- Technikai terv
@@ -181,21 +181,21 @@ A PRD-bol keszul a **technikai terv**. Ez mar az agent szamara irodik -- lepesro
 
 ### Best practices
 
-- **Fazisonkent haladj** -- ne add ki az egesz plan.md-t egyszerre az agentnek, fazisonkent dolgozzatok
-- **Checkbox-ok** -- pipald ki ami kesz, igy az agent latja hol tart a projekt
-- **Frissitsd fejlesztes kozben** -- ha valami valtozik, a plan.md legyen naprakesz
-- **Legy konkret az UI-ban** -- "csinalj egy dashboard-ot" =/= "csinalj egy dashboard-ot bal oldali sidebar-ral, ahol a fo tartalomban kartyakon jelennek meg a projektek, grid layout-ban"
+- **Fazisonkent haladj** -- ne add ki az egész plan.md-t egyszerre az agentnek, fazisonkent dolgozzatok
+- **Checkbox-ok** -- pipald ki ami kesz, így az agent látja hol tart a projekt
+- **Frissítsd fejlesztes kozben** -- ha valami valtozik, a plan.md legyen naprakesz
+- **Legy konkret az UI-ban** -- "csinálj egy dashboard-ot" =/= "csinálj egy dashboard-ot bal oldali sidebar-ral, ahol a fo tartalomban kartyakon jelennek még a projektek, grid layout-ban"
 
 > [!warning] A leggyakoribb hiba
-> Tul vazlatos plan.md -> az agent "kreativkodik" -> nem azt kapod amit akarsz -> ujrairod -> dupla munka. **Inkabb tolts el 30 perccel tobbet a tervezessel**, mint 2 orat a javitassal.
+> Tul vazlatos plan.md -> az agent "kreativkodik" -> nem azt kapod amit akarsz -> ujrairod -> dupla munka. **Inkabb tolts el 30 perccel többet a tervezessel**, mint 2 orat a javitassal.
 
 ---
 
 ## 4. CLAUDE.md -- agent kontextus
 
-A **CLAUDE.md** a projekt "agyveleje" -- ebbol erti meg az agent hogy hol tart, milyen szabalyok vannak, es mit nem szabad csinania. Ez a legfontosabb fajl az egesz projektben.
+A **CLAUDE.md** a projekt "agyveleje" -- ebbol erti még az agent hogy hol tart, milyen szabalyok vannak, és mit nem szabad csinania. Ez a legfontosabb fájl az egész projektben.
 
-### CLAUDE.md struktura
+### CLAUDE.md struktúra
 
 ```markdown
 # CLAUDE.md
@@ -223,39 +223,39 @@ A **CLAUDE.md** a projekt "agyveleje" -- ebbol erti meg az agent hogy hol tart, 
 [Hol tartunk a fejlesztesben, mi a kovetkezo lepes]
 ```
 
-### Kontextus menedzsment strategiak
+### Kontextus menedzsment stratégiak
 
 A CLAUDE.md-ben meghatarozod az agent **szabadsagi fokat**:
 
-| Strategia | Mikor | Pelda |
+| Stratégia | Mikor | Példa |
 |-----------|-------|-------|
-| **Strict** -- minden lepest eleirsz | Ugyfel projekt, kritikus kod | "Hasznalj KIZAROLAG Supabase Auth-ot, NE hasznalj [[backend/jwt|JWT]]-t kozvetlenul" |
-| **Guided** -- iranyt adsz, reszleteket ra bizod | Legtobb projekt | "Az auth [[backend/clerk|Clerk]]-kel legyen, a reszleteket dontsd el te" |
-| **Free** -- csak a celt adod meg | Prototipus, kisarlet | "Csinalj egy auth rendszert, valaszd ki a legjobb megoldast" |
+| **Strict** -- minden lépést eleirsz | Ugyfel projekt, kritikus kod | "Használj KIZAROLAG Supabase Auth-ot, NE használj [[backend/jwt|JWT]]-t kozvetlenul" |
+| **Guided** -- iranyt adsz, részleteket ra bizod | Legtobb projekt | "Az auth [[backend/clerk|Clerk]]-kel legyen, a részleteket döntsd el te" |
+| **Free** -- csak a celt adod még | Prototipus, kisarlet | "Csinálj egy auth rendszert, valaszd ki a legjobb megoldást" |
 
 > [!tip] CLAUDE.md mint "elo dokumentum"
-> A CLAUDE.md-t **folyamatosan frissitsd** fejlesztes kozben. Ha az agent rossz iranyba megy, adj hozza egy szabalyt. Ha valami jol mukodik, dokumentald.
+> A CLAUDE.md-t **folyamatosan frissítsd** fejlesztes kozben. Ha az agent rossz iranyba megy, adj hozzá egy szabalyt. Ha valami jol működik, dokumentald.
 
 ### Mikor legyen strict vs flexible
 
 - **Strict**: auth, payment, adatkezeles, API design, security -- itt nincs helye kreativitasnak
-- **Flexible**: UI layout, component struktura, utility funkciok -- itt az agent jobban donthet
-- **Fontos**: ha nem specifikalasz valamit, az agent a sajat "izlese" szerint dont -- ez neha jo, neha nem
+- **Flexible**: UI layout, component struktúra, utility funkciok -- itt az agent jobban dönthet
+- **Fontos**: ha nem specifikalasz valamit, az agent a saját "izlese" szerint dönt -- ez neha jó, neha nem
 
 ---
 
-## 5. Stack valasztas
+## 5. Stack választas
 
-Milyen technologiakat hasznalunk es miert.
+Milyen technologiakat használunk és miért.
 
 ### Tipikus stack kombinaciok
 
 | Projekt tipus | Stack | Mikor |
 |--------------|-------|-------|
 | **SaaS / ugyfel app** | [[frontend/nextjs|Next.js]] + [[database/supabase|Supabase]] + [[cloud/vercel|Vercel]] | A leggyakoribb -- full-stack, gyors, managed |
-| **Sajat backend kell** | Next.js + [[cloud/railway|Railway]] + PostgreSQL | Ha a Supabase nem eleg (custom logic, worker-ek) |
-| **Landing page** | Next.js + Vercel (static export) | Egyszeru, gyors, ingyenes hosting |
-| **Self-hosted tool** | [[cloud/docker-alapok|Docker]] + VPS | Sajat service-ek, teljes kontroll |
+| **Saját backend kell** | Next.js + [[cloud/railway|Railway]] + PostgreSQL | Ha a Supabase nem eleg (custom logic, worker-ek) |
+| **Landing page** | Next.js + Vercel (static export) | Egyszerű, gyors, ingyenes hosting |
+| **Self-hosted tool** | [[cloud/docker-alapok|Docker]] + VPS | Saját service-ek, teljes kontroll |
 | **API / microservice** | Node.js/[[backend/hono|Hono]] + Railway | Lightweight backend, nincs frontend |
 
 ### Serverless vs VPS -- melyiket valaszd
@@ -285,7 +285,7 @@ graph TD
 
 ### Stack dokumentum
 
-Minden projekthez keszits egy rovid stack leirast (akar a `plan.md`-ben, akar kulon `STACK.md`-ben):
+Minden projekthez készíts egy rovid stack leirast (akar a `plan.md`-ben, akar kulon `STACK.md`-ben):
 
 ```markdown
 ## Stack
@@ -306,9 +306,9 @@ Minden projekthez keszits egy rovid stack leirast (akar a `plan.md`-ben, akar ku
 
 ## 6. Dev environment setup
 
-A fejlesztoi kornyezet felallitasa -- ez az a pont ahol a kod tenylegesen elkeszul.
+A fejlesztoi környezet felallitasa -- ez az a pont ahol a kod ténylegesen elkeszul.
 
-### Projekt inditas nullarol
+### Projekt indítas nullarol
 
 ```bash
 # 1. Next.js projekt letrehozasa
@@ -332,12 +332,12 @@ bun run dev
 
 ### Environment variables kezelese
 
-| Fajl | Mire | Commitolva? |
+| Fájl | Mire | Commitolva? |
 |------|------|-------------|
-| `.env.local` | Lokalis fejlesztesi titkos kulcsok | NEM -- `.gitignore`-ban |
-| `.env.example` | Template -- milyen valtozok kellenek | IGEN -- ezt commitold |
-| Vercel Dashboard | Production env valtozok | N/A -- Vercel kezeli |
-| Railway Dashboard | Backend env valtozok | N/A -- Railway kezeli |
+| `.env.local` | Lokális fejlesztesi titkos kulcsok | NEM -- `.gitignore`-ban |
+| `.env.example` | Template -- milyen változók kellenek | IGEN -- ezt commitold |
+| Vercel Dashboard | Production env változók | N/A -- Vercel kezeli |
+| Railway Dashboard | Backend env változók | N/A -- Railway kezeli |
 
 ```bash
 # .env.example (ezt commitolod)
@@ -349,24 +349,24 @@ SUPABASE_SERVICE_ROLE_KEY=your-key-here  # SOHA nem NEXT_PUBLIC_!
 ### Alap dev environment checklist
 
 - [ ] Git repo inicializalva, GitHub-ra push-olva
-- [ ] `.gitignore` beallitva (node_modules, .env, .next, dist)
-- [ ] `.env.local` + `.env.example` letrehozva
-- [ ] CLAUDE.md letrehozva a projekt root-ban
-- [ ] `plan.md` elkeszitve a Fazis 1 lepesekkel
-- [ ] `bun run dev` mukodik, localhost-on betolt
+- [ ] `.gitignore` beállítva (node_modules, .env, .next, dist)
+- [ ] `.env.local` + `.env.example` létrehozva
+- [ ] CLAUDE.md létrehozva a projekt root-ban
+- [ ] `plan.md` elkeszitve a Fazis 1 lépésekkel
+- [ ] `bun run dev` működik, localhost-on betolt
 - [ ] Vercel-hez csatlakoztatva (ha Vercel-re megy)
 
 ---
 
 ## 7. Fejlesztes -- AI agent orchestralas
 
-Itt tortenik a tenyleges kodolas. Nem te irod a kodot -- az AI agenteket iranyitod.
+Itt tortenik a tényleges kódolas. Nem te irod a kódot -- az AI agenteket iranyitod.
 
-### Claude Code -- az elsodleges dev tool
+### Claude Code -- az elsődleges dev tool
 
-A fő fejlesztő eszkoz terminalban fut, kozvetlenul a kodbazisban dolgozik.
+A fő fejlesztő eszkoz terminalban fut, kozvetlenul a kódbázisban dolgozik.
 
-**Alapveto workflow:**
+**Alapvető workflow:**
 
 ```bash
 # Session inditas a projekt mappajaban
@@ -379,10 +379,10 @@ claude
 >  ahol kartyakon jelennek meg a projektek"
 ```
 
-**Mikor hasznald:**
+**Mikor használd:**
 - Minden napi fejlesztesi feladat
-- Fajlok letrehozasa, modositasa, torlese
-- Git muveletek (commit, branch, PR)
+- Fájlok létrehozasa, módosítasa, törlése
+- Git műveletek (commit, branch, PR)
 - Hibakereses (logok elemzese, hiba javitasa)
 - Code review
 - Refactoring, kod javitas
@@ -390,12 +390,12 @@ claude
 **Session kezeles:**
 - **Rovid session-ok** -- egy feature = egy session. Ha kesz, commitold, zard le
 - **Ne futtass tul hosszu session-t** -- 30-60 percnel hosszabb session-ben az agent "elfarad" (context window telik)
-- **Compact** -- ha hosszu a session, tomorit es folytathatod
-- **Uj session** -- ha teljesen mas feladatot csinalsz, indits ujat
+- **Compact** -- ha hosszu a session, tomorit és folytathatod
+- **Új session** -- ha teljesen mas feladatot csinálsz, indíts ujat
 
-### Parhuzamos fejlesztes
+### Párhuzamos fejlesztes
 
-Ha a projekt eleg nagy, **tobb AI agent dolgozhat egyszerre**:
+Ha a projekt eleg nagy, **több AI agent dolgozhat egyszerre**:
 
 ```bash
 # Terminal 1 -- Feature A
@@ -410,39 +410,39 @@ claude --worktree
 ```
 
 **Worktree vs Branch:**
-- **Worktree** -- kulon munkamappa, kulon fajlok, nincs conflict fejlesztes kozben
+- **Worktree** -- kulon munkamappa, kulon fájlok, nincs conflict fejlesztes kozben
 - **Branch** -- ugyanaz a mappa, de mas git agon
-- **Worktree-t hasznalj** ha ket agent egyszerre modositana ugyanolyan fajlokat
+- **Worktree-t használj** ha ket agent egyszerre módosítana ugyanolyan fájlokat
 
 **Merge conflictek kezelese:**
 1. Az agentek worktree-ben dolgoznak -> nincs azonnali conflict
 2. Ha kesz mindket feature -> merge-old egyenkent main-be
 3. Ha van conflict -> az AI agent feloldja: *"oldd fel a merge conflictot a main-en"*
 
-> [!warning] Parhuzamos agentek kockazata
-> Ket agent nem dolgozhat **ugyanazon a fajlon** egyszerre. Ha mindketto a `layout.tsx`-et modositja, conflict lesz. Oszd fel a munkat ugy, hogy a fajlok ne fedjek egymast.
+> [!warning] Párhuzamos agentek kockazata
+> Ket agent nem dolgozhat **ugyanazon a fájlon** egyszerre. Ha mindketto a `layout.tsx`-et módosítja, conflict lesz. Oszd fel a munkat ugy, hogy a fájlok ne fedjek egymast.
 
 ---
 
 ## 8. Kontextus menedzsment -- a kulcs
 
-**Ez a szekcio a legfontosabb az egesz note-ban.** A nem-technikai fejlesztes sikeressege azon mulik, hogy mennyire jol menedzseled az agent kontektusat.
+**Ez a szekcio a legfontosabb az egész note-ban.** A nem-technikai fejlesztes sikeressege azon mulik, hogy mennyire jol menedzseled az agent kontektusat.
 
 ### Mi az a kontextus ablak?
 
-Az AI agent egy "ablakban" dolgozik -- ez az osszes szoveg amit egyszerre lat (a CLAUDE.md, a kod, a beszelgetes). Ha ez megtelik, az agent elkezd "felejteni".
+Az AI agent egy "ablakban" dolgozik -- ez az összes szoveg amit egyszerre lat (a CLAUDE.md, a kod, a beszelgetes). Ha ez megtelik, az agent elkezd "felejteni".
 
-| Fogalom | Egyszeru magyarazat |
+| Fogalom | Egyszerű magyarazat |
 |---------|-------------------|
 | **Context window** | Az agent "munkamemoriaja" -- kb. egy regeny hossza |
 | **Token** | Egy szo kb. 1-2 token. A context window ~200K token (Claude) |
 | **Compact** | Az eddigi beszelgetes tomoritese, hogy tovabb tudj dolgozni |
 
-### Mikor kell uj session-t inditani
+### Mikor kell új session-t indítani
 
 - Ha az agent "furcsa" valaszokat ad -> tele a context
 - Ha teljesen mas feladatra valtasz -> tiszta lap jobb
-- Ha compact utan is lassan reagal -> uj session
+- Ha compact utan is lassan reagal -> új session
 - Ha az agent elfelejti amit 10 perce mondtal -> context overflow
 
 ### Szabadsagi skala
@@ -458,34 +458,34 @@ Security        UI polish       Kisarlet
 Auth flow       Refactoring     Brainstorm
 ```
 
-**Strict kontextus jellemzoi:**
+**Strict kontextus jellemzői:**
 - Pontos file path-ok a CLAUDE.md-ben
-- Tiltolistak ("NE hasznalj X-et")
-- Lepesrol lepesre utasitasok
-- Code snippet-ek amit kovetni kell
+- Tiltolistak ("NE használj X-et")
+- Lépésrol lépésre utasitasok
+- Code snippet-ek amit követni kell
 
-**Free kontextus jellemzoi:**
+**Free kontextus jellemzői:**
 - Csak a cel van megadva
-- Az agent dont a megvalositasrol
+- Az agent dönt a megvalósítasrol
 - Gyorsabb, de kiszamithatatlanabb
-- Jo ha a megvalositas nem kritikus
+- Jó ha a megvalósítas nem kritikus
 
 ### Tipikus hibak kontextus menedzsmentben
 
-| Hiba | Kovetkezmeny | Megoldas |
+| Hiba | Következmeny | Megoldás |
 |------|-------------|---------|
 | **Tul vazlatos prompt** | Agent kreativkodik, nem azt kapod | Legy konkretabb a prompt-ban |
 | **Tul hosszu CLAUDE.md** | Agent elvesz benne, fontos szabalyt kihagy | Tomoritsd, priorizald |
 | **Nincs CLAUDE.md** | Minden session-ben ujra el kell magyarazni mindent | Mindig legyen CLAUDE.md |
-| **Nem commitolsz kozben** | Ha az agent elront valamit, nincs visszaut | Commitolj minden mukodo allapotot |
+| **Nem commitolsz kozben** | Ha az agent elront valamit, nincs visszaut | Commitolj minden működo állapotot |
 | **Tul hosszu session** | Agent "elfarad", inconsistent valaszok | Session-onkent egy feature |
-| **Nem nezed at a kodot** | Security lyuk, rossz pattern megy elesbe | Mindig review deploy elott |
+| **Nem nezed at a kódot** | Security lyuk, rossz pattern megy élesbe | Mindig review deploy elott |
 
 ---
 
-## 9. Quality gates -- review es security
+## 9. Quality gates -- review és security
 
-Mielott barmi production-be menne, vegig kell menni a quality gate-eken.
+Mielott bármi production-be menne, vegig kell menni a quality gate-eken.
 
 ### Minimum quality gate (minden projekthez)
 
@@ -506,33 +506,33 @@ Mielott barmi production-be menne, vegig kell menni a quality gate-eken.
 ```
 
 > [!warning] AI review != emberi review
-> Az AI review jo elso szuro, de NEM helyettesiti a manualis atnetest kritikus projekeknel. Auth, payment, es adatkezelo kodot mindig nezz at magad is.
+> Az AI review jó első szűro, de NEM helyettesiti a manuális atnetest kritikus projekeknel. Auth, payment, és adatkezelo kódot mindig nezz at magad is.
 
 ### Security alapelvek
 
 Minden projektre ervenyes, stack-fuggetlenul:
 
-1. **Titkos kulcsok `.env`-ben** -- SOHA nem a kodban
+1. **Titkos kulcsok `.env`-ben** -- SOHA nem a kódban
 2. **Input validacio** -- minden user input server-side validalva (Zod)
 3. **Rate limiting** -- publikus endpoint-okon mindig
 4. **HTTPS** -- mindenhol, kivetel nelkul
-5. **RLS** -- ha Supabase, minden tablan bekapcsolva
+5. **RLS** -- ha Supabase, minden táblan bekapcsolva
 6. **Dependency audit** -- rendszeresen (`bun audit`)
 7. **Security scanning** -- GitHub-ra kotve, automatikus scan
 
 ---
 
-## 10. Deploy -- elesites
+## 10. Deploy -- élesites
 
 A deploy stack-fuggo.
 
-### Deploy opciok osszefoglalo
+### Deploy opciok összefoglalo
 
 | Platform | Tipus | Deploy modszer | Mikor |
 |----------|-------|---------------|-------|
 | [[cloud/vercel|Vercel]] | Serverless | `git push main` -> auto-deploy | Next.js app-ok, landing page-ek |
 | [[cloud/railway|Railway]] | PaaS | `git push` -> auto-deploy | Backend API-k, worker-ek, DB |
-| VPS | Sajat szerver | SSH + `docker compose up -d` | Self-hosted tool-ok |
+| VPS | Saját szerver | SSH + `docker compose up -d` | Self-hosted tool-ok |
 | [[database/supabase|Supabase]] | BaaS | Dashboard / CLI | DB, Auth, Storage, Edge Functions |
 
 ### Vercel deploy (leggyakoribb)
@@ -558,54 +558,54 @@ docker compose up -d       # Hatterben inditas
 docker compose logs -f     # Logok kovetese
 ```
 
-Reszletek: [[cloud/docker-alapok|Docker alapok]], [[cloud/docker-compose|Docker Compose]], [[foundations/linux|Linux]]
+Részletek: [[cloud/docker-alapok|Docker alapok]], [[cloud/docker-compose|Docker Compose]], [[foundations/linux|Linux]]
 
 ---
 
-## 11. Monitoring es karbantartas
+## 11. Monitoring és karbantartas
 
-Deploy utan tudnod kell mi tortenik. Nem kell Prometheus-klasztert uzemeltetni -- de a minimum monitoring kotelezo.
+Deploy utan tudnod kell mi tortenik. Nem kell Prometheus-klasztert üzemeltetni -- de a minimum monitoring kötelező.
 
 ### Minimum monitoring setup
 
 | Mit figyelsz | Eszkoz | Hogyan |
 |-------------|--------|--------|
-| **App elerheto-e** | UptimeRobot | Ping check 5 percenkent, email alert (ingyenes) |
+| **App elérheto-e** | UptimeRobot | Ping check 5 percenkent, email alert (ingyenes) |
 | **Szerver metrikak** | Grafana | CPU, RAM, disk (VPS-en) |
 | **App hibak** | Vercel/Railway log | Dashboard-on nezed |
-| **Security** | Security scanner | Folyamatos scan, alert ha uj vulnerability |
+| **Security** | Security scanner | Folyamatos scan, alert ha új vulnerability |
 | **User behaviour** | PostHog | Feature usage, session replay |
 
 ### Iteracio -- az elet deploy utan
 
 A deploy nem a vege -- a **kezdete**:
 
-1. **User feedback** -> uj feature request vagy bug report
+1. **User feedback** -> új feature request vagy bug report
 2. **Monitoring alert** -> hiba investigation + fix
 3. **Security alert** -> security patch
 4. **Performance issue** -> optimalizacio
-5. **Uj feature** -> vissza a kickoff-hoz (kisebb scope-pal)
+5. **Új feature** -> vissza a kickoff-hoz (kisebb scope-pal)
 
-Minden iteracio ugyanazt a workflow-t koveti: plan.md frissites -> fejlesztes -> quality gate -> deploy.
+Minden iteracio ugyanazt a workflow-t követi: plan.md frissítes -> fejlesztes -> quality gate -> deploy.
 
 ---
 
-## 12. Hibakereses es iteracio
+## 12. Hibakereses és iteracio
 
-Mi van ha valami nem mukodik? A debug is AI-asszisztalt -- de tudnod kell hogyan kerdezz.
+Mi van ha valami nem működik? A debug is AI-asszisztalt -- de tudnod kell hogyan kerdezz.
 
 ### Hogyan olvasd a hibauzeneteket
 
-Nem kell ertened a kodot, de a hibauzenetet ertened kell:
+Nem kell ertened a kódot, de a hibauzenetet ertened kell:
 
-| Hibauzenet tipus | Mit jelent | Mit csinalj |
+| Hibauzenet tipus | Mit jelent | Mit csinálj |
 |-----------------|-----------|-------------|
-| `500 Internal Server Error` | Szerver oldali hiba -- a kodban van a baj | Nezd meg a logot (Vercel/Railway), add meg az agentnek |
+| `500 Internal Server Error` | Szerver oldali hiba -- a kódban van a baj | Nézd még a logot (Vercel/Railway), add még az agentnek |
 | `404 Not Found` | Az URL nem letezik | Route hianyzik vagy elgepelve |
-| `CORS error` | A frontend nem ferhet hozza a backend-hez | CORS beallitas hianyzik |
-| `TypeError: Cannot read property of undefined` | Egy valtozo ures amit nem vartal | Az AI agent megtalálja es javitja |
+| `CORS error` | A frontend nem ferhet hozzá a backend-hez | CORS beállítás hianyzik |
+| `TypeError: Cannot read property of undefined` | Egy változó ures amit nem vartal | Az AI agent megtalálja és javitja |
 | `Build failed` | A kod nem fordithato | `bun run build` output -> az agentnek |
-| `NEXT_PUBLIC_ undefined` | Env valtozo hianyzik | Env valtozok beallitasa |
+| `NEXT_PUBLIC_ undefined` | Env változó hianyzik | Env változók beállítása |
 
 ### Debug workflow
 
@@ -622,25 +622,25 @@ Nem kell ertened a kodot, de a hibauzenetet ertened kell:
 "Adj mas megkozelitest, ez nem mukodik"
 ```
 
-### Mikor indits uj session-t vs folytasd a regit
+### Mikor indíts új session-t vs folytasd a regit
 
-| Folytasd | Indits ujat |
+| Folytasd | Indíts ujat |
 |----------|------------|
-| Ugyanaz a bug, meg debuggolod | A bug javitva, teljesen mas feladat jon |
+| Ugyanaz a bug, még debuggolod | A bug javitva, teljesen mas feladat jon |
 | Az agent erti a kontextust | Az agent "elfelejti" amit mondtal |
 | Rovid session (< 30 perc) | Hosszu session (> 60 perc) |
-| Osszefuggo valtozatasok | Fuggetlen feature |
+| Osszefuggo változatasok | Fuggetlen feature |
 
 ### Mikor kerj emberi segitseget
 
-- **Infra problema** ami nem kod szintu (DNS, SSL, szerver elerhetoseg)
+- **Infra probléma** ami nem kod szintű (DNS, SSL, szerver elérhetoseg)
 - **Payment integracio** bug -- penzugyi tranzakciokat ne AI-val debuggolj egyedul
 - **Data loss** gyanu -- azonnal allitsd le az appot, mentsd az adatot
 - **Security breach** -- jelszavak, kulcsok kiszivarogtak -> azonnali invaldalas
 
 ---
 
-## Osszefoglalo: a workflow egy kepben
+## Összefoglaló: a workflow egy kepben
 
 ```
 Kickoff -> PRD -> plan.md -> CLAUDE.md -> Stack -> Setup ->
@@ -656,19 +656,19 @@ Monitoring (UptimeRobot, Grafana, PostHog)
 Iteracio -> vissza a plan.md-hez
 ```
 
-A lenyeg: **te vagy az orchestrator**, az AI az implementator. A minoseg azon mulik, mennyire jol definialod a kontextust, es mennyire szigoruan tartod be a quality gate-eket.
+A lényeg: **te vagy az orchestrator**, az AI az implementator. A minoseg azon mulik, mennyire jol definiálalod a kontextust, és mennyire szigoruan tartod be a quality gate-eket.
 
 ---
 
 ## Kapcsolodo
 
 - [[cloud/devops|DevOps]] -- a DevOps workflow AI-first kontextusban
-- [[cloud/docker-alapok|Docker alapok]] -- kontenerizacio alapjai
+- [[cloud/docker-alapok|Docker alapok]] -- konténerizacio alapjai
 - [[cloud/docker-compose|Docker Compose]] -- multi-service setup
-- [[foundations/git-es-github|Git es GitHub]] -- verziokezeles
+- [[foundations/git-es-github|Git és GitHub]] -- verziókezeles
 - [[frontend/nextjs|Next.js]] -- a fo framework
 - [[cloud/vercel|Vercel]] -- serverless hosting
 - [[cloud/railway|Railway]] -- PaaS hosting
-- [[database/supabase|Supabase]] -- backend szolgaltatas
+- [[database/supabase|Supabase]] -- backend szolgáltatas
 - [[foundations/linux|Linux]] -- szerver OS alapok
 - [[_moc/moc-deployment|MOC - Deployment]]

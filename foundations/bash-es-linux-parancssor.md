@@ -3,38 +3,38 @@ tags:
   - bash
 kapcsolodo:
   - "[[cloud/docker-alapok|Docker alapok]]"
-  - "[[foundations/halozatok-es-ip-cimek|Halozatok es IP cimek]]"
-  - "[[foundations/git-es-github|Git es GitHub]]"
+  - "[[foundations/halozatok-es-ip-cimek|Hálózatok és IP cimek]]"
+  - "[[foundations/git-es-github|Git és GitHub]]"
 datum: 2026-02-08
 szint: "🌱 Newcomer"
 ---
 
-# Bash es Linux parancssor
+# Bash és Linux parancssor
 
-## Osszefoglalo
+## Összefoglaló
 
-A Linux/Unix parancssor alapjai: fajlkezeles, jogosultsagok, folyamatok kezelese, halozat, szovegkereses es -feldolgozas. Ezek nelkul nem megy a szerver oldali munka, deploy, es a legtobb dev eszkoz is ezekre epul.
+A Linux/Unix parancssor alapjai: fájlkezeles, jogosultságok, folyamatok kezelese, hálózat, szovegkereses és -feldolgozas. Ezek nelkul nem megy a szerver oldali munka, deploy, és a legtobb dev eszkoz is ezekre epul.
 
-## Konfiguracios fajlok
+## Konfigurácios fájlok
 
-| Fajl | Mire jo | Megjegyzes |
+| Fájl | Mire jó | Megjegyzes |
 |------|---------|------------|
-| `.bashrc` | Kornyezeti valtozok, aliasok | Csak Bash shell-re vonatkozik |
-| `.profile` | Kornyezeti valtozok | Barmilyen shell-re, Linux kornyezetben |
+| `.bashrc` | Környezeti változók, aliasok | Csak Bash shell-re vonatkozik |
+| `.profile` | Környezeti változók | Bármilyen shell-re, Linux környezetben |
 
-## Jogosultsagok
+## Jogosultságok
 
-A fajlok elejen levo karakterek mutatjak a **read / write / execute** jogokat.
+A fájlok elejen levo karakterek mutatjak a **read / write / execute** jogokat.
 
-`chmod` -- jogosultsagszerkesztes
+`chmod` -- jogosultságszerkesztes
 
-Harom szam egymas utan, harom kulonbozo felhasznalo csoportnak (owner / group / others):
+Harom szam egymas utan, harom különböző felhasználó csoportnak (owner / group / others):
 - **Read** = 4
 - **Write** = 2
 - **Execute** = 1
 - Ossze kell adni oket
 
-| Parancs | Mit csinal |
+| Parancs | Mit csinál |
 |---------|------------|
 | `chmod +x a.key` | Futtathatova teszi |
 | `chmod 700 a.key` | Csak en tudok vele mindent (rwx------) |
@@ -42,50 +42,50 @@ Harom szam egymas utan, harom kulonbozo felhasznalo csoportnak (owner / group / 
 
 ## Futo folyamatok
 
-| Parancs | Mit csinal |
+| Parancs | Mit csinál |
 |---------|------------|
 | `ps aux` | Most futo folyamatok listaja |
-| `top` | Elo nezet: mi fogyaszt CPU-t es memoriat |
-| `htop` | Ugyanaz mint `top`, de szebb es interaktiv |
-| `kill PID` | Folyamat leallitasa PID alapjan |
+| `top` | Elo nezet: mi fogyaszt CPU-t és memoriat |
+| `htop` | Ugyanaz mint `top`, de szebb és interaktiv |
+| `kill PID` | Folyamat leallitasa PID alapján |
 | `kill -9 PID` | Eroltetett leallitas (ha a sima `kill` nem eleg) |
 
-## Halozat
+## Hálózat
 
-| Parancs | Mit csinal |
+| Parancs | Mit csinál |
 |---------|------------|
-| `ip a` | Osszes halozati kapcsolat listazasa |
-| `curl URL` | HTTP request kuldese (API teszteles, letoltes) |
-| `wget URL` | Fajl letoltese URL-rol |
+| `ip a` | Összes hálózati kapcsolat listazasa |
+| `curl URL` | HTTP request küldése (API tesztelés, letöltés) |
+| `wget URL` | Fájl letöltése URL-rol |
 
-## Fajlok es parancsok futtatasa
+## Fájlok és parancsok futtatasa
 
-- A `/bin` konyvtarban vannak a rendszer parancsok
+- A `/bin` könyvtárban vannak a rendszer parancsok
 - Ha helyben akarod futtatni: `./parancsneve`
-- Shell scriptben kiterjesztes nelkul is lehet futtatni
+- Shell scriptben kiterjesztés nelkul is lehet futtatni
 
-## Szoveg kereses -- grep es rg
+## Szoveg kereses -- grep és rg
 
-| Parancs | Mit csinal |
+| Parancs | Mit csinál |
 |---------|------------|
-| `grep "szoveg" fajl` | Rakeresi a szoveget a fajlban |
-| `grep -i "szoveg" fajl` | Kis- es nagybetu nem szamit |
+| `grep "szoveg" fajl` | Rakeresi a szoveget a fájlban |
+| `grep -i "szoveg" fajl` | Kis- és nagybetu nem szamit |
 | `grep -v "szoveg" fajl` | Minden sort kiir amiben NINCS benne |
-| `rg "szoveg"` | Gyorsabb kereses, foleg sok fajlnal (ripgrep) |
+| `rg "szoveg"` | Gyorsabb kereses, foleg sok fájlnal (ripgrep) |
 
 > [!tip] grep vs ripgrep
-> `grep` kicsit lassu nagy mennyisegu fajlnal -- ilyenkor `rg` (ripgrep) a jobb valasztas.
+> `grep` kicsit lassu nagy mennyisegu fájlnal -- ilyenkor `rg` (ripgrep) a jobb választas.
 
 ## Szoveg csere -- sed
 
-`sed` -- kereses es csere, foleg scriptekben
+`sed` -- kereses és csere, foleg scriptekben
 
 ```bash
 sed 's/[0-9]/X/g' fajl    # csereld ki a szamokat X-re
 ```
 
 - `s/` = substitute (csere)
-- `/g` = globalisan (az osszes talalatot, nem csak az elsot)
+- `/g` = globálisan (az összes talalatot, nem csak az elsőt)
 
 ## Oszlopok kiszedese -- awk
 
@@ -102,25 +102,25 @@ Hasznos ha egy parancs kimenetabol csak bizonyos oszlopok kellenek.
 | Normal kimenet | stdout | 1 |
 | Hiba kimenet | stderr | 2 |
 
-| Parancs | Mit csinal |
+| Parancs | Mit csinál |
 |---------|------------|
-| `2>` | Atiranyitja a hiba csatornat (pl. fajlba) |
-| `2>&1` | Osszevezes: stderr-t is oda kuldi ahol stdout megy |
+| `2>` | Atiranyitja a hiba csatornat (pl. fájlba) |
+| `2>&1` | Osszevezes: stderr-t is oda küldi ahol stdout megy |
 | `parancs > log.txt 2>&1` | Minden kimenet (normal + hiba) a log.txt-be |
 
 ## Fo tanulsagok
-- A jogosultsagok megertese alapveto: `chmod` szamokkal gyors es pontos
-- `grep` vs `rg`: kis projektnel mindegy, sok fajlnal ripgrep nyer
-- `sed` es `awk` nem kell fejbol tudni, de felismerni es erteni igen
-- `kill -9` az utolso mentsvár, eloszor mindig sima `kill`-el probalkozz -- a `-9` azonnal megoli a processzt, nincs cleanup
+- A jogosultságok megertese alapvető: `chmod` szamokkal gyors és pontos
+- `grep` vs `rg`: kis projektnel mindegy, sok fájlnal ripgrep nyer
+- `sed` és `awk` nem kell fejbol tudni, de felismerni és erteni igen
+- `kill -9` az utolso mentsvár, először mindig sima `kill`-el probalkozz -- a `-9` azonnal megoli a processzt, nincs cleanup
 
 > [!warning] kill -9 veszelye
-> A `kill -9` (SIGKILL) nem ad eselyt a processnek a tiszta leallasra. Fajlok nyitva maradhatnak, lock file-ok bent ragadnak. Eloszor mindig sima `kill PID` (SIGTERM), es csak ha az nem segit, akkor `-9`.
+> A `kill -9` (SIGKILL) nem ad eselyt a processnek a tiszta leallasra. Fájlok nyitva maradhatnak, lock file-ok bent ragadnak. Először mindig sima `kill PID` (SIGTERM), és csak ha az nem segit, akkor `-9`.
 
-- A kimenet atiranyitas (`2>&1`) fontos scripteknel es loggolasnal
+- A kimenet atiranyitas (`2>&1`) fontos scripteknel és loggolasnal
 
 ## Kapcsolodo anyagok
 - [[cloud/docker-alapok|Docker alapok]]
-- [[foundations/halozatok-es-ip-cimek|Halozatok es IP cimek]]
-- [[foundations/git-es-github|Git es GitHub]]
-- [[foundations/bash-es-linux-parancssor-2|Bash es Linux parancssor 2]] -- folytatas, halado parancsok
+- [[foundations/halozatok-es-ip-cimek|Hálózatok és IP cimek]]
+- [[foundations/git-es-github|Git és GitHub]]
+- [[foundations/bash-es-linux-parancssor-2|Bash és Linux parancssor 2]] -- folytatas, halado parancsok

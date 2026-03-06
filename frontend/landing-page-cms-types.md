@@ -12,19 +12,19 @@ kapcsolodo:
 
 # Landing Page CMS types
 
-Headless CMS valasztas landing page fejleszteshez [[frontend/nextjs|Next.js]] stack-kel. Ez a jegyzet osszehasonlitja a fobb opciot: self-hosted vs managed, developer experience, pricing es integracio szempontjabol.
+Headless CMS választas landing page fejleszteshez [[frontend/nextjs|Next.js]] stack-kel. Ez a jegyzet összehasonlítja a fobb opciot: self-hosted vs managed, developer experience, pricing és integracio szempontjából.
 
 ## Mi az a Headless CMS?
 
-A hagyomanyos CMS (WordPress) a tartalmat es a frontend-et egyutt kezeli. A **headless CMS** csak a tartalmat kezeli, es API-n (REST vagy GraphQL) szolgaltatja ki. A frontend teljesen fuggetlen -- lehet [[frontend/nextjs|Next.js]], Astro, barmi.
+A hagyomanyos CMS (WordPress) a tartalmat és a frontend-et egyutt kezeli. A **headless CMS** csak a tartalmat kezeli, és API-n (REST vagy GraphQL) szolgáltatja ki. A frontend teljesen fuggetlen -- lehet [[frontend/nextjs|Next.js]], Astro, bármi.
 
 **Elonyok:**
 - Teljes kontroll a frontend felett
-- Ugyanaz a tartalom tobb platformra (web, mobile, email)
+- Ugyanaz a tartalom több platformra (web, mobile, email)
 - Jobb performance (SSG/ISR a Next.js-szel)
 - Fejleszto-barat workflow
 
-## Dontesi fa
+## Döntési fa
 
 ```mermaid
 graph TD
@@ -62,22 +62,22 @@ graph TD
 
 ### Payload CMS
 
-A **Payload** egy TypeScript-first, Next.js-nativ headless CMS. A 3.0 verzio ota kozvetlenul Next.js App Router-be epul -- nincs kulon szerver.
+A **Payload** egy TypeScript-first, Next.js-nativ headless CMS. A 3.0 verzió ota kozvetlenul Next.js App Router-be epul -- nincs kulon szerver.
 
-**Fo jellemzok:**
+**Fo jellemzők:**
 - Next.js App Router nativ integracio (egyetlen app)
 - TypeScript-bol generalt tipusok
 - Beepitett Auth, Access Control, Upload
 - Admin panel auto-generalt a schema-bol
 - PostgreSQL vagy MongoDB backend (Postgres ajanlott a [[database/supabase|Supabase]]-zel)
 
-**Telepites:**
+**Telepítes:**
 ```bash
 npx create-payload-app@latest my-landing-page
 # Valaszd: Next.js, PostgreSQL, Blank template
 ```
 
-**Pelda collection (tartalom tipus):**
+**Példa collection (tartalom tipus):**
 ```typescript
 // collections/LandingPages.ts
 import { CollectionConfig } from 'payload'
@@ -108,9 +108,9 @@ export const LandingPages: CollectionConfig = {
 ```
 
 > [!tip] Payload + Supabase
-> A Payload 3.x PostgreSQL adapter-rel hasznalhato a [[database/supabase|Supabase]] adatbazissal. Ugyanaz a Postgres instance kezeli a CMS tartalmat es az app adatokat is.
+> A Payload 3.x PostgreSQL adapter-rel használhato a [[database/supabase|Supabase]] adatbázissal. Ugyanaz a Postgres instance kezeli a CMS tartalmat és az app adatokat is.
 
-**Deploy:** Egyetlen Next.js app, tehat [[cloud/vercel|Vercel]]-re vagy [[cloud/railway|Railway]]-re deploy-olhato. Docker-rel is self-hostolhato ([[cloud/docker-alapok|Docker alapok]]).
+**Deploy:** Egyetlen Next.js app, tehát [[cloud/vercel|Vercel]]-re vagy [[cloud/railway|Railway]]-re deploy-olhato. Docker-rel is self-hostolhato ([[cloud/docker-alapok|Docker alapok]]).
 
 ---
 
@@ -118,14 +118,14 @@ export const LandingPages: CollectionConfig = {
 
 A **Strapi** a legnepszerubb open-source headless CMS. Erett okoszisztema, sok plugin, nagy community.
 
-**Fo jellemzok:**
+**Fo jellemzők:**
 - Content-Type Builder (vizualis schema editor)
-- REST es GraphQL API automatikusan
+- REST és GraphQL API automatikusan
 - Plugin rendszer (SEO, i18n, media library)
 - Role-Based Access Control
-- JavaScript/TypeScript (v5 mar TS-first)
+- JavaScript/TypeScript (v5 már TS-first)
 
-**Telepites:**
+**Telepítes:**
 ```bash
 npx create-strapi@latest my-cms
 ```
@@ -151,28 +151,28 @@ export async function getLandingPage(slug: string) {
 **Deploy:** Kulon szerver kell (nem fut Vercel-en). [[cloud/railway|Railway]] vagy [[cloud/docker-alapok|Docker]] a legjobb opcio.
 
 > [!warning] Strapi gotcha-k
-> - A Strapi es a Next.js frontend **ket kulon alkalmazas** -- ket deploy kell
-> - A `populate=deep` lassu lehet sok relacional, inkabb explicit populate-et hasznalj
-> - A free verzio korlatozott (nincs audit log, nincs content versioning)
+> - A Strapi és a Next.js frontend **ket kulon alkalmazás** -- ket deploy kell
+> - A `populate=deep` lassu lehet sok relacional, inkabb explicit populate-et használj
+> - A free verzió korlátozott (nincs audit log, nincs content versioning)
 
 ---
 
 ### Directus
 
-A **Directus** "instant API" barmilyen SQL adatbazisra. Nem kell schema-t kodban definialni -- rahuzod egy meglevo DB-re es azonnal van admin UI + API.
+A **Directus** "instant API" bármilyen SQL adatbázisra. Nem kell schema-t kódban definiálalni -- rahuzod egy meglevo DB-re és azonnal van admin UI + API.
 
-**Fo jellemzok:**
-- Barmilyen SQL DB-re raulhet (Postgres, MySQL, SQLite, stb.)
+**Fo jellemzők:**
+- Bármilyen SQL DB-re raulhet (Postgres, MySQL, SQLite, stb.)
 - REST + GraphQL automatikusan
 - Szep, modern admin UI
 - Flows (automatizaciok, hasonlo az n8n-hez)
 - Granular permissions
 - Beepitett file storage (S3, Supabase Storage, local)
 
-**Mikor jo valasztas:**
-- Ha mar VAN egy adatbazisod ([[database/supabase|Supabase]]) es ahhoz akarsz admin feluletet
+**Mikor jó választas:**
+- Ha már VAN egy adatbázisod ([[database/supabase|Supabase]]) és ahhoz akarsz admin felületet
 - Ha nem-fejlesztoknek kell szerkeszteni a tartalmat
-- Ha gyorsan kell egy CMS, minimalis konfiguralassal
+- Ha gyorsan kell egy CMS, minimalis konfigurálassal
 
 **Deploy:** Docker image, [[cloud/railway|Railway]]-re egy kattintas.
 
@@ -199,12 +199,12 @@ services:
 
 ### Sanity
 
-A **Sanity** egy managed headless CMS, ami kiemelkedik a **real-time collaboration** es a **customizable Studio** teren.
+A **Sanity** egy managed headless CMS, ami kiemelkedik a **real-time collaboration** és a **customizable Studio** teren.
 
-**Fo jellemzok:**
+**Fo jellemzők:**
 - Sanity Studio -- React-alapu, teljesen testreszabhato admin UI
-- GROQ -- sajat query nyelv (erosebb, mint REST filterek)
-- Real-time collaboration (Google Docs szintu)
+- GROQ -- saját query nyelv (erosebb, mint REST filterek)
+- Real-time collaboration (Google Docs szintű)
 - Content Lake -- hosted tartalom, nem kell DB-t kezelni
 - Visual Editing (Next.js-ben live preview)
 - Generous free tier
@@ -233,7 +233,7 @@ const page = await sanityClient.fetch(
 ```
 
 > [!tip] Sanity + Vercel Visual Editing
-> A Sanity es a [[cloud/vercel|Vercel]] mely integracioja van: a Vercel Visual Editing-gel a content editor a live oldalon kattinthat egy elemre, es a Sanity Studio-ban szerkesztheti. Landing page-eknel ez nagyon jo UX a marketingeseknek.
+> A Sanity és a [[cloud/vercel|Vercel]] mely integracioja van: a Vercel Visual Editing-gel a content editor a live oldalon kattinthat egy elemre, és a Sanity Studio-ban szerkesztheti. Landing page-eknel ez nagyon jó UX a marketingeseknek.
 
 ---
 
@@ -241,69 +241,69 @@ const page = await sanityClient.fetch(
 
 A **Contentful** egy enterprise-grade managed CMS. Erett, stabil, de dragabb.
 
-**Fo jellemzok:**
+**Fo jellemzők:**
 - Structured content modelling (eros tipusrendszer)
-- Tobb locale / i18n beepitve
-- GraphQL es REST API
+- Több locale / i18n beepitve
+- GraphQL és REST API
 - Webhooks (rebuild trigger [[cloud/vercel|Vercel]]-en)
-- Rich text field sajat renderer-rel
+- Rich text field saját renderer-rel
 - SDK-k minden platformra
 
 **Mikor Contentful?**
-- Enterprise projekt, ahol fontos a support es SLA
+- Enterprise projekt, ahol fontos a support és SLA
 - Sok nyelv / lokalizacio kell
-- Marketing csapat hasznalja a CMS-t
+- Marketing csapat használja a CMS-t
 - Budget nem szuk
 
 > [!warning] Contentful pricing
-> A free tier nagyon korlatozott (5 user, 1 locale). Ha kinovod, hirtelen draga lesz ($300+/ho). Landing page-ekhez ez ritkan eri meg -- inkabb Sanity vagy self-hosted.
+> A free tier nagyon korlátozott (5 user, 1 locale). Ha kinovod, hirtelen draga lesz ($300+/hó). Landing page-ekhez ez ritkan eri még -- inkabb Sanity vagy self-hosted.
 
-## Pricing osszehasonlitas
+## Pricing összehasonlítas
 
 | CMS | Free tier | Fizetos kezdes | Self-hosted? | Megjegyzes |
 |-----|-----------|----------------|--------------|------------|
-| **Payload** | Korlatlan (OSS) | Cloud: $35/ho | Igen | Self-hosted = $0, csak hosting kell |
-| **Strapi** | Korlatlan (OSS) | Cloud: $29/ho | Igen | Self-hosted = $0, de 2 deploy kell |
-| **Directus** | Korlatlan (OSS) | Cloud: $15/ho | Igen | Self-hosted = $0, Docker-rel konnyu |
-| **Sanity** | 3 user, 100K API CDN req/ho | $15/user/ho | Nem | Free tier boven eleg landing page-hez |
-| **Contentful** | 5 user, 1 locale | $300/ho (Team) | Nem | Draga, enterprise-re van kitalálva |
+| **Payload** | Korlatlan (OSS) | Cloud: $35/hó | Igen | Self-hosted = $0, csak hosting kell |
+| **Strapi** | Korlatlan (OSS) | Cloud: $29/hó | Igen | Self-hosted = $0, de 2 deploy kell |
+| **Directus** | Korlatlan (OSS) | Cloud: $15/hó | Igen | Self-hosted = $0, Docker-rel könnyű |
+| **Sanity** | 3 user, 100K API CDN req/hó | $15/user/hó | Nem | Free tier boven eleg landing page-hez |
+| **Contentful** | 5 user, 1 locale | $300/hó (Team) | Nem | Draga, enterprise-re van kitalálva |
 
-> [!info] Hosting koltsegek self-hosted CMS-eknel
-> Self-hosted nem jelenti, hogy ingyen van. Szamolj hosting koltseggel:
-> - [[cloud/railway|Railway]]: ~$5-10/ho (Starter plan + DB)
-> - VPS (Hetzner/DigitalOcean): ~$5-10/ho
+> [!info] Hosting költségek self-hosted CMS-eknel
+> Self-hosted nem jelenti, hogy ingyen van. Szamolj hosting költséggel:
+> - [[cloud/railway|Railway]]: ~$5-10/hó (Starter plan + DB)
+> - VPS (Hetzner/DigitalOcean): ~$5-10/hó
 > - [[database/supabase|Supabase]] DB: free tier-en is eleg landing page-hez
 
-## Developer Experience osszehasonlitas
+## Developer Experience összehasonlítas
 
 | Szempont | Payload | Strapi | Directus | Sanity | Contentful |
 |----------|---------|--------|----------|--------|------------|
 | **TypeScript** | Nativ | v5: Nativ | Partial | SDK: Igen | SDK: Igen |
 | **Next.js integracio** | Beepitett | Fetch/SDK | Fetch/SDK | SDK + Visual Edit | SDK |
-| **Schema definitio** | Kodban (TS) | UI vagy kod | UI (DB-bol) | Kodban (TS) | UI |
+| **Schema definiáltio** | Kódban (TS) | UI vagy kod | UI (DB-bol) | Kódban (TS) | UI |
 | **Admin UI** | Auto-generalt | Auto-generalt | Auto-generalt | React Studio | SaaS UI |
 | **API tipus** | REST + Local API | REST + GraphQL | REST + GraphQL | GROQ + GraphQL | REST + GraphQL |
 | **Learning curve** | Kozepes | Alacsony | Alacsony | Kozepes-Magas | Alacsony |
-| **Migration** | Kodban (DB push) | Auto migration | Auto migration | Nincs (hosted) | Nincs (hosted) |
+| **Migration** | Kódban (DB push) | Auto migration | Auto migration | Nincs (hosted) | Nincs (hosted) |
 | **Customizability** | Nagyon magas | Magas (pluginek) | Kozepes (Flows) | Magas (Studio) | Alacsony |
 
 ## Mikor melyiket valaszd?
 
 ### Payload CMS -- ha a kod a kiraly
 - TypeScript-first projekt
-- Next.js App Router-t hasznalsz
+- Next.js App Router-t használsz
 - Egyetlen deploy-t akarsz (CMS + frontend = 1 app)
-- Teljes kontroll kell a schema es az admin felett
-- [[database/supabase|Supabase]] Postgres-t hasznalod DB-nek
+- Teljes kontroll kell a schema és az admin felett
+- [[database/supabase|Supabase]] Postgres-t használod DB-nek
 
 ### Strapi -- ha az okoszisztema fontos
-- Plugin-eket akarsz hasznalni (SEO, i18n, media)
+- Plugin-eket akarsz használni (SEO, i18n, media)
 - Vizualis Content-Type Builder kell a csapatnak
-- Mar ismered (legnagyobb community)
+- Már ismered (legnagyobb community)
 - Nem gond, hogy 2 kulon service-t deploy-olsz
 
 ### Directus -- ha gyorsasag kell
-- Mar van adatbazisod es admin UI kell ra
+- Már van adatbázisod és admin UI kell ra
 - Nem-fejlesztok is kezelni fogjak
 - Docker-ben akarsz mindent futtatni
 - Minimalis konfigurálast akarsz
@@ -315,19 +315,19 @@ A **Contentful** egy enterprise-grade managed CMS. Erett, stabil, de dragabb.
 - Nem akarsz CMS-t hostolni / karbantartani
 
 ### Contentful -- ha enterprise
-- SLA es support kell
+- SLA és support kell
 - Sok nyelv / lokalizacio
 - Nagyvallalati csapat
 - Budget nem kerdes
 
 ## Ajanlas landing page-ekhez
 
-> [!tip] A legjobb valasztas 2025-2026-ban
+> [!tip] A legjobb választas 2025-2026-ban
 > **Solo dev / kis csapat + Next.js:** Payload CMS (self-hosted [[cloud/railway|Railway]]-n vagy [[cloud/vercel|Vercel]]-en)
 > **Marketinges csapat is szerkeszt:** Sanity (Visual Editing + free tier)
 > **Gyors MVP:** Directus ([[cloud/docker-alapok|Docker]]-rel, 5 perc setup)
 
-Landing page-eknel altalaban keves a tartalom (5-20 oldal), ezert a **free tier** minden opcioval eleg. A dontest inkabb a **developer experience** es a **csapat igenyei** hatarozzak meg, nem a pricing.
+Landing page-eknel általában keves a tartalom (5-20 oldal), ezert a **free tier** minden opcioval eleg. A döntést inkabb a **developer experience** és a **csapat igényei** hatarozzak még, nem a pricing.
 
 ## Kapcsolodo
 
@@ -335,4 +335,4 @@ Landing page-eknel altalaban keves a tartalom (5-20 oldal), ezert a **free tier*
 - [[cloud/docker-alapok|Docker alapok]] -- self-hosted CMS konterizalas
 - [[cloud/railway|Railway]] -- PaaS deploy self-hosted CMS-ekhez
 - [[cloud/vercel|Vercel]] -- frontend deploy + Sanity Visual Editing
-- [[database/supabase|Supabase]] -- adatbazis backend, Payload-dal is hasznalhato
+- [[database/supabase|Supabase]] -- adatbázis backend, Payload-dal is használhato

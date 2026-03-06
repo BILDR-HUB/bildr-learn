@@ -7,16 +7,16 @@ szint: "🏗️ Builder"
 kapcsolodo:
   - "[[cloud/docker-alapok|Docker alapok]]"
   - "[[cloud/docker-compose|Docker Compose]]"
-  - "[[foundations/halozatok-es-ip-cimek|Halozatok es IP cimek]]"
+  - "[[foundations/halozatok-es-ip-cimek|Hálózatok és IP cimek]]"
   - "[[cloud/railway|Railway]]"
   - "[[_moc/moc-kubernetes|MOC - Kubernetes]]"
 ---
 
 # Kubernetes bevezeto
 
-## Osszefoglalo
+## Összefoglaló
 
-A Kubernetes (K8s) kontenerek automatikus kezelesere valo: elosztja a terhelest, ujrainditja ami elhal, skalaz felfelé-lefele. A Docker Compose egy gepre jo -- a Kubernetes sok gepre, eles kornyezetbe.
+A Kubernetes (K8s) konténerek automatikus kezelesere valo: elosztja a terhelest, ujrainditja ami elhal, skáláz felfelé-lefele. A Docker Compose egy gépre jó -- a Kubernetes sok gépre, éles környezetbe.
 
 ## Jegyzetek
 
@@ -24,9 +24,9 @@ A Kubernetes (K8s) kontenerek automatikus kezelesere valo: elosztja a terhelest,
 
 | | Docker Compose | Kubernetes |
 |--|----------------|------------|
-| Mire jo | Egy gep, fejlesztes, kis projektek | Tobb gep, production, nagy rendszerek |
-| Skalazas | Manualis | Automatikus |
-| Ha meghal egy kontener | Nem indul ujra magatol | Automatikusan ujraindul |
+| Mire jó | Egy gep, fejlesztes, kis projektek | Több gep, production, nagy rendszerek |
+| Skálázas | Manuális | Automatikus |
+| Ha meghal egy konténer | Nem indul ujra magatol | Automatikusan ujraindul |
 | Load balancing | Nincs | Beepitett |
 | Komplexitas | Alacsony | Magas |
 | Mikor kell | Legtobb SMB projekt | Nagy forgalom, magas rendelkezesre allas |
@@ -35,14 +35,14 @@ A Kubernetes (K8s) kontenerek automatikus kezelesere valo: elosztja a terhelest,
 
 | Fogalom | Mi ez | Hasonlat |
 |---------|-------|----------|
-| **Cluster** | A teljes rendszer (tobb gep egyutt) | Az egesz gyar |
+| **Cluster** | A teljes rendszer (több gep egyutt) | Az egész gyar |
 | **Node** | Egy gep a clusterben | Egy munkas a gyarban |
-| **Pod** | A legkisebb egyseg, 1+ kontener egyutt | Egy munkaallomas |
-| **Deployment** | Leirja mit futtass es hany peldanyban | Munkautasitas |
-| **Service** | Stabil cim a podokhoz (load balancer) | Recepcio ami a megfelelo munkashoz iranyit |
-| **Namespace** | Logikai elvalasztas (dev/staging/prod) | Kulonbozo emeletek |
+| **Pod** | A legkisebb egyseg, 1+ konténer egyutt | Egy munkaallomas |
+| **Deployment** | Leirja mit futtass és hany példanyban | Munkautasitas |
+| **Service** | Stabil cim a podokhoz (load balancer) | Recepcio ami a megfelelő munkashoz iranyit |
+| **Namespace** | Logikai elvalasztas (dev/staging/prod) | Különböző emeletek |
 
-### Hogyan mukodik nagyvonalakban?
+### Hogyan működik nagyvonalakban?
 
 ```
 Te: "Kerek 3 peldanyt a backend-bol"
@@ -67,7 +67,7 @@ graph TD
     H[Deployment 3 replika] --> G
 ```
 
-### Egy egyszeru Deployment YAML
+### Egy egyszerű Deployment YAML
 
 ```yaml
 apiVersion: apps/v1
@@ -93,26 +93,26 @@ spec:
 
 ### kubectl -- a Kubernetes CLI
 
-| Parancs | Mit csinal |
+| Parancs | Mit csinál |
 |---------|------------|
 | `kubectl get pods` | Futo pod-ok listazasa |
 | `kubectl get services` | Service-ek listazasa |
-| `kubectl apply -f deploy.yaml` | Konfiguracio alkalmazasa |
+| `kubectl apply -f deploy.yaml` | Konfigurácio alkalmazása |
 | `kubectl logs pod-nev` | Pod logjainak megtekintese |
-| `kubectl describe pod pod-nev` | Pod reszletes info |
+| `kubectl describe pod pod-nev` | Pod részletes info |
 
 ### Mikor NEM kell Kubernetes?
 
-- Kis projektek, keves felhasznalo
-- Egy szerveren elfer az egesz app
+- Kis projektek, keves felhasználó
+- Egy szerveren elfer az egész app
 - Nincs dedikalt DevOps ember/tudas
 - Docker Compose + egy VPS eleg (a legtobb SMB projekthez ez a helyzet)
 
-### Managed Kubernetes szolgaltatasok
+### Managed Kubernetes szolgáltatasok
 
 Ha megis kell K8s, ne magad uzemeltsd:
 
-| Szolgaltatas | Hol |
+| Szolgáltatas | Hol |
 |--------------|-----|
 | GKE | Google Cloud |
 | EKS | AWS |
@@ -120,15 +120,15 @@ Ha megis kell K8s, ne magad uzemeltsd:
 | DigitalOcean Kubernetes | DigitalOcean |
 
 ## Fo tanulsagok
-- Kubernetes = Docker kontenerek automatikus menedzselese sok gepen
+- Kubernetes = Docker konténerek automatikus menedzselese sok gépen
 - A legtobb projekthez tulzas -- Docker Compose eleg
-- Ha kell, managed szolgaltatast hasznalj (GKE, EKS), ne magad uzemeltsd
-- Erdemes erteni a fogalmakat akkor is ha nem hasznalod, mert mindenhol elojonnek
+- Ha kell, managed szolgáltatast használj (GKE, EKS), ne magad uzemeltsd
+- Érdemes erteni a fogalmakat akkor is ha nem használod, mert mindenhol elojonnek
 
 ## Kapcsolodo anyagok
 - [[cloud/docker-alapok|Docker alapok]]
 - [[cloud/docker-compose|Docker Compose]]
-- [[foundations/halozatok-es-ip-cimek|Halozatok es IP cimek]]
+- [[foundations/halozatok-es-ip-cimek|Hálózatok és IP cimek]]
 - [[cloud/railway|Railway]]
 - Kubernetes gyakorlat OrbStack -- gyakorlati session ahol az itt tanult fogalmak eletre keltek
 - [[_moc/moc-kubernetes|MOC - Kubernetes]]

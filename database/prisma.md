@@ -8,7 +8,7 @@ szint: "🧱 Brick"
 kapcsolodo:
   - "[[database/drizzle|Drizzle]]"
   - "[[database/supabase|Supabase]]"
-  - "[[database/sql-adatbazisok|SQL adatbazisok]]"
+  - "[[database/sql-adatbazisok|SQL adatbázisok]]"
   - "[[database/sql-index-szabalyok|SQL Index szabalyok]]"
   - "[[_moc/moc-database|MOC - Database]]"
 ---
@@ -21,20 +21,20 @@ kapcsolodo:
 
 ---
 
-## Mi ez es mire jo?
+## Mi ez és mire jó?
 
 > [!tldr] Egy mondatban
-> A Prisma egy TypeScript ORM -- a `schema.prisma` fajlban definialod az adatmodellt, o generalja a type-safe klienst es kezeli a migration-oket.
+> A Prisma egy TypeScript ORM -- a `schema.prisma` fájlban definiálalod az adatmodellt, o generalja a type-safe klienst és kezeli a migration-oket.
 
-Raw SQL helyett TypeScript-ben irsz lekerdezeseket, es a compiler megmondja ha hibas. A Prisma a Drizzle-nel magasabb szintu absztrakcio: nem kell SQL-t irni, de cserebe kevesebb kontrollod van.
+Raw SQL helyett TypeScript-ben irsz lekérdezéseket, és a compiler megmondja ha hibas. A Prisma a Drizzle-nel magasabb szintű absztrakcio: nem kell SQL-t irni, de cserebe kevesebb kontrollod van.
 
 **A harom fo komponens:**
 
 | Komponens | Feladat |
 |---|---|
-| **Prisma Client** | Auto-generalt, type-safe adatbazis kliens |
-| **Prisma Migrate** | Migration fajlok generalasa es futtatasa |
-| **Prisma Studio** | GUI az adatbazishoz (localhost:5555) |
+| **Prisma Client** | Auto-generalt, type-safe adatbázis kliens |
+| **Prisma Migrate** | Migration fájlok generalasa és futtatasa |
+| **Prisma Studio** | GUI az adatbázishoz (localhost:5555) |
 
 ## Workflow
 
@@ -50,10 +50,10 @@ graph TD
 ```
 
 **Mikor valaszd a Drizzle helyett:**
-- Komplex relacios lekerdezesek kellenek (`include`, `select` nested objektumokkal)
-- Gyorsan akarsz haladni, nem akarod az SQL-t manualisan irni
-- Prisma Studio-t szeretned (vizualis adatbazis editor)
-- A projekt nem edge/serverless (Prisma engine-je nehez, nem jo Vercel Edge-re)
+- Komplex relacios lekérdezések kellenek (`include`, `select` nested objektumokkal)
+- Gyorsan akarsz haladni, nem akarod az SQL-t manuálisan irni
+- Prisma Studio-t szeretned (vizualis adatbázis editor)
+- A projekt nem edge/serverless (Prisma engine-je nehez, nem jó Vercel Edge-re)
 
 **Mikor NE valaszd (→ [[database/drizzle|Drizzle]] inkabb):**
 - Vercel Edge Functions / Cloudflare Workers -- Prisma engine nem fut edge-en
@@ -62,17 +62,17 @@ graph TD
 
 ---
 
-## Setup -- lepesrol lepesre
+## Setup -- lépésrol lépésre
 
-### 1. Telepites
+### 1. Telepítes
 
 ```bash
 npm install prisma @prisma/client
 npx prisma init
 ```
 
-Ez letrehozza:
-- `prisma/schema.prisma` -- az adatmodell definicio
+Ez létrehozza:
+- `prisma/schema.prisma` -- az adatmodell definiálcio
 - `.env` -- `DATABASE_URL` env variable
 
 ### 2. schema.prisma felepitese
@@ -118,7 +118,7 @@ model Post {
 npx prisma generate
 ```
 
-Minden schema valtozas utan lefuttatando -- ujrageneralja a type-safe klienst.
+Minden schema változás utan lefuttatando -- ujrageneralja a type-safe klienst.
 
 ### 4. Migration futtatasa
 
@@ -138,12 +138,12 @@ DATABASE_URL="postgresql://postgres:<JELSZO>@db.<PROJEKT_REF>.supabase.co:5432/p
 ```
 
 > [!warning] Supabase + Prisma connection pooling
-> Supabase Direct connection (port 5432) helyett hasznalj **connection pooler**-t (port 6543 + `?pgbouncer=true`), kulonben serverless env-ben elfogynak a connection-ok:
+> Supabase Direct connection (port 5432) helyett használj **connection pooler**-t (port 6543 + `?pgbouncer=true`), különben serverless env-ben elfogynak a connection-ok:
 > ```
-> DATABASE_URL="postgresql://postgres:<JELSZO>@db.<REF>.supabase.co:6543/postgres?pgbouncer=true"
+> DATABASE_URL="postgresql://postgres:<Jelszó>@db.<REF>.supabase.co:6543/postgres?pgbouncer=true"
 > ```
 
-### 6. Prisma Client hasznalat
+### 6. Prisma Client használat
 
 ```typescript
 // lib/prisma.ts -- singleton a Next.js-hez
@@ -198,8 +198,8 @@ await prisma.user.delete({ where: { id: userId } })
 
 ### Schema design
 
-- Minden tabla kapjon `id`, `createdAt`, `updatedAt` mezot
-- Foreign key mezokre mindig legyen `@@index` (pl. `@@index([userId])`)
+- Minden tábla kapjon `id`, `createdAt`, `updatedAt` mezőt
+- Foreign key mezőkre mindig legyen `@@index` (pl. `@@index([userId])`)
 - `cuid()` vagy `uuid()` az ID-khez (nem auto-increment integer)
 
 ### Migration workflow
@@ -225,7 +225,7 @@ Nem kell SQL klienst (TablePlus, DBeaver) megnyitni -- Prisma Studio-ban szerkes
 
 ### Index-ek a schema-ban
 
-Lasd: [[database/sql-index-szabalyok|SQL Index szabalyok]] -- az ott leirt elvek alapjan add a `@@index`-eket. Prisma-ban:
+Lásd: [[database/sql-index-szabalyok|SQL Index szabalyok]] -- az ott leirt elvek alapján add a `@@index`-eket. Prisma-ban:
 
 ```prisma
 model Post {
@@ -238,11 +238,11 @@ model Post {
 
 ---
 
-## Buktatok es hibak amiket elkerulj
+## Buktatok és hibak amiket elkerülj
 
-- **Ne felejtsd el `prisma generate`-et futtatni** schema valtozas utan -- kulonben a kliens nem latja az uj mezoket
-- **Prisma Studio adatbazis jelszo** -- ne futtasd production connection string-gel ha nem muszaj
-- **N+1 problema** -- `findMany` + relaciok iteralasanal hasznalj `include`-ot, ne kulon query-t minden elemhez
+- **Ne felejtsd el `prisma generate`-et futtatni** schema változás utan -- különben a kliens nem látja az új mezőket
+- **Prisma Studio adatbázis jelszó** -- ne futtasd production connection string-gel ha nem muszaj
+- **N+1 probléma** -- `findMany` + relaciok iteralasanal használj `include`-ot, ne kulon query-t minden elemhez
 - **Edge runtime** -- Prisma Client nem fut Vercel Edge-en. Ha edge kell → [[database/drizzle|Drizzle]]
 
 ---
@@ -272,8 +272,8 @@ npx prisma db seed                       # Seed adat futtatasa
 
 ## Kapcsolodo
 
-- [[database/drizzle|Drizzle]] -- alternativ ORM, SQL-kozelibb, jobb edge-re
-- [[database/supabase|Supabase]] -- PostgreSQL backend, amivel Prisma-t altalaban osszekotjuk
-- [[database/sql-adatbazisok|SQL adatbazisok]] -- SQL alapok, amire Prisma epul
-- [[database/sql-index-szabalyok|SQL Index szabalyok]] -- index strategia a schema.prisma @@index-ekhez
+- [[database/drizzle|Drizzle]] -- alternativ ORM, SQL-közelibb, jobb edge-re
+- [[database/supabase|Supabase]] -- PostgreSQL backend, amivel Prisma-t általában osszekotjuk
+- [[database/sql-adatbazisok|SQL adatbázisok]] -- SQL alapok, amire Prisma epul
+- [[database/sql-index-szabalyok|SQL Index szabalyok]] -- index stratégia a schema.prisma @@index-ekhez
 - [[_moc/moc-database|MOC - Database]]

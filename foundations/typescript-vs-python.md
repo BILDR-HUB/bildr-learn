@@ -7,7 +7,7 @@ kapcsolodo:
   - "[[foundations/python-venv|Python venv]]"
   - "[[database/supabase|Supabase]]"
   - "[[database/drizzle|Drizzle]]"
-  - "[[foundations/projekt-szintu-izolacio|Projekt-szintu izolacio]]"
+  - "[[foundations/projekt-szintu-izolacio|Projekt-szintű izolácio]]"
 datum: 2026-02-08
 szint: "🧱 Brick"
 ---
@@ -16,7 +16,7 @@ szint: "🧱 Brick"
 
 ## Mikor melyiket?
 
-A **TypeScript** es a **Python** ket teljesen kulonbozo filozofiaju nyelv, de egy modern stack-ben mindkettonek megvan a helye. A lenyeg: **nem kell valasztani** -- tudni kell mikor melyik a jobb eszkoz.
+A **TypeScript** és a **Python** ket teljesen különböző filozofiaju nyelv, de egy modern stack-ben mindkettonek megvan a helye. A lényeg: **nem kell választani** -- tudni kell mikor melyik a jobb eszkoz.
 
 ```mermaid
 graph TD
@@ -37,40 +37,40 @@ graph TD
 ```
 
 > [!tldr] Huvelykujj-szabaly
-> **TypeScript** = ha a kod production-ben fut, masok is hasznaljak, vagy web-hez kapcsolodik.
+> **TypeScript** = ha a kod production-ben fut, masok is használjak, vagy web-hez kapcsolodik.
 > **Python** = ha egyszeri feldolgozas kell, adattal dolgozol, vagy specifikus Python library kell (PDF, ML, scraping).
 
 ---
 
-## Osszehasonlitas
+## Összehasonlítas
 
 | Szempont | TypeScript | Python |
 |----------|-----------|--------|
 | **Tipusrendszer** | Statikus, strict -- forditaskor elkapja a hibakat | Dinamikus -- futasidoben derul ki (type hint opcionalis) |
-| **Runtime** | Node.js / Bun / Deno | CPython (alapertelmezett), PyPy |
+| **Runtime** | Node.js / Bun / Deno | CPython (alapértelmezett), PyPy |
 | **Package manager** | npm / bun / pnpm | pip / poetry / uv |
 | **Web framework** | [[frontend/nextjs|Next.js]], [[backend/express|Express]], Fastify, [[backend/hono|Hono]] | FastAPI, Django, Flask |
 | **Sebesseg** | Gyorsabb (V8 JIT, async I/O nativ) | Lassabb (GIL, interpreter overhead) |
 | **Async** | Nativ (`async/await` mindenhol) | Async lehetseges de nem nativ okoszisztema |
 | **AI/ML library-k** | Kevesebb (de Claude Agent SDK van TS-ben is) | Legjobb (PyTorch, scikit-learn, pandas, numpy) |
-| **Adat feldolgozas** | Gyengebb (nincs pandas-szintu) | Kiraly (pandas, openpyxl, pdfplumber, BeautifulSoup) |
+| **Adat feldolgozas** | Gyengebb (nincs pandas-szintű) | Kiraly (pandas, openpyxl, pdfplumber, BeautifulSoup) |
 | **Cloud-native** | Nativ (serverless, edge, CDN) | Lehet, de nehezkesebb (nagyobb cold start) |
 | **Tanulasi gorbe** | Meredekebb (tipusok, generics, build tooling) | Alacsonyabb (olvashato szintaxis, gyors prototipus) |
-| **Izolacio** | `node_modules` per projekt ([[foundations/projekt-szintu-izolacio|Projekt-szintu izolacio]]) | [[foundations/python-venv|venv]] per projekt |
+| **Izolácio** | `node_modules` per projekt ([[foundations/projekt-szintu-izolacio|Projekt-szintű izolácio]]) | [[foundations/python-venv|venv]] per projekt |
 
 ---
 
-## TypeScript -- mikor hasznald
+## TypeScript -- mikor használd
 
 A fo nyelv web fejleszteshez. A teljes stack TypeScript-re epul:
 
 **Fo use case-ek:**
 - [[frontend/nextjs|Next.js]] full-stack app (frontend + API routes)
 - [[database/supabase|Supabase]] Edge Functions (Deno runtime, TypeScript-first)
-- Claude Agent SDK -- AI agent-ek epitese
+- Claude Agent SDK -- AI agent-ek építese
 - n8n Code node-ok (TS/JS preferalt)
 - REST API / backend service ([[cloud/railway|Railway]]-en vagy [[cloud/vercel|Vercel]]-en)
-- Barmi ami production-ben fut es masok is karbantartjak
+- Bármi ami production-ben fut és masok is karbantartjak
 
 **Erossegek:**
 - **Type safety** -- a compiler elkapja a hibakat mielott production-be kerulne
@@ -96,31 +96,31 @@ const { data, error } = await supabase
 
 ---
 
-## Python -- mikor hasznald
+## Python -- mikor használd
 
-Nem a fo stack nyelve, de vannak dolgok amiket Pythonban **sokkal egyszerubb** megcsinalni.
+Nem a fo stack nyelve, de vannak dolgok amiket Pythonban **sokkal egyszerűbb** megcsinalni.
 
 **Fo use case-ek:**
 - PDF generalas / feldolgozas (reportlab, pdfplumber, PyPDF2)
-- Excel fajlok kezelese (openpyxl, pandas)
+- Excel fájlok kezelese (openpyxl, pandas)
 - Web scraping (BeautifulSoup, Scrapy, Playwright)
-- Adat feldolgozas es transzformacio (pandas, numpy)
+- Adat feldolgozas és transzformacio (pandas, numpy)
 - ML model training / fine-tuning (PyTorch, Hugging Face)
 - Egyszeri automatizalasi scriptek
 - Claude Agent SDK -- Python SDK is van
 
 **Erossegek:**
-- **Adatkezeles** -- pandas, numpy, openpyxl -> nincs TS-ben ilyen szintu
+- **Adatkezeles** -- pandas, numpy, openpyxl -> nincs TS-ben ilyen szintű
 - **ML/AI okoszisztema** -- PyTorch, TensorFlow, Hugging Face, LangChain
 - **Scraping** -- BeautifulSoup + requests = 5 perc alatt kesz
-- **Gyors prototipus** -- nincs build step, nincs tipus-annotacio kenyszer, "csak ird es futtasd"
+- **Gyors prototipus** -- nincs build step, nincs tipus-annotacio kenyszer, "csak ird és futtasd"
 - **PDF/Excel** -- production-quality library-k amik TS-ben nem leteznek vagy gyengek
 
 **Gyengesegek:**
 - **GIL** (Global Interpreter Lock) -- egyszalu futtas, CPU-bound feladatoknal lassu
 - **Deployment bonyolultabb** -- nagyobb container image, lassabb cold start
 - **Nincs nativ type safety** -- type hint segit de nem kenyszerit
-- **Izolacio** -- [[foundations/python-venv|venv]] mukodik de fajdalmasabb mint `node_modules`
+- **Izolácio** -- [[foundations/python-venv|venv]] működik de fajdalmasabb mint `node_modules`
 - **Async** -- asyncio letezik, de az okoszisztema nagy resze szinkron
 
 ```python
@@ -134,7 +134,7 @@ with pdfplumber.open("szamla.pdf") as pdf:
 
 ---
 
-## Vegyes hasznalat a stack-ben
+## Vegyes használat a stack-ben
 
 A ket nyelv nem zarja ki egymast -- a legjobb minta: **TypeScript a gerincnek, Python ahol specialis library kell**.
 
@@ -165,16 +165,16 @@ graph LR
 
 **Tipikus vegyes pattern:**
 1. **n8n trigger** -> Python script futtatasa (scraping, PDF feldolgozas)
-2. Python script eredmenye -> **Supabase-be mentes** (REST API-n vagy direct insert-tel)
-3. **Next.js frontend** megjelenitei az adatot
+2. Python script eredmenye -> **Supabase-be mentés** (REST API-n vagy direct insert-tel)
+3. **Next.js frontend** megjelenítei az adatot
 4. Vagy: Python-ban adatfeldolgozas -> JSON export -> TypeScript API fogadja
 
-> [!tip] Mikor hasznalj Python-t TS projekt mellett?
-> Ha a feladat 80%-a adat feldolgozas (PDF, Excel, scraping, ML) es csak 20%-a web -- ird meg Python-ban es az eredmenyt pumpald be a TS stack-be JSON-kent vagy Supabase-en keresztul. Ne probalj meg mindent egy nyelven.
+> [!tip] Mikor használj Python-t TS projekt mellett?
+> Ha a feladat 80%-a adat feldolgozas (PDF, Excel, scraping, ML) és csak 20%-a web -- ird még Python-ban és az eredmenyt pumpald be a TS stack-be JSON-kent vagy Supabase-en keresztul. Ne probalj még mindent egy nyelven.
 
 ---
 
-## Tooling osszehasonlitas
+## Tooling összehasonlítas
 
 | Feladat | TypeScript | Python |
 |---------|-----------|--------|
@@ -183,15 +183,15 @@ graph LR
 | **Linter** | ESLint / Biome | ruff / flake8 |
 | **Formatter** | Prettier / Biome | black / ruff format |
 | **Type checker** | tsc (beepitett) | mypy / pyright (opcionalis) |
-| **Teszteles** | Vitest / Jest / bun test | pytest |
-| **n8n Code node** | Teljes support | Korlatozott (nincs minden lib) |
+| **Tesztelés** | Vitest / Jest / bun test | pytest |
+| **n8n Code node** | Teljes support | Korlátozott (nincs minden lib) |
 
 ---
 
 ## Kapcsolodo
 
 - [[frontend/nextjs|Next.js]] -- fo TypeScript framework
-- [[foundations/python-venv|Python venv]] -- Python izolacio
+- [[foundations/python-venv|Python venv]] -- Python izolácio
 - [[database/supabase|Supabase]] -- TS-first Edge Functions
 - [[database/drizzle|Drizzle]] -- type-safe ORM TypeScript-ben
-- [[foundations/projekt-szintu-izolacio|Projekt-szintu izolacio]] -- mindket nyelvre ervenyes elv
+- [[foundations/projekt-szintu-izolacio|Projekt-szintű izolácio]] -- mindket nyelvre ervenyes elv

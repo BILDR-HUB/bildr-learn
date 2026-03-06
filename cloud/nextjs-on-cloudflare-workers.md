@@ -13,26 +13,26 @@ kapcsolodo:
   - "[[_moc/moc-deployment|MOC - Deployment]]"
 ---
 
-## Miert fontos ez?
+## Miért fontos ez?
 
-A [[cloud/cloudflare|Cloudflare]] note-ban eddig a pattern: **[[backend/hono|Hono]] + React SPA + D1** volt a belso appok stackje, a [[frontend/nextjs|Next.js]] pedig a [[cloud/vercel|Vercel]]-e volt. Az **OpenNext adapter** ezt valtoztatja meg -- mostantol **fullstack Next.js kozvetlenul Cloudflare Workers-on fut**, App Router-rel, SSR-rel, RSC-vel, mindennel.
+A [[cloud/cloudflare|Cloudflare]] note-ban eddig a pattern: **[[backend/hono|Hono]] + React SPA + D1** volt a belső appok stackje, a [[frontend/nextjs|Next.js]] pedig a [[cloud/vercel|Vercel]]-e volt. Az **OpenNext adapter** ezt valtoztatja még -- mostantol **fullstack Next.js kozvetlenul Cloudflare Workers-on fut**, App Router-rel, SSR-rel, RSC-vel, mindennel.
 
-**Egyszeruen:** Ami eddig $20/ho volt Vercel Pro-n, az most $5/ho a Cloudflare-en -- ugyanazzal a Next.js kodbazissal.
+**Egyszerűen:** Ami eddig $20/hó volt Vercel Pro-n, az most $5/hó a Cloudflare-en -- ugyanazzal a Next.js kódbázissal.
 
 > [!tldr] Egy mondatban
 > A Next.js teljes stack-je (SSR, SSG, ISR, RSC, Middleware, Server Actions) futtathato Cloudflare Workers-on az OpenNext adapter segitsegevel, Vercel nelkul.
 
 ---
 
-## Mire jo -- Claude Code kontextus
+## Mire jó -- Claude Code kontextus
 
-### 1. Belso mini appok
+### 1. Belső mini appok
 
-Eddig ket valasztasod volt:
-- **[[backend/hono|Hono]] + React SPA + CF Workers** ($5/ho) -- de nincs SSR, nincs App Router, a frontend-et kulon kell deployolni Pages-re
-- **[[frontend/nextjs|Next.js]] + [[cloud/vercel|Vercel]]** ($20/ho) -- fullstack, de dragabb
+Eddig ket választasod volt:
+- **[[backend/hono|Hono]] + React SPA + CF Workers** ($5/hó) -- de nincs SSR, nincs App Router, a frontend-et kulon kell deployolni Pages-re
+- **[[frontend/nextjs|Next.js]] + [[cloud/vercel|Vercel]]** ($20/hó) -- fullstack, de dragabb
 
-**Most:** Next.js + CF Workers = **fullstack Next.js $5/ho-ert**. Egy codebase, egy deploy, SSR + API routes egyben.
+**Most:** Next.js + CF Workers = **fullstack Next.js $5/hó-ert**. Egy codebase, egy deploy, SSR + API routes egyben.
 
 ```bash
 # Claude Code session-bol:
@@ -44,11 +44,11 @@ npx wrangler deploy
 
 ### 2. Landing page-ek
 
-A Vercel Hobby tier ingyenes, de limitalt. A Pro $20/ho. CF Workers-szel:
-- **$5/ho** fix, 10M request/ho
-- SSG + ISR = gyors landing page, hatterben frissul
+A Vercel Hobby tier ingyenes, de limitalt. A Pro $20/hó. CF Workers-szel:
+- **$5/hó** fix, 10M request/hó
+- SSG + ISR = gyors landing page, háttérben frissül
 - [[cloud/cloudflare|Cloudflare]] CDN 300+ edge location → gyorsabb mint Vercel
-- Image Optimization elerheto Cloudflare Images-en keresztul
+- Image Optimization elérheto Cloudflare Images-en keresztul
 
 ### 3. Claude Code workflow elonyok
 
@@ -56,19 +56,19 @@ A Vercel Hobby tier ingyenes, de limitalt. A Pro $20/ho. CF Workers-szel:
 |---|---|---|
 | **Scaffold** | `bunx create-next-app` | `npm create cloudflare@latest --framework=next` |
 | **Deploy** | `vercel --prod` (vagy git push) | `npx wrangler deploy` |
-| **Preview** | Automatikus PR preview | `npm run preview` (lokalisan workerd-ben) |
+| **Preview** | Automatikus PR preview | `npm run preview` (lokálisan workerd-ben) |
 | **Env vars** | Vercel dashboard | `wrangler secret put KEY` (CLI-bol!) |
 | **Logok** | `vercel logs` | `wrangler tail` (real-time) |
-| **Lokalis runtime** | Node.js (nem production-hu) | `workerd` runtime (production-hu) |
+| **Lokális runtime** | Node.js (nem production-hu) | `workerd` runtime (production-hu) |
 
 > [!tip] CLI-first workflow
-> A `wrangler` mindent tud CLI-bol: deploy, secret management, log tail, D1 query. Claude Code session-bol nem kell dashboardra valtani -- **ez a legnagyobb elony** a Vercel-lel szemben, ahol sok beallitas csak a dashboard-on elerheto.
+> A `wrangler` mindent tud CLI-bol: deploy, secret management, log tail, D1 query. Claude Code session-bol nem kell dashboardra valtani -- **ez a legnagyobb elony** a Vercel-lel szemben, ahol sok beállítás csak a dashboard-on elérheto.
 
 ---
 
-## Hogyan mukodik -- OpenNext adapter
+## Hogyan működik -- OpenNext adapter
 
-A Cloudflare nem futtatja nativan a Next.js-t (az a Vercel sajatja). Az **OpenNext** egy nyilt forraskodu adapter, ami a Next.js build outputot atalakitja ugy, hogy az barmelyik platformon (CF Workers, AWS, stb.) futhasson.
+A Cloudflare nem futtatja nativan a Next.js-t (az a Vercel sajátja). Az **OpenNext** egy nyilt forráskódu adapter, ami a Next.js build outputot atalakitja ugy, hogy az bármelyik platformon (CF Workers, AWS, stb.) futhasson.
 
 ```
 Next.js app
@@ -80,7 +80,7 @@ Standard Next.js output
 └── assets/      ← statikus fajlok (CF Assets-en)
 ```
 
-A `wrangler deploy` automatikusan felismeri a Next.js projektet es legeneralja a szukseges konfiguráciot -- nem kell kezzel beallitani.
+A `wrangler deploy` automatikusan felismeri a Next.js projektet és legeneralja a szükséges konfiguráciot -- nem kell kezzel beállítani.
 
 ---
 
@@ -98,18 +98,18 @@ A `wrangler deploy` automatikusan felismeri a Next.js projektet es legeneralja a
 | Response Streaming | Tamogatott |
 | Middleware | Tamogatott |
 | Image Optimization | Cloudflare Images-en keresztul |
-| Partial Prerendering (PPR) | Kiserleti |
-| `'use cache'` | Kiserleti |
-| Node.js in Middleware (15.2+) | Meg nem tamogatott |
+| Partial Prerendering (PPR) | Kísérleti |
+| `'use cache'` | Kísérleti |
+| Node.js in Middleware (15.2+) | Még nem tamogatott |
 
 > [!warning] Middleware limitacio
-> A Next.js 15.2+ bevezette a `nodeMiddleware` opciot, ami Node.js API-kat enged a middleware-ben. Ez CF Workers-on **nem mukodik**, mert a middleware is V8 isolate-ban fut. Ha komplex middleware kell (pl. DB query middleware-ben), maradj a standard Web API-knal.
+> A Next.js 15.2+ bevezette a `nodeMiddleware` opciot, ami Node.js API-kat enged a middleware-ben. Ez CF Workers-on **nem működik**, mert a middleware is V8 isolate-ban fut. Ha komplex middleware kell (pl. DB query middleware-ben), maradj a standard Web API-knal.
 
 ---
 
-## Setup -- lepesrol lepesre
+## Setup -- lépésrol lépésre
 
-### 1. Uj projekt (leggyorsabb)
+### 1. Új projekt (leggyorsabb)
 
 ```bash
 npm create cloudflare@latest -- my-next-app --framework=next
@@ -117,10 +117,10 @@ cd my-next-app
 ```
 
 Ez automatikusan:
-- Letrehozza a Next.js projektet
-- Telepiti az OpenNext adaptert
-- Konfiguralja a `wrangler.jsonc`-t
-- Beallitja a `nodejs_compat` flag-et
+- Létrehozza a Next.js projektet
+- Telepíti az OpenNext adaptert
+- Konfigurálja a `wrangler.jsonc`-t
+- Beállítja a `nodejs_compat` flag-et
 
 ### 2. Meglevo Next.js projekt migralasa
 
@@ -132,7 +132,7 @@ npm i @opennextjs/cloudflare@latest
 npm i -D wrangler@latest
 ```
 
-**`wrangler.jsonc` letrehozasa:**
+**`wrangler.jsonc` létrehozasa:**
 
 ```jsonc
 {
@@ -148,7 +148,7 @@ npm i -D wrangler@latest
 }
 ```
 
-**`open-next.config.ts` letrehozasa:**
+**`open-next.config.ts` létrehozasa:**
 
 ```typescript
 import { defineCloudflareConfig } from "@opennextjs/cloudflare";
@@ -178,7 +178,7 @@ npm run deploy
 npx wrangler deploy
 ```
 
-### 4. Lokalis teszteles (workerd runtime-ban)
+### 4. Lokális tesztelés (workerd runtime-ban)
 
 ```bash
 # Next.js dev server (Node.js -- gyors hot reload)
@@ -188,12 +188,12 @@ npm run dev
 npm run preview
 ```
 
-> [!info] Dev vs Preview kulonbseg
-> `npm run dev` = Node.js dev server, gyors hot reload-dal. **DE** a kodod production-ben `workerd`-ben fut, ami mas runtime. Ha Node.js-only API-t hasznalsz veletlenul, dev-ben mukodik, preview-ban nem. **Mindig tesztelj `preview`-val deploy elott!**
+> [!info] Dev vs Preview különbség
+> `npm run dev` = Node.js dev server, gyors hot reload-dal. **DE** a kódod production-ben `workerd`-ben fut, ami mas runtime. Ha Node.js-only API-t használsz veletlenul, dev-ben működik, preview-ban nem. **Mindig tesztelj `preview`-val deploy elott!**
 
 ---
 
-## Mikor hasznald -- dontesi fa
+## Mikor használd -- döntési fa
 
 ```mermaid
 graph TD
@@ -223,23 +223,23 @@ graph TD
 
 ### Mikor Next.js + CF Workers (ez a note)?
 
-- **Belso tool** ahol fullstack Next.js kell (SSR, App Router, API routes) de Vercel draga
-- **Landing page** ami SSR-t vagy ISR-t hasznal (dinamikus tartalom, SEO)
+- **Belső tool** ahol fullstack Next.js kell (SSR, App Router, API routes) de Vercel draga
+- **Landing page** ami SSR-t vagy ISR-t használ (dinamikus tartalom, SEO)
 - **Claude Code workflow** -- mindent CLI-bol akarsz (`wrangler deploy`, `wrangler secret put`)
-- **CF binding-okat** akarsz hasznalni (D1, R2, KV) Next.js app-bol
+- **CF binding-okat** akarsz használni (D1, R2, KV) Next.js app-bol
 
 ### Mikor NE ezt valaszd?
 
 - **PostgreSQL kell** → Vercel + Supabase/Neon (D1 SQLite-alapu, ahogy a [[cloud/cloudflare|Cloudflare]] note-ban lattuk)
 - **Nehez szamitas** → 30s CPU limit, 128MB memoria
 - **Node.js-only library-k** → nativ modulok nem futnak (Sharp, Puppeteer, bcrypt)
-- **Komplex middleware** → Node.js API-k nem elerhetok middleware-ben
+- **Komplex middleware** → Node.js API-k nem elérhetok middleware-ben
 
 ---
 
 ## Next.js + CF Workers vs Hono + React SPA
 
-A [[cloud/cloudflare|Cloudflare]] note-ban a **[[backend/hono|Hono]] + React SPA** volt az ajanlott belso tool stack. Mikor melyiket valaszd?
+A [[cloud/cloudflare|Cloudflare]] note-ban a **[[backend/hono|Hono]] + React SPA** volt az ajanlott belső tool stack. Mikor melyiket valaszd?
 
 | Szempont | **Next.js + CF Workers** | **[[backend/hono|Hono]] + React SPA** |
 |---|---|---|
@@ -247,25 +247,25 @@ A [[cloud/cloudflare|Cloudflare]] note-ban a **[[backend/hono|Hono]] + React SPA
 | **Deploy** | Egy deploy (`wrangler deploy`) | Ket deploy (Worker + Pages) |
 | **SSR** | Nativ | Nincs (client-side only) |
 | **Bundle meret** | Nagyobb (~500KB+) | Kisebb (Hono ~14KB) |
-| **Tanulasi gorbe** | Ha Next.js-t ismered → konnyu | Ha Express-t ismered → konnyu |
-| **SEO** | SSR/SSG → jo SEO | SPA → rossz SEO |
+| **Tanulasi gorbe** | Ha Next.js-t ismered → könnyű | Ha Express-t ismered → könnyű |
+| **SEO** | SSR/SSG → jó SEO | SPA → rossz SEO |
 | **Cold start** | Kicsit lassabb (nagyobb bundle) | Gyorsabb (~0ms) |
 | **Mikor valaszd** | Fullstack app, SSR kell, egy codebase | Csak API kell, vagy extrem gyors cold start |
 
 > [!tip] Okolszabaly
 > **Ha van frontend** → Next.js + CF Workers (egy codebase, egy deploy).
-> **Ha csak API kell** (pl. webhook processor, integracio) → [[backend/hono|Hono]] marad a jobb valasztas.
+> **Ha csak API kell** (pl. webhook processor, integracio) → [[backend/hono|Hono]] marad a jobb választas.
 
 ---
 
-## Environment valtozok
+## Environment változók
 
-A `NEXT_PUBLIC_*` valtozok **build-time** kerulnek bele a kodba.
+A `NEXT_PUBLIC_*` változók **build-time** kerulnek bele a kódba.
 
 CF Workers-on:
-- **Build valtozok** (`NEXT_PUBLIC_*`): CI/CD build settings-ben kell beallitani
-- **Runtime valtozok** (szerver-oldali): `wrangler secret put KEY` vagy `wrangler.jsonc` `[vars]`
-- **TypeScript tipusok:** `npm run cf-typegen` → general egy `cloudflare-env.d.ts` fajlt a binding tipusokkal
+- **Build változók** (`NEXT_PUBLIC_*`): CI/CD build settings-ben kell beállítani
+- **Runtime változók** (szerver-oldali): `wrangler secret put KEY` vagy `wrangler.jsonc` `[vars]`
+- **TypeScript tipusok:** `npm run cf-typegen` → general egy `cloudflare-env.d.ts` fájlt a binding tipusokkal
 
 ```bash
 # Secret beallitas CLI-bol (Claude Code session-ben!)
@@ -318,13 +318,13 @@ npm run cf-typegen
 
 ## Kapcsolodo
 
-- ViNext -- kiserleti alternativa: Next.js API ujraimplementalva Vite-on, 4.4x gyorsabb build
+- ViNext -- kísérleti alternativa: Next.js API ujraimplementalva Vite-on, 4.4x gyorsabb build
 - [[cloud/cloudflare|Cloudflare]] -- az alap platform, Workers + D1 + R2 okoszisztema
 - [[frontend/nextjs|Next.js]] -- a framework amit CF Workers-re deployolunk
 - [[backend/hono|Hono]] -- alternativ API framework CF Workers-re (ha nem kell fullstack Next.js)
 - [[cloud/vercel|Vercel]] -- alternativ Next.js hosting (dragabb, de nativabb)
-- Env valtozok Next.js-ben -- env var kezeles, build-time vs runtime
+- Env változók Next.js-ben -- env var kezeles, build-time vs runtime
 - Bun + Next.js setup -- Next.js dependency stack
-- Edge function -- miert jo az edge computing
-- [[_moc/moc-deployment|MOC - Deployment]] -- deployment strategiak attekintese
-- Vercel + Supabase → Cloudflare migracio -- valos migracio retrospektiv, bottleneck-ek es tanulsagok
+- Edge function -- miért jó az edge computing
+- [[_moc/moc-deployment|MOC - Deployment]] -- deployment stratégiak attekintese
+- Vercel + Supabase → Cloudflare migrácio -- valós migrácio retrospektiv, bottleneck-ek és tanulsagok

@@ -11,24 +11,24 @@ kapcsolodo:
   - "[[cloud/railway|Railway]]"
   - "[[cloud/vercel|Vercel]]"
   - "[[database/supabase|Supabase]]"
-  - "[[foundations/git-es-github|Git es GitHub]]"
+  - "[[foundations/git-es-github|Git és GitHub]]"
   - "[[foundations/szoftverfejlesztes-alapjai|Szoftverfejlesztes alapjai]]"
   - "[[_moc/moc-deployment|MOC - Deployment]]"
 ---
 
-# 12 Faktoros alkalmazas epites
+# 12 Faktoros alkalmazás építes
 
-A **12-Factor App** egy modszertan modern, cloud-native alkalmazasok epitésehez. Eredetileg a Heroku csapata irta le, de ma mar minden PaaS/kontener-alapu deployment-re vonatkozik -- legyen az [[cloud/railway|Railway]], [[cloud/vercel|Vercel]] vagy sajat [[cloud/docker-alapok|Docker]] setup.
+A **12-Factor App** egy modszertan modern, cloud-native alkalmazások építésehez. Eredetileg a Heroku csapata irta le, de ma már minden PaaS/konténer-alapu deployment-re vonatkozik -- legyen az [[cloud/railway|Railway]], [[cloud/vercel|Vercel]] vagy saját [[cloud/docker-alapok|Docker]] setup.
 
-A lenyeg: olyan alkalmazast epits, ami **portabilis**, **skalazható**, es **konnyen deploy-olhato** barmilyen cloud kornyezetbe.
+A lényeg: olyan alkalmazást építs, ami **portabilis**, **skálázható**, és **konnyen deploy-olhato** bármilyen cloud környezetbe.
 
-## Miert fontos ez?
+## Miért fontos ez?
 
-Ha [[frontend/nextjs|Next.js]]-sel, [[database/supabase|Supabase]]-zel, [[cloud/docker-alapok|Docker]]-rel dolgozol, akkor mar most is hasznalsz 12-factor elveket -- csak lehet, hogy nem tudatosan. Ha ismered az elveket:
+Ha [[frontend/nextjs|Next.js]]-sel, [[database/supabase|Supabase]]-zel, [[cloud/docker-alapok|Docker]]-rel dolgozol, akkor már most is használsz 12-factor elveket -- csak lehet, hogy nem tudatosan. Ha ismered az elveket:
 - Nem ragadsz be egy platformba (vendor lock-in)
 - A deploy-ok kiszamithatoak lesznek
-- A csapatmunka egyszerubb lesz
-- Konnyebb skalazni, ha no a forgalom
+- A csapatmunka egyszerűbb lesz
+- Könnyebb skálázni, ha no a forgalom
 
 ## A 12 faktor attekintese
 
@@ -69,13 +69,13 @@ graph TD
     F11 --> F6
 ```
 
-## I. Codebase -- Egy kodbazis, sok deploy
+## I. Codebase -- Egy kódbázis, sok deploy
 
-**Mi ez?** Egy alkalmazasnak egy [[foundations/git-es-github|Git]] repoja van. Ebbol az egy repobol jon letre minden deploy (staging, production, preview).
+**Mi ez?** Egy alkalmazásnak egy [[foundations/git-es-github|Git]] repoja van. Ebbol az egy repobol jon letre minden deploy (staging, production, preview).
 
-**Miert fontos?** Ha tobb repo van ugyanahhoz az apphoz, az nem egy app -- az egy distributed system. Ha egy repoban tobb app van, az monorepo (ami lehet OK, de akkor is app-onkent kell kezelni).
+**Miért fontos?** Ha több repo van ugyanahhoz az apphoz, az nem egy app -- az egy distributed system. Ha egy repoban több app van, az monorepo (ami lehet OK, de akkor is app-onkent kell kezelni).
 
-**Gyakorlati pelda:**
+**Gyakorlati példa:**
 ```
 my-app/                    # Egy repo
 ├── src/
@@ -90,15 +90,15 @@ my-app/                    # Egy repo
 ```
 
 > [!tip] Next.js + Vercel
-> A [[cloud/vercel|Vercel]] automatikusan minden PR-hez csinal preview deploy-t ugyanabbol a repobol. Ez pont a 12-factor I. elvet koveti.
+> A [[cloud/vercel|Vercel]] automatikusan minden PR-hez csinál preview deploy-t ugyanabbol a repobol. Ez pont a 12-factor I. elvet követi.
 
-## II. Dependencies -- Explicit deklararas es izolalas
+## II. Dependencies -- Explicit deklararas és izolalas
 
-**Mi ez?** Minden dependency explicit modon deklaralva van (pl. `package.json`, `requirements.txt`). Az app soha nem epit "rendszerszintu" csomagokra, amik "majd ott lesznek".
+**Mi ez?** Minden dependency explicit modon deklaralva van (pl. `package.json`, `requirements.txt`). Az app soha nem épít "rendszerszintu" csomagokra, amik "majd ott lesznek".
 
-**Miert fontos?** Ha valaki clone-olja a repot, `npm install` utan mindennek mukodnie kell. Nincs "nalam mukodik" problema.
+**Miért fontos?** Ha valaki clone-olja a repot, `npm install` utan mindennek működnie kell. Nincs "nálam működik" probléma.
 
-**Gyakorlati pelda:**
+**Gyakorlati példa:**
 ```json
 // package.json - EXPLICIT dependency-k
 {
@@ -124,15 +124,15 @@ RUN npm ci
 ```
 
 > [!warning] Anti-pattern
-> Ne feltetelezd, hogy a szerveren lesz `ffmpeg`, `imagemagick`, vagy barmi mas. Ha kell, tedd a `Dockerfile`-ba vagy a `package.json`-be.
+> Ne feltetelezd, hogy a szerveren lesz `ffmpeg`, `imagemagick`, vagy bármi mas. Ha kell, tedd a `Dockerfile`-ba vagy a `package.json`-be.
 
-## III. Config -- Konfiguracio environment valtozokban
+## III. Config -- Konfigurácio environment változókban
 
-**Mi ez?** Minden, ami kornyezetenkent valtozik (DB connection string, API kulcsok, feature flagek) environment valtozóban van, NEM a kodban.
+**Mi ez?** Minden, ami környezetenkent valtozik (DB connection string, API kulcsok, feature flagek) environment valtozóban van, NEM a kódban.
 
-**Miert fontos?** Ugyanaz a kod fut dev-ben, staging-en es production-ben. Csak a config valtozik.
+**Miért fontos?** Ugyanaz a kod fut dev-ben, staging-en és production-ben. Csak a config valtozik.
 
-**Gyakorlati pelda:**
+**Gyakorlati példa:**
 ```bash
 # .env.local (development)
 DATABASE_URL=postgresql://localhost:5432/myapp_dev
@@ -158,15 +158,15 @@ const supabase = createClient(
 ```
 
 > [!tip] Litmus teszt
-> Ha a kodbazisdat most open source-olnad, kiszivargognak titkok? Ha igen, nem koveted a III. faktort.
+> Ha a kódbázisdat most open source-olnad, kiszivargognak titkok? Ha igen, nem követed a III. faktort.
 
-## IV. Backing Services -- Csatolhato eroforrasok
+## IV. Backing Services -- Csatolhato erőforrások
 
-**Mi ez?** Backing service minden, amit az app halozaton keresztul hasznal: adatbazis ([[database/supabase|Supabase]]), cache (Redis), email (SendGrid), file storage (S3). Ezeket **cserelhetonek** kell kezelni.
+**Mi ez?** Backing service minden, amit az app hálózaton keresztul használ: adatbázis ([[database/supabase|Supabase]]), cache (Redis), email (SendGrid), file storage (S3). Ezeket **cserelhetonek** kell kezelni.
 
-**Miert fontos?** Ha a [[database/supabase|Supabase]] DB-d meghal, at kell tudnod allni egy masikra ENV változo cserevel -- kodmodositas nelkul.
+**Miért fontos?** Ha a [[database/supabase|Supabase]] DB-d meghal, at kell tudnod allni egy másikra ENV változo cserevel -- kodmodositas nelkul.
 
-**Gyakorlati pelda:**
+**Gyakorlati példa:**
 ```bash
 # Supabase-rol atallas self-hosted PostgreSQL-re:
 # Regi:
@@ -197,9 +197,9 @@ services:
 2. **Release** -- build artifact + config (env vars) = release
 3. **Run** -- a release futtatasa
 
-**Miert fontos?** Nem szabad production-ben `git pull && npm run build`-ot csinalni. A build egyszer tortenik, es az artifact megy minden kornyezetbe.
+**Miért fontos?** Nem szabad production-ben `git pull && npm run build`-ot csinálni. A build egyszer tortenik, és az artifact megy minden környezetbe.
 
-**Gyakorlati pelda:**
+**Gyakorlati példa:**
 ```dockerfile
 # Build fazis
 FROM node:20-alpine AS builder
@@ -216,15 +216,15 @@ CMD ["node", "server.js"]
 ```
 
 > [!info] Railway / Vercel
-> Mind a [[cloud/railway|Railway]], mind a [[cloud/vercel|Vercel]] automatikusan szetvalasztja a build es run fazist. A [[cloud/railway|Railway]] Nixpacks-et, a [[cloud/vercel|Vercel]] sajat builder-t hasznal.
+> Mind a [[cloud/railway|Railway]], mind a [[cloud/vercel|Vercel]] automatikusan szetvalasztja a build és run fazist. A [[cloud/railway|Railway]] Nixpacks-et, a [[cloud/vercel|Vercel]] saját builder-t használ.
 
 ## VI. Processes -- Stateless folyamatok
 
-**Mi ez?** Az alkalmazas egy vagy tobb **stateless** (allapotmentes) process-kent fut. Minden tartos adat backing service-ben van (DB, Redis, S3).
+**Mi ez?** Az alkalmazás egy vagy több **stateless** (állapotmentes) process-kent fut. Minden tartos adat backing service-ben van (DB, Redis, S3).
 
-**Miert fontos?** Ha az app process meghal es ujraindul, semmi nem veszik el. Ha ket instance fut, mindketto ugyanazt az adatot latja.
+**Miért fontos?** Ha az app process meghal és ujraindul, semmi nem veszik el. Ha ket instance fut, mindketto ugyanazt az adatot látja.
 
-**Gyakorlati pelda:**
+**Gyakorlati példa:**
 ```typescript
 // HELYES: session adatok DB-ben / Redis-ben
 // A Supabase Auth ezt automatikusan kezeli
@@ -238,13 +238,13 @@ fs.writeFileSync('/tmp/upload.jpg', file) // Ez ELVESZ restart-kor!
 ```
 
 > [!warning] Next.js ISR gotcha
-> A Next.js ISR (Incremental Static Regeneration) cache alapbol fajlrendszerre ir. Tobb instance eseten ez problemas -- ilyenkor Redis cache adapter kell, vagy egyetlen instance.
+> A Next.js ISR (Incremental Static Regeneration) cache alapbol fájlrendszerre ir. Több instance eseten ez problémas -- ilyenkor Redis cache adapter kell, vagy egyetlen instance.
 
-## VII. Port Binding -- Self-contained szolgaltatas
+## VII. Port Binding -- Self-contained szolgáltatas
 
-**Mi ez?** Az alkalmazas sajat maga bind-ol egy portra es figyel rajta. Nem kell kulso webszerver (Apache, nginx) az app ele.
+**Mi ez?** Az alkalmazás saját maga bind-ol egy portra és figyel rajta. Nem kell külső webszerver (Apache, nginx) az app ele.
 
-**Gyakorlati pelda:**
+**Gyakorlati példa:**
 ```javascript
 // Next.js automatikusan bind-ol a 3000-es portra
 // Railway / Docker eseten a PORT env var-t hasznald:
@@ -258,11 +258,11 @@ CMD ["node", "server.js"]
 # A Railway automatikusan beallitja a PORT-ot
 ```
 
-## VIII. Concurrency -- Skalazas process modellel
+## VIII. Concurrency -- Skálázas process modellel
 
-**Mi ez?** Skalazas ugy tortenik, hogy **tobb process-t** inditasz, nem ugy, hogy egy process-nek adsz tobb RAM-ot/CPU-t.
+**Mi ez?** Skálázas ugy tortenik, hogy **több process-t** indítasz, nem ugy, hogy egy process-nek adsz több RAM-ot/CPU-t.
 
-**Gyakorlati pelda:**
+**Gyakorlati példa:**
 ```yaml
 # Railway-n: tobb instance (horizontal scaling)
 # docker-compose-ban:
@@ -273,14 +273,14 @@ services:
       replicas: 3  # 3 peldany fut
 ```
 
-> [!tip] Vercel es serverless
-> A [[cloud/vercel|Vercel]] serverless function-okkel automatikusan horizontalisan skalaz. Minden request kulon function instance-ban fut -- ez a VIII. faktor tokeletes megvalositasa.
+> [!tip] Vercel és serverless
+> A [[cloud/vercel|Vercel]] serverless function-okkel automatikusan horizontalisan skáláz. Minden request kulon function instance-ban fut -- ez a VIII. faktor tokeletes megvalósítasa.
 
 ## IX. Disposability -- Gyors indulas, kimeletes leallas
 
-**Mi ez?** A process-eknek gyorsan kell indulniuk es gracefully kell leallniuk (SIGTERM kezeles). Barmikor eldobhatok es ujraindithatók.
+**Mi ez?** A process-eknek gyorsan kell indulniuk és gracefully kell leallniuk (SIGTERM kezeles). Bármikor eldobhatok és ujraindithatók.
 
-**Gyakorlati pelda:**
+**Gyakorlati példa:**
 ```typescript
 // Graceful shutdown kezeles
 process.on('SIGTERM', async () => {
@@ -299,13 +299,13 @@ FROM node:20-alpine  # Alpine = kisebb image = gyorsabb pull
 # Multi-stage build = kisebb final image
 ```
 
-## X. Dev/Prod Parity -- Azonos dev es prod kornyezet
+## X. Dev/Prod Parity -- Azonos dev és prod környezet
 
-**Mi ez?** Minimalizald a kulonbsegeket development, staging es production kozott. Ugyanaz a DB engine, ugyanaz az OS, ugyanazok a tool-ok.
+**Mi ez?** Minimalizald a különbségeket development, staging és production kozott. Ugyanaz a DB engine, ugyanaz az OS, ugyanazok a tool-ok.
 
-**Miert fontos?** "Nalam mukodik" szindroma elkerulese.
+**Miért fontos?** "Nálam működik" szindroma elkerulese.
 
-**Gyakorlati pelda:**
+**Gyakorlati példa:**
 ```yaml
 # docker-compose.yml - dev kornyezet UGYANAZT a DB-t hasznalja
 services:
@@ -322,13 +322,13 @@ services:
 ```
 
 > [!tip] Supabase CLI
-> A `supabase start` parancs lokalisan indit egy teljes [[database/supabase|Supabase]] stack-et (Postgres, Auth, Storage, Edge Functions). Ez tokeletes dev/prod parity a Supabase-hez.
+> A `supabase start` parancs lokálisan indít egy teljes [[database/supabase|Supabase]] stack-et (Postgres, Auth, Storage, Edge Functions). Ez tokeletes dev/prod parity a Supabase-hez.
 
 ## XI. Logs -- Event stream-kent kezeles
 
-**Mi ez?** Az app NEM foglalkozik log fajlokkal, rotálassal, tarolassal. Egyszeruen stdout/stderr-re ir, es a platform (Railway, Docker, Vercel) kezeli.
+**Mi ez?** Az app NEM foglalkozik log fájlokkal, rotálassal, tárolással. Egyszerűen stdout/stderr-re ir, és a platform (Railway, Docker, Vercel) kezeli.
 
-**Gyakorlati pelda:**
+**Gyakorlati példa:**
 ```typescript
 // HELYES: stdout-ra iras
 console.log('User signed up', { userId, email })
@@ -350,9 +350,9 @@ logger.info({ userId, action: 'signup' }, 'User signed up')
 
 ## XII. Admin Processes -- Egyszeri feladatok kulon futtatasa
 
-**Mi ez?** Adminisztrativ feladatok (DB migration, script futtatas, REPL) ugyanabban a kornyezetben futnak, mint az app, de **egyszeri process-kent**.
+**Mi ez?** Adminisztrativ feladatok (DB migration, script futtatas, REPL) ugyanabban a környezetben futnak, mint az app, de **egyszeri process-kent**.
 
-**Gyakorlati pelda:**
+**Gyakorlati példa:**
 ```bash
 # Migration futtatas - ugyanaz a kod, ugyanaz a config
 npx drizzle-kit migrate  # vagy: npx prisma migrate deploy
@@ -368,55 +368,55 @@ docker compose exec app node scripts/seed.ts
 ```
 
 > [!warning] Ne futtasd az app startup-jaban
-> A migration-oket NE az app inditasakor futtasd (pl. `CMD npm run migrate && npm start`). Futtasd kulon, a deploy pipeline reszeként.
+> A migration-oket NE az app indítasakor futtasd (pl. `CMD npm run migrate && npm start`). Futtasd kulon, a deploy pipeline reszeként.
 
-## Osszefoglalo tablazat
+## Összefoglaló táblazat
 
-| # | Faktor | Lenyeg | Eszkoz/Pelda |
+| # | Faktor | Lényeg | Eszkoz/Példa |
 |---|--------|--------|--------------|
-| I | Codebase | Egy repo, sok deploy | [[foundations/git-es-github|Git es GitHub]], monorepo |
+| I | Codebase | Egy repo, sok deploy | [[foundations/git-es-github|Git és GitHub]], monorepo |
 | II | Dependencies | Explicit deklararas | `package.json`, `Dockerfile` |
-| III | Config | Env valtozokban | `.env`, [[cloud/railway|Railway]] vars |
-| IV | Backing Services | Cserelheto eroforrasok | [[database/supabase|Supabase]], Redis, S3 |
+| III | Config | Env változókban | `.env`, [[cloud/railway|Railway]] vars |
+| IV | Backing Services | Cserelheto erőforrások | [[database/supabase|Supabase]], Redis, S3 |
 | V | Build, Release, Run | Szeparalt fazisok | [[cloud/docker-alapok|Docker]] multi-stage, CI/CD |
-| VI | Processes | Stateless | Ne tarold memoriaban az allapotot |
+| VI | Processes | Stateless | Ne tarold memoriaban az állapotot |
 | VII | Port Binding | Self-contained | `PORT` env var |
-| VIII | Concurrency | Horizontalis skalazas | Replicas, serverless |
+| VIII | Concurrency | Horizontalis skálázas | Replicas, serverless |
 | IX | Disposability | Gyors start/stop | SIGTERM, Alpine image |
-| X | Dev/Prod Parity | Azonos kornyezetek | [[cloud/docker-compose|Docker Compose]], Supabase CLI |
+| X | Dev/Prod Parity | Azonos környezetek | [[cloud/docker-compose|Docker Compose]], Supabase CLI |
 | XI | Logs | Stdout stream | `console.log`, pino |
 | XII | Admin Processes | Egyszeri task-ok | `railway run`, `docker exec` |
 
-## Mikor hasznald / Mikor NE
+## Mikor használd / Mikor NE
 
-### Mikor hasznald
+### Mikor használd
 - **Cloud deploy** (Railway, Vercel, AWS, GCP) -- a 12-factor erre lett kitalalva
-- **Kontenerizalt app** -- Docker termeszetesen tamogatja ezeket az elveket
-- **Csapatmunka** -- ha tobben dolgoztok egy projekten
-- **Skalazando alkalmazas** -- ha a forgalom nohet
+- **Konténerizalt app** -- Docker termeszetesen tamogatja ezeket az elveket
+- **Csapatmunka** -- ha többen dolgoztok egy projekten
+- **Skálázando alkalmazás** -- ha a forgalom nohet
 - **Microservice-ek** -- mindegyik service kulon 12-factor app
 
 ### Mikor NE eröltesd
 - **Egyszeri script** -- egy seed script-nek nem kell 12-factor-nak lennie
-- **Desktop alkalmazas** -- nem web service, mas szabalyok vonatkoznak ra
-- **Prototipus / hackathon** -- eloszor mukodjon, utana refaktoralj
-- **Stateful alkalmazas** (pl. game server) -- a VI. faktor (stateless) nem mindig alkalmazhato, de a tobbi 11 igen
+- **Desktop alkalmazás** -- nem web service, mas szabalyok vonatkoznak ra
+- **Prototipus / hackathon** -- először működjon, utána refaktoralj
+- **Stateful alkalmazás** (pl. game server) -- a VI. faktor (stateless) nem mindig alkalmazhato, de a többi 11 igen
 
 > [!tip] Pragmatikus megkozelites
 > Nem kell mind a 12 faktort egyszerre bevezetni. Kezdd a legfontosabbakkal:
-> 1. **III. Config** -- env valtozok hasznalata (azonnal megvalositható)
-> 2. **II. Dependencies** -- explicit deklararas (valoszinuleg mar csinálod)
+> 1. **III. Config** -- env változók használata (azonnal megvalósítható)
+> 2. **II. Dependencies** -- explicit deklararas (valószinuleg már csinálod)
 > 3. **V. Build, Release, Run** -- Docker multi-stage build
 > 4. **X. Dev/Prod Parity** -- Docker Compose a fejleszteshez
 
 ## Kapcsolodo jegyzeteim
 
-- [[cloud/docker-alapok|Docker alapok]] -- kontenerizacio alapjai
-- [[cloud/docker-compose|Docker Compose]] -- multi-service fejlesztoi kornyezet
+- [[cloud/docker-alapok|Docker alapok]] -- konténerizacio alapjai
+- [[cloud/docker-compose|Docker Compose]] -- multi-service fejlesztoi környezet
 - [[cloud/railway|Railway]] -- PaaS deploy
 - [[cloud/vercel|Vercel]] -- frontend/fullstack deploy
 - [[database/supabase|Supabase]] -- backing service (DB, Auth, Storage)
-- [[foundations/git-es-github|Git es GitHub]] -- verziokezeles, I. faktor
-- Env valtozok Next.js-ben -- III. faktor Next.js-ben
+- [[foundations/git-es-github|Git és GitHub]] -- verziókezeles, I. faktor
+- Env változók Next.js-ben -- III. faktor Next.js-ben
 - [[foundations/szoftverfejlesztes-alapjai|Szoftverfejlesztes alapjai]] -- a teljes fejlesztesi workflow ami ezekre az elvekre epul
 - [[_moc/moc-deployment|MOC - Deployment]]

@@ -10,7 +10,7 @@ kapcsolodo:
   - "[[cloud/hostinger|Hostinger]]"
   - "[[cloud/docker-compose|Docker Compose]]"
   - "[[cloud/docker-alapok|Docker alapok]]"
-  - "[[foundations/halozatok-es-ip-cimek|Halozatok es IP cimek]]"
+  - "[[foundations/halozatok-es-ip-cimek|Hálózatok és IP cimek]]"
 ---
 
 # Nginx
@@ -24,16 +24,16 @@ kapcsolodo:
 ## Mi az a reverse proxy?
 
 > [!tldr] A reverse proxy koncepcio
-> A reverse proxy egy **kozvetito szerver** -- a kliensek nem az appodhoz csatlakoznak kozvetlenul, hanem a proxyhoz. A proxy tovabbitja a kerest az app fele, majd visszaadja a valaszt. A kliens nem tudja (es nem is kell hogy tudja), mi van mogotte.
+> A reverse proxy egy **kozvetito szerver** -- a kliensek nem az appodhoz csatlakoznak kozvetlenul, hanem a proxyhoz. A proxy továbbitja a kerest az app fele, majd visszaadja a választ. A kliens nem tudja (és nem is kell hogy tudja), mi van mögötte.
 
-**Miert nem csatlakozik a kliens kozvetlenul az apphoz?**
+**Miért nem csatlakozik a kliens kozvetlenul az apphoz?**
 
-| Problema | Megoldas reverse proxy-val |
+| Probléma | Megoldás reverse proxy-val |
 |---|---|
-| Az app csak `localhost:3000`-en hallgat, nem a 80/443 porton | A proxy fogadja a 80/443-as forgalmat, tovabbitja 3000-re |
-| Tobb app fut egy szerveren, de csak egy 80-as port van | A proxy domain nev alapjan donti el melyik apphoz megy |
-| HTTPS/SSL tanusitvany kezeles | A proxy kezeli az SSL-t, az app mogotte HTTP-n fut |
-| Statikus fajlok (CSS, kepek) lassitjak az app servert | A proxy kiszolgalja a statikus fajlokat, az app csak az API-t kezeli |
+| Az app csak `localhost:3000`-en hallgat, nem a 80/443 porton | A proxy fogadja a 80/443-as forgalmat, továbbitja 3000-re |
+| Több app fut egy szerveren, de csak egy 80-as port van | A proxy domain nev alapján dönti el melyik apphoz megy |
+| HTTPS/SSL tanúsítvány kezeles | A proxy kezeli az SSL-t, az app mögötte HTTP-n fut |
+| Statikus fájlok (CSS, kepek) lassitjak az app servert | A proxy kiszolgálja a statikus fájlokat, az app csak az API-t kezeli |
 
 ```mermaid
 graph LR
@@ -47,26 +47,26 @@ graph LR
 ## Mi az Nginx?
 
 > [!tldr] Egy mondatban
-> Az Nginx egy **nagy teljesitmenyu web szerver es reverse proxy** -- statikus fajlokat szolgal ki, kereseket iranyit at app szerverekre, es SSL-t kezel. A legelterjedtebb reverse proxy megoldas VPS-eken.
+> Az Nginx egy **nagy teljesítményu web szerver és reverse proxy** -- statikus fájlokat szolgal ki, kereseket iranyit at app szerverekre, és SSL-t kezel. A legelterjedtebb reverse proxy megoldás VPS-eken.
 
-Az Nginx-et eredetileg C10K problema megoldasara irtak (10.000 egyideju kapcsolat kezelese). Async, event-driven architekturaja miatt rendkivul keves memoriaval is sok kapcsolatot kezel.
+Az Nginx-et eredetileg C10K probléma megoldásara irtak (10.000 egyideju kapcsolat kezelese). Async, event-driven architektúraja miatt rendkivul keves memoriaval is sok kapcsolatot kezel.
 
-**Mikor hasznald:**
-- [[cloud/hostinger|Hostinger]] VPS-en tobb service fut, domain alapu routing kell
-- HTTPS / SSL tanusitvanyt akarsz (Let's Encrypt + Certbot-tal ingyen)
-- Node.js/Next.js appot kell `yourdomain.com`-on elerhetove tenni
-- Statikus fajlokat hatekonyan akarsz kiszolgalni
+**Mikor használd:**
+- [[cloud/hostinger|Hostinger]] VPS-en több service fut, domain alapu routing kell
+- HTTPS / SSL tanúsítványt akarsz (Let's Encrypt + Certbot-tal ingyen)
+- Node.js/Next.js appot kell `yourdomain.com`-on elérhetővé tenni
+- Statikus fájlokat hatékonyan akarsz kiszolgálni
 - Rate limiting, gzip tomorites, caching headerek kellenek
 
-**Mikor NE Nginx-et hasznalj:**
+**Mikor NE Nginx-et használj:**
 - Docker Compose-ban sok service-t kezelsz → [[cloud/traefik|Traefik]] automatikusabb
 - [[cloud/railway|Railway]] vagy [[cloud/vercel|Vercel]] platformon vagy → ok kezelik a proxy reteget, nem kell Nginx
 
 ---
 
-## Setup -- lepesrol lepesre
+## Setup -- lépésrol lépésre
 
-### 1. Telepites (Ubuntu/Debian VPS)
+### 1. Telepítes (Ubuntu/Debian VPS)
 
 ```bash
 sudo apt update
@@ -77,7 +77,7 @@ sudo systemctl status nginx
 # Bongeszöben: http://<szerver-IP> → Nginx welcome page
 ```
 
-### 2. Alap konyvtarszerkezet
+### 2. Alap könyvtárszerkezet
 
 ```
 /etc/nginx/
@@ -88,7 +88,7 @@ sudo systemctl status nginx
     └── mydomain.com -> ../sites-available/mydomain.com
 ```
 
-### 3. Site konfig letrehozasa
+### 3. Site konfig létrehozasa
 
 ```bash
 sudo nano /etc/nginx/sites-available/mydomain.com
@@ -115,7 +115,7 @@ server {
 }
 ```
 
-#### Tobb domain, egy szerveren
+#### Több domain, egy szerveren
 
 ```nginx
 # /etc/nginx/sites-available/app1.com
@@ -133,7 +133,7 @@ server {
 }
 ```
 
-#### Statikus fajlok kiszolgalasa
+#### Statikus fájlok kiszolgálasa
 
 ```nginx
 server {
@@ -181,7 +181,7 @@ sudo certbot --nginx -d mydomain.com -d www.mydomain.com
 sudo certbot renew --dry-run
 ```
 
-A Certbot automatikusan atirja az Nginx konfig-ot -- hozzaadja a `listen 443 ssl` blokkot es a tanusitvany eleresi utjat. A megujitas automatikusan fut (cron/systemd timer).
+A Certbot automatikusan atirja az Nginx konfig-ot -- hozzáadja a `listen 443 ssl` blokkot és a tanúsítvány elérési utjat. A megujitas automatikusan fut (cron/systemd timer).
 
 ---
 
@@ -197,7 +197,7 @@ gzip_min_length 1024;
 gzip_types text/plain text/css application/json application/javascript text/xml application/xml;
 ```
 
-### Rate limiting (brute force vedelem)
+### Rate limiting (brute force védelem)
 
 ```nginx
 # http {} blokkban definialod a zonat
@@ -210,7 +210,7 @@ location /api/ {
 }
 ```
 
-### Biztonsag -- X-headers
+### Biztonság -- X-headers
 
 ```nginx
 server {
@@ -252,13 +252,13 @@ ls /etc/nginx/sites-enabled/
 ## Buktatok
 
 > [!warning] `nginx -t` nelkul ne reload-olj
-> Ha a konfig szintaktikailag hibas es reload-olsz, az Nginx leall es az osszes site elerhetelenevé valik. Mindig `sudo nginx -t` eloszor.
+> Ha a konfig szintaktikailag hibas és reload-olsz, az Nginx leall és az összes site elérhetelenevé valik. Mindig `sudo nginx -t` először.
 
 > [!bug] 502 Bad Gateway
-> Az Nginx eleri a portot, de az app nem fut vagy nem valaszol. Ellenorizd: `systemctl status myapp` vagy `pm2 status`. Az Nginx naploban: `sudo tail /var/log/nginx/error.log`.
+> Az Nginx eléri a portot, de az app nem fut vagy nem válaszol. Ellenőrizd: `systemctl status myapp` vagy `pm2 status`. Az Nginx naploban: `sudo tail /var/log/nginx/error.log`.
 
 > [!warning] WebSocket support
-> Ha az app WebSocket-et hasznal (pl. Next.js HMR, Socket.io), az `Upgrade` es `Connection` headereket kötelezo atadni -- lasd a fenti reverse proxy konfig-ban.
+> Ha az app WebSocket-et használ (pl. Next.js HMR, Socket.io), az `Upgrade` és `Connection` headereket kötelezo atadni -- lásd a fenti reverse proxy konfig-ban.
 
 ---
 
@@ -272,9 +272,9 @@ ls /etc/nginx/sites-enabled/
 
 ## Kapcsolodo
 
-- [[cloud/traefik|Traefik]] -- Docker-native alternativa, automatikus service discovery es auto SSL label-ekkel
+- [[cloud/traefik|Traefik]] -- Docker-native alternativa, automatikus service discovery és auto SSL label-ekkel
 - [[cloud/hostinger|Hostinger]] -- a VPS ahol az Nginx fut
 - [[cloud/docker-compose|Docker Compose]] -- ha Docker-rel deployolsz, Nginx vagy Traefik a forgalom belepes pontja
-- [[foundations/halozatok-es-ip-cimek|Halozatok es IP cimek]] -- portok, DNS, hogyan jut el a keres a bongeszotol a szerverre
-- [[cloud/docker-alapok|Docker alapok]] -- Nginx gyakran Docker kontenerben fut
-- Tailscale -- VPN-nel kombinalva belso service-eket vedhetsz Nginx mogott
+- [[foundations/halozatok-es-ip-cimek|Hálózatok és IP cimek]] -- portok, DNS, hogyan jut el a keres a bongeszotol a szerverre
+- [[cloud/docker-alapok|Docker alapok]] -- Nginx gyakran Docker konténerben fut
+- Tailscale -- VPN-nel kombinalva belső service-eket vedhetsz Nginx mögött

@@ -11,8 +11,8 @@ kapcsolodo:
   - "[[cloud/cloudflare|Cloudflare]]"
   - "[[cloud/docker-alapok|Docker alapok]]"
   - "[[cloud/docker-compose|Docker Compose]]"
-  - "[[database/sql-adatbazisok|SQL adatbazisok]]"
-  - "[[foundations/git-es-github|Git es GitHub]]"
+  - "[[database/sql-adatbazisok|SQL adatbázisok]]"
+  - "[[foundations/git-es-github|Git és GitHub]]"
   - "[[cloud/deployment-checklist|Deployment checklist]]"
   - "[[cloud/hostinger|Hostinger]]"
   - "[[_moc/moc-deployment|MOC - Deployment]]"
@@ -22,27 +22,27 @@ kapcsolodo:
 
 **Kategoria:** `hosting` / `adatbazis` / `backend`
 **URL:** https://railway.app
-**Ar/Terv:** Hobby ($5/ho kredit + hasznalat alapu) / Pro ($20/ho)
+**Ar/Terv:** Hobby ($5/hó kredit + használat alapu) / Pro ($20/hó)
 
 ---
 
-## Mi ez es mire jo?
+## Mi ez és mire jó?
 
-A Railway egy **backend es szolgaltatas hosting platform**, ahol barmit futtathatsz ami [[cloud/docker-alapok|Docker]]-ben megy: backend API, adatbazis, queue, cron job, barmi. Nem serverless mint a Vercel -- itt valodi, folyamatosan futo szervereket kapsz.
+A Railway egy **backend és szolgáltatas hosting platform**, ahol bármit futtathatsz ami [[cloud/docker-alapok|Docker]]-ben megy: backend API, adatbázis, queue, cron job, bármi. Nem serverless mint a Vercel -- itt valodi, folyamatosan futo szervereket kapsz.
 
-**Egyszeruen:** Ha a Vercel a frontendnek valo, a Railway a backendnek es mindennek ami mogotte van.
+**Egyszerűen:** Ha a Vercel a frontendnek valo, a Railway a backendnek és mindennek ami mögötte van.
 
-**Mikor hasznald:**
+**Mikor használd:**
 - Backend API ami nem fer bele a Vercel serverless limitbe (>60s futas)
-- Sajat PostgreSQL / MySQL / Redis / MongoDB adatbazis kell
+- Saját PostgreSQL / MySQL / Redis / MongoDB adatbázis kell
 - Hosszan futo folyamatok (AI feldolgozas, video konverzio, queue worker)
-- Cron jobok (utemezett feladatok)
-- Ha Supabase helyett sajat adatbazis szervert akarsz
+- Cron jobok (ütemezett feladatok)
+- Ha Supabase helyett saját adatbázis szervert akarsz
 
-**Mikor NE hasznald:**
-- Egyszeru Next.js frontend → arra [[cloud/vercel|Vercel]] jobb
-- Ha nem kell backend es Supabase eleg → felesleges komplexitas
-- Ha 0 koltsegvetesed van → az $5/ho minimum megvan
+**Mikor NE használd:**
+- Egyszerű Next.js frontend → arra [[cloud/vercel|Vercel]] jobb
+- Ha nem kell backend és Supabase eleg → felesleges komplexitas
+- Ha 0 költségvetesed van → az $5/hó minimum megvan
 
 **Alternativak:** Render, Fly.io, DigitalOcean App Platform, Heroku
 
@@ -61,34 +61,34 @@ graph LR
 
 ---
 
-## Setup -- lepesrol lepesre
+## Setup -- lépésrol lépésre
 
-### 1. Regisztracio
+### 1. Regisztrácio
 - railway.app → Sign up GitHub-bal
-- Hozz letre egy uj projektet
+- Hozz letre egy új projektet
 
-### 2. Service hozzaadasa
+### 2. Service hozzáadasa
 
 Harom modja van:
 1. **GitHub repo** → Railway automatikusan buildeli (mint a Vercel)
-2. **[[cloud/docker-alapok|Docker]] image** → Ha sajat Dockerfile-od van
+2. **[[cloud/docker-alapok|Docker]] image** → Ha saját Dockerfile-od van
 3. **Template** → Kesz sablonok (PostgreSQL, Redis, stb.) egy kattintassal
 
-### 3. Adatbazis hozzaadasa
+### 3. Adatbázis hozzáadasa
 - Projekt → "Add Service" → [[database/sql-adatbazisok|PostgreSQL / MySQL]] / Redis / MongoDB
 - Railway automatikusan generalja a connection string-et
-- Ezt environment valtozokent megkapod: `DATABASE_URL`
+- Ezt environment változókent megkapod: `DATABASE_URL`
 
-### 4. Environment valtozok
+### 4. Environment változók
 - Service → Variables ful
-- Ide ird be amit az app hasznal
-- A Railway belso valtozóira is hivatkozhatsz: `${{Postgres.DATABASE_URL}}`
+- Ide ird be amit az app használ
+- A Railway belső valtozóira is hivatkozhatsz: `${{Postgres.DATABASE_URL}}`
 
 ---
 
 ## Best Practices
 
-### Architektura / Struktura
+### Architektúra / Struktúra
 
 Tipikus Railway projekt felepites:
 
@@ -100,34 +100,34 @@ Railway Project
 └── Worker           ← hatterfeladatok (ha kell)
 ```
 
-- Egy Railway **projekt** = tobb **service** egyutt
-- A service-ek belso halozaton beszelnek egymassal (mint [[cloud/docker-compose|Docker Compose]])
-- Minden service-nek sajat env valtozói vannak, de megoszthatók
+- Egy Railway **projekt** = több **service** egyutt
+- A service-ek belső hálózaton beszelnek egymassal (mint [[cloud/docker-compose|Docker Compose]])
+- Minden service-nek saját env valtozói vannak, de megoszthatók
 
-### Biztonsag
+### Biztonság
 
-- **Ne tedd publikussa az adatbazist** -- csak belso halozaton keresztul erd el
+- **Ne tedd publikussa az adatbázist** -- csak belső hálózaton keresztul erd el
 - A `DATABASE_URL`-t **soha ne commitold** GitHubra
-- Hasznalj Railway **private networking**-et: a service-ek `*.railway.internal` cimen erik el egymast
-- API kulcsokat mindig env valtozoba
+- Használj Railway **private networking**-et: a service-ek `*.railway.internal` cimen erik el egymast
+- API kulcsokat mindig env változóba
 
-### Teljesitmeny
+### Teljesítmény
 
 - Railway-en **mindig fut a szervered** (nem serverless) → nincs cold start
-- Ha tobb keres jon → scale up: tobb instance, vagy nagyobb gep
-- Hasznalj connection pool-t az adatbazishoz (pl. `pgBouncer`)
+- Ha több keres jon → scale up: több instance, vagy nagyobb gep
+- Használj connection pool-t az adatbázishoz (pl. `pgBouncer`)
 
-### Koltsegoptimalizalas
+### Költségoptimalizalas
 
-- Hobby plan: $5/ho kredit (ez sok kis projekthez eleg)
-- Csak azert fizetsz amit hasznalsz (CPU, RAM, halozat, disk)
-- Ha nem kell 24/7 futnia → hasznalj **sleep** funkciot (inaktivitas utan elalszik)
-- PostgreSQL + kis API = ~$3-7/ho
-- Figyelj a RAM hasznalatra -- ez szokott meglepetes lenni
+- Hobby plan: $5/hó kredit (ez sok kis projekthez eleg)
+- Csak azert fizetsz amit használsz (CPU, RAM, hálózat, disk)
+- Ha nem kell 24/7 futnia → használj **sleep** funkciot (inaktivitas utan elalszik)
+- PostgreSQL + kis API = ~$3-7/hó
+- Figyelj a RAM használatra -- ez szokott meglepetes lenni
 
 ---
 
-## Gyakori mintak / Hasznalati esetek
+## Gyakori mintak / Használati esetek
 
 ### 1. Vercel frontend + Railway backend
 
@@ -136,29 +136,29 @@ User → Vercel (Next.js) → Railway (Express API) → Railway (PostgreSQL)
 ```
 Amikor a Vercel API routes nem eleg (timeout, websocket, stb.)
 
-### 2. Teljes backend + adatbazis
+### 2. Teljes backend + adatbázis
 
 ```
 User → Railway (Next.js VAGY Express) → Railway (PostgreSQL + Redis)
 ```
 Mindent egy helyen, nem kell Vercel.
 
-### 3. Cron job / hatter worker
+### 3. Cron job / háttér worker
 
 ```
 Railway (Worker service) → minden ejjel lefut → feldolgoz valamit
 ```
-Pl. email kuldes, adat szinkronizalas, report generalas.
+Pl. email küldés, adat szinkronizalas, report generalas.
 
 ---
 
-## Buktatok es hibak amiket elkerulj
+## Buktatok és hibak amiket elkerülj
 
-- **Port beallitas:** Railway a `PORT` env valtozot hasznalja -- az appod ezen a porton kell figyeljen. `app.listen(process.env.PORT || 3000)`
-- **Build hiba:** Ha nincs `Dockerfile` es Railway nem ismeri fel a projektet → adj hozza Dockerfile-t vagy `nixpacks.toml`-t
-- **Adatbazis torlodik ha torlod a service-t** -- volume nelkul az adat elveszik. Railway PostgreSQL-nel ez alapbol rendben van, de figyelj ra
-- **Alvo szolgaltatas lassu ebredese** -- ha sleep-re van allitva, az elso keres 10-30s lehet
-- **Koltseg meglepetes** -- figyeld a dashboardon a usage-ot, kulonosen ha sok RAM-ot hasznal az app
+- **Port beállítás:** Railway a `PORT` env változót használja -- az appod ezen a porton kell figyeljen. `app.listen(process.env.PORT || 3000)`
+- **Build hiba:** Ha nincs `Dockerfile` és Railway nem ismeri fel a projektet → adj hozzá Dockerfile-t vagy `nixpacks.toml`-t
+- **Adatbázis törlödik ha törlöd a service-t** -- volume nelkul az adat elveszik. Railway PostgreSQL-nel ez alapbol rendben van, de figyelj ra
+- **Alvo szolgáltatas lassu ebredese** -- ha sleep-re van allitva, az első keres 10-30s lehet
+- **Költség meglepetes** -- figyeld a dashboardon a usage-ot, kulonosen ha sok RAM-ot használ az app
 
 ---
 
@@ -199,11 +199,11 @@ railway logs
 ## Kapcsolodo anyagok
 - [[cloud/vercel|Vercel]]
 - [[database/supabase|Supabase]]
-- [[cloud/cloudflare|Cloudflare]] -- edge alternativa: $5/ho serverless, de Docker/PostgreSQL nincs
+- [[cloud/cloudflare|Cloudflare]] -- edge alternativa: $5/hó serverless, de Docker/PostgreSQL nincs
 - [[cloud/docker-alapok|Docker alapok]]
 - [[cloud/docker-compose|Docker Compose]]
-- [[database/sql-adatbazisok|SQL adatbazisok]]
-- [[foundations/git-es-github|Git es GitHub]]
+- [[database/sql-adatbazisok|SQL adatbázisok]]
+- [[foundations/git-es-github|Git és GitHub]]
 - [[cloud/deployment-checklist|Deployment checklist]]
 - [[cloud/hostinger|Hostinger]]
 - [[_moc/moc-deployment|MOC - Deployment]]

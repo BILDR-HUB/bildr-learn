@@ -11,7 +11,7 @@ szint: "🧱 Brick"
 
 ## Mi az a Machine Learning?
 
-A **Machine Learning (ML)** egy modszer, amivel a szamitogep **nem explicit programozassal, hanem adatbol tanul**. Ahelyett hogy leirnad a szabalyokat (`if auto then...`), megmutatod neki sok-sok peldat, es o maga tanulja meg a mintat.
+A **Machine Learning (ML)** egy modszer, amivel a szamitogep **nem explicit programozassal, hanem adatbol tanul**. Ahelyett hogy leirnad a szabalyokat (`if auto then...`), megmutatod neki sok-sok példat, és o maga tanulja még a mintat.
 
 ```
 Hagyomanyos programozas:         Machine Learning:
@@ -20,14 +20,14 @@ Szabalyok + Adat -> Eredmeny      Adat + Eredmeny -> Szabalyok
                                  (a modell maga "tanulja ki")
 ```
 
-**Valos pelda: dron kamera**
-Egy dron kamerafelvetelen felismerni embereket es autokat. Kezzel nem tudnad leirni a szabalyt ("az ember az egy fuggoleges teglalapszeru valami...") -- de ha megmutatod a modellnek 100 000 kepet ahol jelolve van ki az ember es mi az auto, megtanulja magatol.
+**Valós példa: dron kamera**
+Egy dron kamerafelvetelen felismerni embereket és autokat. Kezzel nem tudnad leirni a szabalyt ("az ember az egy fuggoleges teglalapszeru valami...") -- de ha megmutatod a modellnek 100 000 kepet ahol jelolve van ki az ember és mi az auto, megtanulja magatol.
 
 ---
 
 ## A neuralis halo -- az agy metaforaja
 
-A modern ML szinte mind **neuralis halon** alapul. Az emberi agy neuronokbol all amelyek egymasnak jeleket kuldenek -- a neuralis halo ezt utanozza matematikailag.
+A modern ML szinte mind **neuralis halon** alapul. Az emberi agy neuronokbol all amelyek egymasnak jeleket küldenek -- a neuralis halo ezt utanozza matematikailag.
 
 ```
 Input reteg        Rejtett retegek        Output reteg
@@ -50,7 +50,7 @@ Minden kapcsolat a fenti abran egy **suly** -- egy szam, ami meghatarozza mennyi
 input x suly + bias -> aktivalcios fuggveny -> kovetkezo reteg
 ```
 
-Kezdetben random szamok. Training utan: az a sulykombinacio ami "kodolja" a tudast -- pl. hogy mi jellemezo egy emberre vs egy autora.
+Kezdetben random szamok. Training utan: az a sulykombinacio ami "kódolja" a tudast -- pl. hogy mi jellemezo egy emberre vs egy autora.
 
 ---
 
@@ -72,9 +72,9 @@ Kezdetben random szamok. Training utan: az a sulykombinacio ami "kodolja" a tuda
 ```
 
 > [!info] Mi az a backpropagation?
-> A backpropagation kiszamolja: **melyik suly mennyiben felelos a hibaert**, es aranyosan korrigalja. A gradient descent algoritmussal mukodik -- mindig a "lejto" iranyaba lep a hiba minimuma fele. Ez az alapja szinte minden modern ML tanitasnak.
+> A backpropagation kiszamolja: **melyik suly mennyiben felelos a hibaert**, és aranyosan korrigalja. A gradient descent algoritmussal működik -- mindig a "lejto" iranyaba lep a hiba minimuma fele. Ez az alapja szinte minden modern ML tanitasnak.
 
-### Amit a training vegen kapsz: a modell fajl
+### Amit a training vegen kapsz: a modell fájl
 
 ```
 Training kesz
@@ -86,9 +86,9 @@ Ez a "tudas" -- ezt toltod be production-ban
 
 ---
 
-## YOLO -- object detection pelda
+## YOLO -- object detection példa
 
-A **YOLO (You Only Look Once)** egy object detection modell -- egy kepen egyszerre tobb objektumot ismer fel es kore huz egy bounding box-ot.
+A **YOLO (You Only Look Once)** egy object detection modell -- egy kepen egyszerre több objektumot ismer fel és kore huz egy bounding box-ot.
 
 ```
 Dron kamerakep
@@ -101,15 +101,15 @@ YOLO modell (milliszekundumok)
 +---------+  +------+  +------+
 ```
 
-### Miert YOLO es nem valami mas?
+### Miért YOLO és nem valami mas?
 
 | Modell | Sebesseg | Pontossag | Dronhoz? |
 |---|---|---|---|
-| **YOLO** | Real-time | Jo | Igen |
-| R-CNN | Lassu | Nagyon jo | Nem |
+| **YOLO** | Real-time | Jó | Igen |
+| R-CNN | Lassu | Nagyon jó | Nem |
 | SSD | Kozepes | Kozepes | Esetleg |
 
-Real-time alkalmazasoknal **sebesseg kritikus** -- nem varhatod meg hogy 2 masodpercig elemezzen egy kepkockat ha a dron mozog.
+Real-time alkalmazásoknal **sebesseg kritikus** -- nem varhatod még hogy 2 masodpercig elemezzen egy kepkockat ha a dron mozog.
 
 ### YOLO futtatasa
 
@@ -133,13 +133,13 @@ for r in results:
 ```
 
 > [!tip] AI eszkozok + ML pipeline
-> AI fejlesztoeszkozok az egesz ML pipeline-t kepesek vezerelni: adatfeldolgozo scriptek, training konfig, eredmeny vizualizacio. Nem kell ML expertnek lenned -- leirod mit akarsz, es az eszkoz megirja a Python kodot.
+> AI fejlesztoeszkozok az egész ML pipeline-t képesek vezerelni: adatfeldolgozo scriptek, training konfig, eredmeny vizualizacio. Nem kell ML expertnek lenned -- leirod mit akarsz, és az eszkoz megirja a Python kódot.
 
 ---
 
 ## Transfer learning -- ne tanítsd nullarol
 
-A YOLO mar **elore tanitott** (pretrained) -- latott 80+ kategoriat (COCO dataset: ember, auto, kerekpar, stb.). Ha standard kategoriak kellenek, **hasznald ahogy van**.
+A YOLO már **elore tanitott** (pretrained) -- latott 80+ kategoriat (COCO dataset: ember, auto, kerekpar, stb.). Ha standard kategoriak kellenek, **használd ahogy van**.
 
 Ha specialis kategoria kell (pl. "munkavedelmi sisak", "dron a levegoben"):
 
@@ -152,7 +152,7 @@ a sajat annotalt kepeiddel (100-1000 kep eleg)
 Sajat modell ami mar az egyedi kategoriadat is felismeri
 ```
 
-Ez a **transfer learning** -- a meglevo tudast megtartod, csak a veget igazitod az uj feladathoz.
+Ez a **transfer learning** -- a meglevo tudast megtartod, csak a veget igazitod az új feladathoz.
 
 ---
 
@@ -162,15 +162,15 @@ Ez a **transfer learning** -- a meglevo tudast megtartod, csak a veget igazitod 
 |---|---|
 | **Model** | A betanitott neuralis halo (mentett sulyok) |
 | **Training** | A tanitasi folyamat -- adatokon fut, sulyokat allit |
-| **Inference** | Eles hasznalat -- uj adaton futtatod a modellt |
-| **Epoch** | Az osszes training adat egyszer vegigment |
+| **Inference** | Éles használat -- új adaton futtatod a modellt |
+| **Epoch** | Az összes training adat egyszer vegigment |
 | **Batch** | Egyszerre feldolgozott mintak szama |
 | **Loss** | Hiba merteke -- ezt minimalizalja a training |
-| **Overfitting** | "Bemagolta" a training adatot, ujra nem altalanosit |
+| **Overfitting** | "Bemagolta" a training adatot, ujra nem általánosit |
 | **Dataset** | Tanitoanyag -- kepek + annotaciok |
 | **Bounding box** | Felismert objektum kore huzott teglalap |
 | **Confidence** | Bizonyossag merteke (0.94 = 94%) |
-| **Pretrained** | Mar betanitott modell, amit tovabb lehet finomhangolni |
+| **Pretrained** | Már betanitott modell, amit tovabb lehet finomhangolni |
 
 ---
 

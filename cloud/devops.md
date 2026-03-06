@@ -12,17 +12,17 @@ kapcsolodo:
   - "[[cloud/vercel|Vercel]]"
   - "[[cloud/deployment-checklist|Deployment checklist]]"
   - "[[cloud/hostinger|Hostinger]]"
-  - "[[cloud/12-faktoros-alkalmazas-epites|12 Faktoros alkalmazas epites]]"
+  - "[[cloud/12-faktoros-alkalmazas-epites|12 Faktoros alkalmazás építes]]"
   - "[[foundations/linux|Linux]]"
   - "[[foundations/szoftverfejlesztes-alapjai|Szoftverfejlesztes alapjai]]"
 ---
 
 # DevOps
 
-A **DevOps** a fejlesztes (Development) es az uzemeltetés (Operations) osszekapcsolasa. 2026-ban ez a ket szerepkor teljesen osszeolvadt -- kulonosen kis csapatoknal ahol AI agentek irjak a kodot. Aki Claude Code-dal fejleszt, az egyben "DevOps" is: buildel, deployol, monitoroz.
+A **DevOps** a fejlesztes (Development) és az üzemeltetés (Operations) összekapcsolasa. 2026-ban ez a ket szerepkor teljesen osszeolvadt -- kulonosen kis csapatoknal ahol AI agentek irjak a kódot. Aki Claude Code-dal fejleszt, az egyben "DevOps" is: buildel, deployol, monitoroz.
 
 > [!tldr] DevOps 2026-ban, egy mondatban
-> Nem kell DevOps mernoknek lenned -- de tudnod kell hogyan jut el a kod a usertol a production-ig, es mi tortenik ha valami elromlik. Az AI megirja a kodot, de a **pipeline a te felelösseged**.
+> Nem kell DevOps mernoknek lenned -- de tudnod kell hogyan jut el a kod a usertol a production-ig, és mi tortenik ha valami elromlik. Az AI megirja a kódot, de a **pipeline a te felelösseged**.
 
 ---
 
@@ -52,24 +52,24 @@ graph LR
 
 | Szempont            | Hagyomanyos DevOps             | AI-first DevOps (2026)                           |
 | ------------------- | ------------------------------ | ------------------------------------------------ |
-| **Ki kodol**        | Fejleszto                      | Claude Code / Antigravity                        |
+| **Ki kódol**        | Fejleszto                      | Claude Code / Antigravity                        |
 | **Ki reviewol**     | Kollega                        | AI (`/review`) + Aikido                          |
 | **CI/CD**           | Jenkins, komplex YAML          | Vercel auto-deploy, Railway auto-build           |
 | **Infrastruktura**  | Terraform, Ansible, Puppet     | Docker Compose + managed platformok              |
 | **Monitoring**      | Dedikalt SRE csapat            | Grafana + UptimeRobot + alertek                  |
-| **Szukseges tudas** | Mely Linux, halozat, scripting | Pipeline ertese, prompt engineering, hibakereses |
+| **Szükséges tudas** | Mely Linux, hálózat, scripting | Pipeline ertese, prompt engineering, hibakereses |
 | **Csapat meret**    | 5-10 fos dev + 2-3 ops         | 1-3 fos csapat AI toolokkal                      |
 
 ---
 
 ## Mi a DevOps egy AI-first csapatban?
 
-Non-technical emberek AI agentek segitsegevel fejlesztenek. A "DevOps" feladatok nem tuntek el -- csak **mashogy csinalják**:
+Non-technical emberek AI agentek segitsegevel fejlesztenek. A "DevOps" feladatok nem tuntek el -- csak **mashogy csinálják**:
 
 ### 1. Build & Deploy pipeline
 
 **Regen:** Jenkins YAML-okat irtal, multi-stage pipeline-t konfigoltal.
-**Most:** A platform csinalja.
+**Most:** A platform csinálja.
 
 | Stack | Hogyan deployolsz | Automatikus? |
 |-------|-------------------|-------------|
@@ -79,9 +79,9 @@ Non-technical emberek AI agentek segitsegevel fejlesztenek. A "DevOps" feladatok
 | [[database/supabase|Supabase]] Edge Functions | `supabase functions deploy` | Felautomata |
 
 > [!tip] A managed platformok (Vercel, Railway) a DevOps 80%-at megoldjak
-> Nem kell CI/CD-t konfiguralnod -- push = deploy. Ezert hasznaljuk ezeket SMB projekteknél.
+> Nem kell CI/CD-t konfigurálnod -- push = deploy. Ezert használjuk ezeket SMB projekteknél.
 
-A VPS az egyetlen ahol tenyleg "DevOps" munkat kell vegezni: SSH, tuzfal, Docker, SSL. Reszletek: [[foundations/linux|Linux]], [[cloud/docker-alapok|Docker alapok]].
+A VPS az egyetlen ahol tényleg "DevOps" munkat kell vegezni: SSH, tuzfal, Docker, SSL. Részletek: [[foundations/linux|Linux]], [[cloud/docker-alapok|Docker alapok]].
 
 ### 2. Code review & Quality gates
 
@@ -108,11 +108,11 @@ Az AI kod security review nelkul veszelyes -- az LLM nem gondol OWASP-ra magatol
 1. **Aikido** -- GitHub-ra kotve, automatikus scan minden push-nal
 2. **Claude Code `/review`** -- kezi trigger, security fokusszal is kerheto
 3. **Dependency audit** -- `bun audit` (ismert CVE-k a csomagokban)
-4. **Supabase Advisors** -- RLS policy-k, security config ellenorzes
+4. **Supabase Advisors** -- RLS policy-k, security config ellenőrzes
 5. **Rate limiting** -- minden publikus API endpoint-on
 
 > [!warning] Az AI-generalt kod legnagyobb kockazata
-> Claude Code jol kodol, de **nem gondol a security-re proaktivan** -- te kered ra. Mindig futtass Aikido-t es kerdezd meg: *"Van security vulnerability ebben a kodban?"*
+> Claude Code jol kódol, de **nem gondol a security-re proaktivan** -- te kered ra. Mindig futtass Aikido-t és kerdezd még: *"Van security vulnerability ebben a kódban?"*
 
 ### 4. Monitoring & Observability
 
@@ -120,7 +120,7 @@ Deploy utan tudnod kell mi tortenik. A minimum:
 
 | Mit figyelsz | Eszkoz | Hogyan |
 |-------------|--------|--------|
-| **App elerheto-e** | UptimeRobot (ingyenes) | Ping check 5 percenkent, email alert |
+| **App elérheto-e** | UptimeRobot (ingyenes) | Ping check 5 percenkent, email alert |
 | **Szerver metrics** | Grafana + Prometheus | CPU, RAM, disk a VPS-en |
 | **App hibak** | Vercel/Railway logok | Dashboard-on nezed, vagy Sentry |
 | **Security** | Aikido | Folyamatos scanning, email alert |
@@ -128,7 +128,7 @@ Deploy utan tudnod kell mi tortenik. A minimum:
 
 ### 5. Infrastruktura menedzsment
 
-**Nem Terraform-rol van szo** -- hanem arrol hogy tudd hol mi fut es hogyan.
+**Nem Terraform-rol van szo** -- hanem arról hogy tudd hol mi fut és hogyan.
 
 A tipikus infra:
 
@@ -167,7 +167,7 @@ graph TD
 
 ## Claude Code mint DevOps tool
 
-A Claude Code nem csak kodot ir -- DevOps feladatokra is hasznalhatod:
+A Claude Code nem csak kódot ir -- DevOps feladatokra is használhatod:
 
 ### Dockerfile generalas
 
@@ -184,7 +184,7 @@ multi-stage build-del, non-root user-rel"
 itt a docker compose logs output: [paste]"
 ```
 
-### Szerver konfiguralas
+### Szerver konfigurálas
 
 ```bash
 # Lokalisan generaltarod, SSH-val felrakod:
@@ -239,8 +239,8 @@ graph TD
     style MONITOR fill:#3b82f6,color:white
 ```
 
-**A lenyeg:** a pipeline nagy resze automatizalt. A feladatod:
-1. **Definializalni** mit kell epiteni (PRD, plan.md)
+**A lényeg:** a pipeline nagy resze automatizalt. A feladatod:
+1. **Definiálalizalni** mit kell építeni (PRD, plan.md)
 2. **Orchestralni** az AI agent munkajat (CLAUDE.md, kontextus)
 3. **Vegigmenni** a quality gate-eken ([[cloud/deployment-checklist|Deployment checklist]])
 4. **Figyelni** a production-t (monitoring, alertek)
@@ -254,35 +254,35 @@ Nem kell mindenhez ertened -- de ezek a "must know" teruletek:
 
 | Terulet | Minimum tudas | Kapcsolodo |
 |---------|--------------|------------|
-| **[[foundations/git-es-github|Git es GitHub]]** | Branch, merge, PR, `.gitignore` | [[foundations/git-es-github|Git es GitHub]] |
+| **[[foundations/git-es-github|Git és GitHub]]** | Branch, merge, PR, `.gitignore` | [[foundations/git-es-github|Git és GitHub]] |
 | **[[cloud/docker-alapok|Docker]]** | Dockerfile, image, container, volume | [[cloud/docker-alapok|Docker alapok]] |
 | **[[cloud/docker-compose|Docker Compose]]** | Multi-service setup, `docker compose up/down` | [[cloud/docker-compose|Docker Compose]] |
-| **[[foundations/linux|Linux]]** | SSH, alap parancsok, fajlrendszer, UFW | [[foundations/linux|Linux]] |
-| **DNS & SSL** | Domain beallitas, HTTPS, Let's Encrypt | -- |
-| **Env valtozok** | `.env`, `NEXT_PUBLIC_`, platform env config | Env valtozok Next.js-ben |
-| **Networking** | Port, IP, firewall, reverse proxy alapok | [[foundations/halozatok-es-ip-cimek|Halozatok es IP cimek]] |
+| **[[foundations/linux|Linux]]** | SSH, alap parancsok, fájlrendszer, UFW | [[foundations/linux|Linux]] |
+| **DNS & SSL** | Domain beállítás, HTTPS, Let's Encrypt | -- |
+| **Env változók** | `.env`, `NEXT_PUBLIC_`, platform env config | Env változók Next.js-ben |
+| **Networking** | Port, IP, firewall, reverse proxy alapok | [[foundations/halozatok-es-ip-cimek|Hálózatok és IP cimek]] |
 
 **Amit NEM kell tudnod** (2026-ban, kis csapatnal):
 - Terraform / Infrastructure as Code (managed platformok megoldjak)
 - Kubernetes production cluster kezeles (Railway/Vercel helyettesiti)
 - Komplex CI/CD pipeline iras (auto-deploy platformok)
-- Load balancing konfiguralas (CDN / platform szinten megvan)
+- Load balancing konfigurálas (CDN / platform szintén megvan)
 
 ---
 
 ## Kapcsolodo vault note-ok
 
-- [[cloud/docker-alapok|Docker alapok]] -- kontenerizacio alapjai
-- [[cloud/docker-compose|Docker Compose]] -- tobb service orchestralasa lokalisan
-- [[cloud/kubernetes-bevezeto|Kubernetes bevezeto]] -- kontenerek skalazasa klaszterben
-- [[cloud/railway|Railway]] -- egyszerusitett deploy platform
-- [[cloud/vercel|Vercel]] -- frontend deploy es CDN
-- Grafana -- monitoring es dashboard-ok
-- Tailscale -- biztonsagos halozat szerverek kozott
-- [[cloud/deployment-checklist|Deployment checklist]] -- deploy elotti ellenorzo lista
+- [[cloud/docker-alapok|Docker alapok]] -- konténerizacio alapjai
+- [[cloud/docker-compose|Docker Compose]] -- több service orchestralasa lokálisan
+- [[cloud/kubernetes-bevezeto|Kubernetes bevezeto]] -- konténerek skálázasa klaszterben
+- [[cloud/railway|Railway]] -- egyszerűsitett deploy platform
+- [[cloud/vercel|Vercel]] -- frontend deploy és CDN
+- Grafana -- monitoring és dashboard-ok
+- Tailscale -- biztonságos hálózat szerverek kozott
+- [[cloud/deployment-checklist|Deployment checklist]] -- deploy elotti ellenőrzo lista
 - [[foundations/linux|Linux]] -- a szerver OS amit mindez alatt futtatunk
-- [[cloud/hostinger|Hostinger]] -- VPS hosting ahol a Docker kontenerek futnak
+- [[cloud/hostinger|Hostinger]] -- VPS hosting ahol a Docker konténerek futnak
 - Aikido -- security scanning platform
-- [[cloud/12-faktoros-alkalmazas-epites|12 Faktoros alkalmazas epites]] -- cloud-native alkalmazas elvek
+- [[cloud/12-faktoros-alkalmazas-epites|12 Faktoros alkalmazás építes]] -- cloud-native alkalmazás elvek
 - [[foundations/szoftverfejlesztes-alapjai|Szoftverfejlesztes alapjai]] -- a teljes fejlesztesi workflow
 - n8n workflow automatizacio -- workflow automatizacio a VPS-en

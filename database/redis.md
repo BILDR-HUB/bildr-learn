@@ -16,14 +16,14 @@ kapcsolodo:
 
 ## Mi ez?
 
-A **Redis** (Remote Dictionary Server) egy in-memory adatbazis, amit elsosorban cache-kent, session store-kent, message broker-kent es real-time adatkezeloként hasznalnak. Az adatokat RAM-ban tarolja, ezert **1000-10000x gyorsabb** mint a hagyomanyos disk-alapu adatbazisok.
+A **Redis** (Remote Dictionary Server) egy in-memory adatbázis, amit elsősorban cache-kent, session store-kent, message broker-kent és real-time adatkezeloként használnak. Az adatokat RAM-ban tarolja, ezert **1000-10000x gyorsabb** mint a hagyomanyos disk-alapu adatbázisok.
 
-Nem csak egy egyszeru key-value store -- gazdag adatstrukturakat tamogat (listak, halmazok, sorted set-ek, hash-ek, stream-ek), ezert szinte barmilyen real-time problemara megoldas.
+Nem csak egy egyszerű key-value store -- gazdag adatstrukturakat tamogat (listak, halmazok, sorted set-ek, hash-ek, stream-ek), ezert szinte bármilyen real-time problémara megoldás.
 
-> [!info] Forras
-> Ez a jegyzet a [ByteByteGo Redis video](https://www.youtube.com/watch?v=z_NbVtbgBJw) es a kapcsolodo ByteByteGo cikkek alapjan keszult.
+> [!info] Forrás
+> Ez a jegyzet a [ByteByteGo Redis video](https://www.youtube.com/watch?v=z_NbVtbgBJw) és a kapcsolodo ByteByteGo cikkek alapján készült.
 
-## Miert ilyen gyors?
+## Miért ilyen gyors?
 
 ```mermaid
 graph LR
@@ -34,32 +34,32 @@ graph LR
     end
 ```
 
-1. **In-memory storage** -- az osszes adat RAM-ban van, nincs disk I/O bottleneck
-2. **Single-threaded event loop + IO multiplexing** -- egyetlen szal kezeli az osszes connection-t (epoll/kqueue), nincs context switching, nincs lock contention
-3. **Optimalizalt adatstrukturak** -- SDS (Simple Dynamic Strings), ziplist/listpack, skiplist, intset -- mind memoriara optimalizalva, nincs szerializacio/deszerializacio overhead
+1. **In-memory storage** -- az összes adat RAM-ban van, nincs disk I/O bottleneck
+2. **Single-threaded event loop + IO multiplexing** -- egyetlen szal kezeli az összes connection-t (epoll/kqueue), nincs context switching, nincs lock contention
+3. **Optimalizált adatstrukturak** -- SDS (Simple Dynamic Strings), ziplist/listpack, skiplist, intset -- mind memoriara optimalizálva, nincs szerializacio/deszerializacio overhead
 
-> [!tip] Miert single-threaded?
-> Meglepo, de a single-threaded modell gyorsabb mint a multi-threaded, mert eliminal minden lock-ot, mutex-ot es context switch-et. A bottleneck nem a CPU, hanem a halozat es a memoria -- Redis 6.0+ ota az I/O reszt mar multi-threaded kezeli, de az execution marad single-threaded.
+> [!tip] Miért single-threaded?
+> Meglepo, de a single-threaded modell gyorsabb mint a multi-threaded, mert eliminal minden lock-ot, mutex-ot és context switch-et. A bottleneck nem a CPU, hanem a hálózat és a memoria -- Redis 6.0+ ota az I/O reszt már multi-threaded kezeli, de az execution marad single-threaded.
 
 ## Adatstrukturak
 
-| Struktura | Mire jo | Pelda parancs | Use case |
+| Struktúra | Mire jó | Példa parancs | Use case |
 |-----------|---------|---------------|----------|
-| **String** | Egyszeru key-value | `SET user:1:name "User"` | Cache, counter, session token |
-| **Hash** | Objektum-szeru tarolas | `HMSET user:bob name Bob location "Budapest"` | User profile, settings |
+| **String** | Egyszerű key-value | `SET user:1:name "User"` | Cache, counter, session token |
+| **Hash** | Objektum-szeru tárolás | `HMSET user:bob name Bob location "Budapest"` | User profile, settings |
 | **List** | Sorba rendezett elemek | `LPUSH`, `RPUSH`, `LRANGE` | Message queue, activity feed |
 | **Set** | Egyedi elemek halmaza | `SADD`, `SMEMBERS`, `SINTER` | Tag-ek, egyedi visitor-ok, baratlista |
 | **Sorted Set** | Pontszammal rendezett halmaz | `ZADD leaderboard 100 "player1"` | Leaderboard, timeline, priority queue |
 | **Stream** | Append-only log | `XADD`, `XREAD`, `XGROUP` | Event stream, message queue (Kafka-lite) |
-| **Bitmap** | Bit-szintu muveletek | `SETBIT`, `BITCOUNT` | Feature flag-ek, napi aktiv user tracking |
-| **HyperLogLog** | Kozelito kardinalitas | `PFADD`, `PFCOUNT` | Egyedi latogatok szamlalasa (nagyon keves memoria) |
-| **Geospatial** | Foldrajzi koordinatak | `GEOADD`, `GEODIST`, `GEORADIUS` | Kozeli helyek keresese, ride-hailing |
+| **Bitmap** | Bit-szintű műveletek | `SETBIT`, `BITCOUNT` | Feature flag-ek, napi aktiv user tracking |
+| **HyperLogLog** | Közelito kardinalitas | `PFADD`, `PFCOUNT` | Egyedi latogatok szamlalasa (nagyon keves memoria) |
+| **Geospatial** | Foldrajzi koordinatak | `GEOADD`, `GEODIST`, `GEORADIUS` | Közeli helyek keresese, ride-hailing |
 
 ## Fo use case-ek
 
 ### 1. Caching (leggyakoribb)
 
-Az alkalmazas es az adatbazis koze kerul:
+Az alkalmazás és az adatbázis koze kerul:
 
 ```mermaid
 graph LR
@@ -70,18 +70,18 @@ graph LR
     APP -->|4. SET key TTL| REDIS
 ```
 
-- **Pareto-elv**: a lekerdezesek ~80%-a az adatok ~20%-ara vonatkozik -- ezt erdemes cache-elni
+- **Pareto-elv**: a lekérdezések ~80%-a az adatok ~20%-ara vonatkozik -- ezt érdemes cache-elni
 - **Eviction policy-k**: LRU (Least Recently Used), LFU (Least Frequently Used), TTL-alapu
-- Tobbszintu cache: app-szintu (in-process HashMap) → Redis (distributed) → DB
+- Többszintu cache: app-szintű (in-process HashMap) → Redis (distributed) → DB
 
 ### 2. Session Store
 
-Elosztott kornyezetben a user session-oket Redis-ben tartjuk, nem a szerveren:
+Elosztott környezetben a user session-oket Redis-ben tartjuk, nem a szerveren:
 
 1. User bejelentkezik → session ID generalodik, Redis-be mentodik
 2. Client megkapja a session ID-t (cookie)
-3. Kovetkezo request-nel a session ID alapjan barmelyik szerver ki tudja olvasni az adatot
-4. Nincs szukseg sticky session-re a load balancer-nel
+3. Következo request-nel a session ID alapján bármelyik szerver ki tudja olvasni az adatot
+4. Nincs szükség sticky session-re a load balancer-nel
 
 ### 3. Rate Limiting
 
@@ -89,7 +89,7 @@ Elosztott kornyezetben a user session-oket Redis-ben tartjuk, nem a szerveren:
 INCR api:user:123:minute
 EXPIRE api:user:123:minute 60
 ```
-Ha az ertek > limit → 429 Too Many Requests. Redis atomi muveletei garantaljak a konzisztenciat.
+Ha az érték > limit → 429 Too Many Requests. Redis atomi műveletei garantaljak a konzisztenciat.
 
 ### 4. Leaderboard
 
@@ -100,32 +100,32 @@ ZADD game:leaderboard 2300 "player_b"
 ZREVRANGE game:leaderboard 0 9 WITHSCORES  # Top 10
 ```
 
-### 5. Pub/Sub es Message Queue
+### 5. Pub/Sub és Message Queue
 
-- **Pub/Sub**: valos ideju uzenetkuldés subscriber-eknek (chat, notification)
-- **Streams**: tartos message queue, consumer group-okkal (Kafka-lite, de egyszerubb)
-- **List**: egyszeru queue `LPUSH` + `BRPOP` komboval
+- **Pub/Sub**: valós ideju üzenetkuldés subscriber-eknek (chat, notification)
+- **Streams**: tartos message queue, consumer group-okkal (Kafka-lite, de egyszerűbb)
+- **List**: egyszerű queue `LPUSH` + `BRPOP` komboval
 
 ### 6. Distributed Lock
 
 ```
 SET lock:resource "owner" NX EX 30
 ```
-`NX` = only if not exists, `EX` = expire. Elosztott kornyezetben ez a legegyszerubb lock mechanizmus (Redlock algoritmus a robosztusabb verzio).
+`NX` = only if not exists, `EX` = expire. Elosztott környezetben ez a legegyszerubb lock mechanizmus (Redlock algoritmus a robosztusabb verzió).
 
 ## Perzisztencia
 
-Redis alapvetoen in-memory, de az adatok nem vesznek el ujrainditaskor:
+Redis alapvetően in-memory, de az adatok nem vesznek el ujrainditaskor:
 
-| Mod | Hogyan mukodik | Trade-off |
+| Mod | Hogyan működik | Trade-off |
 |-----|---------------|-----------|
-| **RDB** (Snapshot) | Idoszakos point-in-time snapshot a teljes adatbazisrol | Gyors recovery, de az utolso snapshot ota elveszhet adat |
-| **AOF** (Append Only File) | Minden iras muveletet logol (mint egy commit log) | Biztonsagosabb, de nagyobb fajl, lassabb recovery |
+| **RDB** (Snapshot) | Idoszakos point-in-time snapshot a teljes adatbázisrol | Gyors recovery, de az utolso snapshot ota elveszhet adat |
+| **AOF** (Append Only File) | Minden iras műveletet logol (mint egy commit log) | Biztonságosabb, de nagyobb fájl, lassabb recovery |
 | **RDB + AOF** | Mindketto egyutt | Legjobb kombo production-ben |
 | **Nincs** | Perzisztencia kikapcsolva | Tisztan cache use case, kis adatmennyiseg |
 
 > [!warning] Redis ≠ primary database
-> Redis-t nem szabad egyeduli adatbaziskent hasznalni (bar vannak akik igy csinalják). A legjobb minta: **[[database/supabase|Supabase]]** / PostgreSQL mint source of truth + Redis mint cache/session layer.
+> Redis-t nem szabad egyeduli adatbáziskent használni (bar vannak akik így csinálják). A legjobb minta: **[[database/supabase|Supabase]]** / PostgreSQL mint source of truth + Redis mint cache/session layer.
 
 ## High Availability
 
@@ -145,14 +145,14 @@ graph TD
 
 - **Leader-Follower replikacio**: a leader kezeli az irasokat, a replica-k a read-eket
 - **Redis Sentinel**: monitoring + automatikus failover -- ha a leader meghal, egy replica-t eloleptet
-- **Redis Cluster**: horizontalis sharding -- az adatok elosztasa tobb node kozott (16384 hash slot)
+- **Redis Cluster**: horizontalis sharding -- az adatok elosztasa több node kozott (16384 hash slot)
 
-## Mikor hasznald / Mikor NE
+## Mikor használd / Mikor NE
 
 | Mikor IGEN | Mikor NE |
 |-----------|----------|
 | Cache layer a DB ele | Primary database (egyedul) |
-| Session management | Nagy meretu blob tarolas (>512MB value) |
+| Session management | Nagy meretu blob tárolás (>512MB value) |
 | Real-time leaderboard | Komplex relacios query-k (JOIN, GROUP BY) |
 | Rate limiting | Ha az adat nem fer a RAM-ba |
 | Pub/Sub, event streaming | Ha nem kell sub-millisecond latency |
@@ -160,21 +160,21 @@ graph TD
 
 ## Hosting opciok
 
-| Szolgaltatas | Mikor jo |
+| Szolgáltatas | Mikor jó |
 |-------------|----------|
 | **Redis Cloud** (redis.com) | Managed, Redis Ltd. hivatalos |
-| **Upstash** | Serverless Redis, pay-per-request -- [[cloud/vercel|Vercel]] Edge-hez idealis |
+| **Upstash** | Serverless Redis, pay-per-request -- [[cloud/vercel|Vercel]] Edge-hez ideális |
 | **AWS ElastiCache** | Enterprise, nagy volumen |
-| **Railway** | Redis kontener egyszeruen -- [[cloud/railway|Railway]] |
-| **Docker** | Sajat gep / VPS -- `docker run redis:alpine` |
+| **Railway** | Redis konténer egyszerűen -- [[cloud/railway|Railway]] |
+| **Docker** | Saját gep / VPS -- `docker run redis:alpine` |
 
 > [!tip] Serverless-hez Upstash
-> Ha [[cloud/vercel|Vercel]]-en vagy [[frontend/nextjs|Next.js]]-sel dolgozol es serverless function-okbol akarsz Redis-t elerni, az **Upstash** a legjobb valasztas: HTTP-alapu API, nincs persistent connection problema, pay-per-request arazas.
+> Ha [[cloud/vercel|Vercel]]-en vagy [[frontend/nextjs|Next.js]]-sel dolgozol és serverless function-okbol akarsz Redis-t elerni, az **Upstash** a legjobb választas: HTTP-alapu API, nincs persistent connection probléma, pay-per-request arazas.
 
 ## Kapcsolodo
 
 - [[database/supabase|Supabase]] -- PostgreSQL mint primary DB, Redis mint cache layer melle
-- [[cloud/docker-alapok|Docker alapok]] -- Redis kontenerben futtatasa lokalisan
+- [[cloud/docker-alapok|Docker alapok]] -- Redis konténerben futtatasa lokálisan
 - [[frontend/nextjs|Next.js]] -- server-side cache, session store Next.js API route-okbol
 - [[cloud/vercel|Vercel]] -- Edge Function + Upstash Redis kombo
 - [[cloud/railway|Railway]] -- managed Redis hosting

@@ -7,14 +7,14 @@ kapcsolodo:
   - "[[cloud/cloudflare|Cloudflare]]"
   - "[[backend/express|Express]]"
   - "[[cloud/vercel|Vercel]]"
-  - "[[frontend/env-valtozok-nextjs-ben|Env valtozok Next.js-ben]]"
+  - "[[frontend/env-valtozok-nextjs-ben|Env változók Next.js-ben]]"
   - "[[frontend/bun-nextjs-projekt-setup|Bun - Next.js projekt setup]]"
   - "[[backend/clerk|Clerk]]"
   - "[[database/supabase|Supabase]]"
   - "[[database/drizzle|Drizzle]]"
   - "[[database/prisma|Prisma]]"
   - "[[database/redis|Redis]]"
-  - "[[frontend/nextjs-data-cache-es-revalidacio|Next.js Data Cache es revalidacio]]"
+  - "[[frontend/nextjs-data-cache-es-revalidacio|Next.js Data Cache és revalidacio]]"
   - "[[frontend/landing-page-cms-types|Landing Page CMS types]]"
   - "[[frontend/css-vs-nextjs-vs-react|CSS vs Next.js vs React]]"
   - "[[backend/edge-function|Edge function]]"
@@ -22,13 +22,13 @@ kapcsolodo:
 
 ## Mi ez?
 
-A **Next.js** egy React-alapu full-stack framework, amit a [[cloud/vercel|Vercel]] fejleszt. Server-side rendering (SSR), static site generation (SSG), API routes, es App Router — mindent egy helyen ad.
+A **Next.js** egy React-alapu full-stack framework, amit a [[cloud/vercel|Vercel]] fejleszt. Server-side rendering (SSR), static site generation (SSG), API routes, és App Router — mindent egy helyen ad.
 
-A bildr.hub fo framework-je: szinte **minden ugyfelprojekt es belso tool** Next.js-re epul.
+A bildr.hub fo framework-je: szinte **minden ugyfelprojekt és belső tool** Next.js-re epul.
 
 ---
 
-## Miert pont Next.js?
+## Miért pont Next.js?
 
 ```mermaid
 graph LR
@@ -46,11 +46,11 @@ graph LR
     style DEPLOY fill:#000,color:white
 ```
 
-| Elony | Miert fontos |
+| Elony | Miért fontos |
 |-------|-------------------|
 | **Full-stack egy helyen** | Frontend + API + auth middleware — nincs kulon backend szerver |
 | **[[cloud/vercel|Vercel]] nativ** | Push to deploy, zero config, preview deployment-ek PR-enkent |
-| **React okoszisztema** | A legnagyobb component library valasztek (shadcn/ui, Radix, stb.) |
+| **React okoszisztema** | A legnagyobb component library választek (shadcn/ui, Radix, stb.) |
 | **Server Components** | Gyorsabb oldalbetoltes, kisebb JS bundle, DB query kozvetlenul |
 | **TypeScript-first** | Type safety a teljes stack-ben |
 
@@ -58,7 +58,7 @@ graph LR
 
 ## App Router — a mappastruktura az app
 
-A Next.js 13+ ota az **App Router** a standard. A fajlrendszer = routing:
+A Next.js 13+ ota az **App Router** a standard. A fájlrendszer = routing:
 
 ```
 app/
@@ -89,7 +89,7 @@ app/
 - `layout.tsx` — wrapper ami megmarad navigacio kozott (navbar, sidebar)
 - `route.ts` — API endpoint (nincs UI, csak request/response)
 - `[slug]` — dinamikus route parameter
-- `(group)` — route group, nem jelenik meg az URL-ben (szervezesre jo)
+- `(group)` — route group, nem jelenik még az URL-ben (szervezésre jó)
 - `loading.tsx` — loading state amig az oldal tolt
 - `error.tsx` — error boundary az oldalhoz
 
@@ -97,16 +97,16 @@ app/
 
 ## Server Components vs Client Components
 
-Ez a Next.js legfontosabb koncepcioja — es a leggyakoribb buktato:
+Ez a Next.js legfontosabb koncepcioja — és a leggyakoribb buktato:
 
 | | Server Component | Client Component |
 |---|---|---|
-| **Alapertelmezett** | Igen — minden komponens server | Nem — `'use client'` kell |
+| **Alapértelmezett** | Igen — minden komponens server | Nem — `'use client'` kell |
 | **Hol fut** | Szerveren (Node.js) | Bongeszőben |
-| **Adatbazis hozzaferes** | Kozvetlenul (`await db.query()`) | Nem — API route-on keresztul |
+| **Adatbázis hozzáférés** | Kozvetlenul (`await db.query()`) | Nem — API route-on keresztul |
 | **JS a bongeszőben** | Minimalis (csak HTML) | Teljes React bundle |
-| **Interaktivitas** | Nincs (`onClick`, `useState` nem mukodik) | Teljes |
-| **Mikor hasznald** | Adat megjelenítes, lista, statikus tartalom | Form, gomb, modal, dropdown, animacio |
+| **Interaktivitas** | Nincs (`onClick`, `useState` nem működik) | Teljes |
+| **Mikor használd** | Adat megjelenítes, lista, statikus tartalom | Form, gomb, modal, dropdown, animacio |
 
 ```tsx
 // Server Component (alapertelmezett) — kozvetlenul DB-bol olvas
@@ -141,7 +141,7 @@ export function LikeButton() {
 
 > [!warning] A leggyakoribb hiba
 > `useState`, `useEffect`, `onClick` → hibauzenet: "You're importing a component that needs useState..."
-> **Megoldas:** tedd a komponens tetejere `'use client'`-et. De **csak arra a komponensre** aminek kell — ne az egesz oldalra.
+> **Megoldás:** tedd a komponens tetejere `'use client'`-et. De **csak arra a komponensre** aminek kell — ne az egész oldalra.
 
 ---
 
@@ -172,17 +172,17 @@ export async function POST(request: Request) {
 }
 ```
 
-**Mire jo az API route:**
+**Mire jó az API route:**
 - Webhook endpoint-ok (Stripe, n8n, extern service-ek)
 - Szerver-oldali logika amit nem akarsz Server Component-ben
-- Publikus API amire kulso kliens is csatlakozik
+- Publikus API amire külső kliens is csatlakozik
 - Rate limiting, auth middleware, input validacio
 
 ---
 
 ## Middleware
 
-Az edge-en (CDN szinten) fut, **minden request elott**. Tipikus hasznalat: auth check, redirect, geo-routing.
+Az edge-en (CDN szintén) fut, **minden request elott**. Tipikus használat: auth check, redirect, geo-routing.
 
 ```typescript
 // middleware.ts (project root-ban!)
@@ -209,14 +209,14 @@ export const config = {
 
 ---
 
-## Rendering strategiak
+## Rendering stratégiak
 
-| Strategia | Mikor renderel | Mikor hasznald |
+| Stratégia | Mikor renderel | Mikor használd |
 |-----------|---------------|---------------|
-| **SSG** (Static) | Build-kor | Landing page, blog, dokumentacio |
+| **SSG** (Static) | Build-kor | Landing page, blog, dokumentácio |
 | **SSR** (Server) | Minden request-nel | Dashboard, szemelyre szabott tartalom |
 | **ISR** (Incremental) | Build + on-demand ujrageneralas | Blog ahol ritkan valtozik a tartalom |
-| **CSR** (Client) | Bongeszőben | Interaktiv komponensek, admin felulet |
+| **CSR** (Client) | Bongeszőben | Interaktiv komponensek, admin felület |
 
 ```tsx
 // SSG — statikus, build-kor generalodik
@@ -239,10 +239,10 @@ export default async function BlogPost() {
 }
 ```
 
-> [!tip] Tipikus hasznalat
+> [!tip] Tipikus használat
 > **Landing page-ek:** SSG (`output: 'export'` a `next.config.ts`-ben) → [[cloud/vercel|Vercel]]-re deploy
 > **Dashboard-ok:** SSR, Supabase auth middleware-rel
-> **Belso toolok:** SSR + Client Components vegyes
+> **Belső toolok:** SSR + Client Components vegyes
 
 ---
 
@@ -252,9 +252,9 @@ export default async function BlogPost() {
 |---------|--------|--------------------|
 | Hosting | [[cloud/vercel|Vercel]] | Nativ Next.js hosting, zero-config deploy, preview PR-enkent |
 | Backend DB | [[database/supabase|Supabase]] | Postgres + Auth + Storage + Edge Functions |
-| ORM | [[database/drizzle|Drizzle]], [[database/prisma|Prisma]] | Type-safe adatbazis kezeles Server Component-ekbol |
+| ORM | [[database/drizzle|Drizzle]], [[database/prisma|Prisma]] | Type-safe adatbázis kezeles Server Component-ekbol |
 | Auth | [[backend/clerk|Clerk]] | Managed authentication, middleware integracio |
-| Config | [[frontend/env-valtozok-nextjs-ben|Env valtozok Next.js-ben]] | `.env.local`, `NEXT_PUBLIC_` prefix, build-time vs runtime |
+| Config | [[frontend/env-valtozok-nextjs-ben|Env változók Next.js-ben]] | `.env.local`, `NEXT_PUBLIC_` prefix, build-time vs runtime |
 | CMS | [[frontend/landing-page-cms-types|Landing Page CMS types]] | Headless CMS integracio SSG-vel |
 | Setup | [[frontend/bun-nextjs-projekt-setup|Bun - Next.js projekt setup]] | Projekt inicializalas Bun-nal (gyorsabb mint npm) |
 | Deploy | [[cloud/railway|Railway]] | Alternativ hosting Docker-rel (ha Vercel nem eleg) |
@@ -262,7 +262,7 @@ export default async function BlogPost() {
 
 ---
 
-## Projekt struktura (ajanlott)
+## Projekt struktúra (ajanlott)
 
 ```
 my-next-app/
@@ -311,14 +311,14 @@ bun run lint
 - [[cloud/cloudflare|Cloudflare]] — edge hosting platform (Next.js is futhat rajta, de Hono nativabb)
 - [[backend/express|Express]] — klasszikus Node.js backend framework
 - [[cloud/vercel|Vercel]] — nativ Next.js hosting platform
-- [[frontend/env-valtozok-nextjs-ben|Env valtozok Next.js-ben]] — environment valtozok kezelese
+- [[frontend/env-valtozok-nextjs-ben|Env változók Next.js-ben]] — environment változók kezelese
 - [[frontend/bun-nextjs-projekt-setup|Bun - Next.js projekt setup]] — projekt setup guide
 - [[backend/clerk|Clerk]] — authentication integracio
-- [[database/supabase|Supabase]] — backend szolgaltatas
+- [[database/supabase|Supabase]] — backend szolgáltatas
 - [[database/drizzle|Drizzle]] — type-safe ORM
-- [[database/prisma|Prisma]] — magas szintu ORM
-- [[database/redis|Redis]] — cache es session store
-- [[frontend/nextjs-data-cache-es-revalidacio|Next.js Data Cache es revalidacio]] — unstable_cache, revalidatePath, Data Cache mukodese
-- [[frontend/landing-page-cms-types|Landing Page CMS types]] — CMS valasztas landing page-ekhez
-- [[frontend/css-vs-nextjs-vs-react|CSS vs Next.js vs React]] — frontend technologiak osszehasonlitasa
-- [[backend/edge-function|Edge function]] — edge runtime mukodese Next.js middleware-ben
+- [[database/prisma|Prisma]] — magas szintű ORM
+- [[database/redis|Redis]] — cache és session store
+- [[frontend/nextjs-data-cache-es-revalidacio|Next.js Data Cache és revalidacio]] — unstable_cache, revalidatePath, Data Cache működese
+- [[frontend/landing-page-cms-types|Landing Page CMS types]] — CMS választas landing page-ekhez
+- [[frontend/css-vs-nextjs-vs-react|CSS vs Next.js vs React]] — frontend technologiak összehasonlítasa
+- [[backend/edge-function|Edge function]] — edge runtime működese Next.js middleware-ben

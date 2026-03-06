@@ -12,19 +12,19 @@ szint: "🧱 Brick"
 
 # npm run dev vs build
 
-## Mi a kulonbseg?
+## Mi a különbség?
 
-Ket teljesen kulonbozo mod, ket kulonbozo celra:
+Ket teljesen különböző mod, ket különböző celra:
 
 | | `npm run dev` | `npm run build` |
 |---|---|---|
-| **Cel** | Fejlesztes kozben tesztelni | Eles deploy elokeszitese |
-| **Mit csinal** | Hot-reload dev szerver (localhost) | Legeneralja az osszes statikus fajlt |
+| **Cel** | Fejlesztes kozben tesztelni | Éles deploy elokeszitese |
+| **Mit csinál** | Hot-reload dev szerver (localhost) | Legeneralja az összes statikus fájlt |
 | **Rendereles** | Lazy -- csak amit megnyitsz a bongeszben | Eager -- minden oldalt elore renderel |
-| **Output** | Memoriaban, nem ir fajlt | `out/` vagy `.next/` mappa |
+| **Output** | Memoriaban, nem ir fájlt | `out/` vagy `.next/` mappa |
 | **Optimalizacio** | Nincs (gyorsabb fejlesztes) | Minify, tree-shake, kep optimalizacio |
 | **Sebesseg** | Azonnal indul | Percekig tart (merettol fugg) |
-| **Hibak** | Csak a megnyitott oldalnal jelennek meg | Minden hiba egyszerre kiderul |
+| **Hibak** | Csak a megnyitott oldalnal jelennek még | Minden hiba egyszerre kiderul |
 
 ---
 
@@ -50,37 +50,37 @@ npm run build:
 ## Mikor melyiket?
 
 ### `npm run dev`
-- Kodolas kozben, lokalisan
-- Uj feature tesztelese
+- Kódolas kozben, lokálisan
+- Új feature tesztelése
 - Dizajn finomhangolas
-- **Nem kell utana deploy**
+- **Nem kell utána deploy**
 
 ### `npm run build`
 - Deploy elott ([[cloud/cloudflare|Cloudflare]], [[cloud/vercel|Vercel]])
 - CI/CD pipeline-ban
-- Teljes hiba-ellenorzes (minden oldal renderelodik)
+- Teljes hiba-ellenőrzes (minden oldal renderelodik)
 - **Az eredmenyet toltod fel az elo szerverre**
 
 ---
 
 ## Next.js specifikus: `output: 'export'`
 
-Ha a `next.config.ts`-ben `output: 'export'` van beallitva, a `npm run build`:
+Ha a `next.config.ts`-ben `output: 'export'` van beállítva, a `npm run build`:
 
 1. Minden oldalt **statikus HTML-le** renderel
 2. Az `out/` mappaba menti
 3. Ezt az `out/` mappat toltod fel Cloudflare Pages-re
 
-Ez a **Static Site Generation (SSG)** -- nincs szerver, csak fajlok.
+Ez a **Static Site Generation (SSG)** -- nincs szerver, csak fájlok.
 
 ---
 
 ## Gyakorlati tipp
 
-Ha a `dev` mukodik de a `build` nem, az altalaban azert van, mert:
+Ha a `dev` működik de a `build` nem, az általában azert van, mert:
 - Egy hiba csak akkor derul ki, amikor **minden** oldal renderelodik
-- Env valtozo hianyzik build-idoben
-- Egy dependency nem kompatibilis a Node verzioval
+- Env változó hianyzik build-idoben
+- Egy dependency nem kompatibilis a Node verzióval
 
 A `dev` ezeket elfedi, mert lazy -- csak a megnyitott oldalt rendereli.
 

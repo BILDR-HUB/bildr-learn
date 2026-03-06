@@ -2,27 +2,27 @@
 tags:
   - bash
 kapcsolodo:
-  - "[[foundations/bash-es-linux-parancssor|Bash es Linux parancssor]]"
+  - "[[foundations/bash-es-linux-parancssor|Bash és Linux parancssor]]"
   - "[[cloud/docker-alapok|Docker alapok]]"
   - "[[cloud/kubernetes-bevezeto|Kubernetes bevezeto]]"
 datum: 2026-02-22
 szint: "🌱 Newcomer"
 ---
 
-# Bash es Linux parancssor 2
+# Bash és Linux parancssor 2
 
-## Osszefoglalo
+## Összefoglaló
 
-Folytatas a [[foundations/bash-es-linux-parancssor|Bash es Linux parancssor]] jegyzetnek. Itt a fajl tartalom megtekintes (`cat`, `head`, `tail`, `less`), szoveg kiiras (`echo`), terminal szovegszerkesztok (`nano`, `vim`), folyamatok reszletes kezelese (`ps`, `pgrep`, `pkill`), az eloter/hatter job control (`Ctrl+Z`, `bg`, `fg`), es a pipe-olas (`|`) kerul sorra.
+Folytatas a [[foundations/bash-es-linux-parancssor|Bash és Linux parancssor]] jegyzetnek. Itt a fájl tartalom megtekintes (`cat`, `head`, `tail`, `less`), szoveg kiiras (`echo`), terminal szovegszerkesztok (`nano`, `vim`), folyamatok részletes kezelese (`ps`, `pgrep`, `pkill`), az eloter/háttér job control (`Ctrl+Z`, `bg`, `fg`), és a pipe-olas (`|`) kerul sorra.
 
-## Fajl tartalom megtekintese -- cat, head, tail, less
+## Fájl tartalom megtekintese -- cat, head, tail, less
 
-| Parancs | Mit csinal |
+| Parancs | Mit csinál |
 |---------|------------|
-| `cat fajl` | Kiirja a teljes fajl tartalmat a terminalba |
-| `head -n 10 fajl` | Csak az elso 10 sort irja ki |
+| `cat fajl` | Kiirja a teljes fájl tartalmat a terminalba |
+| `head -n 10 fajl` | Csak az első 10 sort irja ki |
 | `tail -n 10 fajl` | Csak az utolso 10 sort irja ki |
-| `tail -f fajl` | Eloben figyeli a fajlt -- ha uj sor kerul bele, azonnal kiirja |
+| `tail -f fajl` | Eloben figyeli a fájlt -- ha új sor kerul bele, azonnal kiirja |
 | `less fajl` | Interaktiv olvasas: gorgetes, kereses, `q`-val kilepes |
 
 ```bash
@@ -39,20 +39,20 @@ tail -f /var/log/app.log
 less /var/log/syslog
 ```
 
-> [!tip] Mikor melyiket hasznald?
-> `cat` gyors es egyszeru, de ha a fajl tobb ezer soros, elarasztja a terminalt. Ilyenkor `less` a jobb -- nem tolti be az egesz fajlt a memoriaba, es tudsz benne keresni (`/keresett_szoveg`).
+> [!tip] Mikor melyiket használd?
+> `cat` gyors és egyszerű, de ha a fájl több ezer soros, elarasztja a terminalt. Ilyenkor `less` a jobb -- nem tolti be az egész fájlt a memoriaba, és tudsz benne keresni (`/keresett_szoveg`).
 
 > [!tip] tail -f a DevOps-ban
-> A `tail -f` ugyanaz a koncepcio mint a `kubectl logs -f` vagy a `docker logs -f`. Valos idoben figyeled ami tortenik, `Ctrl+C`-vel lepsz ki.
+> A `tail -f` ugyanaz a koncepcio mint a `kubectl logs -f` vagy a `docker logs -f`. Valós idoben figyeled ami tortenik, `Ctrl+C`-vel lepsz ki.
 
 ## Szoveg kiiras -- echo
 
-| Parancs | Mit csinal |
+| Parancs | Mit csinál |
 |---------|------------|
 | `echo "szoveg"` | Kiirja a szoveget a terminalba |
-| `echo $VALTOZO` | Kiirja egy kornyezeti valtozo ertekat |
-| `echo "szoveg" > fajl` | Beleirja a fajlba (felulirja a meglevot!) |
-| `echo "szoveg" >> fajl` | Hozzafuzi a fajl vegehez |
+| `echo $VALTOZO` | Kiirja egy környezeti változó értékat |
+| `echo "szoveg" > fajl` | Beleirja a fájlba (felulirja a meglevot!) |
+| `echo "szoveg" >> fajl` | Hozzáfuzi a fájl vegehez |
 
 ```bash
 # Egyszeru kiiras
@@ -70,20 +70,20 @@ echo "elso sor" > notes.txt
 echo "masodik sor" >> notes.txt
 ```
 
-> [!warning] A `>` es `>>` kozti kulonbseg
-> A `>` MINDIG felulirja a fajl teljes tartalmat. Ha veletlenul `>` helyett `>>` kellene, az eredeti tartalom orokre elveszik. Ha bizonytalan vagy, inkabb `>>`.
+> [!warning] A `>` és `>>` kozti különbség
+> A `>` MINDIG felulirja a fájl teljes tartalmat. Ha veletlenul `>` helyett `>>` kellene, az eredeti tartalom orokre elveszik. Ha bizonytalan vagy, inkabb `>>`.
 
 ## Szovegszerkesztes terminalban -- nano, vim
 
-### nano -- az egyszeru szerkeszto
+### nano -- az egyszerű szerkeszto
 
 ```bash
 nano config.yaml
 ```
 
-| Billentyu | Mit csinal |
+| Billentyu | Mit csinál |
 |-----------|------------|
-| `Ctrl+O` | Mentes (Write Out) |
+| `Ctrl+O` | Mentés (Write Out) |
 | `Ctrl+X` | Kilepes |
 | `Ctrl+K` | Sor kivagas |
 | `Ctrl+U` | Kivagott sor beillesztese |
@@ -95,40 +95,40 @@ nano config.yaml
 vim config.yaml
 ```
 
-A vim modokkal mukodik:
+A vim modokkal működik:
 
-| Mod | Hogyan lepsz be | Mire jo |
+| Mod | Hogyan lepsz be | Mire jó |
 |-----|-----------------|---------|
 | Normal | `Esc` | Navigacio, parancsok |
 | Insert | `i` | Szoveg irasa |
-| Command | `:` (Normal modbol) | Mentes, kilepes |
+| Command | `:` (Normal modbol) | Mentés, kilepes |
 
-| Parancs | Mit csinal |
+| Parancs | Mit csinál |
 |---------|------------|
 | `i` | Insert modba lep (szerkesztes) |
 | `Esc` | Visszalep Normal modba |
-| `:w` | Mentes |
+| `:w` | Mentés |
 | `:q` | Kilepes |
-| `:wq` | Mentes es kilepes |
-| `:q!` | Kilepes mentes nelkul |
-| `dd` | Sor torlese (Normal modban) |
+| `:wq` | Mentés és kilepes |
+| `:q!` | Kilepes mentés nelkul |
+| `dd` | Sor törlése (Normal modban) |
 
 > [!tip] Mikor melyiket?
 > **nano**: ha gyorsan szerkeszteni akarsz valamit. Kezdobarat.
-> **vim**: szerveren szinte mindig fenn van (nano neha nincs), es ha megtanulod, sokkal gyorsabb. Minimum a `:wq` es `:q!` kombinaciokat erdemes tudni.
+> **vim**: szerveren szinte mindig fenn van (nano neha nincs), és ha megtanulod, sokkal gyorsabb. Minimum a `:wq` és `:q!` kombinaciokat érdemes tudni.
 
 > [!warning] A vim csapdaja
-> Ha veletlenul megnyitottad es nem tudsz kilepni: `Esc` -> `:q!` -> Enter. Ez mentes nelkul kilep.
+> Ha veletlenul megnyitottad és nem tudsz kilepni: `Esc` -> `:q!` -> Enter. Ez mentés nelkul kilep.
 
-## Folyamatok kezelese -- reszletesen
+## Folyamatok kezelese -- részletesen
 
-| Parancs | Mit csinal |
+| Parancs | Mit csinál |
 |---------|------------|
-| `ps aux` | Osszes futo folyamat listazasa |
-| `ps aux \| grep nginx` | Szures adott processre |
+| `ps aux` | Összes futo folyamat listazasa |
+| `ps aux \| grep nginx` | Szűres adott processre |
 | `top` / `htop` | Elo nezet (CPU, memoria) |
-| `pgrep -l nginx` | PID keresese nev alapjan |
-| `pkill nginx` | Processz leallitasa nev alapjan |
+| `pgrep -l nginx` | PID keresese nev alapján |
+| `pkill nginx` | Processz leallitasa nev alapján |
 
 ```bash
 # Osszes futo folyamat
@@ -145,23 +145,23 @@ pgrep -l nginx
 pkill nginx
 ```
 
-> [!tip] pgrep es pkill
+> [!tip] pgrep és pkill
 > Rovidites: nem kell `ps aux | grep` majd `kill PID`. A `pkill nginx` egyben megcsinalja amit a `ps aux | grep nginx` + `kill 1234` kettoben.
 
-## Eloter/hatter kezeles -- Job control
+## Eloter/háttér kezeles -- Job control
 
 Amikor fut egy parancs a terminalban (pl. `kubectl port-forward`), az elfoglalja a terminalt. A job control megoldja ezt.
 
-| Parancs | Mit csinal |
+| Parancs | Mit csinál |
 |---------|------------|
 | `Ctrl+Z` | Felfuggeszti (suspend) az aktualis futo parancsot |
-| `bg` | Hatterbe rakja a felfuggesztett parancsot |
+| `bg` | Háttérbe rakja a felfuggesztett parancsot |
 | `fg` | Visszahozza elotarbe |
-| `jobs` | Listazza a hatterben futo job-okat |
-| `kill %1` | Leallitja az 1-es szamu hatter job-ot |
-| `parancs &` | Eleve hatterben inditja a parancsot |
+| `jobs` | Listazza a háttérben futo job-okat |
+| `kill %1` | Leallitja az 1-és szamu háttér job-ot |
+| `parancs &` | Eleve háttérben indítja a parancsot |
 
-### Gyakorlati pelda -- port-forward hatterbe rakasa
+### Gyakorlati példa -- port-forward háttérbe rakasa
 
 ```bash
 # 1. Elinditok egy port-forward-ot
@@ -189,29 +189,29 @@ kill %1
 ```
 
 > [!tip] A `&` rovidites
-> Ha eleve tudod hogy hatterben akarod:
+> Ha eleve tudod hogy háttérben akarod:
 > `kubectl port-forward svc/webapp 8080:80 &`
-> Igy nem kell a Ctrl+Z + bg tanc.
+> Így nem kell a Ctrl+Z + bg tanc.
 
-> [!tip] Tobb job kezelese
-> Ha tobb hatter job-od van, a `jobs` parancs szamozza oket (`[1]`, `[2]`):
-> `fg %2` -- a 2-es job elotarbe
+> [!tip] Több job kezelese
+> Ha több háttér job-od van, a `jobs` parancs szamozza oket (`[1]`, `[2]`):
+> `fg %2` -- a 2-és job elotarbe
 > `kill %3` -- a 3-as job leallitasa
 
-> [!warning] Felfuggesztett vs hatterben futo
-> A `Ctrl+Z` csak **felfuggeszti** a processzt -- ilyenkor NEM fut! A port-forward nem mukodik amig `bg`-vel hatterbe nem rakod. A `suspended` =/= `running`.
+> [!warning] Felfuggesztett vs háttérben futo
+> A `Ctrl+Z` csak **felfuggeszti** a processzt -- ilyenkor NEM fut! A port-forward nem működik amig `bg`-vel háttérbe nem rakod. A `suspended` =/= `running`.
 
 ## Pipe-olas ( | ) -- parancsok osszekotese
 
-A pipe az elso parancs kimenetit (stdout) atadja a masodik parancs bemeneteul.
+A pipe az első parancs kimenetit (stdout) atadja a masodik parancs bemeneteul.
 
-| Parancs | Mit csinal |
+| Parancs | Mit csinál |
 |---------|------------|
-| `ps aux \| grep nginx` | Futo processzek szurese |
+| `ps aux \| grep nginx` | Futo processzek szűrese |
 | `cat log.txt \| wc -l` | Sorok szamolasa |
 | `cat log.txt \| grep ERROR` | Csak a hibas sorok |
-| `kubectl get pods \| grep webapp` | K8s pod-ok szurese |
-| `history \| grep docker` | Korabbi parancsok keresese |
+| `kubectl get pods \| grep webapp` | K8s pod-ok szűrese |
+| `history \| grep docker` | Korábbi parancsok keresese |
 
 ```bash
 # Szures
@@ -229,18 +229,18 @@ kubectl get pods -A | grep CrashLoopBackOff
 ```
 
 > [!tip] A Unix filozofia
-> "Egy program egy dolgot csinaljon, de jol." A pipe-pal osszekotheted oket: `grep` keres, `wc` szamol, `sort` rendez, `head` levag. Kulon-kulon egyszeruek, de osszerakva barmit megoldhatsz.
+> "Egy program egy dolgot csináljon, de jol." A pipe-pal osszekotheted oket: `grep` keres, `wc` szamol, `sort` rendez, `head` levag. Kulon-kulon egyszerűek, de osszerakva bármit megoldhatsz.
 
 ## Fo tanulsagok
 
-- `cat` gyors, de nagy fajlnal `less` jobb -- nem tolti be az egeszet a memoriaba
-- `echo` + atiranyitas (`>`, `>>`) az egyik legalapabb fajlba-iras modszer
-- `Ctrl+Z` + `bg` a leggyakoribb "elfelejtettem hatterben inditani" mentoov
-- A pipe (`|`) a legfontosabb shell koncepcio -- ezzel barmit osszekotol barmivel
-- `nano` vs `vim`: helyi gepen mindegy, szerveren vim-et erdemes tudni mert mindenhol fenn van
-- A `Ctrl+Z` csak felfuggeszti a processzt, `bg` kell hogy tenyleg fusson hatterben
+- `cat` gyors, de nagy fájlnal `less` jobb -- nem tolti be az egészet a memoriaba
+- `echo` + atiranyitas (`>`, `>>`) az egyik legalapabb fájlba-iras modszer
+- `Ctrl+Z` + `bg` a leggyakoribb "elfelejtettem háttérben indítani" mentoov
+- A pipe (`|`) a legfontosabb shell koncepcio -- ezzel bármit osszekotol bármivel
+- `nano` vs `vim`: helyi gépen mindegy, szerveren vim-et érdemes tudni mert mindenhol fenn van
+- A `Ctrl+Z` csak felfuggeszti a processzt, `bg` kell hogy tényleg fusson háttérben
 
 ## Kapcsolodo anyagok
-- [[foundations/bash-es-linux-parancssor|Bash es Linux parancssor]] -- alapok, elso resz
+- [[foundations/bash-es-linux-parancssor|Bash és Linux parancssor]] -- alapok, első resz
 - [[cloud/docker-alapok|Docker alapok]]
 - [[cloud/kubernetes-bevezeto|Kubernetes bevezeto]]

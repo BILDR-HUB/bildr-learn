@@ -7,35 +7,35 @@ szint: "🧱 Brick"
 kapcsolodo:
   - "[[cloud/docker-alapok|Docker alapok]]"
   - "[[cloud/kubernetes-bevezeto|Kubernetes bevezeto]]"
-  - "[[database/sql-adatbazisok|SQL adatbazisok]]"
+  - "[[database/sql-adatbazisok|SQL adatbázisok]]"
   - "[[cloud/railway|Railway]]"
   - "[[_moc/moc-docker|MOC - Docker]]"
 ---
 
 # Docker Compose
 
-## Osszefoglalo
+## Összefoglaló
 
-A Docker Compose lehetove teszi, hogy tobb kontenert (microservice-eket) egyetlen fajlban (`docker-compose.yml`) definialj es egy paranccsal indits el. Nem kell egyesevel `docker run`-t irogatni -- a Compose leirja az egesz rendszert.
+A Docker Compose lehetővé teszi, hogy több konténert (microservice-eket) egyetlen fájlban (`docker-compose.yml`) definiálalj és egy paranccsal indíts el. Nem kell egyesevel `docker run`-t irogatni -- a Compose leirja az egész rendszert.
 
 ## Jegyzetek
 
 ### Mikor kell Docker Compose?
 
-Amikor az app nem egyetlen kontenerbol all, hanem tobbol:
+Amikor az app nem egyetlen konténerbol all, hanem többol:
 - **Frontend** (Next.js, React)
 - **Backend** (API szerver)
-- **Adatbazis** ([[database/sql-adatbazisok|PostgreSQL]], Redis)
-- **Egyeb** (queue, cache, proxy)
+- **Adatbázis** ([[database/sql-adatbazisok|PostgreSQL]], Redis)
+- **Egyéb** (queue, cache, proxy)
 
-Ezeket mind kulon kontenerkent futtatod, de ossze kell kotni oket. Erre valo a Compose.
+Ezeket mind kulon konténerkent futtatod, de ossze kell kotni oket. Erre valo a Compose.
 
-### Hogyan mukodik?
+### Hogyan működik?
 
-1. Irsz egy `docker-compose.yml` fajlt
-2. `docker compose up` -- elindul az egesz rendszer
-3. Minden service kulon kontenerkent indul, de kozos halozaton vannak
-4. **Bootstrap:** az egyes microservice-ek kulonbozo folyamatkent indulnak el es inicializaljak magukat
+1. Irsz egy `docker-compose.yml` fájlt
+2. `docker compose up` -- elindul az egész rendszer
+3. Minden service kulon konténerkent indul, de kozos hálózaton vannak
+4. **Bootstrap:** az egyes microservice-ek különböző folyamatkent indulnak el és inicializaljak magukat
 
 ```mermaid
 graph LR
@@ -81,34 +81,34 @@ volumes:
 
 ### Fontos elemek
 
-| Elem | Mire jo |
+| Elem | Mire jó |
 |------|---------|
-| `services` | Az egyes kontenerek (microservice-ek) definicioja |
-| `build` | Melyik Dockerfile-bol epitse az image-et |
-| `image` | Kesz image hasznalata (pl. `postgres:16`) |
-| `ports` | Port kivezetes (host:kontener) |
-| `volumes` | Adat megorzese kontener ujrainditas utan |
-| `environment` | Kornyezeti valtozok |
+| `services` | Az egyes konténerek (microservice-ek) definiálcioja |
+| `build` | Melyik Dockerfile-bol építse az image-et |
+| `image` | Kesz image használata (pl. `postgres:16`) |
+| `ports` | Port kivezetes (host:konténer) |
+| `volumes` | Adat megorzese konténer ujrainditas utan |
+| `environment` | Környezeti változók |
 | `depends_on` | Melyik service-nek kell elobb elindulnia |
 
 ### Parancsok
 
-| Parancs | Mit csinal |
+| Parancs | Mit csinál |
 |---------|------------|
 | `docker compose up` | Minden service elinditasa |
-| `docker compose up -d` | Hatterben inditas |
-| `docker compose up --build` | Ujraepiti az image-eket es indit |
-| `docker compose down` | Minden leallitasa es eltakaritás |
+| `docker compose up -d` | Háttérben indítas |
+| `docker compose up --build` | Ujraepiti az image-eket és indít |
+| `docker compose down` | Minden leallitasa és eltakaritás |
 | `docker compose ps` | Futo service-ek listazasa |
-| `docker compose logs -f` | Logok kovetese valos idoben |
+| `docker compose logs -f` | Logok követese valós idoben |
 | `docker compose logs backend` | Csak egy service logjait mutatja |
 
 ### depends_on vs healthcheck
 
 > [!warning] depends_on nem eleg!
-> A `depends_on` csak azt garantalja hogy a kontener **elindul**, de NEM azt hogy **kesz** fogadni kereseket. Ha az adatbazisnak kell 5 masodperc az inicializalasra, a backend hiaba indul utana -- lehet hogy a DB meg nem all keszen.
+> A `depends_on` csak azt garantalja hogy a konténer **elindul**, de NEM azt hogy **kesz** fogadni kereseket. Ha az adatbázisnak kell 5 masodperc az inicializalasra, a backend hiaba indul utána -- lehet hogy a DB még nem all keszen.
 
-Megoldas: **healthcheck**
+Megoldás: **healthcheck**
 
 ```yaml
 db:
@@ -126,18 +126,18 @@ backend:
 ```
 
 ## Fo tanulsagok
-- A Compose egy "terv" az egesz rendszerhez -- egy fajl, egy parancs
-- Minden service sajat kontener, de kozos halozaton beszelnek egymassal
-- A service neve = hostname a belso halozaton (pl. `db` → `postgres://db:5432`)
+- A Compose egy "terv" az egész rendszerhez -- egy fájl, egy parancs
+- Minden service saját konténer, de kozos hálózaton beszelnek egymassal
+- A service neve = hostname a belső hálózaton (pl. `db` → `postgres://db:5432`)
 - `depends_on` nem eleg -- healthcheck kell ha a sorrend szamit
-- Volume kell az adatbazishoz, kulonben minden `down`-nal torlodik az adat
+- Volume kell az adatbázishoz, különben minden `down`-nal törlödik az adat
 
 ## Kapcsolodo anyagok
 - [[cloud/docker-alapok|Docker alapok]]
 - [[cloud/kubernetes-bevezeto|Kubernetes bevezeto]]
-- [[foundations/halozatok-es-ip-cimek|Halozatok es IP cimek]]
-- [[database/sql-adatbazisok|SQL adatbazisok]]
-- Env valtozok Next.js-ben
+- [[foundations/halozatok-es-ip-cimek|Hálózatok és IP cimek]]
+- [[database/sql-adatbazisok|SQL adatbázisok]]
+- Env változók Next.js-ben
 - Tailscale
 - [[cloud/railway|Railway]]
 - [[_moc/moc-docker|MOC - Docker]]

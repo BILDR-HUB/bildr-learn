@@ -6,21 +6,21 @@ kapcsolodo:
   - "[[frontend/nextjs|Next.js]]"
   - "[[database/drizzle|Drizzle]]"
   - "[[database/redis|Redis]]"
-  - "[[database/sql-adatbazisok|SQL adatbazisok]]"
+  - "[[database/sql-adatbazisok|SQL adatbázisok]]"
 ---
 
 ## Mi ez?
 
-A [[frontend/nextjs|Next.js]] **Data Cache** egy szerver-oldali cache reteg, ami a Server Component-ek adatlekerdezéseinek eredmenyet tarolja. A lenyeg: ha az adatod nem valtozik minden request-nel, ne kerdezd le ujra — cache-bol szolgald ki.
+A [[frontend/nextjs|Next.js]] **Data Cache** egy szerver-oldali cache reteg, ami a Server Component-ek adatlekerdezéseinek eredmenyet tarolja. A lényeg: ha az adatod nem valtozik minden request-nel, ne kerdezd le ujra — cache-bol szolgald ki.
 
-Ez **nem** a bongeszo cache, **nem** [[database/redis|Redis]], es **nem** CDN. Ez a Next.js szerver process memoriajaban (vagy fajlrendszeren) el, es kizarolag szerver-oldali adatlekerdezesekre vonatkozik.
+Ez **nem** a bongeszo cache, **nem** [[database/redis|Redis]], és **nem** CDN. Ez a Next.js szerver process memoriajaban (vagy fájlrendszeren) el, és kizarolag szerver-oldali adatlekerdezesekre vonatkozik.
 
 > [!tldr] TL;DR
-> `unstable_cache` = becsomagolod a DB query-idet → elso hivas lefut → eredmeny cache-elodik → kovetkezo request-ek cache-bol kapjak → `revalidatePath()` hivas torli a cache-t → kovetkezo request ujra lefut.
+> `unstable_cache` = becsomagolod a DB query-idet → első hivas lefut → eredmeny cache-elodik → következo request-ek cache-bol kapjak → `revalidatePath()` hivas torli a cache-t → következo request ujra lefut.
 
 ---
 
-## Miert kell ez?
+## Miért kell ez?
 
 Egy tipikus Server Component minden page load-nal lefuttatja a query-ket:
 
@@ -67,7 +67,7 @@ graph TD
     style DB fill:#336791,color:white
 ```
 
-A **Data Cache** (narancs) a mi szintunk — itt cache-eljuk a [[database/drizzle|Drizzle]] query eredmenyeket.
+A **Data Cache** (narancs) a mi szintűnk — itt cache-eljuk a [[database/drizzle|Drizzle]] query eredmenyeket.
 
 > [!info] Next.js cache retegek
 > - **Router Cache** — kliens-oldali, navigacio kozott cache-eli a prefetch-elt oldalakat
@@ -77,7 +77,7 @@ A **Data Cache** (narancs) a mi szintunk — itt cache-eljuk a [[database/drizzl
 
 ---
 
-## `unstable_cache` — hogyan mukodik
+## `unstable_cache` — hogyan működik
 
 ### Alap szintaxis
 
@@ -94,7 +94,7 @@ const getCachedData = cache(
 );
 ```
 
-### Teljes pelda — Dashboard
+### Teljes példa — Dashboard
 
 ```tsx
 import { unstable_cache as cache } from "next/cache";
@@ -123,7 +123,7 @@ export default async function DashboardPage() {
 }
 ```
 
-### Mit csinal belul
+### Mit csinál belul
 
 ```
 1. request → getDashboardData()
@@ -136,17 +136,17 @@ export default async function DashboardPage() {
 ```
 
 > [!warning] Serialization
-> A cache-elt adat JSON-kent szerializalodik. A `Date` objektumok **nem** tulelik a cache-t — `.toISOString()` string-kent kell tarolni, vagy a kiolvasasnal `new Date()`-tel visszakonvertalni.
+> A cache-elt adat JSON-kent szerializalodik. A `Date` objektumok **nem** tulelik a cache-t — `.toISOString()` string-kent kell tárolnii, vagy a kiolvasasnal `new Date()`-tel visszakonvertalni.
 
 ---
 
-## Cache invalidacio — `revalidatePath` es `revalidateTag`
+## Cache invalidacio — `revalidatePath` és `revalidateTag`
 
-A cache magatol **soha nem jar le** (nincs automatikus TTL az `unstable_cache`-nel). Neked kell megmondani mikor frissuljon.
+A cache magatol **soha nem jar le** (nincs automatikus TTL az `unstable_cache`-nel). Neked kell megmondani mikor frissüljon.
 
 ### `revalidatePath("/")`
 
-Az adott URL-hez tartozo osszes cached adatot torli:
+Az adott URL-hez tartozo összes cached adatot torli:
 
 ```tsx
 import { revalidatePath } from "next/cache";
@@ -177,43 +177,43 @@ revalidateTag("dashboard", "default");  // Next.js 16: masodik param kotelezo!
 ```
 
 > [!bug] Next.js 16 breaking change
-> A `revalidateTag()` Next.js 16-ban **masodik parametert** kapott (cache life profile). Ha nem akarod ezzel bajlodni, hasznald a `revalidatePath()`-t — egyszerubb es ugyanazt csinalja route szinten.
+> A `revalidateTag()` Next.js 16-ban **masodik parametert** kapott (cache life profile). Ha nem akarod ezzel bajlodni, használd a `revalidatePath()`-t — egyszerűbb és ugyanazt csinálja route szintén.
 
 ---
 
-## Mikor hasznald / Mikor NE
+## Mikor használd / Mikor NE
 
 | Mikor IGEN | Mikor NE |
 |-----------|----------|
-| Dashboard aggregaciok (COUNT, AVG, SUM) | Felhasznalo-specifikus adat (profil, kosar) |
-| Ritkan valtozo adat (napi 1x scrape) | Valos ideju adat (chat, live feed) |
-| Draga query-k (PERCENTILE_CONT, JOIN-ok) | Egyszeru, gyors query (<5ms) |
-| Sok felhasznalo, azonos adat | Egy felhasznalo, egyedi adat |
+| Dashboard aggregaciok (COUNT, AVG, SUM) | Felhasználó-specifikus adat (profil, kosar) |
+| Ritkan változó adat (napi 1x scrape) | Valós ideju adat (chat, live feed) |
+| Draga query-k (PERCENTILE_CONT, JOIN-ok) | Egyszerű, gyors query (<5ms) |
+| Sok felhasználó, azonos adat | Egy felhasználó, egyedi adat |
 | Server Component page-ek | Client Component-ek (azok fetch-elnek) |
 
 ---
 
-## `unstable_cache` vs egyeb cache megoldasok
+## `unstable_cache` vs egyéb cache megoldások
 
-| Megoldas | Hol el | Mikor jo | Komplexitas |
+| Megoldás | Hol el | Mikor jó | Komplexitas |
 |----------|--------|----------|-------------|
-| **`unstable_cache`** | Next.js process (memoria/fajl) | Single instance, SSR oldalakon | Alacsony — 5 sor kod |
-| **[[database/redis|Redis]]** | Kulso szerver | Multi-instance, elosztott rendszer | Kozepes — infra kell |
+| **`unstable_cache`** | Next.js process (memoria/fájl) | Single instance, SSR oldalakon | Alacsony — 5 sor kod |
+| **[[database/redis|Redis]]** | Külső szerver | Multi-instance, elosztott rendszer | Kozepes — infra kell |
 | **`globalThis` Map** | Node.js process memoria | HMR-safe singleton, dev-ben | Alacsony — de nincs invalidacio API |
 | **React `cache()`** | Request scope | Deduplikacio egy renderben | Minimalis — de nem cross-request |
-| **ISR (`revalidate`)** | Next.js build cache | Statikus oldalak idozitett frissitese | Alacsony — de nem on-demand |
+| **ISR (`revalidate`)** | Next.js build cache | Statikus oldalak idozitett frissítese | Alacsony — de nem on-demand |
 
 > [!tip] Okolszabaly
 > - **Single Next.js instance + DB query cache** → `unstable_cache` (a legegyszerubb)
-> - **Tobb instance / microservice-ek** → [[database/redis|Redis]]
-> - **Statikus oldal idozitett frissitessel** → ISR (`export const revalidate = 60`)
+> - **Több instance / microservice-ek** → [[database/redis|Redis]]
+> - **Statikus oldal idozitett frissítessel** → ISR (`export const revalidate = 60`)
 > - **Egy request-en beluli deduplikacio** → React `cache()` (nem osszekeverendo!)
 
 ---
 
 ## Gotchak
 
-1. **`unstable_` prefix** — Igen, hivatalosan "unstable", de a Next.js csapat production-ben hasznalja. A nev maradt, a funkcio stabil. Next.js 15+ ota nincs jobb alternativa Drizzle/raw DB query-khez.
+1. **`unstable_` prefix** — Igen, hivatalosan "unstable", de a Next.js csapat production-ben használja. A nev maradt, a funkcio stabil. Next.js 15+ ota nincs jobb alternativa Drizzle/raw DB query-khez.
 
 2. **Date serialization** — A cache JSON-kent tarol. `Date` → string. A kiolvasasnal `new Date()` kell:
    ```tsx
@@ -224,17 +224,17 @@ revalidateTag("dashboard", "default");  // Next.js 16: masodik param kotelezo!
    }));
    ```
 
-3. **Dev mode** — `next dev`-ben a Data Cache **nem cache-el** alapbol (minden request friss adat). Ez szandekos, hogy ne kelljen fejlesztes kozben invalidalgatni. Production build-ben (`next build && next start`) mukodik a cache.
+3. **Dev mode** — `next dev`-ben a Data Cache **nem cache-el** alapbol (minden request friss adat). Ez szandekos, hogy ne kelljen fejlesztes kozben invalidalgatni. Production build-ben (`next build && next start`) működik a cache.
 
-4. **Cache kulcs** — A string tomb (`["dashboard"]`) egyedi kell legyen az app-on belul. Ha ket kulonbozo `cache()` hivasnak azonos a kulcsa, osszeakadnak.
+4. **Cache kulcs** — A string tomb (`["dashboard"]`) egyedi kell legyen az app-on belul. Ha ket különböző `cache()` hivasnak azonos a kulcsa, osszeakadnak.
 
 5. **Nem "magic"** — A cache nem figyeli a DB-t. Neked kell meghivni a `revalidatePath()` / `revalidateTag()`-et amikor az adat valtozik (pl. scrape vegen, form submit utan).
 
 ---
 
-## Valós pelda — ingatlanpiaci dashboard
+## Valós példa — ingatlanpiaci dashboard
 
-Egy ingatlanpiaci monitor dashboard **12 parhuzamos [[database/drizzle|Drizzle]] query-t** futtat:
+Egy ingatlanpiaci monitor dashboard **12 párhuzamos [[database/drizzle|Drizzle]] query-t** futtat:
 
 ```
 Adat valtozasi gyakorisag: naponta 1x (scheduled scrape)
@@ -244,7 +244,7 @@ Betoltesi ido cache nelkul: ~70ms (96 listing)
 Betoltesi ido cache-sel: ~0ms (cache HIT) / ~70ms (cache MISS)
 ```
 
-**Megoldas:**
+**Megoldás:**
 1. `getDashboardData()` becsomagolva `unstable_cache`-be
 2. `revalidatePath("/")` hivas a scrape runner vegen (sikeres scrape utan)
 3. Eredmeny: napi ~1 DB query-csomag, minden mas request cache-bol
@@ -255,5 +255,5 @@ Betoltesi ido cache-sel: ~0ms (cache HIT) / ~70ms (cache MISS)
 
 - [[frontend/nextjs|Next.js]] — a framework ami a Data Cache-t adja
 - [[database/drizzle|Drizzle]] — az ORM aminek a query eredmenyeit cache-eljuk
-- [[database/redis|Redis]] — alternativ/kiegeszito cache megoldas elosztott rendszereknel
-- [[database/sql-adatbazisok|SQL adatbazisok]] — az adatbazis reteg amit cache-elunk
+- [[database/redis|Redis]] — alternativ/kiegészíto cache megoldás elosztott rendszereknel
+- [[database/sql-adatbazisok|SQL adatbázisok]] — az adatbázis reteg amit cache-elunk

@@ -10,7 +10,7 @@ kapcsolodo:
 
 ## Mi az a JWT?
 
-A **JWT (JSON Web Token)** egy kompakt, onleiro token formatum, amit autentikaciohoz es informaciaatadashoz hasznalnak. A szerver a bejelentkezes utan kiad egy tokent — ezzel a tokennel azonositja magat a kliens minden keresnel, anelkul hogy a szerver session-t tarolna.
+A **JWT (JSON Web Token)** egy kompakt, onleiro token formatum, amit autentikaciohoz és informáciaatadashoz használnak. A szerver a bejelentkezes utan kiad egy tokent — ezzel a tokennel azonositja magat a kliens minden keresnel, anelkul hogy a szerver session-t tárolnia.
 
 ```
 Hagyomanyos session:                    JWT:
@@ -28,7 +28,7 @@ Hagyomanyos session:                    JWT:
 
 ## Felepites: header.payload.signature
 
-A JWT 3 Base64URL-kodolt reszbol all, ponttal elvalasztva:
+A JWT 3 Base64URL-kódolt reszbol all, ponttal elvalasztva:
 
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzEyMyIsImVtYWlsIjoidGVzdEBleGFtcGxlLmNvbSIsImlhdCI6MTcwMDAwMDAwMCwiZXhwIjoxNzAwMDAzNjAwfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
@@ -56,7 +56,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyXzEyMyIsImVtYWlsIjoidGVzdEB
 ```
 
 > [!warning] A payload NEM titkositott
-> A JWT payload csak Base64URL-kodolt, barki dekodolhatja. **Soha ne tegyel bele jelszot, banki adatot, erzekeny infot.** A signature csak azt garantalja, hogy nem modositottak — de az adatok olvashatoak.
+> A JWT payload csak Base64URL-kódolt, barki dekodolhatja. **Soha ne tegyel bele jelszót, banki adatot, erzekeny infot.** A signature csak azt garantalja, hogy nem módosítottak — de az adatok olvashatoak.
 
 ### 3. Signature
 
@@ -67,7 +67,7 @@ HMACSHA256(
 )
 ```
 
-A szerver a `SECRET_KEY`-vel ellenorzi hogy a token valoban tole szarmazik-e es nem modositottak.
+A szerver a `SECRET_KEY`-vel ellenőrzi hogy a token valoban tole szarmazik-e és nem módosítottak.
 
 ---
 
@@ -95,14 +95,14 @@ sequenceDiagram
 
 ## Access token + Refresh token
 
-Ket token kell, mert egymas ellen dolgozo kovetelmenyeket kell teljesiteni:
+Ket token kell, mert egymas ellen dolgozo követelmenyeket kell teljesiteni:
 
 | | Access Token | Refresh Token |
 |---|---|---|
 | **Lejarat** | Rovid: 15 perc – 1 ora | Hosszu: 7–30 nap |
-| **Hol tarolod** | Memory (JS valtozo) vagy httpOnly cookie | httpOnly cookie (CSAK) |
-| **Mit csinal** | API hivasokhoz azonositja a usert | Uj access tokent ker le |
-| **Ha ellopjak** | Max 1 ora kar | Sokkal nagyobb problema |
+| **Hol tarolod** | Memory (JS változó) vagy httpOnly cookie | httpOnly cookie (CSAK) |
+| **Mit csinál** | API hivasokhoz azonositja a usert | Új access tokent ker le |
+| **Ha ellopjak** | Max 1 ora kar | Sokkal nagyobb probléma |
 
 ```
 Access token lejar
@@ -114,8 +114,8 @@ Szerver ellenorzi a refresh tokent (DB-ben tarolja!)
 Uj access token visszakuldese
 ```
 
-> [!info] Miert tarolja a szerver a refresh tokent?
-> A refresh token az egyetlen amit az adatbazisban kell tarolni — igy tudod **visszavonni** (logout, gyanus aktivitas). Az access token visszavonhatatlan amig le nem jar — ezert kell rovid lejarat.
+> [!info] Miért tarolja a szerver a refresh tokent?
+> A refresh token az egyetlen amit az adatbázisban kell tárolnii — így tudod **visszavonni** (logout, gyanus aktivitas). Az access token visszavonhatatlan amig le nem jar — ezert kell rovid lejarat.
 
 ---
 
@@ -136,14 +136,14 @@ Uj access token visszakuldese
 
 ## Algoritmusok
 
-| Algoritmus | Tipus | Mikor hasznald |
+| Algoritmus | Tipus | Mikor használd |
 |---|---|---|
-| **HS256** | Szimmetrikus (egy titkos kulcs) | Sajat backend — egyszerubb |
-| **RS256** | Aszimmetrikus (privat/publikus kulcspar) | Ha tobb service ellenorzi (pl. Clerk, Supabase) |
+| **HS256** | Szimmetrikus (egy titkos kulcs) | Saját backend — egyszerűbb |
+| **RS256** | Aszimmetrikus (privat/publikus kulcspar) | Ha több service ellenőrzi (pl. Clerk, Supabase) |
 | **ES256** | Elliptic curve, kisebb kulcs | Modern alternativa RS256-ra |
 
-> [!tip] Supabase es Clerk RS256-ot hasznal
-> A [[database/supabase|Supabase]] es a [[backend/clerk|Clerk]] RS256-tal adja ki a tokeneket. A publikus kulcsot a `/.well-known/jwks.json` endpointjukrol lehet lekerni — ezzel barki ellenorizheti a tokent, de csak ok tudjak kiadni.
+> [!tip] Supabase és Clerk RS256-ot használ
+> A [[database/supabase|Supabase]] és a [[backend/clerk|Clerk]] RS256-tal adja ki a tokeneket. A publikus kulcsot a `/.well-known/jwks.json` endpointjukrol lehet lekerni — ezzel barki ellenőrizheti a tokent, de csak ok tudjak kiadni.
 
 ---
 
@@ -162,9 +162,9 @@ const { data } = await supabase.auth.signInWithPassword({ email, password })
 // A Row Level Security (RLS) a JWT sub claim-je alapjan szur
 ```
 
-### Clerk — JWT a sajat backendhez
+### Clerk — JWT a saját backendhez
 
-A [[backend/clerk|Clerk]] a sajat session-jebol JWT-t tud adni a sajat backendednek:
+A [[backend/clerk|Clerk]] a saját session-jebol JWT-t tud adni a saját backendednek:
 
 ```typescript
 // Next.js App Router — szerver oldalon
@@ -183,7 +183,7 @@ fetch('/api/custom', {
 })
 ```
 
-### Sajat JWT implementacio (Node.js)
+### Saját JWT implementacio (Node.js)
 
 ```typescript
 import jwt from 'jsonwebtoken'
@@ -220,17 +220,17 @@ export function authMiddleware(req, res, next) {
 
 ---
 
-## Mikor hasznald / Mikor NE
+## Mikor használd / Mikor NE
 
-**Mikor jo a JWT:**
-- Stateless API — a szerver nem tarol session-t (skalazható, tobb instance)
-- Mobilalkalmazas backend — cookie nelkul is mukodik
-- Microservices — service-ek kozott tovabbitható, mindegyik ellenorizheti
-- [[backend/clerk|Clerk]] / [[database/supabase|Supabase]] hasznalatákor — ok adják ki, te csak ellenorzod
+**Mikor jó a JWT:**
+- Stateless API — a szerver nem tarol session-t (skálázható, több instance)
+- Mobilalkalmazas backend — cookie nelkul is működik
+- Microservices — service-ek kozott továbbitható, mindegyik ellenőrizheti
+- [[backend/clerk|Clerk]] / [[database/supabase|Supabase]] használatákor — ok adják ki, te csak ellenőrzod
 
 **Mikor NE JWT:**
-- Ha azonnali visszavonas kell (pl. admin kitilt egy usert) → a kiadott access token lejarataig ervenyes marad
-- Egyszeru szerver-rendered webappnal → hagyomanyos session cookie egyszerubb
+- Ha azonnali visszavonás kell (pl. admin kitilt egy usert) → a kiadott access token lejarataig ervenyes marad
+- Egyszerű szerver-rendered webappnal → hagyomanyos session cookie egyszerűbb
 - Ha a payload novekszik (sok custom claim) → minden keresnel ott utazik a headerben
 
 ---
@@ -238,9 +238,9 @@ export function authMiddleware(req, res, next) {
 ## Buktatók
 
 - **`exp` nelkuli token** — soha ne adj ki lejarat nelkuli JWT-t
-- **Erzekeny adat a payload-ban** — a payload dekodolhato, ne legyen benne jelszo, kartya szam
-- **`none` algoritmus** — nehany regi library elfogadta az `alg: none` tokent (signature nelkul). Mindig explicit algoritmus ellenorzes
-- **Clock skew** — ha a szerver es kliens oraja elter, az `exp` ellenorzes felremehet. `jwt.verify`-nal van `clockTolerance` opcio
+- **Erzekeny adat a payload-ban** — a payload dekodolhato, ne legyen benne jelszó, kartya szam
+- **`none` algoritmus** — nehany regi library elfogadta az `alg: none` tokent (signature nelkul). Mindig explicit algoritmus ellenőrzes
+- **Clock skew** — ha a szerver és kliens oraja elter, az `exp` ellenőrzes felremehet. `jwt.verify`-nal van `clockTolerance` opcio
 
 ---
 
@@ -248,4 +248,4 @@ export function authMiddleware(req, res, next) {
 
 - [[backend/clerk|Clerk]] — managed auth, automatikus JWT kiallitas
 - [[database/supabase|Supabase]] — Postgres + auth, JWT-vel vedett RLS szabalyok
-- [[database/prisma|Prisma]] — az adatbazis reteg ahol a refresh token-eket tarolod
+- [[database/prisma|Prisma]] — az adatbázis reteg ahol a refresh token-eket tarolod

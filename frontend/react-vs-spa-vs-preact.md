@@ -11,15 +11,15 @@ kapcsolodo:
   - "[[frontend/bun-nextjs-projekt-setup|Bun - Next.js projekt setup]]"
 ---
 
-## A lenyeg 30 masodpercben
+## A lényeg 30 masodpercben
 
-Ez a harom fogalom **nem harom kulonbozo technologia** — ket library + egy alkalmazas minta:
+Ez a harom fogalom **nem harom különböző technologia** — ket library + egy alkalmazás minta:
 
 | Fogalom | Mi ez | Analogia |
 |---------|-------|----------|
-| **React** | UI library (felhasznaloi feluletet epitesz vele) | A LEGO kockak |
-| **SPA** | Alkalmazas minta (hogyan hasznalod a React-et) | Hogyan rakod ossze a LEGO-t |
-| **Preact** | Konnyu React klon (ugyanaz, de kisebb) | Ugyanaz a LEGO, de mini valtozatban |
+| **React** | UI library (felhasználói felületet építesz vele) | A LEGO kockak |
+| **SPA** | Alkalmazás minta (hogyan használod a React-et) | Hogyan rakod ossze a LEGO-t |
+| **Preact** | Könnyű React klon (ugyanaz, de kisebb) | Ugyanaz a LEGO, de mini változatban |
 
 ```mermaid
 graph TD
@@ -38,7 +38,7 @@ graph TD
 
 ## React — a UI library
 
-A **React** egy JavaScript library (nem framework!) amivel **felhasznaloi feluletet** epitesz. Komponenseket irsz, amik HTML-t generalnak:
+A **React** egy JavaScript library (nem framework!) amivel **felhasználói felületet** építesz. Komponenseket irsz, amik HTML-t generalnak:
 
 ```tsx
 // Egy React komponens — ez EGY "kocka" a feluleten
@@ -53,19 +53,19 @@ function InvoiceCard({ vendor, amount, dueDate }) {
 }
 ```
 
-A React **onmagaban nem egy app** — csak a UI reteget adja. Ahhoz hogy egy teljes alkalmazas legyen, dontened kell:
+A React **onmagaban nem egy app** — csak a UI reteget adja. Ahhoz hogy egy teljes alkalmazás legyen, döntened kell:
 
-- **Hogyan delivereled a felhasznalonak?** → Ez a SPA vs SSR kerdes
+- **Hogyan delivereled a felhasználónak?** → Ez a SPA vs SSR kerdes
 - **Hogyan kezeled a routingot?** → React Router, vagy Next.js file-based routing
 - **Hogyan kezeled az adatokat?** → Fetch API, TanStack Query, stb.
 
 ---
 
-## SPA (Single Page Application) — egy alkalmazas minta
+## SPA (Single Page Application) — egy alkalmazás minta
 
-Az **SPA** nem egy technologia, hanem egy **minta (pattern)** — hogyan mukodik az app a bongeszőben.
+Az **SPA** nem egy technologia, hanem egy **minta (pattern)** — hogyan működik az app a bongeszőben.
 
-### Hogyan mukodik egy hagyomanyos weboldal?
+### Hogyan működik egy hagyomanyos weboldal?
 
 ```mermaid
 graph LR
@@ -77,9 +77,9 @@ graph LR
     end
 ```
 
-Minden kattintasnal **uj oldal toltodik be a szerverrol** → feher villanas, lassabb.
+Minden kattintasnal **új oldal toltodik be a szerverrol** → feher villanas, lassabb.
 
-### Hogyan mukodik az SPA?
+### Hogyan működik az SPA?
 
 ```mermaid
 graph LR
@@ -91,10 +91,10 @@ graph LR
     end
 ```
 
-Az SPA **egyetlen HTML oldalt** tolt be, es utana **minden a bongeszőben tortenik**:
+Az SPA **egyetlen HTML oldalt** tolt be, és utána **minden a bongeszőben tortenik**:
 
-- Navigacio? → A React atrajzolja a feluletet, nincs ujratoltes
-- Adat kell? → API hivas a hatterben (fetch), a szerver csak JSON-t kuld
+- Navigacio? → A React atrajzolja a felületet, nincs ujratoltes
+- Adat kell? → API hivas a háttérben (fetch), a szerver csak JSON-t kuld
 - Eredmeny: **gyors, gordulekeny, app-szeru elmeny** (mint egy mobil app)
 
 ### SPA vs SSR (Next.js)
@@ -102,15 +102,15 @@ Az SPA **egyetlen HTML oldalt** tolt be, es utana **minden a bongeszőben torten
 | Szempont | SPA (React + Vite) | SSR ([[frontend/nextjs|Next.js]]) |
 |----------|-------------------|-----------------|
 | **Hol renderel** | Bongeszőben (kliens) | Szerveren, majd bongeszőben |
-| **Elso betoltes** | Lassabb (le kell tolteni az egesz appot) | Gyorsabb (kesz HTML jon) |
-| **SEO** | Rossz (Google nem latja a tartalmat) | Kivalo (szerver renderelt HTML) |
+| **Első betoltes** | Lassabb (le kell tolteni az egész appot) | Gyorsabb (kesz HTML jon) |
+| **SEO** | Rossz (Google nem látja a tartalmat) | Kivalo (szerver renderelt HTML) |
 | **Navigacio** | Gyors (nincs ujratoltes) | Gyors (prefetch) |
-| **Komplexitas** | Egyszerubb | Bonyolultabb |
+| **Komplexitas** | Egyszerűbb | Bonyolultabb |
 | **Backend** | Kulon kell (pl. [[backend/hono|Hono]]) | Beepitve (API Routes) |
-| **Mire jo** | Belso tool, admin, dashboard | Publikus site, SEO, marketing |
+| **Mire jó** | Belső tool, admin, dashboard | Publikus site, SEO, marketing |
 
 > [!tip] Okolszabaly
-> **Belso tool:** SPA eleg — senki nem Google-ozi a szamlakat
+> **Belső tool:** SPA eleg — senki nem Google-ozi a szamlakat
 > **Publikus oldal:** [[frontend/nextjs|Next.js]] SSR — SEO fontos, Google indexeles kell
 
 ### React SPA setup (Vite)
@@ -129,22 +129,22 @@ npm create vite@latest my-app -- --template react-ts
 # └── vite.config.ts
 ```
 
-A build eredmenye: **statikus fajlok** (HTML + JS + CSS), amiket barmelyik hosting kiszolgalhat — pl. [[cloud/cloudflare|Cloudflare]] Pages.
+A build eredmenye: **statikus fájlok** (HTML + JS + CSS), amiket bármelyik hosting kiszolgálhat — pl. [[cloud/cloudflare|Cloudflare]] Pages.
 
 ---
 
 ## Preact — a mini React
 
-A **Preact** a React **konnyusulyu klonja**. Ugyanazt az API-t adja (ugyanugy irsz komponenseket), de **~3KB** vs React **~40KB**.
+A **Preact** a React **könnyűsulyu klonja**. Ugyanazt az API-t adja (ugyanúgy irsz komponenseket), de **~3KB** vs React **~40KB**.
 
 | Szempont | React | Preact |
 |----------|-------|--------|
 | **Meret** | ~40KB (gzipped) | ~3KB (gzipped) |
 | **API** | Eredeti | 99% kompatibilis |
 | **Sebesseg** | Gyors | Kicsit gyorsabb |
-| **Okoszisztema** | Hatalmas (shadcn, react-query, stb.) | Kisebb, de React lib-ek tobbsege fut |
+| **Okoszisztema** | Hatalmas (shadcn, react-query, stb.) | Kisebb, de React lib-ek többsege fut |
 | **Fejleszto** | Meta (Facebook) | Jason Miller (egyeni) |
-| **Mikor valaszd** | Alapertelmezett valasztas | Ha a bundle meret kritikus (edge, mobil) |
+| **Mikor valaszd** | Alapértelmezett választas | Ha a bundle meret kritikus (edge, mobil) |
 
 ```tsx
 // Preact — UGYANUGY nez ki mint a React
@@ -156,19 +156,19 @@ function Counter() {
 }
 ```
 
-> [!info] Mikor erdemes Preact-et hasznalni?
+> [!info] Mikor érdemes Preact-et használni?
 > - **Edge deploy** (pl. [[cloud/cloudflare|Cloudflare]] Workers) — ahol a bundle meret szamit
-> - **Mobil-first app** — ahol a felhasznalok lassu halozaton vannak
+> - **Mobil-first app** — ahol a felhasználók lassu hálózaton vannak
 > - **Ha nem kell a React teljes okoszisztema** — nincs shadcn/ui, nincs React-specifikus library
 >
-> **Mikor NE hasznald:**
+> **Mikor NE használd:**
 > - Ha shadcn/ui, Radix, React Query, stb. kell → maradj React-nel
 > - Ha a csapat React-et ismer → ne bonyolitsd Preact-tel
-> - A 37KB kulonbseg a legtobb appnal **nem szamit** (gyors neten ez ~10ms)
+> - A 37KB különbség a legtobb appnal **nem szamit** (gyors neten ez ~10ms)
 
 ---
 
-## Melyiket valaszd? (dontesi fa)
+## Melyiket valaszd? (döntési fa)
 
 ```mermaid
 graph TD
@@ -183,15 +183,15 @@ graph TD
     style PREACT_SPA fill:#673ab8,color:white
 ```
 
-Belso tool projektekhez: **React SPA** a legjobb valasztas — belso tool, nincs SEO igeny, a React okoszisztema (shadcn/ui, react-query) hasznos, es a 40KB meret [[cloud/cloudflare|Cloudflare]] Pages-en nem problema.
+Belső tool projektekhez: **React SPA** a legjobb választas — belső tool, nincs SEO igény, a React okoszisztema (shadcn/ui, react-query) hasznos, és a 40KB meret [[cloud/cloudflare|Cloudflare]] Pages-en nem probléma.
 
 ---
 
 ## Kapcsolodo
 
-- [[frontend/css-vs-nextjs-vs-react|CSS vs Next.js vs React]] — CSS, React, Next.js szintek kozotti kulonbseg
+- [[frontend/css-vs-nextjs-vs-react|CSS vs Next.js vs React]] — CSS, React, Next.js szintek kozotti különbség
 - [[frontend/nextjs|Next.js]] — fullstack framework (SSR + React)
 - [[backend/hono|Hono]] — backend API a React SPA melle
 - [[cloud/cloudflare|Cloudflare]] — SPA hosting (Pages) + API hosting (Workers)
-- [[backend/edge-function|Edge function]] — miert szamit a meret edge-en
-- [[frontend/bun-nextjs-projekt-setup|Bun - Next.js projekt setup]] — ha megis Next.js-t valasztasz
+- [[backend/edge-function|Edge function]] — miért szamit a meret edge-en
+- [[frontend/bun-nextjs-projekt-setup|Bun - Next.js projekt setup]] — ha megis Next.js-t választasz

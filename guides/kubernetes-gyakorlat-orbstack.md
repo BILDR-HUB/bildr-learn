@@ -12,38 +12,38 @@ kapcsolodo:
 
 # Kubernetes gyakorlat OrbStack-kel
 
-Ebben a gyakorlatban egy teljes Kubernetes demo kornyezetet epitesz fel OrbStack-en: Nginx webapp replikakkal, Redis cache-sel, Service-ekkel, es vegigcsinalod a 7 legfontosabb uzemeltetesi tesztet.
+Ebben a gyakorlatban egy teljes Kubernetes demo környezetet építesz fel OrbStack-en: Nginx webapp replikakkal, Redis cache-sel, Service-ekkel, és vegigcsinalod a 7 legfontosabb üzemeltetesi tesztet.
 
 ---
 
 ## Elofeltetel
 
-Ismerd meg elobb az alapfogalmakat (pod, deployment, service, namespace) a [[cloud/kubernetes-bevezeto|Kubernetes bevezeto]]-bol, illetve a kontenerezes alapjait a [[cloud/docker-alapok|Docker alapok]]-bol.
+Ismerd még elobb az alapfogalmakat (pod, deployment, service, namespace) a [[cloud/kubernetes-bevezeto|Kubernetes bevezeto]]-bol, illetve a konténerezes alapjait a [[cloud/docker-alapok|Docker alapok]]-bol.
 
 ---
 
-## Amit epitsz
+## Amit építsz
 
-Teljes mukodo demo kornyezet a `demo` namespace-ben:
+Teljes működo demo környezet a `demo` namespace-ben:
 - **Nginx webapp** (2 replika) — egyedi HTML oldallal, ConfigMap-bol injektalva
-- **Redis** cache — belso DNS-en erheto (`redis.demo.svc.cluster.local`)
-- **Service-ek** — belso load balancing a podok kozott
+- **Redis** cache — belső DNS-en erheto (`redis.demo.svc.cluster.local`)
+- **Service-ek** — belső load balancing a podok kozott
 - **Ingress** manifest elokeszitve (Ingress Controller nelkul port-forwarddal dolgozz)
 
 ---
 
-## Klaszter inditas
+## Klaszter indítas
 
 ```bash
 orbctl start k8s
 kubectl cluster-info
 ```
 
-Az OrbStack egy konnyu Linux VM-ben futtatja a [[cloud/kubernetes-bevezeto|Kubernetes]]-t. Egyetlen node (`orbstack`), lokalisan.
+Az OrbStack egy könnyű Linux VM-ben futtatja a [[cloud/kubernetes-bevezeto|Kubernetes]]-t. Egyetlen node (`orbstack`), lokálisan.
 
 ---
 
-## YAML manifesztek alkalmazasa
+## YAML manifesztek alkalmazása
 
 ```bash
 kubectl apply -f k8s/namespace.yaml    # demo namespace
@@ -52,38 +52,38 @@ kubectl apply -f k8s/                   # configmap, webapp, redis, ingress
 
 ---
 
-## 7 teszt — csinald vegig mindegyiket
+## 7 teszt — csináld vegig mindegyiket
 
 | # | Teszt | Kulcs parancs | Mit tanulsz |
 |---|-------|---------------|-------------|
 | 1 | **Self-healing** | `kubectl delete pod` | A Deployment automatikusan potol — deklarativ megkozelites |
-| 2 | **Scale up/down** | `kubectl scale --replicas=5` | Replika szam modositas, elesben HPA csinalja |
-| 3 | **Rolling update** | `kubectl rollout restart` | ConfigMap modositas → podok egyenkent cserelodnek, nincs downtime |
-| 4 | **Exec** | `kubectl exec -it -- sh` | Belepes futo kontenerbe — mint a `docker exec -it` |
-| 5 | **Logs** | `kubectl logs -f -l app=webapp` | Elo log figyeles label szuressel |
+| 2 | **Scale up/down** | `kubectl scale --replicas=5` | Replika szam módosítas, élesben HPA csinálja |
+| 3 | **Rolling update** | `kubectl rollout restart` | ConfigMap módosítas → podok egyenkent cserelodnek, nincs downtime |
+| 4 | **Exec** | `kubectl exec -it -- sh` | Belepes futo konténerbe — mint a `docker exec -it` |
+| 5 | **Logs** | `kubectl logs -f -l app=webapp` | Elo log figyeles label szűressel |
 | 6 | **Describe** | `kubectl describe pod` | Events resz = legfontosabb debug info |
 | 7 | **Szandekos hiba** | nem letezo image deploy | ImagePullBackOff — describe Events-ben a pontos ok |
 
 ### Tipp a teszteléshez
 
-Hasznald a **watch modot** (`kubectl get pods -w`) egy kulon terminalban — valos idoben latod mi tortenik. A masik terminalban hajsd vegre az akciokat. Ez a legjobb tanulasi modszer.
+Használd a **watch modot** (`kubectl get pods -w`) egy kulon terminalban — valós idoben látod mi tortenik. A másik terminalban hajsd vegre az akciokat. Ez a legjobb tanulasi modszer.
 
 ---
 
-## kubectl parancsok osszefoglalo
+## kubectl parancsok összefoglalo
 
-| Parancs | Mire jo |
+| Parancs | Mire jó |
 |---------|---------|
 | `kubectl get pods -n demo -w` | Pod-ok figyelese watch modban |
-| `kubectl apply -f mappa/` | Osszes YAML alkalmazasa egy mappabol |
-| `kubectl delete pod` | Pod torlese (self-healing teszt) |
+| `kubectl apply -f mappa/` | Összes YAML alkalmazása egy mappabol |
+| `kubectl delete pod` | Pod törlése (self-healing teszt) |
 | `kubectl scale deployment` | Replika szam valtoztatasa |
 | `kubectl rollout restart` | Deployment ujrainditasa |
-| `kubectl exec -it` | Belepes futo kontenerbe |
-| `kubectl logs -f -l` | Logok figyelese label alapjan |
-| `kubectl describe pod` | Reszletes info + Events |
-| `kubectl get events --sort-by` | Osszes esemeny idorendben |
-| `kubectl port-forward` | Belso service elerese localhost-rol |
+| `kubectl exec -it` | Belepes futo konténerbe |
+| `kubectl logs -f -l` | Logok figyelese label alapján |
+| `kubectl describe pod` | Részletes info + Events |
+| `kubectl get events --sort-by` | Összes esemeny idorendben |
+| `kubectl port-forward` | Belső service elérése localhost-rol |
 | `kubectl wait --for=condition=Ready` | Varakozas amig a podok ready-k |
 
 ---

@@ -14,9 +14,9 @@ szint: "🧱 Brick"
 
 ## Mi az az SDK?
 
-**SDK = Software Development Kit** -- elore megirt kodcsomagok, amikkel egy szolgaltatast vagy platformot tudsz integralni a sajat appodba anelkul, hogy te irnad meg az osszes alacsony szintu kommunikaciot.
+**SDK = Software Development Kit** -- elore megirt kodcsomagok, amikkel egy szolgáltatast vagy platformot tudsz integralni a saját appodba anelkul, hogy te irnad még az összes alacsony szintű kommunikáciot.
 
-Gondolj ra ugy: egy szolgaltatas (pl. [[backend/clerk|Clerk]], Stripe, [[database/supabase|Supabase]]) ad neked egy REST API-t. Azt te is hivhatnad kezzel `fetch()`-csel, de az SDK **becsomagolja** ezt neked tipusos fuggvenyekbe, error handlinggel, retry logikaval, auth kezelessel.
+Gondolj ra ugy: egy szolgáltatas (pl. [[backend/clerk|Clerk]], Stripe, [[database/supabase|Supabase]]) ad neked egy REST API-t. Azt te is hivhatnad kezzel `fetch()`-csel, de az SDK **becsomagolja** ezt neked tipusos fuggvenyekbe, error handlinggel, retry logikaval, auth kezelessel.
 
 ## Kezi API hivas vs SDK
 
@@ -40,30 +40,30 @@ const user = await clerkClient.users.getUser('user_123') // tipus: User
 - **Error handling** -- specifikus hibaosztályok (`NotFoundError`, `RateLimitError`), nem csak generic HTTP status
 - **Retry logika** -- ha timeout vagy rate limit van, automatikusan ujraprobalja
 - **Framework integracio** -- React hookok, Next.js middleware, [[backend/express|Express]] middleware, stb.
-- **Validacio** -- mar a hivas elott ellenorzi, hogy jo parametereket adsz-e meg
+- **Validacio** -- már a hivas elott ellenőrzi, hogy jó parametereket adsz-e még
 
-## Miert hasznalj SDK-t kezi API hivas helyett
+## Miért használj SDK-t kezi API hivas helyett
 
 - **Kevesebb boilerplate** -- nem irsz URL-eket, header-oket, JSON parse-t
-- **Tipusbiztonsag** -- TS autocomplete megmondja mit lehet hivni es mit kapsz vissza
-- **Verziokovetes** -- az SDK verzioja az API verziojahoz van kotve, nem torik el random
+- **Tipusbiztonsag** -- TS autocomplete megmondja mit lehet hivni és mit kapsz vissza
+- **Verziókovetes** -- az SDK verziója az API verziójahoz van kotve, nem torik el random
 - **Edge case-ek le vannak kezelve** -- pagination, rate limiting, webhook validacio
 
-## Mikor NE hasznalj SDK-t
+## Mikor NE használj SDK-t
 
 - **Nincs SDK a te nyelvedhez** -- ilyenkor marad a REST API kezzel
-- **Csak 1-2 endpointot hivsz** -- felesleges egy egesz SDK-t behuzni, eleg egy `fetch`
+- **Csak 1-2 endpointot hivsz** -- felesleges egy egész SDK-t behuzni, eleg egy `fetch`
 - **SDK outdated vagy rosszul karbantartott** -- neha a raw API frissebb
-- **Meret szamit** -- ha egy serverless function-ben vagy es a cold start fontos, egy nagy SDK dependency lassithat
+- **Meret szamit** -- ha egy serverless function-ben vagy és a cold start fontos, egy nagy SDK dependency lassithat
 
-## Gyakori SDK-k amiket erdemes ismerni
+## Gyakori SDK-k amiket érdemes ismerni
 
-| Szolgaltatas | SDK csomag              | Mire                 |
+| Szolgáltatas | SDK csomag              | Mire                 |
 | ------------ | ----------------------- | -------------------- |
 | Stripe       | `stripe`                | Fizetes              |
 | [[database/supabase|Supabase]] | `@supabase/supabase-js` | DB + auth            |
 | [[backend/clerk|Clerk]]    | `@clerk/nextjs`         | Auth                 |
-| Resend       | `resend`                | Email kuldes         |
+| Resend       | `resend`                | Email küldés         |
 | OpenAI       | `openai`                | AI API               |
-| AWS          | `@aws-sdk/client-s3`    | Cloud szolgaltatasok |
+| AWS          | `@aws-sdk/client-s3`    | Cloud szolgáltatasok |
 | [[database/prisma|Prisma]]   | `@prisma/client`        | DB ORM (ez is SDK)   |

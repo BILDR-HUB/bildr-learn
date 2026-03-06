@@ -8,7 +8,7 @@ szint: "🧱 Brick"
 kapcsolodo:
   - "[[database/prisma|Prisma]]"
   - "[[database/supabase|Supabase]]"
-  - "[[database/sql-adatbazisok|SQL adatbazisok]]"
+  - "[[database/sql-adatbazisok|SQL adatbázisok]]"
   - "[[database/sql-index-szabalyok|SQL Index szabalyok]]"
   - "[[cloud/cloudflare|Cloudflare]]"
   - "[[cloud/docker-alapok|Docker alapok]]"
@@ -27,24 +27,24 @@ kapcsolodo:
 
 ---
 
-## Mi ez es mire jo?
+## Mi ez és mire jó?
 
 A **Drizzle ORM** egy TypeScript-first ORM (Object-Relational Mapping), ami SQL-t ir helyetted, de ugy, hogy te kontrollalod mi tortenik. A fo filozofiaja: _"Ha ismered az SQL-t, ismered a Drizzle-t."_
 
-**Milyen problemat old meg:**
+**Milyen problémat old még:**
 
-Adatbazissal kell kommunikalnod az appodbol. Irhatnal raw SQL-t, de az nem tipusbiztos, nehez karbantartani, es nincs autocomplete. A Drizzle ad neked TypeScript tipusokat, migration-oket, es egy query builder-t, ami szinte 1:1 lekezpezi az SQL-t -- de nem rejti el eloled, mint a Prisma.
+Adatbázissal kell kommunikalnod az appodbol. Irhatnal raw SQL-t, de az nem tipusbiztos, nehez karbantartani, és nincs autocomplete. A Drizzle ad neked TypeScript tipusokat, migration-oket, és egy query builder-t, ami szinte 1:1 lekezpezi az SQL-t -- de nem rejti el eloled, mint a Prisma.
 
-# Drizzle vs [[database/prisma|Prisma]] osszehasonlitas
+# Drizzle vs [[database/prisma|Prisma]] összehasonlítas
 
 |Szempont|Drizzle|Prisma|
 |---|---|---|
-|**Megkozelites**|SQL-kozelibb, te kontrollalsz|Magas szintu absztrakcio|
-|**Sema definicio**|TypeScript fajlok|Sajat `.prisma` nyelv|
+|**Megkozelites**|SQL-közelibb, te kontrollalsz|Magas szintű absztrakcio|
+|**Séma definiálcio**|TypeScript fájlok|Saját `.prisma` nyelv|
 |**Bundle size**|Minimalis (~50kb)|Nagy (~2MB engine)|
-|**Edge/serverless**|Nativan fut|Problemas (engine kell)|
+|**Edge/serverless**|Nativan fut|Problémas (engine kell)|
 |**Relaciok**|SQL join-ok VAGY relational API|Beepitett relation szintaxis|
-|**Raw SQL**|Termeszetes, barmikor|Lehetseges de nem idiomatikus|
+|**Raw SQL**|Termeszetes, bármikor|Lehetseges de nem idiomatikus|
 |**Tanulasi gorbe**|Ha tudsz SQL-t, azonnal megy|Prisma-specifikus nyelvet tanulsz|
 |**Migration**|`drizzle-kit` (push/generate)|`prisma migrate`|
 |**Docker/serverless**|Tokeletes (nincs kulon engine)|Engine binary kell a containerbe|
@@ -52,7 +52,7 @@ Adatbazissal kell kommunikalnod az appodbol. Irhatnal raw SQL-t, de az nem tipus
 
 ---
 
-## Architektura
+## Architektúra
 
 ```mermaid
 graph TD
@@ -66,9 +66,9 @@ graph TD
 ```
 
 ---
-## Setup -- lepesrol lepesre
+## Setup -- lépésrol lépésre
 
-### 1. Telepites (Postgres pelda)
+### 1. Telepítes (Postgres példa)
 
 ```bash
 # Core + Postgres driver + migration tool
@@ -78,9 +78,9 @@ npm install -D drizzle-kit
 
 A `postgres` csomag a driver (postgres.js) -- alternativa: `pg`, `@neondatabase/serverless`, `@vercel/postgres`.
 
-### 2. Alap konfiguracio
+### 2. Alap konfigurácio
 
-`drizzle.config.ts` (projekt gyoker):
+`drizzle.config.ts` (projekt gyökér):
 
 ```ts
 import { defineConfig } from 'drizzle-kit'
@@ -101,9 +101,9 @@ export default defineConfig({
 DATABASE_URL=postgresql://user:password@localhost:5432/mydb
 ```
 
-### 3. Projekt beallitas
+### 3. Projekt beállítás
 
-**Sema definialas** -- `src/db/schema.ts`:
+**Séma definiálalas** -- `src/db/schema.ts`:
 
 ```ts
 import { pgTable, text, serial, timestamp, integer, boolean } from 'drizzle-orm/pg-core'
@@ -242,7 +242,7 @@ volumes:
 
 ## Best Practices
 
-### Architektura / Struktura
+### Architektúra / Struktúra
 
 Tartsd a DB reteget elkulonitve -- ne szord szet a query-ket a komponensekbe:
 
@@ -259,7 +259,7 @@ src/
 │       └── posts.ts      # getPostsByAuthor(), stb.
 ```
 
-A `queries/` reteg azert fontos, mert a server action-okban es API route-okban nem kell DB logikat ismetelned:
+A `queries/` reteg azert fontos, mert a server action-okban és API route-okban nem kell DB logikat ismétlelned:
 
 ```ts
 // db/queries/users.ts
@@ -283,7 +283,7 @@ import { getUserByClerkId } from '@/db/queries/users'
 const user = await getUserByClerkId(clerkId)
 ```
 
-**Relaciok definialasa** -- ha hasznalni akarod a `db.query` relational API-t:
+**Relaciok definiálalasa** -- ha használni akarod a `db.query` relational API-t:
 
 ```ts
 // db/schema/relations.ts
@@ -308,10 +308,10 @@ const userWithPosts = await db.query.users.findFirst({
 })
 ```
 
-### Biztonsag
+### Biztonság
 
 > [!danger] SQL injection -- soha ne fuzz ossze stringeket
-> Ha user inputot kozvetlenul beleirsz a query-be, az adatbazisod feltörheto. Mindig a Drizzle query buildert vagy a `sql` template tag-et hasznald.
+> Ha user inputot kozvetlenul beleirsz a query-be, az adatbázisod feltörheto. Mindig a Drizzle query buildert vagy a `sql` template tag-et használd.
 
 ```ts
 // ❌ SOHA -- SQL injection
@@ -330,11 +330,11 @@ db.execute(sql`SELECT * FROM users WHERE email = ${email}`)
 
 - `.env`-ben tartsd, soha ne commitold
 - Docker-ben env variable-kent add at, ne bake-eld az image-be
-- Production-ben hasznalj connection pooler-t (pl. PgBouncer, Supabase pooler, Neon pooler)
+- Production-ben használj connection pooler-t (pl. PgBouncer, Supabase pooler, Neon pooler)
 
-**Jogosultsagok** -- a DB user-nek csak annyi joga legyen, amennyire az appnak szuksege van. Ne `superuser`-rel csatlakozz production-ben.
+**Jogosultságok** -- a DB user-nek csak annyi joga legyen, amennyire az appnak szüksége van. Ne `superuser`-rel csatlakozz production-ben.
 
-### Teljesitmeny
+### Teljesítmény
 
 **Csak azt kerd le amit kell:**
 
@@ -349,7 +349,7 @@ const emails = await db.select({
 }).from(users)
 ```
 
-**Indexek -- a sema fajlban definialhatod:**
+**Indexek -- a séma fájlban definiálalhatod:**
 
 ```ts
 import { pgTable, text, serial, index } from 'drizzle-orm/pg-core'
@@ -401,19 +401,19 @@ const client = postgres(process.env.DATABASE_URL!, {
 })
 ```
 
-### Koltsegoptimalizalas
+### Költségoptimalizalas
 
-- Drizzle maga **ingyenes es open source** -- nincs licence koltseg
-- A koltseg a **DB hosting** -- Neon, Supabase, Railway, vagy sajat Postgres Docker-ben
+- Drizzle maga **ingyenes és open source** -- nincs licence költség
+- A költség a **DB hosting** -- Neon, Supabase, Railway, vagy saját Postgres Docker-ben
 - **Neon free tier:** 0.5 GB storage, auto-sleep -- tokeletes dev/kis projektekhez
 - **Supabase free tier:** 500 MB, 2 projektig
-- Ha Docker-ben sajat Postgres-t futtatsz, a koltseg = a szerver koltsege, semmi extra
+- Ha Docker-ben saját Postgres-t futtatsz, a költség = a szerver költsége, semmi extra
 - **Connection pooling** csokkenti a DB load-ot → kisebb instance is eleg
 
 
 ---
 
-## Buktatok es hibak amiket elkerulj
+## Buktatok és hibak amiket elkerülj
 
 
 ---
@@ -437,17 +437,17 @@ const client = postgres(process.env.DATABASE_URL!, {
 ---
 
 ## Kapcsolodo anyagok
-- Next.js Data Cache es revalidacio -- Drizzle query eredmenyek cache-elese Next.js-ben
+- Next.js Data Cache és revalidacio -- Drizzle query eredmenyek cache-élese Next.js-ben
 - [[database/prisma|Prisma]]
-- [[database/sql-adatbazisok|SQL adatbazisok]]
+- [[database/sql-adatbazisok|SQL adatbázisok]]
 - [[database/sql-index-szabalyok|SQL Index szabalyok]]
 - [[database/supabase|Supabase]]
 - [[cloud/cloudflare|Cloudflare]] -- D1 (SQLite) driver Drizzle-lel
-- [[backend/hono|Hono]] -- edge API framework, Drizzle-lel hasznalhato
+- [[backend/hono|Hono]] -- edge API framework, Drizzle-lel használhato
 - [[cloud/railway|Railway]]
 - [[backend/clerk|Clerk]]
 - [[frontend/nextjs|Next.js]]
 - [[cloud/docker-alapok|Docker alapok]]
 - [[cloud/docker-compose|Docker Compose]]
-- Env valtozok Next.js-ben
+- Env változók Next.js-ben
 - [[_moc/moc-database|MOC - Database]]

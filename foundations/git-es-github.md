@@ -2,32 +2,32 @@
 tags:
   - git
 kapcsolodo:
-  - "[[foundations/bash-es-linux-parancssor|Bash es Linux parancssor]]"
+  - "[[foundations/bash-es-linux-parancssor|Bash és Linux parancssor]]"
   - "[[cloud/vercel|Vercel]]"
   - "[[cloud/railway|Railway]]"
 datum: 2026-02-08
 szint: "🌱 Newcomer"
 ---
 
-# Git es GitHub
+# Git és GitHub
 
-## Osszefoglalo
+## Összefoglaló
 
-A Git nyomon koveti a kodod valtozasait -- barmikor visszamehetsz egy korabbi verziora, es tobben dolgozhattok parhuzamosan. A GitHub az ahol a kodod "el" online, es ahonnan a [[cloud/vercel|Vercel]]/[[cloud/railway|Railway]] deployol.
+A Git nyomon követi a kódod változásait -- bármikor visszamehetsz egy korábbi verzióra, és többen dolgozhattok párhuzamosan. A GitHub az ahol a kódod "el" online, és ahonnan a [[cloud/vercel|Vercel]]/[[cloud/railway|Railway]] deployol.
 
-## Mi a Git es miert kell?
+## Mi a Git és miért kell?
 
-Kepzeld el hogy van egy Word dokumentumod es Ctrl+Z-vel visszavonod a valtozasokat. A Git ugyanez, csak:
-- **Nem egy fajlra**, hanem az egesz projektre vonatkozik
-- **Nem csak visszavonas**, hanem barmely korabbi allapothoz visszalephetsz
-- **Tobben dolgozhattok** egyszerre, es osszeolvasztjatok a valtozasokat
+Képzeld el hogy van egy Word dokumentumod és Ctrl+Z-vel visszavonod a változásokat. A Git ugyanez, csak:
+- **Nem egy fájlra**, hanem az egész projektre vonatkozik
+- **Nem csak visszavonás**, hanem bármely korábbi állapothoz visszalephetsz
+- **Többen dolgozhattok** egyszerre, és összeolvasztjatok a változásokat
 
-**Miert fontos ha AI-val kodolsz:**
-- Ha az AI agent elront valamit -> `git checkout .` es visszaall minden
-- Ha kiserletezz -> branch-en dolgozol, ha nem jo: torlod
+**Miért fontos ha AI-val kódolsz:**
+- Ha az AI agent elront valamit -> `git checkout .` és visszaáll minden
+- Ha kísérletezz -> branch-en dolgozol, ha nem jó: törlöd
 - A Vercel/Railway automatikusan deployol ha push-olsz GitHubra
 
-## A 3 hely ahol a kodod van
+## A 3 hely ahol a kódod van
 
 ```
 Working Directory -> Staging Area -> Repository
@@ -35,41 +35,41 @@ Working Directory -> Staging Area -> Repository
 ```
 
 1. **Working directory** -- a mappad ahol dolgozol
-2. **Staging area** -- amit kijeloltel hogy az kovetkezo mentesbe (commit) keruljon
-3. **Repository** -- az elmentett verziok halmaza
+2. **Staging area** -- amit kijeloltel hogy az következo mentésbe (commit) kerüljon
+3. **Repository** -- az elmentett verziók halmaza
 
 ## Alapparancsok -- a mindennapok
 
-| Parancs | Mit csinal | Mikor kell |
+| Parancs | Mit csinál | Mikor kell |
 |---------|------------|------------|
-| `git init` | Uj Git repo letrehozasa | Projekt elejen, egyszer |
-| `git status` | Mi valtozott? Mi van staging-ben? | Mindig, mielott commitolsz |
-| `git add .` | Az osszes valtozast staging-be teszi | Amikor mindent menteni akarsz |
-| `git add fajl.ts` | Csak egy fajlt tesz staging-be | Amikor valogatni akarsz |
-| `git commit -m "uzenet"` | Elment egy verziot uzenettel | Amikor egy logikai egyseg kesz |
-| `git log --oneline` | Korabbi commitok listaja | Megnezni mi tortent |
-| `git diff` | Mi valtozott a fajlokban | Mielott commitolsz, atnezni |
+| `git init` | Új Git repo létrehozasa | Projekt elejen, egyszer |
+| `git status` | Mi változótt? Mi van staging-ben? | Mindig, mielott commitolsz |
+| `git add .` | Az összes változást staging-be teszi | Amikor mindent menteni akarsz |
+| `git add fajl.ts` | Csak egy fájlt tesz staging-be | Amikor valogatni akarsz |
+| `git commit -m "uzenet"` | Elment egy verziót üzenettel | Amikor egy logikai egyseg kesz |
+| `git log --oneline` | Korábbi commitok listaja | Megnezni mi tortent |
+| `git diff` | Mi változótt a fájlokban | Mielott commitolsz, atnezni |
 
-## Commit -- a "mentes gomb"
+## Commit -- a "mentés gomb"
 
 Egy commit = a projekt egy pillanatkipe. Minden commithoz tartozik:
 - Egyedi azonosito (hash): `a1b2c3d`
-- Uzenet: mit csinaltal
-- Idopont es szerzo
+- Üzenet: mit csináltal
+- Idopont és szerzo
 
-**Jo commit uzenet:** Rovid, leirja MIT csinaltal es MIERT
+**Jó commit üzenet:** Rovid, leirja MIT csináltal és Miért
 ```
 feat: add user login page
 fix: resolve database connection timeout
 ```
 
 **Best practice AI-val valo fejleszteshez:**
-- **Commitolj gyakran** -- ha az AI agent csinalt egy mukodo valtoztatast, azonnal commitold. Ha a kovetkezo valtoztatas elront valamit, konnyu visszaallni
-- **Ne commitolj mindent egybe** -- ha az agent 5 fajlt modositott, de 3 egy feature es 2 egy masik, csinald 2 commitban
+- **Commitolj gyakran** -- ha az AI agent csinált egy működo valtoztatast, azonnal commitold. Ha a következo valtoztatas elront valamit, könnyű visszaállni
+- **Ne commitolj mindent egybe** -- ha az agent 5 fájlt módosított, de 3 egy feature és 2 egy másik, csináld 2 commitban
 
-## Branch -- parhuzamos munka
+## Branch -- párhuzamos munka
 
-A branch egy "parhuzamos valosag" a kododban. Az eredeti kod (`main`) nem valtozik, amig a branchen dolgozol.
+A branch egy "párhuzamos valóság" a kódodban. Az eredeti kod (`main`) nem valtozik, amig a branchen dolgozol.
 
 ```
 main:     A -> B -> C
@@ -77,38 +77,38 @@ main:     A -> B -> C
 feature:             D -> E -> F
 ```
 
-| Parancs | Mit csinal |
+| Parancs | Mit csinál |
 |---------|------------|
 | `git branch` | Milyen branchek vannak |
-| `git branch feature-nev` | Uj branch letrehozasa |
-| `git checkout feature-nev` | Atvaltas a branchre |
-| `git checkout -b feature-nev` | Letrehozas + atvaltas egyben |
+| `git branch feature-nev` | Új branch létrehozasa |
+| `git checkout feature-nev` | Átváltás a branchre |
+| `git checkout -b feature-nev` | Létrehozas + átváltás egyben |
 | `git merge feature-nev` | Branch beolvasztasa a jelenlegibe |
-| `git branch -d feature-nev` | Branch torlese (ha mar merge-olve) |
+| `git branch -d feature-nev` | Branch törlése (ha már merge-olve) |
 
 **Best practice AI-val valo fejleszteshez:**
-- **Minden feature-nek uj branch** -- ha az AI agent nagy valtoztatast csinal, csinald branchen
-- Ha elromlik valami -> `git checkout main` es ott vagy ahol voltal
-- A Vercel automatikusan preview deploy-t csinal minden branchhez
+- **Minden feature-nek új branch** -- ha az AI agent nagy valtoztatast csinál, csináld branchen
+- Ha elromlik valami -> `git checkout main` és ott vagy ahol voltal
+- A Vercel automatikusan preview deploy-t csinál minden branchhez
 
 ## GitHub -- a kod online otthona
 
-A Git lokalisan mukodik a gepeden. A **GitHub** az ahol:
+A Git lokálisan működik a gépeden. A **GitHub** az ahol:
 - A kod online tarolva van (backup)
-- Masok (es a Vercel/Railway) hozzafernek
-- Pull Request-ekkel atnezed a valtozasokat
+- Masok (és a Vercel/Railway) hozzáfernek
+- Pull Request-ekkel atnezed a változásokat
 
-| Parancs | Mit csinal |
+| Parancs | Mit csinál |
 |---------|------------|
-| `git remote add origin URL` | GitHub repo hozzarendelese |
-| `git push origin main` | Kod feltoltese GitHubra |
-| `git push -u origin main` | Feltoltes + megjegyzi (utana eleg `git push`) |
-| `git pull` | Legfrissebb verzio lehuzasa GitHubrol |
-| `git clone URL` | Meglevo repo letoltese |
+| `git remote add origin URL` | GitHub repo hozzárendelese |
+| `git push origin main` | Kod feltöltése GitHubra |
+| `git push -u origin main` | Feltöltés + megjegyzi (utána eleg `git push`) |
+| `git pull` | Legfrissebb verzió lehuzasa GitHubrol |
+| `git clone URL` | Meglevo repo letöltése |
 
 ## .gitignore -- amit NE tolts fel
 
-A `.gitignore` fajl megmondja a Git-nek mit hagyjon ki:
+A `.gitignore` fájl megmondja a Git-nek mit hagyjon ki:
 
 ```gitignore
 node_modules/        # fuggosegek (npm install ujra letolti)
@@ -120,11 +120,11 @@ dist/                # build output
 ```
 
 > [!danger] Titok felkerult GitHubra
-> Ha egyszer felkerult GitHubra egy API kulcs vagy jelszo, akkor mar keso gitignore-olni. A Git history-ban benne marad -- barki lathatja. Ilyenkor **azonnal uj kulcsot kell generalni**, es a regit invalidalni.
+> Ha egyszer felkerult GitHubra egy API kulcs vagy jelszó, akkor már keso gitignore-olni. A Git history-ban benne marad -- barki lathatja. Ilyenkor **azonnal új kulcsot kell generalni**, és a regit invalidalni.
 
 ## Pull Request (PR) -- valtoztatas atnezese
 
-A PR egy keres: "ezeket a valtozatasokat szeretnem beolvasztani a main-be". GitHub-on jon letre.
+A PR egy keres: "ezeket a változatasokat szeretnem beolvasztani a main-be". GitHub-on jon letre.
 
 ```
 1. Csinalsz egy branch-et -> dolgozol rajta
@@ -136,23 +136,23 @@ A PR egy keres: "ezeket a valtozatasokat szeretnem beolvasztani a main-be". GitH
 ```
 
 **Best practice:**
-- Nezd at a PR diff-et mielott merge-olsz -- AI is hibazhat
-- A PR-nek legyen leirasa: mit csinal es miert
+- Nézd at a PR diff-et mielott merge-olsz -- AI is hibazhat
+- A PR-nek legyen leirasa: mit csinál és miért
 
-## Visszaallitas -- ha valami elromlik
+## Visszaállítas -- ha valami elromlik
 
-| Helyzet | Parancs | Mit csinal |
+| Helyzet | Parancs | Mit csinál |
 |---------|---------|------------|
-| Meg nem commitoltam, mindent vissza | `git checkout .` | Visszaallitja az osszes fajlt az utolso commitra |
-| Egy fajlt akarok visszaallitani | `git checkout -- fajl.ts` | Csak azt az egyet allitja vissza |
-| Commitoltam de meg nem pushotam, vissza | `git reset HEAD~1` | Visszavonja az utolso commitot (a fajlok maradnak) |
-| Korabbi allapotot akarok megnezni | `git log --oneline` -> `git checkout a1b2c3d` | "Idoutazas" egy regi commithoz |
-| Pusholva van, de vissza akarok | `git revert a1b2c3d` | Uj committal visszacsinalja a regit (biztonsagos) |
+| Még nem commitoltam, mindent vissza | `git checkout .` | Visszaállítja az összes fájlt az utolso commitra |
+| Egy fájlt akarok visszaállítani | `git checkout -- fajl.ts` | Csak azt az egyet allitja vissza |
+| Commitoltam de még nem pushotam, vissza | `git reset HEAD~1` | Visszavonja az utolso commitot (a fájlok maradnak) |
+| Korábbi állapotot akarok megnezni | `git log --oneline` -> `git checkout a1b2c3d` | "Idoutazas" egy regi commithoz |
+| Pusholva van, de vissza akarok | `git revert a1b2c3d` | Új committal visszacsinalja a regit (biztonságos) |
 
 **Best practice:**
-- Mielott nagy valtoztatast csinalsz -> `git status` es ha kell `git stash` (felreteszi a jelenlegi valtozasokat)
-- Ha az AI agent teljesen szetcseszte a kodot -> `git checkout .` es kezded elorol
-- **Ne hasznalj `git reset --hard`-ot** hacsak nem tudod pontosan mit csinal -- ez veglegesen torol
+- Mielott nagy valtoztatast csinálsz -> `git status` és ha kell `git stash` (felreteszi a jelenlegi változásokat)
+- Ha az AI agent teljesen szetcseszte a kódot -> `git checkout .` és kezded elorol
+- **Ne használj `git reset --hard`-ot** hacsak nem tudod pontosan mit csinál -- ez veglegesen töröl
 
 ## GitHub CLI (`gh`) -- gyorsabb mint a bongeszo
 
@@ -189,15 +189,15 @@ graph LR
 ```
 
 ## Fo tanulsagok
-- **Commitolj gyakran** -- foleg ha AI-val dolgozol, minden mukodo allapotot ments
-- **Branch minden feature-nek** -- igy a main mindig mukodik
-- A `.gitignore` az elso fajl amit beallitasz -- titkok NE keruljenek GitHubra
+- **Commitolj gyakran** -- foleg ha AI-val dolgozol, minden működo állapotot ments
+- **Branch minden feature-nek** -- így a main mindig működik
+- A `.gitignore` az első fájl amit beállítász -- titkok NE kerüljenek GitHubra
 - `git checkout .` a mentoov ha az AI agent elront valamit
-- A GitHub + Vercel/Railway integracio = push es automatikusan deployol
-- PR-eket erdemes atnezni mielott merge-olod, akkor is ha AI irta
+- A GitHub + Vercel/Railway integracio = push és automatikusan deployol
+- PR-eket érdemes atnezni mielott merge-olod, akkor is ha AI irta
 
 ## Kapcsolodo anyagok
-- [[foundations/bash-es-linux-parancssor|Bash es Linux parancssor]]
+- [[foundations/bash-es-linux-parancssor|Bash és Linux parancssor]]
 - [[cloud/vercel|Vercel]]
 - [[cloud/railway|Railway]]
 - [[cloud/docker-alapok|Docker alapok]]

@@ -17,13 +17,13 @@ kapcsolodo:
 
 ---
 
-## Mi ez es mire jo?
+## Mi ez és mire jó?
 
-Az **Express** (vagy Express.js) a **Node.js világ legregebbi es legelterjedtebb web framework-je**. Ha a JavaScript/TypeScript-ben akarsz backend-et irni (API-t, webszervert), akkor ez volt evekig az egyetlen komoly valasztas.
+Az **Express** (vagy Express.js) a **Node.js világ legregebbi és legelterjedtebb web framework-je**. Ha a JavaScript/TypeScript-ben akarsz backend-et irni (API-t, webszervert), akkor ez volt evekig az egyetlen komoly választas.
 
-**Milyen problemat old meg:**
+**Milyen problémat old még:**
 
-Kepzeld el, hogy van egy boltod. A vevok (felhasznalok) bejonnek es kernek dolgokat (HTTP keresek). Valakinek kell fogadni a kereseket, megnezni mit akarnak, es odaadni amit kernek — ez a webszerver. Az Express egy **keret (framework)**, ami megkonnyiti ennek a webszervernek a megirasat.
+Képzeld el, hogy van egy boltod. A vevok (felhasználók) bejonnek és kernek dolgokat (HTTP keresek). Valakinek kell fogadni a kereseket, megnezni mit akarnak, és odaadni amit kernek — ez a webszerver. Az Express egy **keret (framework)**, ami megkonnyiti ennek a webszervernek a megirasat.
 
 ```mermaid
 graph LR
@@ -35,7 +35,7 @@ graph LR
     style EXPRESS fill:#000,color:white
 ```
 
-**Express nelkul** a Node.js-ben igy nez ki egy szerver:
+**Express nelkul** a Node.js-ben így nez ki egy szerver:
 
 ```javascript
 // Nyers Node.js — bonyolult, alacsony szintu
@@ -67,33 +67,33 @@ app.listen(3000)
 ```
 
 > [!tldr] Egy mondatban
-> Az Express egy Node.js library ami megkonnyiti HTTP keresek fogadasat es valaszolasát — azaz API-k es webszerverek epiteset.
+> Az Express egy Node.js library ami megkonnyiti HTTP keresek fogadasat és válaszolasát — azaz API-k és webszerverek építeset.
 
-**Mikor hasznald:**
+**Mikor használd:**
 
-- Ha sajat Node.js backend API-t irsz (pl. [[cloud/railway|Railway]]-re deployolva)
+- Ha saját Node.js backend API-t irsz (pl. [[cloud/railway|Railway]]-re deployolva)
 - Ha tanulni akarsz backend fejlesztest — ez a klasszikus kiindulopont
 - Regi projektek karbantartasa — rengeteg letezo projekt Express-re epul
 
-**Mikor NE hasznald:**
+**Mikor NE használd:**
 
-- Ha [[frontend/nextjs|Next.js]]-t hasznalsz — abban mar van beepitett API Routes, nem kell Express melle
-- Ha Cloudflare Workers-re vagy edge-re deployolsz — ott az Express NEM fut (lasd: [[backend/hono|Hono]])
-- Uj projekteknel ahol fontos a teljesitmeny es a meret — modernebb alternativak jobbak
+- Ha [[frontend/nextjs|Next.js]]-t használsz — abban már van beepitett API Routes, nem kell Express melle
+- Ha Cloudflare Workers-re vagy edge-re deployolsz — ott az Express NEM fut (lásd: [[backend/hono|Hono]])
+- Új projekteknel ahol fontos a teljesítmény és a meret — modernebb alternativak jobbak
 
 **Alternativak:**
 
-[[backend/hono|Hono]] (edge-nativ, modernebb), Fastify (gyorsabb Express), Koa (Express keszitok ujragondolt verzioja), [[frontend/nextjs|Next.js]] API Routes (ha mar Next.js-t hasznalsz)
+[[backend/hono|Hono]] (edge-nativ, modernebb), Fastify (gyorsabb Express), Koa (Express készítok ujragondolt verziója), [[frontend/nextjs|Next.js]] API Routes (ha már Next.js-t használsz)
 
 ---
 
 ## A "middleware" koncepcio
 
-Az Express legnagyobb innovacioja a **middleware pattern**. Ez az az otlet, amire az osszes tobbi framework (Hono, Next.js middleware, stb.) is epul.
+Az Express legnagyobb innovacioja a **middleware pattern**. Ez az az otlet, amire az összes többi framework (Hono, Next.js middleware, stb.) is epul.
 
 **Mi a middleware?**
 
-Egy middleware egy fuggveny, ami **a keres es a valasz kozott ul** — mint egy szuro vagy ellenorzopont. Tobb middleware egymas utan fut, mint egy futoszalagon:
+Egy middleware egy fuggveny, ami **a keres és a valasz kozott ul** — mint egy szűro vagy ellenőrzopont. Több middleware egymas utan fut, mint egy futoszalagon:
 
 ```mermaid
 graph LR
@@ -128,24 +128,24 @@ app.get('/api/users', (req, res) => {
 })
 ```
 
-> [!tip] Miert fontos ezt erteni?
-> A middleware pattern **mindenhol visszakoszon**: [[frontend/nextjs|Next.js]] middleware, [[backend/hono|Hono]] middleware, Cloudflare Workers — mind ugyanezt a gondolkodast hasznalja. Ha Express-ben megerted, mindenhol tudod alkalmazni.
+> [!tip] Miért fontos ezt erteni?
+> A middleware pattern **mindenhol visszakoszon**: [[frontend/nextjs|Next.js]] middleware, [[backend/hono|Hono]] middleware, Cloudflare Workers — mind ugyanezt a gondolkodast használja. Ha Express-ben megerted, mindenhol tudod alkalmazni.
 
 ---
 
-## Miert nem az elsodleges valasztas uj projekteknel?
+## Miért nem az elsődleges választas új projekteknel?
 
-Az Express 2010-ben jelent meg, es azota a világ sokat valtozott:
+Az Express 2010-ben jelent még, és azota a világ sokat változótt:
 
-| Problema | Miert gond |
+| Probléma | Miért gond |
 |----------|-----------|
 | **Nem fut edge-en** | Az Express Node.js-re epul — Cloudflare Workers, Deno, Bun nem mind tamogatja nativan |
-| **Nagy meret** | ~2MB + fuggosegek — edge function-okhoz tul nagy |
-| **Nincs TypeScript support** | Tipusok utolag lettek hozzaadva, nem TypeScript-first |
+| **Nagy meret** | ~2MB + függőségek — edge function-okhoz tul nagy |
+| **Nincs TypeScript support** | Tipusok utólag lettek hozzáadva, nem TypeScript-first |
 | **Lassu** | Modern alternativak (Hono, Fastify) 2-5x gyorsabbak |
 | **Elavult async kezeles** | Callback-alapu, a modern async/await nem nativ benne |
 
-**Ezert jott letre a [[backend/hono|Hono]]** — ugyanazt csinalja mint az Express, de modern, gyors, es mindenhol fut (Cloudflare, Deno, Bun, Node.js).
+**Ezert jott letre a [[backend/hono|Hono]]** — ugyanazt csinálja mint az Express, de modern, gyors, és mindenhol fut (Cloudflare, Deno, Bun, Node.js).
 
 ---
 
@@ -153,5 +153,5 @@ Az Express 2010-ben jelent meg, es azota a világ sokat valtozott:
 
 - [[backend/hono|Hono]] — a modern, edge-nativ Express alternativa
 - [[frontend/nextjs|Next.js]] — fullstack framework beepitett API route-okkal
-- [[backend/edge-function|Edge function]] — mi az edge es miert fontos
+- [[backend/edge-function|Edge function]] — mi az edge és miért fontos
 - [[cloud/railway|Railway]] — ha megis Express-t deployolsz

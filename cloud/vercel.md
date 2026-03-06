@@ -11,7 +11,7 @@ kapcsolodo:
   - "[[cloud/cloudflare|Cloudflare]]"
   - "[[frontend/nextjs|Next.js]]"
   - "[[backend/clerk|Clerk]]"
-  - "[[foundations/git-es-github|Git es GitHub]]"
+  - "[[foundations/git-es-github|Git és GitHub]]"
   - "[[cloud/deployment-checklist|Deployment checklist]]"
   - "[[_moc/moc-deployment|MOC - Deployment]]"
 ---
@@ -20,25 +20,25 @@ kapcsolodo:
 
 **Kategoria:** `hosting`
 **URL:** https://vercel.com
-**Ar/Terv:** Hobby (ingyenes) / Pro ($20/ho)
+**Ar/Terv:** Hobby (ingyenes) / Pro ($20/hó)
 
 ---
 
-## Mi ez es mire jo?
+## Mi ez és mire jó?
 
-A Vercel egy **frontend hosting platform**, ami arra van optimalizalva hogy [[frontend/nextjs|Next.js]] (es mas frontend framework) appokat a leheto legegyszerubben deployolj. Push-olsz [[foundations/git-es-github|Git es GitHub]]-ra → automatikusan buildel es deployol.
+A Vercel egy **frontend hosting platform**, ami arra van optimalizálva hogy [[frontend/nextjs|Next.js]] (és mas frontend framework) appokat a lehető legegyszerubben deployolj. Push-olsz [[foundations/git-es-github|Git és GitHub]]-ra → automatikusan buildel és deployol.
 
-**Egyszeruen:** A Vercel az ahol az appod el es a felhasznalok elerik.
+**Egyszerűen:** A Vercel az ahol az appod el és a felhasználók elérik.
 
-**Mikor hasznald:**
-- Next.js app hosting (erre a legjobb, ok csinaltak a Next.js-t)
+**Mikor használd:**
+- Next.js app hosting (erre a legjobb, ok csináltak a Next.js-t)
 - Statikus oldalak, landing page-ek
-- Ha gyors, globalis CDN kell
-- Ha nem akarsz szerver konfiguracioval foglalkozni
+- Ha gyors, globális CDN kell
+- Ha nem akarsz szerver konfigurácioval foglalkozni
 
-**Mikor NE hasznald:**
+**Mikor NE használd:**
 - Ha hosszan futo backend processek kellenek (erre [[cloud/railway|Railway]] jobb)
-- Ha sajat adatbazist akarsz futtatni (erre [[database/supabase|Supabase]] vagy [[cloud/railway|Railway]])
+- Ha saját adatbázist akarsz futtatni (erre [[database/supabase|Supabase]] vagy [[cloud/railway|Railway]])
 - Ha a Serverless Functions 10s/60s timeout limit nem eleg
 
 **Alternativak:** Netlify, [[cloud/cloudflare|Cloudflare]] Pages, [[cloud/railway|Railway]], Fly.io
@@ -57,84 +57,84 @@ graph LR
 
 ---
 
-## Setup -- lepesrol lepesre
+## Setup -- lépésrol lépésre
 
-### 1. Regisztracio
+### 1. Regisztrácio
 - Menj a vercel.com-ra → Sign up GitHub-bal
-- Ez a legegyszerubb, mert automatikusan latja a repoidat
+- Ez a legegyszerubb, mert automatikusan látja a repoidat
 
 ### 2. Projekt importalasa
 - Dashboard → "Add New Project"
 - Valaszd ki a GitHub repot
-- Vercel automatikusan felismeri hogy Next.js projekt → beallitja a build parancsot
+- Vercel automatikusan felismeri hogy Next.js projekt → beállítja a build parancsot
 - Kattints "Deploy"
 
-### 3. Environment valtozok beallitasa
+### 3. Environment változók beállítása
 - Project Settings → Environment Variables
 - Ide kerulnek: `DATABASE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, API kulcsok, stb.
-- **Fontos:** Kulon allitsd be Production / Preview / Development kornyezetekre
+- **Fontos:** Kulon allitsd be Production / Preview / Development környezetekre
 
-### 4. Domain hozzaadasa
+### 4. Domain hozzáadasa
 - Project Settings → Domains
-- Add meg a sajat domained → Vercel ad DNS beallitasi utmutatot
+- Add még a saját domained → Vercel ad DNS beállítási utmutatot
 - HTTPS automatikusan bekapcsol
 
 ---
 
 ## Best Practices
 
-### Architektura / Struktura
+### Architektúra / Struktúra
 
-- **Egy repo = egy Vercel projekt** -- ne tegyel tobb appot egy repoba
-- Az `app/` vagy `pages/` konyvtarban levo route-ok automatikusan API endpointok is lehetnek (`app/api/`)
-- Serverless Functions = az `api/` mappaban levo fajlok, minden request kulon indul
+- **Egy repo = egy Vercel projekt** -- ne tegyel több appot egy repoba
+- Az `app/` vagy `pages/` könyvtárban levo route-ok automatikusan API endpointok is lehetnek (`app/api/`)
+- Serverless Functions = az `api/` mappaban levo fájlok, minden request kulon indul
 
-### Biztonsag
+### Biztonság
 
-- **Soha ne tedd a `.env` fajlt GitHubra** -- `.gitignore`-ban legyen
-- Environment valtozokat a Vercel dashboardon allitsd be, NE a kodban
-- A `NEXT_PUBLIC_` prefixu valtozok a **kliens oldali kodba** is bekerulnek -- ide NE tegyel titkos kulcsokat
-- Hasznalj Preview deploymenteket (branch push) tesztelesre, ne eles production-t
+- **Soha ne tedd a `.env` fájlt GitHubra** -- `.gitignore`-ban legyen
+- Environment változókat a Vercel dashboardon allitsd be, NE a kódban
+- A `NEXT_PUBLIC_` prefixu változók a **kliens oldali kódba** is bekerulnek -- ide NE tegyel titkos kulcsokat
+- Használj Preview deploymenteket (branch push) tesztelésre, ne éles production-t
 
-### Teljesitmeny
+### Teljesítmény
 
-- Vercel globalis CDN-t hasznal -- a statikus tartalom automatikusan cache-elve van vilagszerte
-- Hasznalj `next/image`-et kepekhez -- automatikus optimalizalas
-- ISR (Incremental Static Regeneration) -- az oldal statikusan buildel, de hatterben frissul
+- Vercel globális CDN-t használ -- a statikus tartalom automatikusan cache-elve van vilagszerte
+- Használj `next/image`-et kepekhez -- automatikus optimalizálas
+- ISR (Incremental Static Regeneration) -- az oldal statikusan buildel, de háttérben frissül
 
-### Koltsegoptimalizalas
+### Költségoptimalizalas
 
 - Hobby tier ingyenes egyeni projektekhez
 - Figyelj a Serverless Function hivasok szamara -- sok API hivas = magasabb szamla Pro-n
-- A Bandwidth limit (100GB/ho Hobby-n) eleg a legtobb kisebb projekthez
-- Ha tul sokat fizetsz → vizsgald meg hogy nem hiv-e feleslegesen API-t a frontend
+- A Bandwidth limit (100GB/hó Hobby-n) eleg a legtobb kisebb projekthez
+- Ha tul sokat fizetsz → vizsgald még hogy nem hiv-e feleslegesen API-t a frontend
 
 ---
 
-## Gyakori mintak / Hasznalati esetek
+## Gyakori mintak / Használati esetek
 
 ### 1. Next.js fullstack app + Supabase
 
 ```
 Vercel (frontend + API routes) ←→ Supabase (adatbazis + auth)
 ```
-A leggyakoribb setup. A frontend es az API a Vercelen, az adat a Supabase-ben.
+A leggyakoribb setup. A frontend és az API a Vercelen, az adat a Supabase-ben.
 
 ### 2. Landing page / marketing oldal
 
-Egyszeru statikus oldal, gyors deploy, preview URL-ek minden PR-hez.
+Egyszerű statikus oldal, gyors deploy, preview URL-ek minden PR-hez.
 
-### 3. Monorepo tobb app-pal
+### 3. Monorepo több app-pal
 
-Turborepo + Vercel -- egy repoban tobb app, Vercel mindegyiket kulon deployolja.
+Turborepo + Vercel -- egy repoban több app, Vercel mindegyiket kulon deployolja.
 
 ---
 
-## Buktatok es hibak amiket elkerulj
+## Buktatok és hibak amiket elkerülj
 
-- **Serverless Function timeout:** Hobby = 10s, Pro = 60s. Ha ennel tobbre van szukseg (video feldolgozas, nagy AI hivas), hasznalj [[cloud/railway|Railway]]-t backend-nek
-- **Cold start:** Ha a function regota nem futott, az elso keres lassabb. Nem tudsz vele sokat tenni, de erdemes tudni
-- **Build hiba:** Ha lokalisan megy de Vercelen nem → ellenorizd az env valtozokat (production-ben masok kellenek mint dev-ben)
+- **Serverless Function timeout:** Hobby = 10s, Pro = 60s. Ha ennel többre van szükség (video feldolgozas, nagy AI hivas), használj [[cloud/railway|Railway]]-t backend-nek
+- **Cold start:** Ha a function régóta nem futott, az első keres lassabb. Nem tudsz vele sokat tenni, de érdemes tudni
+- **Build hiba:** Ha lokálisan megy de Vercelen nem → ellenőrizd az env változókat (production-ben masok kellenek mint dev-ben)
 - **A `node_modules` nem megy fel** -- a Vercel maga installalja. Ha valami hianyzik, a `package.json`-ban kell legyen
 
 ---
@@ -171,11 +171,11 @@ vercel logs projekt-neve.vercel.app
 ## Kapcsolodo anyagok
 - [[database/supabase|Supabase]]
 - [[cloud/railway|Railway]]
-- [[cloud/cloudflare|Cloudflare]] -- edge-alapu alternativa, $5/ho
-- [[cloud/nextjs-on-cloudflare-workers|Next.js on Cloudflare Workers]] -- Next.js futtatasa CF Workers-on, Vercel nelkul ($5/ho)
+- [[cloud/cloudflare|Cloudflare]] -- edge-alapu alternativa, $5/hó
+- [[cloud/nextjs-on-cloudflare-workers|Next.js on Cloudflare Workers]] -- Next.js futtatasa CF Workers-on, Vercel nelkul ($5/hó)
 - [[frontend/nextjs|Next.js]]
 - [[backend/clerk|Clerk]]
-- [[foundations/git-es-github|Git es GitHub]]
+- [[foundations/git-es-github|Git és GitHub]]
 - [[cloud/deployment-checklist|Deployment checklist]]
-- Env valtozok Next.js-ben
+- Env változók Next.js-ben
 - [[_moc/moc-deployment|MOC - Deployment]]

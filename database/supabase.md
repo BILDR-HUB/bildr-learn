@@ -13,7 +13,7 @@ kapcsolodo:
   - "[[database/drizzle|Drizzle]]"
   - "[[database/prisma|Prisma]]"
   - "[[backend/clerk|Clerk]]"
-  - "[[database/sql-adatbazisok|SQL adatbazisok]]"
+  - "[[database/sql-adatbazisok|SQL adatbázisok]]"
   - "[[database/sql-index-szabalyok|SQL Index szabalyok]]"
 ---
 
@@ -21,53 +21,53 @@ kapcsolodo:
 
 **Kategoria:** `adatbazis` / `auth` / `storage` / `API`
 **URL:** https://supabase.com
-**Ar/Terv:** Free (2 projekt) / Pro ($25/ho per projekt)
+**Ar/Terv:** Free (2 projekt) / Pro ($25/hó per projekt)
 
 ---
 
-## Mi ez es mire jo?
+## Mi ez és mire jó?
 
-A Supabase egy **nyilt forraskodu Firebase alternativa**, ami PostgreSQL adatbazist ad, plusz rengeteg extra funkciot kore. Egy helyen kapod meg az adatbazist, az autentikaciot, a fajl tarolast es az automatikus API-t.
+A Supabase egy **nyilt forráskódu Firebase alternativa**, ami PostgreSQL adatbázist ad, plusz rengeteg extra funkciot kore. Egy helyen kapod még az adatbázist, az autentikaciot, a fájl tárolást és az automatikus API-t.
 
-**Egyszeruen:** Supabase = az adatbazisod + user kezeles + fajl tarolas, mindet egy dashboardrol kezeled.
+**Egyszerűen:** Supabase = az adatbázisod + user kezeles + fájl tárolás, mindet egy dashboardrol kezeled.
 
 **Amit kapsz:**
-- **PostgreSQL adatbazis** -- igazi SQL adatbazis, nem NoSQL
-- **Auth** -- email/jelszo, Google, GitHub, magic link bejelentkezes
-- **Storage** -- fajlok (kepek, PDF-ek) tarolasa
-- **Realtime** -- valos ideju frissitesek (chat, live dashboard)
+- **PostgreSQL adatbázis** -- igazi SQL adatbázis, nem NoSQL
+- **Auth** -- email/jelszó, Google, GitHub, magic link bejelentkezes
+- **Storage** -- fájlok (kepek, PDF-ek) tárolása
+- **Realtime** -- valós ideju frissítesek (chat, live dashboard)
 - **Edge Functions** -- szerver oldali kod (Deno)
-- **Auto-generalt API** -- a tablakhoz automatikusan REST es GraphQL API
+- **Auto-generalt API** -- a táblakhoz automatikusan REST és GraphQL API
 
-**Mikor hasznald:**
-- Adatbazis kell a projekthez (a legtobb esetben)
-- User regisztracio / bejelentkezes kell
-- Fajlokat kell tarolni (profilkepek, dokumentumok)
+**Mikor használd:**
+- Adatbázis kell a projekthez (a legtobb esetben)
+- User regisztrácio / bejelentkezes kell
+- Fájlokat kell tárolnii (profilkepek, dokumentumok)
 - [[frontend/nextjs|Next.js]] + [[cloud/vercel|Vercel]] melle backend-nek
 
-**Mikor NE hasznald:**
-- Ha nagyon komplex backend logika kell → sajat backend [[cloud/railway|Railway]]-en
+**Mikor NE használd:**
+- Ha nagyon komplex backend logika kell → saját backend [[cloud/railway|Railway]]-en
 - Ha NoSQL kell (MongoDB) → nem erre valo
-- Ha a 2 ingyenes projekt limit nem eleg es nem akarsz fizetni
+- Ha a 2 ingyenes projekt limit nem eleg és nem akarsz fizetni
 
 **Alternativak:** Firebase, PlanetScale, Neon, Appwrite
 
 ---
 
-## Setup -- lepesrol lepesre
+## Setup -- lépésrol lépésre
 
-### 1. Regisztracio
+### 1. Regisztrácio
 - supabase.com → Sign up GitHub-bal
-- Hozz letre egy uj projektet → valassz regiot (EU ha EU userek lesznek: Frankfurt)
-- Jegyezd meg / mentsd el a database password-ot
+- Hozz letre egy új projektet → valassz regiot (EU ha EU userek lesznek: Frankfurt)
+- Jegyezd még / mentsd el a database password-ot
 
-### 2. Alap konfiguracio
+### 2. Alap konfigurácio
 - A dashboardon: Settings → API → itt talalod a kulcsokat:
   - `SUPABASE_URL` -- a projekt URL-je
   - `SUPABASE_ANON_KEY` -- publikus kulcs (kliens oldalra OK)
-  - `SUPABASE_SERVICE_ROLE_KEY` -- **titkos kulcs, SOHA ne keruljon a frontendre**
+  - `SUPABASE_SERVICE_ROLE_KEY` -- **titkos kulcs, SOHA ne kerüljon a frontendre**
 
-### 3. Projekt beallitas (Next.js)
+### 3. Projekt beállítás (Next.js)
 
 ```bash
 npm install @supabase/supabase-js
@@ -90,7 +90,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIs...
 SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIs...
 ```
 
-### 4. Tabla letrehozasa
+### 4. Tábla létrehozasa
 - Dashboard → Table Editor → New Table
 - Vagy SQL Editor-ban irj CREATE TABLE-t
 
@@ -98,15 +98,15 @@ SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIs...
 
 ## Best Practices
 
-### Architektura / Struktura
+### Architektúra / Struktúra
 
-- Minden tablahoz legyen `id` (uuid, auto-generated), `created_at` (timestamp)
-- Hasznalj **foreign key**-eket a tablak kozott (pl. `user_id` → `users.id`)
+- Minden táblahoz legyen `id` (uuid, auto-generated), `created_at` (timestamp)
+- Használj **foreign key**-eket a táblak kozott (pl. `user_id` → `users.id`)
 - Az API hivasokat egy helyre szervezd: `lib/supabase.ts` vagy `lib/db/` mappa
 
-### Biztonsag -- RLS (Row Level Security)
+### Biztonság -- RLS (Row Level Security)
 
-**Ez a legfontosabb dolog Supabase-ben.** RLS nelkul BARKI lekerhet az OSSZES adatot.
+**Ez a legfontosabb dolog Supabase-ben.** RLS nelkul BARKI lekerhet az Összes adatot.
 
 ```sql
 -- RLS bekapcsolasa
@@ -121,23 +121,23 @@ CREATE POLICY "Users insert own projects" ON projects
   FOR INSERT WITH CHECK (auth.uid() = user_id);
 ```
 
-> **Szabaly:** Uj tabla → MINDIG kapcsold be az RLS-t es irj policy-kat.
+> **Szabaly:** Új tábla → MINDIG kapcsold be az RLS-t és irj policy-kat.
 
-### Teljesitmeny
+### Teljesítmény
 
 - Adj **indexet** a gyakran keresett oszlopokra (`CREATE INDEX`)
-- Hasznalj `select()` szurot -- ne kerd le az osszes oszlopot ha nem kell
-- A Realtime csak akkor kell ha tenyleg live frissites kell -- feleslegesen ne kapcsold be
+- Használj `select()` szűrot -- ne kerd le az összes oszlopot ha nem kell
+- A Realtime csak akkor kell ha tényleg live frissítes kell -- feleslegesen ne kapcsold be
 
-### Koltsegoptimalizalas
+### Költségoptimalizalas
 
-- Free tier: 500MB adatbazis, 1GB fajl storage, 50K auth userek → kisebb projekthez eleg
-- Ha pauzalod a projektet (7 nap inaktivitas utan auto-pauzal free-n) → az adatbazis elalszik, de az adat megmarad
-- Ha kozeleg a limit → nezd meg Dashboard → Usage
+- Free tier: 500MB adatbázis, 1GB fájl storage, 50K auth userek → kisebb projekthez eleg
+- Ha pauzalod a projektet (7 nap inaktivitas utan auto-pauzal free-n) → az adatbázis elalszik, de az adat megmarad
+- Ha közeleg a limit → nézd még Dashboard → Usage
 
 ---
 
-## Gyakori mintak / Hasznalati esetek
+## Gyakori mintak / Használati esetek
 
 ### 1. Next.js app user kezelessel
 
@@ -145,7 +145,7 @@ CREATE POLICY "Users insert own projects" ON projects
 Vercel (Next.js) → Supabase Auth (login/register) → Supabase DB (user adatok)
 ```
 
-### 2. Fajl feltoltes (profilkep, dokumentum)
+### 2. Fájl feltöltés (profilkep, dokumentum)
 
 ```typescript
 const { data, error } = await supabase.storage
@@ -153,7 +153,7 @@ const { data, error } = await supabase.storage
   .upload(`${userId}/avatar.png`, file)
 ```
 
-### 3. Valos ideju funkcio (chat, live dashboard)
+### 3. Valós ideju funkcio (chat, live dashboard)
 
 ```typescript
 supabase
@@ -166,13 +166,13 @@ supabase
 
 ---
 
-## Buktatok es hibak amiket elkerulj
+## Buktatok és hibak amiket elkerülj
 
-- **RLS nelkul az adatbazis nyitott** -- ez a #1 hiba. Mindig kapcsold be
-- **`service_role` kulcs a frontenden** -- ha ez kikerul, barki barmit csinalhat. Ez CSAK szerver oldalra valo
-- **Free tier auto-pause** -- ha 7 napig nem hasznalod, a DB elalszik. Elso keres lassu lesz. Pro-n ez nincs
-- **Tabla modositas Dashboard-on production-ben** -- inkabb SQL migraciokat irj, hogy reprodukalhato legyen
-- **Nincs `updated_at` trigger** -- alapbol nem frissiti. Csinalj triggert hozza:
+- **RLS nelkul az adatbázis nyitott** -- ez a #1 hiba. Mindig kapcsold be
+- **`service_role` kulcs a frontenden** -- ha ez kikerul, barki bármit csinálhat. Ez CSAK szerver oldalra valo
+- **Free tier auto-pause** -- ha 7 napig nem használod, a DB elalszik. Első keres lassu lesz. Pro-n ez nincs
+- **Tábla módosítas Dashboard-on production-ben** -- inkabb SQL migráciokat irj, hogy reprodukalhato legyen
+- **Nincs `updated_at` trigger** -- alapbol nem frissíti. Csinálj triggert hozzá:
 
 ```sql
 CREATE OR REPLACE FUNCTION update_updated_at()
@@ -218,10 +218,10 @@ supabase db push
 ## Kapcsolodo anyagok
 - [[cloud/vercel|Vercel]]
 - [[cloud/railway|Railway]]
-- [[cloud/cloudflare|Cloudflare]] -- edge alternativa: D1 (SQLite) olcsobb de egyszerubb mint PostgreSQL
+- [[cloud/cloudflare|Cloudflare]] -- edge alternativa: D1 (SQLite) olcsobb de egyszerűbb mint PostgreSQL
 - [[frontend/nextjs|Next.js]]
 - [[database/drizzle|Drizzle]]
 - [[database/prisma|Prisma]]
 - [[backend/clerk|Clerk]]
-- [[database/sql-adatbazisok|SQL adatbazisok]]
+- [[database/sql-adatbazisok|SQL adatbázisok]]
 - [[database/sql-index-szabalyok|SQL Index szabalyok]]

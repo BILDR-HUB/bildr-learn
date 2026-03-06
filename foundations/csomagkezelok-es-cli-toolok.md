@@ -4,7 +4,7 @@ tags:
   - tooling
 kapcsolodo:
   - "[[foundations/python-venv|Python venv]]"
-  - "[[foundations/projekt-szintu-izolacio|Projekt-szintu izolacio]]"
+  - "[[foundations/projekt-szintu-izolacio|Projekt-szintű izolácio]]"
   - "[[foundations/npm-run-dev-vs-build|npm run dev vs build]]"
   - "[[frontend/nextjs|Next.js]]"
   - "[[cloud/docker-alapok|Docker alapok]]"
@@ -13,13 +13,13 @@ datum: 2026-02-08
 szint: "🌱 Newcomer"
 ---
 
-# Csomagkezelok es CLI toolok
+# Csomagkezelok és CLI toolok
 
 ## Mi az a csomagkezelo?
 
-Egy csomagkezelo (package manager) egy program, ami **mas programokat es konyvtarakat telepit, frissit es kezel** helyetted. Ahelyett, hogy kezzel letoltenel mindent egy weboldalrol, egy parancsot irsz es kesz.
+Egy csomagkezelo (package manager) egy program, ami **mas programokat és könyvtárakat telepít, frissít és kezel** helyetted. Ahelyett, hogy kezzel letöltenel mindent egy weboldalrol, egy parancsot irsz és kesz.
 
-Minden okoszisztemanak megvan a sajatja:
+Minden okoszisztemanak megvan a sajátja:
 
 ```
 macOS alkalmazasok     -> brew
@@ -32,7 +32,7 @@ Rust csomagok          -> cargo
 
 ## Az osszefugges: nyelv -> runtime -> csomagkezelo
 
-Ez a retegzodes a lenyeg:
+Ez a retegzodes a lényeg:
 
 ```
 +-------------------------------------------------+
@@ -46,17 +46,17 @@ Ez a retegzodes a lenyeg:
 +-------------------------------------------------+
 ```
 
-Peldaul egy Next.js projektnel:
-- **TypeScript**-ben irod a kodot (nyelv)
+Például egy Next.js projektnel:
+- **TypeScript**-ben irod a kódot (nyelv)
 - **Node.js** futtatja (runtime)
-- **npm** telepiti a Next.js-t, React-ot, GSAP-ot (csomagkezelo)
-- **brew** telepitette magat a Node.js-t a gepedre (OS szintu) -- most mar fnm csinalja
+- **npm** telepíti a Next.js-t, React-ot, GSAP-ot (csomagkezelo)
+- **brew** telepítette magat a Node.js-t a gépedre (OS szintű) -- most már fnm csinálja
 
 ---
 
 ## Rendszerszintu: brew
 
-**Mi ez:** macOS csomagkezelo -- CLI programokat es alkalmazasokat telepit a gepedre.
+**Mi ez:** macOS csomagkezelo -- CLI programokat és alkalmazásokat telepít a gépedre.
 
 ```bash
 brew install git           # git telepitese
@@ -65,8 +65,8 @@ brew install fnm            # Node verzikezelo
 brew install --cask firefox # GUI alkalmazas
 ```
 
-**Mit kezel:** Mindent ami a gepedre kerul rendszerszinten (nem projekt-specifikus)
-**Mire NE:** Projekt-szintu Node csomagokra (arra npm kell)
+**Mit kezel:** Mindent ami a gépedre kerul rendszerszinten (nem projekt-specifikus)
+**Mire NE:** Projekt-szintű Node csomagokra (arra npm kell)
 
 ---
 
@@ -74,7 +74,7 @@ brew install --cask firefox # GUI alkalmazas
 
 ### npm (Node Package Manager)
 
-**Mi ez:** A Node.js alapertelmezett csomagkezeloje. Csomagokat telepit a `node_modules/` mappaba.
+**Mi ez:** A Node.js alapértelmezett csomagkezeloje. Csomagokat telepít a `node_modules/` mappaba.
 
 ```bash
 npm install              # package.json-bol telepit mindent
@@ -83,22 +83,22 @@ npm run dev              # script futtatasa a package.json-bol
 npm run build            # script futtatasa
 ```
 
-**Fajlok amiket kezel:**
+**Fájlok amiket kezel:**
 - `package.json` -- milyen csomagok kellenek (recept)
-- `package-lock.json` -- pontos verziok rogzitve (lakat)
+- `package-lock.json` -- pontos verziók rögzítve (lakat)
 - `node_modules/` -- a letoltott csomagok (gitignore-ban!)
 
 ### npx (Node Package Execute)
 
-**Mi ez:** Nem telepit, hanem **egyszer lefuttat** egy csomagot. Az npm-mel egyutt jon.
+**Mi ez:** Nem telepít, hanem **egyszer lefuttat** egy csomagot. Az npm-mel egyutt jon.
 
 ```bash
 npx wrangler pages deploy ./out    # wrangler futtatasa telepites nelkul
 npx create-next-app                # Next.js projekt letrehozasa
 ```
 
-**Mikor hasznald:**
-- CLI eszkozok amiket nem akarsz globalisan telepiteni
+**Mikor használd:**
+- CLI eszkozok amiket nem akarsz globálisan telepíteni
 - Egyszeri parancsok (projekt generatorok)
 
 **npm vs npx:**
@@ -109,7 +109,7 @@ npx wrangler           -> letolti, lefuttatja, nem marad ott (cache-eli)
 
 ### pnpm
 
-**Mi ez:** Az npm gyorsabb es hatekonyabb alternativaja. Ugyanazt csinalja, de a `node_modules`-t okosabban kezeli (hard linkek, kevesebb lemezhasznalas).
+**Mi ez:** Az npm gyorsabb és hatékonyabb alternativaja. Ugyanazt csinálja, de a `node_modules`-t okosabban kezeli (hard linkek, kevesebb lemezhasznalas).
 
 ```bash
 pnpm install    # mint npm install, de gyorsabb
@@ -117,7 +117,7 @@ pnpm add react  # mint npm install react
 pnpm run dev    # mint npm run dev
 ```
 
-**Mikor valaszd npm helyett:** Ha sok projekted van es a lemezhelyet/sebességet optimalizalnad. Amúgy az npm tokeletesen eleg.
+**Mikor valaszd npm helyett:** Ha sok projekted van és a lemezhelyet/sebességet optimalizálnad. Amúgy az npm tokeletesen eleg.
 
 ### bun
 
@@ -129,7 +129,7 @@ bun run dev     # mint npm run dev
 bun add react   # mint npm install react
 ```
 
-**Mikor valaszd:** Uj projekt, ahol a sebesseg fontos es nem kell 100% Node.js kompatibilitas.
+**Mikor valaszd:** Új projekt, ahol a sebesseg fontos és nem kell 100% Node.js kompatibilitas.
 
 ---
 
@@ -137,7 +137,7 @@ bun add react   # mint npm install react
 
 ### pip
 
-**Mi ez:** A Python alapertelmezett csomagkezeloje.
+**Mi ez:** A Python alapértelmezett csomagkezeloje.
 
 ```bash
 pip install requests        # csomag telepitese
@@ -145,11 +145,11 @@ pip install -r requirements.txt  # lista alapjan telepites
 pip freeze > requirements.txt    # telepitett csomagok mentese
 ```
 
-**Fontos:** Mindig [[foundations/python-venv|Python venv]]-ben hasznald, kulonben globalisan telepit!
+**Fontos:** Mindig [[foundations/python-venv|Python venv]]-ben használd, különben globálisan telepít!
 
 ### uv
 
-**Mi ez:** A pip modern, Rust-alapu alternativaja. Sokkal gyorsabb es a venv-et is kezeli.
+**Mi ez:** A pip modern, Rust-alapu alternativaja. Sokkal gyorsabb és a venv-et is kezeli.
 
 ```bash
 uv add requests    # csomag + venv egyben
@@ -171,20 +171,20 @@ cargo build            # forditas
 cargo run              # forditas + futtatas
 ```
 
-**Fajlok:** `Cargo.toml` (mint a package.json) + `Cargo.lock` (mint a package-lock.json)
+**Fájlok:** `Cargo.toml` (mint a package.json) + `Cargo.lock` (mint a package-lock.json)
 
-**Erdekesseg:** Sok modern dev tool Rust-ban irodott es cargo-val epul: fnm, uv, bun reszben, Turbopack (a Next.js build tool)
+**Érdekesseg:** Sok modern dev tool Rust-ban irodott és cargo-val epul: fnm, uv, bun reszben, Turbopack (a Next.js build tool)
 
 ---
 
-## Osszefoglalo tablazat
+## Összefoglaló táblazat
 
-| Csomagkezelo | Okoszisztema | Mit kezel | Fo fajl | Lock fajl |
+| Csomagkezelo | Okoszisztema | Mit kezel | Fo fájl | Lock fájl |
 |---|---|---|---|---|
 | **brew** | macOS | Rendszerszintu CLI programok | - | `brew.lock.json` |
 | **npm** | Node.js | JS/TS csomagok | `package.json` | `package-lock.json` |
-| **npx** | Node.js | Egyszeri futtatas (nem telepit) | - | - |
-| **pnpm** | Node.js | JS/TS csomagok (hatekonyabb npm) | `package.json` | `pnpm-lock.yaml` |
+| **npx** | Node.js | Egyszeri futtatas (nem telepít) | - | - |
+| **pnpm** | Node.js | JS/TS csomagok (hatékonyabb npm) | `package.json` | `pnpm-lock.yaml` |
 | **bun** | Node.js alternativa | JS/TS csomagok + runtime | `package.json` | `bun.lockb` |
 | **pip** | Python | Python csomagok | `requirements.txt` | - |
 | **uv** | Python | Python csomagok + venv | `pyproject.toml` | `uv.lock` |
@@ -205,8 +205,8 @@ npx     -> wrangler es egyeb egyszeri CLI futttatasok
 
 ## Kapcsolodo
 
-- [[foundations/python-venv|Python venv]] -- Python izolacio
-- [[foundations/projekt-szintu-izolacio|Projekt-szintu izolacio]]
+- [[foundations/python-venv|Python venv]] -- Python izolácio
+- [[foundations/projekt-szintu-izolacio|Projekt-szintű izolácio]]
 - [[foundations/npm-run-dev-vs-build|npm run dev vs build]]
 - [[frontend/nextjs|Next.js]]
 - [[cloud/docker-alapok|Docker alapok]]

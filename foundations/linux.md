@@ -3,13 +3,13 @@ tags:
   - linux
   - devops
 kapcsolodo:
-  - "[[foundations/bash-es-linux-parancssor|Bash es Linux parancssor]]"
-  - "[[foundations/bash-es-linux-parancssor-2|Bash es Linux parancssor 2]]"
+  - "[[foundations/bash-es-linux-parancssor|Bash és Linux parancssor]]"
+  - "[[foundations/bash-es-linux-parancssor-2|Bash és Linux parancssor 2]]"
   - "[[cloud/docker-alapok|Docker alapok]]"
   - "[[cloud/docker-compose|Docker Compose]]"
   - "[[cloud/kubernetes-bevezeto|Kubernetes bevezeto]]"
   - "[[toolbox/tmux|tmux]]"
-  - "[[foundations/halozatok-es-ip-cimek|Halozatok es IP cimek]]"
+  - "[[foundations/halozatok-es-ip-cimek|Hálózatok és IP cimek]]"
   - "[[cloud/devops|DevOps]]"
 datum: 2026-02-08
 szint: "🌱 Newcomer"
@@ -17,10 +17,10 @@ szint: "🌱 Newcomer"
 
 # Linux
 
-A **Linux** egy nyilt forraskodu operacios rendszer kernel, es az erre epulo disztribuciok (Ubuntu, Debian, Alpine stb.) osszefoglalo neve. A szerverek tulnyomo tobbsege Linux-ot futtat, a [[cloud/docker-alapok|Docker]] kontenerek is Linux-alapuak, es a macOS terminal is Unix-parancsokra epul.
+A **Linux** egy nyilt forráskódu operácios rendszer kernel, és az erre epulo disztribuciok (Ubuntu, Debian, Alpine stb.) összefoglalo neve. A szerverek tulnyomo többsege Linux-ot futtat, a [[cloud/docker-alapok|Docker]] konténerek is Linux-alapuak, és a macOS terminal is Unix-parancsokra epul.
 
-> [!tldr] Miert kell a Linux?
-> Nem azert mert Linux desktopot hasznalsz -- hanem mert **minden amire deployolsz, Linux-ot futtat**: a VPS-ed, a Docker kontenered, a Railway/Vercel mogotti infrastruktura, meg a [[cloud/kubernetes-bevezeto|Kubernetes]] pod-ok is. Ha ertesz hozza, nem vagy kiszolgaltatva.
+> [!tldr] Miért kell a Linux?
+> Nem azert mert Linux desktopot használsz -- hanem mert **minden amire deployolsz, Linux-ot futtat**: a VPS-ed, a Docker konténered, a Railway/Vercel mögötti infrastruktura, még a [[cloud/kubernetes-bevezeto|Kubernetes]] pod-ok is. Ha ertesz hozzá, nem vagy kiszolgáltatva.
 
 ---
 
@@ -47,31 +47,31 @@ graph TD
 | Kontextus | Mi fut ott | Disztribucio |
 |-----------|-----------|--------------|
 | **VPS szerver** | Service-ek, reverse proxy | Ubuntu 22.04 |
-| **Docker kontenerek** | App image-ek, DB-k, dev environment | Alpine / Debian slim |
-| **OrbStack** (lokalis) | Docker + Kubernetes macOS-en | Linux VM a hatterben |
-| **[[cloud/railway|Railway]]** | Managed platform, de a kontenered Linux-on fut | Nixpacks / Docker |
-| **[[cloud/vercel|Vercel]]** | Serverless function-ok | Amazon Linux (hatter) |
+| **Docker konténerek** | App image-ek, DB-k, dev environment | Alpine / Debian slim |
+| **OrbStack** (lokális) | Docker + Kubernetes macOS-en | Linux VM a háttérben |
+| **[[cloud/railway|Railway]]** | Managed platform, de a konténered Linux-on fut | Nixpacks / Docker |
+| **[[cloud/vercel|Vercel]]** | Serverless function-ok | Amazon Linux (háttér) |
 | **Terminal** | A terminalod Unix -- ugyanazok a parancsok | macOS (Unix) |
 
 ---
 
 ## Disztribuciok amikkel talalkozol
 
-| Disztribucio | Hol | Package manager | Jellemzo |
+| Disztribucio | Hol | Package manager | Jellemző |
 |---|---|---|---|
-| **Ubuntu** | VPS-ek (DigitalOcean, Hetzner stb.) | `apt` | Legelterjedtebb, nagy community, LTS verziok |
+| **Ubuntu** | VPS-ek (DigitalOcean, Hetzner stb.) | `apt` | Legelterjedtebb, nagy community, LTS verziók |
 | **Debian** | Docker base image, szerverek | `apt` | Stabil, minimalis, Ubuntu erre epul |
-| **Alpine** | Docker kontenerek | `apk` | Nagyon kicsi (~5MB), gyors pull/build |
-| **Amazon Linux** | AWS, Vercel hatter | `yum`/`dnf` | RHEL-alapu, cloud-optimalizalt |
+| **Alpine** | Docker konténerek | `apk` | Nagyon kicsi (~5MB), gyors pull/build |
+| **Amazon Linux** | AWS, Vercel háttér | `yum`/`dnf` | RHEL-alapu, cloud-optimalizált |
 
-> [!tip] Docker image valasztas
-> Mindig `-alpine` vagy `-slim` image-et hasznalj ha teheted (`node:20-alpine`, `python:3.12-slim`). Kisebb image = gyorsabb build, gyorsabb deploy, kisebb attack surface. Lasd [[cloud/docker-alapok|Docker alapok]].
+> [!tip] Docker image választas
+> Mindig `-alpine` vagy `-slim` image-et használj ha teheted (`node:20-alpine`, `python:3.12-slim`). Kisebb image = gyorsabb build, gyorsabb deploy, kisebb attack surface. Lásd [[cloud/docker-alapok|Docker alapok]].
 
 ---
 
 ## Linux a gyakorlatban: VPS kezeles
 
-### Elso bejelentkezes egy uj VPS-re
+### Első bejelentkezes egy új VPS-re
 
 ```bash
 # SSH kulcsos belepes
@@ -83,7 +83,7 @@ adduser deploy                       # Non-root user letrehozasa
 usermod -aG sudo deploy              # Sudo jog adasa
 ```
 
-### SSH kulcs beallitas (jelszo helyett)
+### SSH kulcs beállítás (jelszó helyett)
 
 ```bash
 # A sajat gepeden:
@@ -106,8 +106,8 @@ sudo ufw enable
 sudo ufw status
 ```
 
-> [!warning] Mindig engedelyezd az SSH-t (22) mielott bekapcsolod a tuzfalat!
-> Kulonben kizarod magad a szerverrol.
+> [!warning] Mindig engedélyezd az SSH-t (22) mielott bekapcsolod a tuzfalat!
+> Különben kizarod magad a szerverrol.
 
 ### Tailscale a VPS-en
 
@@ -124,9 +124,9 @@ sudo tailscale up
 
 ## Linux + Docker (a fo use case)
 
-A legtobb Linux szerver-interakciod Docker-on keresztul tortenik -- nem kozvetlenul telepitesz a szerverre semmit, hanem kontenerekben futtatod.
+A legtobb Linux szerver-interakciod Docker-on keresztul tortenik -- nem kozvetlenul telepítesz a szerverre semmit, hanem konténerekben futtatod.
 
-### Docker telepites VPS-re
+### Docker telepítes VPS-re
 
 ```bash
 # Ubuntu-n:
@@ -144,14 +144,14 @@ docker compose logs -f      # Logok kovetese
 docker compose down         # Leallitas (volume marad!)
 ```
 
-Reszletes leiras: [[cloud/docker-compose|Docker Compose]]
+Részletes leiras: [[cloud/docker-compose|Docker Compose]]
 
-### OrbStack (lokalis Docker macOS-en)
+### OrbStack (lokális Docker macOS-en)
 
-Az OrbStack egy konnyu Docker Desktop alternativa macOS-en:
-- Docker kontenerek futtatasa **Linux VM-ben** a hatterben
+Az OrbStack egy könnyű Docker Desktop alternativa macOS-en:
+- Docker konténerek futtatasa **Linux VM-ben** a háttérben
 - Beepitett Kubernetes cluster (K8s gyakorlathoz)
-- Gyorsabb es kevesebb RAM-ot eszik mint a Docker Desktop
+- Gyorsabb és kevesebb RAM-ot eszik mint a Docker Desktop
 
 ```bash
 # Telepites
@@ -169,32 +169,32 @@ kubectl get pods    # Kubernetes parancsok azonnal mukodnek
 
 ## Alap Linux parancsok (ami mindig kell)
 
-### Fajlkezeles
+### Fájlkezeles
 
-| Parancs | Mit csinal | Pelda |
+| Parancs | Mit csinál | Példa |
 |---------|-----------|-------|
-| `ls -la` | Fajlok listazasa (rejtett + jogosultsagok) | `ls -la /var/log/` |
-| `cd` | Konyvtar valtas | `cd /home/deploy/app` |
+| `ls -la` | Fájlok listazasa (rejtett + jogosultságok) | `ls -la /var/log/` |
+| `cd` | Könyvtár valtas | `cd /home/deploy/app` |
 | `pwd` | Hol vagyok most | `pwd` -> `/home/deploy` |
-| `mkdir -p` | Konyvtar letrehozas (+ szulo mappak) | `mkdir -p /app/data/logs` |
+| `mkdir -p` | Könyvtár létrehozas (+ szulo mappak) | `mkdir -p /app/data/logs` |
 | `cp -r` | Masolas (rekurziv) | `cp -r ./build /var/www/` |
 | `mv` | Athelyezes / atnevezes | `mv old-name.txt new-name.txt` |
-| `rm -rf` | Torles (rekurziv, force) | `rm -rf /tmp/cache` |
+| `rm -rf` | Törlés (rekurziv, force) | `rm -rf /tmp/cache` |
 
-### Szoveg es kereses
+### Szoveg és kereses
 
-| Parancs | Mit csinal | Pelda |
+| Parancs | Mit csinál | Példa |
 |---------|-----------|-------|
-| `cat` | Fajl tartalom kiirasa | `cat .env` |
-| `head -20` | Elso 20 sor | `head -20 access.log` |
-| `tail -f` | Utolso sorok, eloben kovetes | `tail -f /var/log/syslog` |
+| `cat` | Fájl tartalom kiirasa | `cat .env` |
+| `head -20` | Első 20 sor | `head -20 access.log` |
+| `tail -f` | Utolso sorok, eloben követes | `tail -f /var/log/syslog` |
 | `grep` | Kereses szovegben | `grep "ERROR" app.log` |
-| `grep -r` | Kereses rekurzivan fajlokban | `grep -r "API_KEY" .` |
+| `grep -r` | Kereses rekurzivan fájlokban | `grep -r "API_KEY" .` |
 | `wc -l` | Sorok szama | `cat log.txt \| wc -l` |
 
 ### Folyamatok
 
-| Parancs | Mit csinal | Pelda |
+| Parancs | Mit csinál | Példa |
 |---------|-----------|-------|
 | `ps aux` | Futo folyamatok | `ps aux \| grep node` |
 | `top` / `htop` | Elo rendszer monitor | `htop` |
@@ -203,17 +203,17 @@ kubectl get pods    # Kubernetes parancsok azonnal mukodnek
 | `lsof -i :PORT` | Ki foglalja a portot | `lsof -i :3000` |
 | `pkill -f` | Nev alapu kill | `pkill -f "next dev"` |
 
-### Halozat
+### Hálózat
 
-| Parancs | Mit csinal | Pelda |
+| Parancs | Mit csinál | Példa |
 |---------|-----------|-------|
-| `curl` | HTTP keres kuldese | `curl -I https://example.com` |
-| `wget` | Fajl letoltese | `wget https://example.com/file.zip` |
+| `curl` | HTTP keres küldése | `curl -I https://example.com` |
+| `wget` | Fájl letöltése | `wget https://example.com/file.zip` |
 | `ss -tlnp` | Nyitott portok listazasa | `ss -tlnp` |
-| `ping` | Elerheto-e egy host | `ping google.com` |
-| `ip addr` | Sajat IP cimek | `ip addr show` |
+| `ping` | Elérheto-e egy host | `ping google.com` |
+| `ip addr` | Saját IP cimek | `ip addr show` |
 
-### Jogosultsagok
+### Jogosultságok
 
 ```bash
 chmod 755 script.sh    # Owner: rwx, Group: rx, Others: rx
@@ -221,13 +221,13 @@ chmod 600 .env         # Csak owner olvashatja/irhatja (titkos fajloknak!)
 chown deploy:deploy /app  # Tulajdonos valtas
 ```
 
-Reszletes leiras: [[foundations/bash-es-linux-parancssor|Bash es Linux parancssor]], [[foundations/bash-es-linux-parancssor-2|Bash es Linux parancssor 2]]
+Részletes leiras: [[foundations/bash-es-linux-parancssor|Bash és Linux parancssor]], [[foundations/bash-es-linux-parancssor-2|Bash és Linux parancssor 2]]
 
 ---
 
 ## Linux + AI fejlesztoeszkozok
 
-A legtobb AI fejlesztoeszkoz terminalbol fut, es a parancsok amiket kiad, Linux/Unix parancsok:
+A legtobb AI fejlesztoeszkoz terminalbol fut, és a parancsok amiket kiad, Linux/Unix parancsok:
 
 ```bash
 # Tipikus parancsok amik a hatterben futnak:
@@ -237,29 +237,29 @@ docker compose up                 # Docker
 ssh deploy@vps-ip                 # VPS kezeles
 ```
 
-> [!tip] SSH es fejlesztoeszkozok
+> [!tip] SSH és fejlesztoeszkozok
 > AI fejlesztoeszkozok nem tudnak kozvetlenul SSH-zni a VPS-edre, de:
-> 1. Lokalisan generaltathatod veluk a scripteket, Dockerfile-okat, docker-compose.yml-t
+> 1. Lokálisan generaltathatod veluk a scripteket, Dockerfile-okat, docker-compose.yml-t
 > 2. `scp`-vel vagy `rsync`-kel felrakod a szerverre
 > 3. Vagy: az AI eszkozt **a VPS-en** is futtathatod SSH session-bol
 
 ---
 
-## Fajlrendszer -- amit tudni kell
+## Fájlrendszer -- amit tudni kell
 
 | Utvonal | Mire valo |
 |---------|-----------|
-| `/home/deploy/` | A te user-ed home konyvtara |
-| `/root/` | Root user home (ne hasznald napi szinten) |
-| `/etc/` | Konfiguracios fajlok (nginx, ssh, stb.) |
+| `/home/deploy/` | A te user-ed home könyvtára |
+| `/root/` | Root user home (ne használd napi szintén) |
+| `/etc/` | Konfigurácios fájlok (nginx, ssh, stb.) |
 | `/var/log/` | Logfajlok |
 | `/var/lib/docker/` | Docker adatok (image-ek, volume-ok) |
-| `/tmp/` | Ideiglenes fajlok (reboot-nal torlodik) |
+| `/tmp/` | Ideiglenes fájlok (reboot-nal törlödik) |
 | `/opt/` | Opcionalis szoftverek (custom app-ok) |
 
 ---
 
-## VM vs kontener -- mi a kulonbseg?
+## VM vs konténer -- mi a különbség?
 
 ```mermaid
 graph LR
@@ -281,25 +281,25 @@ graph LR
     style C2 fill:#3498db,color:white
 ```
 
-| Szempont | VM (Virtual Machine) | Docker kontener |
+| Szempont | VM (Virtual Machine) | Docker konténer |
 |----------|---------------------|----------------|
-| **Izolacio** | Teljes -- sajat OS kernel | Reszleges -- megosztott kernel |
+| **Izolácio** | Teljes -- saját OS kernel | Reszleges -- megosztott kernel |
 | **Meret** | GB-ok (teljes OS) | MB-ok (csak az app) |
 | **Indulas** | Percek | Masodpercek |
-| **Hasznalat** | VPS, fejlesztoi VM (OrbStack) | App futtatas, microservice-ek |
-| **Pelda** | `ssh root@vps-ip` | `docker run nginx:alpine` |
+| **Használat** | VPS, fejlesztoi VM (OrbStack) | App futtatas, microservice-ek |
+| **Példa** | `ssh root@vps-ip` | `docker run nginx:alpine` |
 
-**A VPS-ed egy VM** -> azon belul Docker kontenerek futnak -> az OrbStack meg lokalisan szimulalja ugyanezt.
+**A VPS-ed egy VM** -> azon belul Docker konténerek futnak -> az OrbStack még lokálisan szimulalja ugyanezt.
 
 ---
 
 ## Kapcsolodo
 
-- [[foundations/bash-es-linux-parancssor|Bash es Linux parancssor]] -- parancssor alapok
-- [[foundations/bash-es-linux-parancssor-2|Bash es Linux parancssor 2]] -- halado parancsok
-- [[cloud/docker-alapok|Docker alapok]] -- kontenerizacio
+- [[foundations/bash-es-linux-parancssor|Bash és Linux parancssor]] -- parancssor alapok
+- [[foundations/bash-es-linux-parancssor-2|Bash és Linux parancssor 2]] -- halado parancsok
+- [[cloud/docker-alapok|Docker alapok]] -- konténerizacio
 - [[cloud/docker-compose|Docker Compose]] -- multi-service setup
-- [[cloud/kubernetes-bevezeto|Kubernetes bevezeto]] -- kontener orchestracio
+- [[cloud/kubernetes-bevezeto|Kubernetes bevezeto]] -- konténer orchestracio
 - [[toolbox/tmux|tmux]] -- terminal multiplexer szerveren
-- [[foundations/halozatok-es-ip-cimek|Halozatok es IP cimek]] -- networking alapok
+- [[foundations/halozatok-es-ip-cimek|Hálózatok és IP cimek]] -- networking alapok
 - [[cloud/devops|DevOps]]

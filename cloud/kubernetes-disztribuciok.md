@@ -13,13 +13,13 @@ kapcsolodo:
 
 ## Mirol van szo?
 
-A [[cloud/kubernetes-bevezeto|Kubernetes bevezeto]]-ban megismereted mi az a Kubernetes es mire jo. A "sima" Kubernetes (k8s) eleg komplex. Ezert leteznek **konnyitett verziok** -- ugyanaz a koncepcio (pod-ok, deployment-ek, service-ek), de kevesebb eroforrassal, egyszerubb setuppal.
+A [[cloud/kubernetes-bevezeto|Kubernetes bevezeto]]-ban megismereted mi az a Kubernetes és mire jó. A "sima" Kubernetes (k8s) eleg komplex. Ezert leteznek **konnyitett verziók** -- ugyanaz a koncepcio (pod-ok, deployment-ek, service-ek), de kevesebb erőforrással, egyszerűbb setuppal.
 
-Olyan mint az autoknal: a k8s egy kamion (mindenre jo, de kell hozza jogositvany + garazs), a k3s es k0s meg kisautok (ugyanugy elvisznek A-bol B-be, de konnyebben kezelhetok).
+Olyan mint az autoknal: a k8s egy kamion (mindenre jó, de kell hozzá jogositvany + garazs), a k3s és k0s még kisautok (ugyanúgy elvisznek A-bol B-be, de könnyebben kezelhetok).
 
 ---
 
-## A harom fo verzio
+## A harom fo verzió
 
 ```mermaid
 graph TD
@@ -36,21 +36,21 @@ graph TD
 
 ---
 
-## Osszehasonlitas
+## Összehasonlítas
 
 | | **k8s** (Kubernetes) | **k3s** | **k0s** |
 |---|---|---|---|
-| **Nev eredete** | K-ubernete-s (8 betu a K es S kozott) | K-3-s (konnyu K8s, fele annyi) | K-0-s (zero friction) |
-| **Ki csinalja** | CNCF / Google | Rancher (SUSE) | Mirantis |
+| **Nev eredete** | K-ubernete-s (8 betu a K és S kozott) | K-3-s (könnyű K8s, fele annyi) | K-0-s (zero friction) |
+| **Ki csinálja** | CNCF / Google | Rancher (SUSE) | Mirantis |
 | **Meret** | ~1 GB+ | ~100 MB (egyetlen binaris) | ~160 MB (egyetlen binaris) |
-| **RAM igeny** | 2-4 GB minimum | 512 MB eleg | 1 GB eleg |
-| **Telepites** | Komplex (kubeadm, tobb lepes) | Egy parancs | Egy parancs |
-| **Mire jo** | Nagy enterprise rendszerek | Edge, IoT, kis szerverek, VPS | Kis-kozepes production |
+| **RAM igény** | 2-4 GB minimum | 512 MB eleg | 1 GB eleg |
+| **Telepítes** | Komplex (kubeadm, több lépés) | Egy parancs | Egy parancs |
+| **Mire jó** | Nagy enterprise rendszerek | Edge, IoT, kis szerverek, VPS | Kis-kozepes production |
 | **Kompatibilitas** | 100% Kubernetes API | 100% Kubernetes API | 100% Kubernetes API |
 | **Beepitett** | Semmi (mindent kulon) | Traefik ingress, SQLite/etcd, Helm | Nincs extra, tiszta |
 
 > [!info] Fontos
-> Mind a harom **ugyanazt a Kubernetes API-t** hasznalja. Ami k8s-en megy (kubectl, YAML-ok, Helm chart-ok), az k3s-en es k0s-on is megy. A kulonbseg a telepitesben es az eroforrasigenyben van, nem a hasznalatban.
+> Mind a harom **ugyanazt a Kubernetes API-t** használja. Ami k8s-en megy (kubectl, YAML-ok, Helm chart-ok), az k3s-en és k0s-on is megy. A különbség a telepítesben és az erőforrásigenyben van, nem a használatban.
 
 ---
 
@@ -58,13 +58,13 @@ graph TD
 
 Ez a hivatalos, eredeti Kubernetes. Amit a [[cloud/kubernetes-bevezeto|Kubernetes bevezeto]]-ban lattal (pod, deployment, service, namespace) -- az mind ez.
 
-**Mikor hasznald:**
-- Managed szolgaltataskent (GKE, EKS, AKS) -- ilyenkor a felho provider uzemelteti
+**Mikor használd:**
+- Managed szolgáltataskent (GKE, EKS, AKS) -- ilyenkor a felhő provider üzemelteti
 - 100+ node-os cluster
 - Dedikalt DevOps csapat van
 
 **Mikor NE:**
-- Sajat szerveren, kezzel telepitve -- tul komplex
+- Saját szerveren, kezzel telepítve -- tul komplex
 - 1-3 szervered van -- overkill
 - Nincs dedikalt Kubernetes tudas a csapatban
 
@@ -80,19 +80,19 @@ kubeadm join ...
 
 ---
 
-## k3s -- a konnyusulyú kedvenc
+## k3s -- a könnyűsulyú kedvenc
 
-A Rancher (SUSE) csinalja, azzal a cellal hogy **egy paranccsal telepitheto** legyen egy teljesen mukodo Kubernetes.
+A Rancher (SUSE) csinálja, azzal a cellal hogy **egy paranccsal telepítheto** legyen egy teljesen működo Kubernetes.
 
-**Mikor hasznald:**
-- 1-5 VPS-ed van es Kubernetes-t akarsz futtatni
+**Mikor használd:**
+- 1-5 VPS-ed van és Kubernetes-t akarsz futtatni
 - Raspberry Pi-n vagy edge eszkozokon
 - Tanulashoz -- a legegyszerubb modja kiprobalni a K8s-t
-- Projekteknél ahol [[cloud/docker-compose|Docker Compose]] mar keves de a full k8s tul sok
+- Projekteknél ahol [[cloud/docker-compose|Docker Compose]] már keves de a full k8s tul sok
 
 **Mikor NE:**
-- Ha a Docker Compose meg eleg (a legtobb projekthez az)
-- Ha managed k8s elerheto es a budget engedi
+- Ha a Docker Compose még eleg (a legtobb projekthez az)
+- Ha managed k8s elérheto és a budget engedi
 
 ```bash
 # Telepites -- szo szerint egy parancs:
@@ -102,28 +102,28 @@ curl -sfL https://get.k3s.io | sh -
 k3s kubectl get nodes
 ```
 
-> [!tip] Miert "k3s"?
-> A Kubernetes-ben 8 betu van a K es S kozott → k8s. A k3s "fele annyi" → 3. A poen: fele akkora, fele annyi eroforras.
+> [!tip] Miért "k3s"?
+> A Kubernetes-ben 8 betu van a K és S kozott → k8s. A k3s "fele annyi" → 3. A poen: fele akkora, fele annyi erőforrás.
 
 **Ami beepitve jon (k8s-ben kulon kellene):**
 - **Traefik** -- ingress controller (forgalomiranyitas)
-- **CoreDNS** -- belso DNS
+- **CoreDNS** -- belső DNS
 - **SQLite** -- alap adattarolas (etcd helyett, kis cluster-eknel eleg)
-- **Flannel** -- halozati plugin
+- **Flannel** -- hálózati plugin
 
 ---
 
 ## k0s -- a "zero friction" megkozelites
 
-A Mirantis csinalja. Hasonlo a k3s-hez, de **nem rak be semmit ami nem kell** -- tiszta Kubernetes, semmi extra.
+A Mirantis csinálja. Hasonlo a k3s-hez, de **nem rak be semmit ami nem kell** -- tiszta Kubernetes, semmi extra.
 
-**Mikor hasznald:**
+**Mikor használd:**
 - Ha k3s-nel is tisztabb setupot akarsz (nincs beepitett Traefik, stb.)
-- Ha magad akarod kivalasztani az osszes komponenst
+- Ha magad akarod kivalasztani az összes komponenst
 - Production-ben, kis-kozepes meretben
 
 **Mikor NE:**
-- Ha gyorsan akarsz indulni (a k3s egyszerubb, mert tobb mindent ad alapbol)
+- Ha gyorsan akarsz indulni (a k3s egyszerűbb, mert több mindent ad alapbol)
 - Tanulashoz (k3s jobb erre)
 
 ```bash
@@ -144,14 +144,14 @@ k0s start
 ```
 
 > [!warning] Fontos
-> A [[cloud/kubernetes-bevezeto|Kubernetes bevezeto]]-ban is irva van: a legtobb SMB projekthez a Docker Compose eleg. A k3s/k0s akkor jon kepbe, ha kinovod a Docker Compose-t -- pl. tobb szerverre kell elosztani a terhelest, vagy automatikus ujrainditas/skalazas kell.
+> A [[cloud/kubernetes-bevezeto|Kubernetes bevezeto]]-ban is irva van: a legtobb SMB projekthez a Docker Compose eleg. A k3s/k0s akkor jon kepbe, ha kinovod a Docker Compose-t -- pl. több szerverre kell elosztani a terhelest, vagy automatikus ujrainditas/skálázas kell.
 
 ---
 
 ## Kapcsolodo
 
 - [[cloud/kubernetes-bevezeto|Kubernetes bevezeto]] -- alapfogalmak (pod, deployment, service)
-- [[cloud/docker-compose|Docker Compose]] -- az egyszerubb alternativa, ameddig eleg
-- [[cloud/docker-alapok|Docker alapok]] -- kontenerek alapjai
+- [[cloud/docker-compose|Docker Compose]] -- az egyszerűbb alternativa, ameddig eleg
+- [[cloud/docker-alapok|Docker alapok]] -- konténerek alapjai
 - Tailscale -- gepek osszekotese (k3s multi-node-hoz hasznos)
 - [[_moc/moc-kubernetes|MOC - Kubernetes]]
