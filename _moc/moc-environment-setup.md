@@ -1,7 +1,7 @@
 # MOC - Environment Setup
 
 > [!tldr]
-> Ez a Map of Content osszegyujti az osszes fejlesztoi kornyezet beallitasahoz kapcsolodo note-t. Izolacios elvektol a konkret verziokozelo eszkozokig.
+> Ez a Map of Content összegyűjti az összes fejlesztői környezet beállításához kapcsolódó jegyzetet. Izolációs elvektől a konkrét verziókezelő eszközökig.
 
 ---
 
@@ -50,7 +50,10 @@ Ajánlott sorrend ha nulláról kezded:
 ## Hézagok
 
 - [ ] Monorepo management — Turborepo, Nx, pnpm workspaces használata
-- [ ] Dev containers — VS Code / Docker-alapú fejlesztői környezetek
+- [ ] Dev containers — VS Code / Docker-alapú fejlesztői konténerek
 - [ ] Nix — deklaratív, reprodukálható fejlesztői környezetek
 - [ ] direnv — automatikus env változó betöltés mappánként
 - [ ] pyenv — Python verziókezelő (az fnm Python-os megfelelője)
+- [ ] Claude Code projekt setup — CLAUDE.md, hooks, MCP szerverek, skills konfigurálás új projekthez
+- [ ] AI-first fejlesztői workflow — hogyan strukturáld a munkádat Claude Code-dal (worktree-k, agent teamek, kontextus kezelés)
+- [ ] .cursor / .claude konfiguráció — AI coding tool-ok projektszintű beállításai, best practice-ek

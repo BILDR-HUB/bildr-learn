@@ -28,37 +28,37 @@ Create and update markdown notes in the bildr.hub public knowledge base (`bildr-
 
 ## bildr.hub Brand Tone
 
-- **Nyelv:** Magyar, tegezos, kozvetlen, baratsagos
-- **Technikai kifejezesek:** angolul (Docker, Kubernetes, ORM, API, stb.)
-- **Hang:** Motivalo, oszinte, novekedés-orientalt
+- **Nyelv:** Magyar, tegezős, közvetlen, barátságos
+- **Technikai kifejezések:** angolul (Docker, Kubernetes, ORM, API, stb.)
+- **Hang:** Motiváló, őszinte, növekedés-orientált
 - **Szlogen:** "Build. Learn. Grow."
-- **Stilusmintak:**
-  - Aktiv igek ("Hasznald", "Konfigurald", nem "Konfiguralasra kerul")
-  - Gyakorlatias peldak, nem akademikus
-  - "Mikor hasznald / Mikor NE" mintak eszkoz-jegyzeteknel
-  - Bold kulcsfogalmakra az elso elofordulaskor
+- **Stílusminták:**
+  - Aktív igék ("Használd", "Konfiguráld", nem "Konfigurálásra kerül")
+  - Gyakorlatias példák, nem akadémikus
+  - "Mikor használd / Mikor NE" minták eszköz-jegyzeteknél
+  - Bold kulcsfogalmakra az első előforduláskor
 
 ## Content Sanitization Rules
 
-**KOTELEZO** — Minden jegyzet irasanal ellenorizd:
+**KÖTELEZŐ** — Minden jegyzet írásánál ellenőrizd:
 
-1. **Szemelyes nevek** — SOHA ne irj szemelyes neveket. Hasznalj generikus kifejezeseket:
-   - "Mentor", "tapasztalt fejleszto", "senior fejleszto", "csapattag", "a csapat"
-2. **Ugyfel/projekt referencia** — SOHA ne hivatkozz konkret ugyfélre, projektre vagy szervezetre
-   - Hasznalj: "egy belso projekt", "peldaprojekt", "a csapat projektje"
-3. **Ceges hivatkozasok** — Csak "bildr.hub" hasznalhato; ne irj mas cegneveket
-4. **Kod peldak** — Ne hasznalj valos neveket peldakban: `{ name: 'User' }` nem `{ name: 'Bence' }`
-5. **Embedded kepek** — NE hasznalj `![[Pasted image...]]` szintaxist. Hasznalj Mermaid diagramot vagy leirasokat.
+1. **Személyes nevek** — SOHA ne írj személyes neveket. Használj generikus kifejezéseket:
+   - "Mentor", "tapasztalt fejlesztő", "senior fejlesztő", "csapattag", "a csapat"
+2. **Ügyfél/projekt referencia** — SOHA ne hivatkozz konkrét ügyfélre, projektre vagy szervezetre
+   - Használj: "egy belső projekt", "példaprojekt", "a csapat projektje"
+3. **Céges hivatkozások** — Csak "bildr.hub" használható; ne írj más cégneveket
+4. **Kód példák** — Ne használj valós neveket példákban: `{ name: 'User' }` nem `{ name: 'Bence' }`
+5. **Embedded képek** — NE használj `![[Pasted image...]]` szintaxist. Használj Mermaid diagramot vagy leírásokat.
 
 ## Szint (Difficulty Level) Assignment
 
-Minden jegyzethez rendelj `szint` erteket a bildr.hub karrierut alapjan:
+Minden jegyzethez rendelj `szint` értéket a bildr.hub karrierút alapján:
 
 | Szint | Mikor |
 |-------|-------|
-| 🌱 Newcomer | Bevezeto tartalom, elso lepesek, alapfogalmak |
-| 🧱 Brick | Kozephalado, mar van alapveto tapasztalat, epites |
-| 🏗️ Builder | Halado, architekturalis dontesek, osszetett rendszerek |
+| 🌱 Newcomer | Bevezető tartalom, első lépések, alapfogalmak |
+| 🧱 Brick | Középhaladó, már van alapvető tapasztalat, építés |
+| 🏗️ Builder | Haladó, architekturális döntések, összetett rendszerek |
 
 ## Trigger Rules
 
@@ -276,18 +276,18 @@ kapcsolodo:
 ### Phase 2: ROUTING (Folder Selection)
 
 **Step 4: Determine target folder**
-Route based on content type (reteg-alapu):
+Route based on content type (réteg-alapú):
 
-| Reteg | Mappa | Ide kerul |
+| Réteg | Mappa | Ide kerül |
 |-------|-------|-----------|
-| Alapok | `foundations/` | Kodolasi koncept, nyelvi feature, OS, halozat, dev alapok |
+| Alapok | `foundations/` | Kódolási koncept, nyelvi feature, OS, hálózat, dev alapok |
 | Kliens | `frontend/` | Kliens-oldali keretrendszerek, UI, SSR/SSG |
 | Szerver | `backend/` | Szerver-oldali logika, API-k, auth, edge functions |
-| Adatbazis | `database/` | Adatbazis, ORM, cache, BaaS |
-| Felho | `cloud/` | Deploy, kontenerizacio, orchestration, hosting platformok |
-| Eszkoztar | `toolbox/` | Fejlesztoi eszkozok, monitoring, IDE, setup |
-| Gyakorlat | `guides/` | Step-by-step hands-on utmutatok |
-| Terkep | `_moc/` | Map of Content osszefoglalo (csak ha 4+ jegyzet van egy temaban) |
+| Adatbázis | `database/` | Adatbázis, ORM, cache, BaaS |
+| Felhő | `cloud/` | Deploy, konténerizáció, orchestration, hosting platformok |
+| Eszköztár | `toolbox/` | Fejlesztői eszközök, monitoring, IDE, setup |
+| Gyakorlat | `guides/` | Step-by-step hands-on útmutatók |
+| Térkép | `_moc/` | Map of Content összefoglaló (csak ha 4+ jegyzet van egy témában) |
 
 **Step 5: File naming**
 - Kebab-case, kisbetus, ASCII (ekezet nelkul)
@@ -362,10 +362,10 @@ Confirm with a summary:
 ## Style Guidelines
 
 ### Language
-- Always **Hungarian**, tegezos, kozvetlen
+- Always **Hungarian**, tegezős, közvetlen
 - English technical terms preserved (Docker, API, ORM, etc.)
-- NE hasznalj `&` jelet — ird ki "es"
-- NE hasznalj `–` (en-dash) — hasznalj `-` (kotojel)
+- NE használj `&` jelet — írd ki "és"
+- NE használj `–` (en-dash) — használj `-` (kötőjel)
 
 ### Obsidian Syntax
 - **Backlinks:** `[[mappa/fajlnev|Megjeleno nev]]`

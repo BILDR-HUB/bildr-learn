@@ -1,47 +1,47 @@
 # bildr-learn Repo Structure
 
-## Mappastruktura (reteg-alapu)
+## Mappastruktúra (réteg-alapú)
 
 ```
 bildr-learn/
 ├── README.md                # Landing page
 ├── CLAUDE.md                # Claude Code project context
-├── CONTRIBUTING.md          # Kontribucio guide
+├── CONTRIBUTING.md          # Kontribúció guide
 ├── LICENSE                  # MIT
 ├── .claude/skills/bildr-learn/
 │   ├── SKILL.md
 │   └── references/
-│       └── repo-structure.md  (ez a fajl)
-├── foundations/             # Alapok — Bash, Git, Linux, halozatok, Python, dev alapok
+│       └── repo-structure.md  (ez a fájl)
+├── foundations/             # Alapok — Bash, Git, Linux, hálózatok, Python, dev alapok
 ├── frontend/                # Kliens — Next.js, React, CSS, TypeScript
 ├── backend/                 # Szerver — Express, Hono, Auth (JWT, Clerk), Edge fn
-├── database/                # Adatbazis — SQL, Drizzle, Prisma, Redis, Supabase
-├── cloud/                   # Felho — Docker, K8s, Cloudflare, Vercel, Railway, Nginx, deploy
-├── toolbox/                 # Eszkoztar — tmux, Claude Code, Grafana, PostHog, fnm, Mac setup
-├── guides/                  # Gyakorlat — Hands-on step-by-step utmutatok
-└── _moc/                    # Terkepek — Map of Content hub oldalak
+├── database/                # Adatbázis — SQL, Drizzle, Prisma, Redis, Supabase
+├── cloud/                   # Felhő — Docker, K8s, Cloudflare, Vercel, Railway, Nginx, deploy
+├── toolbox/                 # Eszköztár — tmux, Claude Code, Grafana, PostHog, fnm, Mac setup
+├── guides/                  # Gyakorlat — Hands-on step-by-step útmutatók
+└── _moc/                    # Térképek — Map of Content hub oldalak
 ```
 
-## Routing Guide — Melyik tartalom hova kerul?
+## Routing Guide — Melyik tartalom hova kerül?
 
-| Reteg | Mappa | Peldak |
+| Réteg | Mappa | Példák |
 |-------|-------|--------|
-| Alapok | `foundations/` | Bash parancssor, Git, Linux, halozatok, Python venv, szoftverfejlesztes alapjai, npm, TypeScript vs Python |
-| Kliens | `frontend/` | Next.js, React, CSS, TypeScript, Env valtozok, Data Cache, SSR/SSG, CMS |
+| Alapok | `foundations/` | Bash parancssor, Git, Linux, hálózatok, Python venv, szoftverfejlesztés alapjai, npm, TypeScript vs Python |
+| Kliens | `frontend/` | Next.js, React, CSS, TypeScript, Env változók, Data Cache, SSR/SSG, CMS |
 | Szerver | `backend/` | Express, Hono, JWT, Clerk, Edge function, API design |
-| Adatbazis | `database/` | SQL, Drizzle, Prisma, Redis, Supabase, indexek, ORM-ek |
-| Felho | `cloud/` | Docker, Docker Compose, Kubernetes, DevOps, Cloudflare, Vercel, Railway, Nginx, Traefik, deploy, 12-factor |
-| Eszkoztar | `toolbox/` | tmux, vi, Claude Code, Grafana, PostHog, Aikido, Tailscale, fnm, Mac setup |
-| Gyakorlat | `guides/` | Step-by-step tutorials, migracios guidok, hands-on gyakorlatok |
-| Terkep | `_moc/` | Map of Content — temakori osszefoglalok (4+ jegyzet eseten) |
+| Adatbázis | `database/` | SQL, Drizzle, Prisma, Redis, Supabase, indexek, ORM-ek |
+| Felhő | `cloud/` | Docker, Docker Compose, Kubernetes, DevOps, Cloudflare, Vercel, Railway, Nginx, Traefik, deploy, 12-factor |
+| Eszköztár | `toolbox/` | tmux, vi, Claude Code, Grafana, PostHog, Aikido, Tailscale, fnm, Mac setup |
+| Gyakorlat | `guides/` | Step-by-step tutorialok, migrációs guidok, hands-on gyakorlatok |
+| Térkép | `_moc/` | Map of Content — témaköri összefoglalók (4+ jegyzet esetén) |
 
-## Fajlnev szabalyok
+## Fájlnév szabályok
 
-1. **Kebab-case** — szavak kotojelel: `docker-alapok.md`
-2. **Kisbetus** — nincs nagybetu: `nextjs.md` nem `NextJS.md`
-3. **ASCII** — ekezet nelkul: `halozatok-es-ip-cimek.md` nem `hálózatok-és-ip-címek.md`
-4. **Nincs datum** a fajlnevben — a datum a frontmatter-be kerul
-5. **Nincs szokoz** — kotojelel elvalasztva
+1. **Kebab-case** — szavak kötőjellel: `docker-alapok.md`
+2. **Kisbetűs** — nincs nagybetű: `nextjs.md` nem `NextJS.md`
+3. **ASCII** — ékezet nélkül: `halozatok-es-ip-cimek.md` nem `hálózatok-és-ip-címek.md`
+4. **Nincs dátum** a fájlnévben — a dátum a frontmatter-be kerül
+5. **Nincs szóköz** — kötőjellel elválasztva
 
 ## Frontmatter sablon
 
@@ -52,25 +52,25 @@ tags:
 datum: YYYY-MM-DD
 szint: "🌱 Newcomer"   # vagy "🧱 Brick" vagy "🏗️ Builder"
 kapcsolodo:
-  - "[[mappa/fajlnev|Megjeleno nev]]"
+  - "[[mappa/fajlnev|Megjelenő név]]"
 ---
 ```
 
-## Dynamic Folder Creation szabalyok
+## Dynamic Folder Creation szabályok
 
-- **Threshold:** 4+ jegyzet egy al-temarol egy retegen belul
-- **Pelda:** 4 Kubernetes jegyzet a `cloud/` mappaban → javaslat: `cloud/kubernetes/`
-- **Mindig user jovahagyas kell** a mappa letrehozasahoz es fajl athelyezeshez
-- **Athelyezes utan:** minden backlink es MOC referencia frissitendo
+- **Threshold:** 4+ jegyzet egy al-témáról egy rétegen belül
+- **Példa:** 4 Kubernetes jegyzet a `cloud/` mappában → javaslat: `cloud/kubernetes/`
+- **Mindig user jóváhagyás kell** a mappa létrehozásához és fájl áthelyezéshez
+- **Áthelyezés után:** minden backlink és MOC referencia frissítendő
 
-## Backlink format
+## Backlink formátum
 
-Mindig teljes utvonallal es megjeleno nevvel:
+Mindig teljes útvonallal és megjelenő névvel:
 ```
-[[mappa/fajlnev|Megjeleno nev]]
+[[mappa/fajlnev|Megjelenő név]]
 ```
 
-Peldak:
+Példák:
 - `[[cloud/docker-alapok|Docker alapok]]`
 - `[[frontend/nextjs|Next.js]]`
 - `[[_moc/moc-kubernetes|MOC - Kubernetes]]`

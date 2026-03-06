@@ -1,7 +1,7 @@
 # MOC - Docker
 
 > [!tldr]
-> Ez a Map of Content osszegyujti az osszes Docker-hez kapcsolodo note-t. A kontenerizacio alapjaitol a multi-service orchestration-ig.
+> Ez a Map of Content összegyűjti az összes Docker-hez kapcsolódó jegyzetet. A konténerizáció alapjaitól a multi-service orchestration-ig.
 
 ---
 
@@ -45,3 +45,5 @@ Ajánlott sorrend ha nulláról kezded:
 - [ ] Registry kezelés — Docker Hub, GitHub Container Registry, privát registry-k
 - [ ] Docker networking deep dive — bridge, host, overlay network-ök részletesen
 - [ ] Docker security — best practice-ek, non-root user, image scanning
+- [ ] AI fejlesztői környezet Docker-ben — GPU passthrough, ML model serving konténerizálva
+- [ ] Dev containers — VS Code / Claude Code integrált fejlesztői konténerek

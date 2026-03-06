@@ -1,7 +1,7 @@
 # MOC - Auth
 
 > [!tldr]
-> Ez a Map of Content osszegyujti az osszes autentikaciohoz es authorizaciohoz kapcsolodo note-t. Alapelvektol a managed szolgaltatasokig.
+> Ez a Map of Content összegyűjti az összes autentikációhoz és authorizációhoz kapcsolódó jegyzetet. Alapelvektől a managed szolgáltatásokig.
 
 ---
 
@@ -47,3 +47,5 @@ Ajánlott sorrend ha nulláról kezded:
 - [ ] RBAC patterns — Role-Based Access Control tervezési minták
 - [ ] Auth.js / NextAuth — open source alternatíva Clerk-kel szemben
 - [ ] API key management — hogyan kezeld a service-to-service autentikációt
+- [ ] AI agent autentikáció — hogyan auth-olj AI agent-eket API-khoz (tool use, MCP server auth)
+- [ ] Webhook verification — bejövő webhook-ok hitelesítése (Stripe, GitHub, Clerk webhook signing)

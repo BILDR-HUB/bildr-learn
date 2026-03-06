@@ -8,54 +8,54 @@ An open-source, Hungarian-language knowledge base maintained by the [bildr.hub](
 
 ## Mi ez?
 
-A bildr.hub belso tudasbazisa — fejlesztesi jegyzetgyujtemeny, amit a bildr.hub kozosseg tart karban. Magyar nyelvu, gyakorlatias, kozvetlen stilusu tartalom, amit barki hasznalhat es barki hozzajarulhat.
+A bildr.hub belső tudásbázisa — fejlesztési jegyzetgyűjtemény, amit a bildr.hub közösség tart karban. Magyar nyelvű, gyakorlatias, közvetlen stílusú tartalom, amit bárki használhat és bárki hozzájárulhat.
 
-A repo Obsidian vault-kent is megnyithato — a `[[backlink]]` szintaxis, calloutok es Mermaid diagramok mind mukodnek.
+A repo Obsidian vault-ként is megnyitható — a `[[backlink]]` szintaxis, calloutok és Mermaid diagramok mind működnek.
 
-## Kinek szol?
+## Kinek szól?
 
-- 🌱 **Newcomer** — most tanulod az alapokat (Bash, Git, Docker, halozatok)
-- 🧱 **Brick** — mar epitesz, de kell a kontextus (Next.js, Supabase, ORM-ek, auth)
-- 🏗️ **Builder** — architekturalis donteseket hozol (12-factor, Kubernetes, migracio, monitoring)
+- 🌱 **Newcomer** — most tanulod az alapokat (Bash, Git, Docker, hálózatok)
+- 🧱 **Brick** — már építesz, de kell a kontextus (Next.js, Supabase, ORM-ek, auth)
+- 🏗️ **Builder** — architekturális döntéseket hozol (12-factor, Kubernetes, migráció, monitoring)
 
-## Mappastruktura
+## Mappastruktúra
 
-| Mappa | Reteg | Tartalom |
+| Mappa | Réteg | Tartalom |
 |-------|-------|----------|
-| `foundations/` | Alapok | Bash, Git, Linux, halozatok, Python, dev alapfogalmak |
+| `foundations/` | Alapok | Bash, Git, Linux, hálózatok, Python, dev alapfogalmak |
 | `frontend/` | Kliens | Next.js, React, CSS, TypeScript |
 | `backend/` | Szerver | Express, Hono, Auth (JWT, Clerk), Edge functions |
-| `database/` | Adatbazis | SQL, Drizzle, Prisma, Redis, Supabase |
-| `cloud/` | Felho es Deploy | Docker, Kubernetes, Cloudflare, Vercel, Railway, Nginx |
-| `toolbox/` | Eszkoztar | tmux, Claude Code, Grafana, PostHog, Mac setup |
-| `guides/` | Gyakorlat | Hands-on step-by-step utmutatok |
-| `_moc/` | Terkepek | Map of Content — temakori osszefoglalok |
+| `database/` | Adatbázis | SQL, Drizzle, Prisma, Redis, Supabase |
+| `cloud/` | Felhő és Deploy | Docker, Kubernetes, Cloudflare, Vercel, Railway, Nginx |
+| `toolbox/` | Eszköztár | tmux, Claude Code, Grafana, PostHog, Mac setup |
+| `guides/` | Gyakorlat | Hands-on step-by-step útmutatók |
+| `_moc/` | Térképek | Map of Content — témaköri összefoglalók |
 
-## Hogyan hasznald?
+## Hogyan használd?
 
-1. **Bongeszsz** — nyisd meg barmelyik `.md` fajlt kozvetlenul GitHub-on
-2. **Klonozd** — `git clone https://github.com/BILDR-HUB/bildr-learn.git` es nyisd meg Obsidianban mint vault
-3. **Jarulj hozza** — lasd a [CONTRIBUTING.md](CONTRIBUTING.md) fajlt
+1. **Böngéssz** — nyisd meg bármelyik `.md` fájlt közvetlenül GitHub-on
+2. **Klónozd** — `git clone https://github.com/BILDR-HUB/bildr-learn.git` és nyisd meg Obsidianban mint vault
+3. **Járulj hozzá** — lásd a [CONTRIBUTING.md](CONTRIBUTING.md) fájlt
 
-## Tanulasi utvonalak
+## Tanulási útvonalak
 
-A `_moc/` mappaban talalhato Map of Content fajlok segitenek navigalni:
+A `_moc/` mappában található Map of Content fájlok segítenek navigálni:
 
-- [Auth](/_moc/moc-auth.md) — JWT-tol a managed auth-ig
-- [Database](/_moc/moc-database.md) — SQL alapoktol az ORM-ekig
-- [Deployment](/_moc/moc-deployment.md) — frontend hostingtol a Kubernetes-ig
-- [Docker](/_moc/moc-docker.md) — kontenerizacio alapjaitol az orchestration-ig
-- [Environment Setup](/_moc/moc-environment-setup.md) — fejlesztoi kornyezet felallitasa
-- [Kubernetes](/_moc/moc-kubernetes.md) — orkesztralas es klaszterek
+- [Auth](_moc/moc-auth.md) — JWT-től a managed auth-ig
+- [Database](_moc/moc-database.md) — SQL alapoktól az ORM-ekig
+- [Deployment](_moc/moc-deployment.md) — frontend hostingtól a Kubernetes-ig
+- [Docker](_moc/moc-docker.md) — konténerizáció alapjaitól az orchestration-ig
+- [Environment Setup](_moc/moc-environment-setup.md) — fejlesztői környezet felállítása
+- [Kubernetes](_moc/moc-kubernetes.md) — orkesztráció és klaszterek
 
-## Kontribucio
+## Kontribúció
 
-Szivesen latjuk a hozzajarulasokat! Lasd: [CONTRIBUTING.md](CONTRIBUTING.md)
+Szívesen látjuk a hozzájárulásokat! Lásd: [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Licenc
 
-MIT — lasd: [LICENSE](LICENSE)
+MIT — lásd: [LICENSE](LICENSE)
 
 ---
 
-*Fenntartja: a [bildr.hub](https://bildr.hu) kozosseg*
+*Fenntartja: a [bildr.hub](https://bildr.hu) közösség*

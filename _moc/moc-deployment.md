@@ -1,7 +1,7 @@
 # MOC - Deployment
 
 > [!tldr]
-> Ez a Map of Content osszegyujti az osszes deployment-hez es hosting-hoz kapcsolodo note-t. Frontend hosting-tol a backend platformokon at a best practice-ekig.
+> Ez a Map of Content összegyűjti az összes deployment-hez és hosting-hoz kapcsolódó jegyzetet. Frontend hostingtól a backend platformokon át a best practice-ekig.
 
 ---
 
@@ -81,3 +81,7 @@ Ajánlott sorrend ha nulláról kezded:
 - [ ] Blue-green deployment — zero-downtime deploy stratégia
 - [ ] Domain és DNS kezelés — custom domain beállítás, SSL tanúsítványok
 - [ ] Monitoring és logging — hogyan tudd meg ha valami elromlik production-ben
+- [ ] AI-assisted deployment — Claude Code automatizált deploy scriptek, infra-as-code generálás
+- [ ] Cost estimation — hosting költségbecslés, mikor melyik platform éri meg (SMB szemszögből)
+- [ ] SaaS MVP deployment — leggyorsabb út ötlettől a production-ig, stack választás üzleti szempontból
+- [ ] Statuspage és incident management — ügyfelek tájékoztatása leállásokról, postmortem kultúra

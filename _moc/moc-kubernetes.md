@@ -1,7 +1,7 @@
 # MOC - Kubernetes
 
 > [!tldr]
-> Ez a Map of Content osszegyujti az osszes Kubernetes-hez kapcsolodo note-t. A kontener orchestration vilaga: alap koncepcioktol a disztribuciokig.
+> Ez a Map of Content összegyűjti az összes Kubernetes-hez kapcsolódó jegyzetet. A konténer orchestration világa: alap koncepcióktól a disztribúciókig.
 
 ---
 
@@ -49,5 +49,7 @@ Ajánlott sorrend ha nulláról kezded:
 - [ ] Helm — package manager Kubernetes-hez, chart-ok használata
 - [ ] K8s networking — Service, Ingress, DNS, NetworkPolicy mélyebben
 - [ ] Production deployment — éles K8s cluster felállítása és üzemeltetése
+- [ ] GitOps — ArgoCD / Flux, deklaratív K8s konfigurációkezelés git-ből
+- [ ] AI workload orchestration — GPU pod-ok, model serving K8s-en, scaling stratégiák ML-hez
 - [x] kubectl parancsok → Kubernetes gyakorlat OrbStack
 - [x] K8s YAML manifesztek → Kubernetes gyakorlat OrbStack

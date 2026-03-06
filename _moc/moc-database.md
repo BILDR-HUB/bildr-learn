@@ -1,7 +1,7 @@
 # MOC - Database
 
 > [!tldr]
-> Ez a Map of Content osszegyujti az osszes adatbazishoz kapcsolodo note-t. SQL alapoktol az index optimalizalason at az ORM-ekig.
+> Ez a Map of Content összegyűjti az összes adatbázishoz kapcsolódó jegyzetet. SQL alapoktól az index optimalizáción át az ORM-ekig.
 
 ---
 
@@ -59,3 +59,6 @@ Ajánlott sorrend ha nulláról kezded:
 - [ ] Connection pooling — PgBouncer, Prisma Accelerate, miért kell serverless-nél
 - [ ] Database design patterns — normalizálás, denormalizálás, soft delete
 - [ ] PostgreSQL specifikus tudás — JSON mezők, full-text search, RLS (Row Level Security)
+- [ ] Vector adatbázisok — pgvector, Pinecone, embedding-ek tárolása RAG rendszerekhez
+- [ ] AI-generált SQL — LLM-ek használata SQL query íráshoz, natural language to SQL minták
+- [ ] SaaS adatbázis tervezés — multi-tenant sémák, tenant izoláció, billing-hez kapcsolt adatmodellek
