@@ -1,0 +1,45 @@
+name: "Új téma kérés"
+description: "Kérj egy új témát a tudásbázisba"
+title: "[Téma]: "
+labels: ["topic-request"]
+body:
+  - type: input
+    id: topic
+    attributes:
+      label: Téma neve
+      description: Milyen témáról szólna a jegyzet?
+      placeholder: "pl. Redis Pub/Sub"
+    validations:
+      required: true
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Melyik rétegbe illik?
+      options:
+        - foundations
+        - frontend
+        - backend
+        - database
+        - cloud
+        - toolbox
+        - guides
+    validations:
+      required: true
+  - type: dropdown
+    id: level
+    attributes:
+      label: Milyen szintű?
+      options:
+        - "\U0001F331 Newcomer"
+        - "\U0001F9F1 Brick"
+        - "\U0001F3D7\uFE0F Builder"
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Miért lenne hasznos?
+      description: Írd le röviden, miért kellene ez a jegyzet a tudásbázisba.
+      placeholder: "Mert sokan használnak Redis-t és nincs róla jegyzetünk..."
+    validations:
+      required: true

@@ -2,7 +2,23 @@
 
 > **Build. Learn. Grow.**
 
+![Notes](https://img.shields.io/badge/notes-111%2B-blue)
+![Language](https://img.shields.io/badge/language-magyar-green)
+![License](https://img.shields.io/badge/license-MIT-yellow)
+
 An open-source, Hungarian-language knowledge base maintained by the [bildr.hub](https://bildr.hu) community. Covers modern full-stack development — from foundations to cloud deployment.
+
+---
+
+## Használd Obsidianban
+
+A legjobb élmény Obsidian vault-ként — kattintható backlinkek, színkódolt gráf, automatikus szinkron.
+
+1. **Telepítsd** az [Obsidian](https://obsidian.md)-t
+2. **Klónozd** a repot: `git clone https://github.com/BILDR-HUB/bildr-learn.git`
+3. **Nyisd meg** Obsidianban: Open folder as vault → `bildr-learn`
+
+Részletes útmutató, kontribúció és navigáció: **[START-HERE.md](START-HERE.md)**
 
 ---
 

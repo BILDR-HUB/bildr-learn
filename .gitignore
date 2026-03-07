@@ -1,0 +1,12 @@
+# Obsidian workspace (user-specifikus)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/plugins/
+.obsidian/themes/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Utility scripts
+*.py
