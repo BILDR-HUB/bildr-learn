@@ -9,6 +9,8 @@ kapcsolodo:
   - "[[cloud/docker-alapok|Docker alapok]]"
   - "[[cloud/kubernetes-bevezeto|Kubernetes bevezeto]]"
   - "[[toolbox/claude-code-agent-teams|Claude Code Agent Teams]]"
+  - "[[toolbox/mcp-model-context-protocol|MCP — Model Context Protocol]]"
+  - "[[_moc/moc-ai-tooling|MOC - AI Tooling]]"
 ---
 
 ## Mi a Claude Agent SDK es miert jobb mint kezzel megirni

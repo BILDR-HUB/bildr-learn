@@ -9,8 +9,11 @@ szint: "🧱 Brick"
 kapcsolodo:
   - "[[toolbox/claude-code-projekt-setup|Claude Code projekt setup]]"
   - "[[toolbox/ai-first-fejlesztoi-workflow|AI-first fejlesztői workflow]]"
+  - "[[toolbox/ai-coding-agentek-osszehasonlitasa|AI coding agentek összehasonlítása]]"
+  - "[[toolbox/google-antigravity|Google Antigravity]]"
   - "[[foundations/projekt-szintu-izolacio|Projekt-szintű izoláció]]"
   - "[[_moc/moc-environment-setup|MOC - Environment Setup]]"
+  - "[[_moc/moc-ai-tooling|MOC - AI Tooling]]"
 ---
 
 # Cursor és Claude konfiguráció
