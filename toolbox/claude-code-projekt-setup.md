@@ -8,8 +8,11 @@ szint: "🧱 Brick"
 kapcsolodo:
   - "[[toolbox/claude-code-agent-teams|Claude Code Agent Teams]]"
   - "[[toolbox/claude-agent-sdk|Claude Agent SDK]]"
+  - "[[toolbox/claude-code-skills-es-plugins|Claude Code Skills és Plugins]]"
+  - "[[toolbox/mcp-model-context-protocol|MCP — Model Context Protocol]]"
   - "[[toolbox/git-worktree-vs-branch|Git worktree vs branch]]"
   - "[[_moc/moc-environment-setup|MOC - Environment Setup]]"
+  - "[[_moc/moc-ai-tooling|MOC - AI Tooling]]"
 ---
 
 # Claude Code projekt setup
