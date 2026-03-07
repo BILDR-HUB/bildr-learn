@@ -1,0 +1,33 @@
+name: "Javítás / pontosítás"
+description: "Jelezz hibát vagy elavult tartalmat egy jegyzetben"
+title: "[Javítás]: "
+labels: ["correction"]
+body:
+  - type: input
+    id: note
+    attributes:
+      label: Melyik jegyzet?
+      description: A fájl neve vagy elérési útja a repóban.
+      placeholder: "pl. foundations/git-es-github.md"
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Probléma típusa
+      options:
+        - Tartalmi hiba
+        - Elavult információ
+        - Hiányzó tartalom
+        - Elírás
+        - Törött link
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Leírás
+      description: Írd le a problémát és ha tudod, a javasolt javítást.
+      placeholder: "A 3. szekcióban az npm install parancs elavult, az új szintaxis..."
+    validations:
+      required: true
