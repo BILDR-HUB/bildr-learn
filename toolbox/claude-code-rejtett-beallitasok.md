@@ -9,7 +9,7 @@ kapcsolodo:
   - "[[toolbox/claude-code-projekt-setup|Claude Code]]"
   - "[[toolbox/claude-mappa-anatomiaja|A .claude mappa anatómiája]]"
   - "[[toolbox/claude-code-agent-teams|Claude Code Agent Teams]]"
-  - "[[toolbox/claude-code-best-practice|Claude Code best practice]]"
+  - "[[github/claude-code-best-practice|Claude Code best practice]]"
 ---
 
 # Claude Code rejtett beállítások
@@ -132,5 +132,5 @@ A rejtett beállítások ismerete közvetlenül javítja az AI-natív fejleszté
 - [[toolbox/claude-code-projekt-setup|Claude Code]] - az eszköz maga, képességek és architektúra
 - [[toolbox/claude-mappa-anatomiaja|A .claude mappa anatómiája]] - a .claude/ mappa felépítése, rules/, commands/, settings.json
 - [[toolbox/claude-code-agent-teams|Claude Code Agent Teams]] - multi-agent koordináció részletesen
-- [[toolbox/claude-code-best-practice|Claude Code best practice]] - 84 tipp gyűjtemény
+- [[github/claude-code-best-practice|Claude Code best practice]] - 84 tipp gyűjtemény
 - [[toolbox/claude-code-building-structure|Claude Code Building Structure]] - CLAUDE.md és pipeline felépítés

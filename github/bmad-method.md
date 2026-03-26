@@ -8,9 +8,9 @@ datum: 2026-03-26
 szint: "🏗️ Builder"
 kapcsolodo:
   - "[[toolbox/claude-code-projekt-setup|Claude Code]]"
-  - "[[toolbox/get-shit-done|Get Shit Done (GSD)]]"
-  - "[[toolbox/claude-code-best-practice|Claude Code best practice]]"
-  - "[[toolbox/everything-claude-code|Everything Claude Code]]"
+  - "[[github/get-shit-done|Get Shit Done (GSD)]]"
+  - "[[github/claude-code-best-practice|Claude Code best practice]]"
+  - "[[github/everything-claude-code|Everything Claude Code]]"
 ---
 
 # BMAD-METHOD
@@ -37,7 +37,7 @@ A **BMAD** (Build More Architect Dreams) abban különbözik a legtöbb [[toolbo
 | **Tesztelés** | Test Architect | Kockázat-alapú tesztstratégia, automatizálás |
 | **UX** | UX Designer | UI/UX review, felhasználói élmény |
 
-**Fő különbség a [[toolbox/get-shit-done|GSD]] stílustól:** a BMAD _agent persona_-kat használ (a PM nem kódol, az Architect nem tesztel), míg a GSD egyetlen Claude session-ben oldja meg a feladatot szint-alapú eszkalációval.
+**Fő különbség a [[github/get-shit-done|GSD]] stílustól:** a BMAD _agent persona_-kat használ (a PM nem kódol, az Architect nem tesztel), míg a GSD egyetlen Claude session-ben oldja meg a feladatot szint-alapú eszkalációval.
 
 ---
 
@@ -75,20 +75,20 @@ Ez a `.claude/` mappába skill-eket és agent konfigokat tesz. A `bmad-help` par
 
 ## Összehasonlítás - agentic framework-ök
 
-| | BMAD-METHOD | [[toolbox/get-shit-done|GSD]] | Superpowers |
+| | BMAD-METHOD | [[github/get-shit-done|GSD]] | Superpowers |
 |---|---|---|---|
 | **Megközelítés** | Agent personák + teljes SDLC | Context engineering + wave execution | TDD-first + Iron Laws |
 | **Erősség** | Átfogó, strukturált | Gyors, pragmatikus, multi-platform | Tesztelés-központú |
 | **Skill-ek** | 42 | 0 (commands) | 14 |
 | **Mikor válaszd** | Greenfield, komplex projekt, team | Solo dev, gyors iteráció | Ha a tesztelés a prioritás |
 
-Részletesebb összehasonlítás: [[toolbox/get-shit-done|Get Shit Done (GSD)]]
+Részletesebb összehasonlítás: [[github/get-shit-done|Get Shit Done (GSD)]]
 
 ---
 
 ## Kapcsolódó
 
 - [[toolbox/claude-code-projekt-setup|Claude Code]] - az elsődleges IDE amihez a BMAD integrálódik
-- [[toolbox/get-shit-done|Get Shit Done (GSD)]] - alternatív, pragmatikusabb workflow
-- [[toolbox/claude-code-best-practice|Claude Code best practice]] - tartalmazza a BMAD összehasonlítását más framework-ökkel
-- [[toolbox/everything-claude-code|Everything Claude Code]] - másik nagy referencia repó, más megközelítés
+- [[github/get-shit-done|Get Shit Done (GSD)]] - alternatív, pragmatikusabb workflow
+- [[github/claude-code-best-practice|Claude Code best practice]] - tartalmazza a BMAD összehasonlítását más framework-ökkel
+- [[github/everything-claude-code|Everything Claude Code]] - másik nagy referencia repó, más megközelítés

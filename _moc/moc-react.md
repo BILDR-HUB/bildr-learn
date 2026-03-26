@@ -49,7 +49,7 @@ datum: 2026-03-26
 | [[frontend/shadcn-ui\|shadcn/ui]] | React komponens gyűjtemény Radix + Tailwind alapon |
 | [[frontend/tailwind-css\|Tailwind CSS]] | Utility-first CSS — React-ben a legelterjedtebb styling megoldás |
 | [[frontend/framer-motion\|Framer Motion]] | Deklaratív animációk React-hez |
-| [[frontend/data-table-filters\|Data Table Filters]] | TanStack Table referencia — szűrhető, rendezhető adattáblák |
+| [[github/data-table-filters\|Data Table Filters]] | TanStack Table referencia — szűrhető, rendezhető adattáblák |
 | [[frontend/mdx\|MDX]] | Markdown + React komponensek — docs, blog, knowledge base |
 | [[frontend/progressive-web-apps\|Progressive Web Apps]] | PWA — web app telepíthető mobilra, offline support |
 

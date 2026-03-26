@@ -48,10 +48,10 @@ datum: 2026-03-26
 | [[frontend/react\|React]] | UI könyvtár — a legtöbb frontend UI eszköz React-re épül |
 | [[frontend/nextjs\|Next.js]] | React meta-framework — SSR, routing, production-ready |
 | [[frontend/react-hook-form\|React Hook Form]] | Form kezelés — shadcn/ui form komponensekkel integrálva |
-| [[frontend/data-table-filters\|Data Table Filters]] | TanStack Table referencia — UI-intenzív adattábla szűrőkkel |
+| [[github/data-table-filters\|Data Table Filters]] | TanStack Table referencia — UI-intenzív adattábla szűrőkkel |
 | [[frontend/mdx\|MDX]] | Markdown + React — tartalomközpontú UI-hoz |
 | [[toolbox/figma\|Figma]] | Design tool — UI tervezés, design token-ek, fejlesztő handoff |
-| [[toolbox/screenshot-to-code\|Screenshot to Code]] | Design → kód — AI-val generált Tailwind/React kód |
+| [[github/screenshot-to-code\|Screenshot to Code]] | Design → kód — AI-val generált Tailwind/React kód |
 | [[_moc/moc-react\|MOC - React]] | React ökoszisztéma — hooks, state, adatkezelés |
 
 ---

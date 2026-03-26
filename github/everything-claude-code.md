@@ -7,8 +7,8 @@ datum: 2026-03-26
 szint: "🧱 Scout"
 kapcsolodo:
   - "[[toolbox/claude-code-projekt-setup|Claude Code]]"
-  - "[[toolbox/claude-code-best-practice|Claude Code best practice]]"
-  - "[[toolbox/bmad-method|BMAD-METHOD]]"
+  - "[[github/claude-code-best-practice|Claude Code best practice]]"
+  - "[[github/bmad-method|BMAD-METHOD]]"
 ---
 
 # Everything Claude Code
@@ -52,7 +52,7 @@ Közvetlenül Claude Code-ra épül. A repó skill-jei telepíthetők, de érté
 
 ## Összehasonlítás
 
-| | everything-claude-code | [[toolbox/claude-code-best-practice|claude-code-best-practice]] |
+| | everything-claude-code | [[github/claude-code-best-practice|claude-code-best-practice]] |
 |---|---|---|
 | **Fókusz** | Skill + instinct gyűjtemény | Tippek + framework összehasonlítás |
 | **Használat** | Referencia - skill-ek adaptálhatók | Referencia - olvasd és válogass |
@@ -63,5 +63,5 @@ Közvetlenül Claude Code-ra épül. A repó skill-jei telepíthetők, de érté
 ## Kapcsolódó
 
 - [[toolbox/claude-code-projekt-setup|Claude Code]] - az eszköz amire épül
-- [[toolbox/claude-code-best-practice|Claude Code best practice]] - hasonló referencia repó, 84 tipp + framework összehasonlítás
-- [[toolbox/bmad-method|BMAD-METHOD]] - strukturált alternatíva, agent personákkal és teljes SDLC lifecycle-kal
+- [[github/claude-code-best-practice|Claude Code best practice]] - hasonló referencia repó, 84 tipp + framework összehasonlítás
+- [[github/bmad-method|BMAD-METHOD]] - strukturált alternatíva, agent personákkal és teljes SDLC lifecycle-kal

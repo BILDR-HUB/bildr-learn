@@ -9,8 +9,8 @@ szint: "🏗️ Builder"
 kapcsolodo:
   - "[[toolbox/claude-code-projekt-setup|Claude Code]]"
   - "[[toolbox/claude-code-agent-teams|Claude Code Agent Teams]]"
-  - "[[toolbox/screenshot-to-code|Screenshot to Code]]"
-  - "[[toolbox/get-shit-done|Get Shit Done (GSD)]]"
+  - "[[github/screenshot-to-code|Screenshot to Code]]"
+  - "[[github/get-shit-done|Get Shit Done (GSD)]]"
 ---
 
 # Claude Code Building Structure
@@ -200,7 +200,7 @@ Ez a pipeline kifejezetten AI-natív fejlesztésre lett tervezve: a dokumentum-v
 
 ## Kapcsolódó
 
-- [[toolbox/get-shit-done|Get Shit Done (GSD)]] - session-szintű produktivitási workflow (ez a strukturált, projekt-szintű verzió)
+- [[github/get-shit-done|Get Shit Done (GSD)]] - session-szintű produktivitási workflow (ez a strukturált, projekt-szintű verzió)
 - [[toolbox/claude-code-agent-teams|Claude Code Agent Teams]] - a subagent orchestráció, ami a pipeline végén fut
 - [[toolbox/claude-code-projekt-setup|Claude Code]] - az eszköz maga
-- [[toolbox/screenshot-to-code|Screenshot to Code]] - a HTML Mock fázist gyorsíthatja screenshot-ból
+- [[github/screenshot-to-code|Screenshot to Code]] - a HTML Mock fázist gyorsíthatja screenshot-ból

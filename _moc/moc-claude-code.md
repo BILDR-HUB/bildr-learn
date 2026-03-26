@@ -16,7 +16,7 @@ datum: 2026-03-26
 | Jegyzet | Leírás |
 |---------|--------|
 | [[toolbox/claude-code\|Claude Code]] | Átfogó bevezető — mi ez, mire képes, telepítés, alaphasználat |
-| [[toolbox/everything-claude-code\|Everything Claude Code]] | Teljes referencia — minden feature egy helyen, gyors áttekintés |
+| [[github/everything-claude-code\|Everything Claude Code]] | Teljes referencia — minden feature egy helyen, gyors áttekintés |
 
 ## Konfiguráció
 
@@ -30,7 +30,7 @@ datum: 2026-03-26
 
 | Jegyzet | Leírás |
 |---------|--------|
-| [[toolbox/claude-code-best-practice\|Claude Code best practice]] | Hatékony használat — kontextus kezelés, prompt minták, tipikus hibák elkerülése |
+| [[github/claude-code-best-practice\|Claude Code best practice]] | Hatékony használat — kontextus kezelés, prompt minták, tipikus hibák elkerülése |
 | [[toolbox/claude-code-building-structure\|Claude Code Building Structure]] | Nagyobb projektek építése — top-down pipeline, fázisos építés, scope management |
 
 ## Haladó funkciók
@@ -49,8 +49,8 @@ datum: 2026-03-26
 |---------|-----------|
 | [[toolbox/mcp-model-context-protocol\|MCP — Model Context Protocol]] | Szabványos interfész LLM-ek és eszközök között — Claude Code MCP-n keresztül bővíthető |
 | [[toolbox/ai-first-fejlesztoi-workflow\|AI-first fejlesztői workflow]] | Hogyan strukturáld a munkádat Claude Code-dal — worktree-k, agent teamek |
-| [[toolbox/get-shit-done\|Get Shit Done (GSD)]] | AI-natív fejlesztési workflow — Claude Code-ra optimalizált módszertan |
-| [[toolbox/bmad-method\|BMAD-METHOD]] | Business Model Aligned Development — üzleti célokból kiinduló AI fejlesztés |
+| [[github/get-shit-done\|Get Shit Done (GSD)]] | AI-natív fejlesztési workflow — Claude Code-ra optimalizált módszertan |
+| [[github/bmad-method\|BMAD-METHOD]] | Business Model Aligned Development — üzleti célokból kiinduló AI fejlesztés |
 | [[toolbox/cursor-es-claude-konfiguracio\|Cursor és Claude konfiguráció]] | Claude Code + Cursor párhuzamos használat |
 | [[toolbox/ai-coding-agentek-osszehasonlitasa\|AI coding agentek összehasonlítása]] | Claude Code vs Codex vs Antigravity vs Cursor |
 
@@ -62,15 +62,15 @@ Ajánlott sorrend ha nulláról kezded:
 1. [[toolbox/claude-code\|Claude Code]] — mi ez, telepítés, első lépések
 2. [[toolbox/claude-code-projekt-setup\|Claude Code projekt setup]] — CLAUDE.md, settings, hooks beállítása
 3. [[toolbox/claude-mappa-anatomiaja\|A .claude mappa anatómiája]] — értsd meg a könyvtár felépítését
-4. [[toolbox/claude-code-best-practice\|Claude Code best practice]] — hatékony használat, tipikus hibák
+4. [[github/claude-code-best-practice\|Claude Code best practice]] — hatékony használat, tipikus hibák
 5. [[toolbox/claude-code-building-structure\|Building Structure]] — nagyobb projektek struktúrált építése
 6. [[toolbox/claude-code-rejtett-beallitasok\|Rejtett beállítások]] — haladó konfiguráció, finomhangolás
 7. [[toolbox/claude-code-skills-es-plugins\|Skills és Plugins]] — custom skill-ek és plugin-ek
 8. [[toolbox/claude-code-agent-teams\|Agent Teams]] — párhuzamos agent munka, team orchestrálás
-9. [[toolbox/everything-claude-code\|Everything Claude Code]] — teljes referencia, ha bármit keresel
+9. [[github/everything-claude-code\|Everything Claude Code]] — teljes referencia, ha bármit keresel
 
 > [!tip] Hol kezdd?
-> Ha most telepítetted a Claude Code-ot: [[toolbox/claude-code\|Claude Code]] bevezető → [[toolbox/claude-code-projekt-setup\|projekt setup]]. Ha már használod és hatékonyabb akarsz lenni: [[toolbox/claude-code-best-practice\|best practice]] → [[toolbox/get-shit-done\|GSD workflow]].
+> Ha most telepítetted a Claude Code-ot: [[toolbox/claude-code\|Claude Code]] bevezető → [[toolbox/claude-code-projekt-setup\|projekt setup]]. Ha már használod és hatékonyabb akarsz lenni: [[github/claude-code-best-practice\|best practice]] → [[github/get-shit-done\|GSD workflow]].
 
 ---
 

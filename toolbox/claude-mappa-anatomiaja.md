@@ -8,7 +8,7 @@ szint: "🧱 Scout"
 kapcsolodo:
   - "[[toolbox/claude-code-projekt-setup|Claude Code projekt setup]]"
   - "[[toolbox/claude-code-rejtett-beallitasok|Claude Code rejtett beállítások]]"
-  - "[[toolbox/claude-code-best-practice|Claude Code best practice]]"
+  - "[[github/claude-code-best-practice|Claude Code best practice]]"
   - "[[toolbox/claude-code-building-structure|Claude Code Building Structure]]"
 ---
 
@@ -107,5 +107,5 @@ A .claude/ mappa helyes konfigurálása az AI-natív fejlesztés alapja: a CLAUD
 
 - [[toolbox/claude-code-projekt-setup|Claude Code]] - az eszköz amihez a .claude/ mappa tartozik
 - [[toolbox/claude-code-building-structure|Claude Code Building Structure]] - a projekt-szintű CLAUDE.md és pipeline felépítése
-- [[toolbox/claude-code-best-practice|Claude Code best practice]] - 84 tipp amik részben a .claude/ konfigurációról szólnak
+- [[github/claude-code-best-practice|Claude Code best practice]] - 84 tipp amik részben a .claude/ konfigurációról szólnak
 - [[toolbox/claude-code-rejtett-beallitasok|Claude Code rejtett beállítások]] - settings.json flag-ek, context window optimalizálás, hook exit code-ok

@@ -7,10 +7,10 @@ tags:
 datum: 2026-03-26
 szint: "🏗️ Builder"
 kapcsolodo:
-  - "[[toolbox/bmad-method|BMAD-METHOD]]"
+  - "[[github/bmad-method|BMAD-METHOD]]"
   - "[[toolbox/claude-code-projekt-setup|Claude Code]]"
-  - "[[toolbox/claude-code-best-practice|Claude Code best practice]]"
-  - "[[toolbox/everything-claude-code|Everything Claude Code]]"
+  - "[[github/claude-code-best-practice|Claude Code best practice]]"
+  - "[[github/everything-claude-code|Everything Claude Code]]"
 ---
 
 # Get Shit Done (GSD)
@@ -59,11 +59,11 @@ Független tervek párhuzamosan futnak (wave), függő tervek szekvenciálisan. 
 ## BMAD vs GSD - részletes összehasonlítás
 
 > [!info] Két agentic framework
-> A [[toolbox/bmad-method|BMAD-METHOD]] és a GSD a két legnépszerűbb agentic fejlesztési framework. Mindkettőnek megvan a saját helye.
+> A [[github/bmad-method|BMAD-METHOD]] és a GSD a két legnépszerűbb agentic fejlesztési framework. Mindkettőnek megvan a saját helye.
 
 ### Filozófia
 
-| | [[toolbox/bmad-method|BMAD-METHOD]] | GSD |
+| | [[github/bmad-method|BMAD-METHOD]] | GSD |
 |---|---|---|
 | **Alap kérdés** | "Hogyan építsünk szoftvert strukturáltan?" | "Hogyan tartjuk fenn a minőséget nagy projekteknél?" |
 | **Megközelítés** | Agent personák (PM, Architect, Dev, UX...) | Context engineering (friss window = jobb output) |
@@ -105,7 +105,7 @@ A telepítés commands-öt tesz a `.claude/commands/` mappába. A `/gsd:help` me
 
 ## Kapcsolódó
 
-- [[toolbox/bmad-method|BMAD-METHOD]] - strukturáltabb alternatíva, agent personákkal és teljes SDLC lifecycle-kal
+- [[github/bmad-method|BMAD-METHOD]] - strukturáltabb alternatíva, agent personákkal és teljes SDLC lifecycle-kal
 - [[toolbox/claude-code-projekt-setup|Claude Code]] - az elsődleges IDE amihez a GSD integrálódik
-- [[toolbox/claude-code-best-practice|Claude Code best practice]] - framework összehasonlítás (BMAD, GSD, Superpowers, stb.)
-- [[toolbox/everything-claude-code|Everything Claude Code]] - másik nagy referencia repó
+- [[github/claude-code-best-practice|Claude Code best practice]] - framework összehasonlítás (BMAD, GSD, Superpowers, stb.)
+- [[github/everything-claude-code|Everything Claude Code]] - másik nagy referencia repó

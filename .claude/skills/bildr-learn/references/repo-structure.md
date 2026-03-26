@@ -18,6 +18,7 @@ bildr-learn/
 ├── database/                # Adatbázis — SQL, Drizzle, Prisma, Redis, Supabase
 ├── cloud/                   # Felhő — Docker, K8s, Cloudflare, Vercel, Railway, Nginx, deploy
 ├── toolbox/                 # Eszköztár — tmux, Claude Code, Grafana, PostHog, fnm, Mac setup
+├── github/                  # GitHub — repókból felfedezett tool-ok, library-k, projektek
 ├── guides/                  # Gyakorlat — Hands-on step-by-step útmutatók
 └── _moc/                    # Térképek — Map of Content hub oldalak
 ```
@@ -32,6 +33,7 @@ bildr-learn/
 | Adatbázis | `database/` | SQL, Drizzle, Prisma, Redis, Supabase, indexek, ORM-ek |
 | Felhő | `cloud/` | Docker, Docker Compose, Kubernetes, DevOps, Cloudflare, Vercel, Railway, Nginx, Traefik, deploy, 12-factor |
 | Eszköztár | `toolbox/` | tmux, vi, Claude Code, Grafana, PostHog, Aikido, Tailscale, fnm, Mac setup |
+| GitHub | `github/` | GitHub repókból felfedezett tool-ok, library-k, projektek, skill-ek |
 | Gyakorlat | `guides/` | Step-by-step tutorialok, migrációs guidok, hands-on gyakorlatok |
 | Térkép | `_moc/` | Map of Content — témaköri összefoglalók (4+ jegyzet esetén) |
 

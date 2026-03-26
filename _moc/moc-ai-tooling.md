@@ -11,11 +11,11 @@
 |------|--------|
 | [[toolbox/claude-code\|Claude Code]] | Átfogó bevezető az Anthropic CLI-alapú AI coding tool-jába — funkciók, telepítés, használat |
 | [[toolbox/claude-code-projekt-setup\|Claude Code projekt setup]] | CLAUDE.md, settings, hooks, MCP konfiguráció |
-| [[toolbox/claude-code-best-practice\|Claude Code best practice]] | Hatékony Claude Code használat — kontextus kezelés, prompt minták, tipikus hibák |
+| [[github/claude-code-best-practice\|Claude Code best practice]] | Hatékony Claude Code használat — kontextus kezelés, prompt minták, tipikus hibák |
 | [[toolbox/claude-code-building-structure\|Claude Code Building Structure]] | Nagyobb projektek építésének struktúrája — top-down pipeline, fázisos építés |
 | [[toolbox/claude-code-rejtett-beallitasok\|Claude Code rejtett beállítások]] | Haladó konfiguráció — settings.json, hook-ok, model override, environment variable-ök |
 | [[toolbox/claude-mappa-anatomiaja\|A .claude mappa anatómiája]] | A `.claude/` könyvtár felépítése — settings, commands, mcp, permissions fájlok |
-| [[toolbox/everything-claude-code\|Everything Claude Code]] | Teljes referencia — minden Claude Code feature egy helyen, gyors áttekintés |
+| [[github/everything-claude-code\|Everything Claude Code]] | Teljes referencia — minden Claude Code feature egy helyen, gyors áttekintés |
 | [[toolbox/claude-code-agent-teams\|Claude Code Agent Teams]] | Párhuzamos agent munka, team orchestrálás |
 | [[toolbox/claude-agent-sdk\|Claude Agent SDK]] | Saját agent-ek építése TypeScript SDK-val |
 | [[toolbox/claude-code-skills-es-plugins\|Claude Code Skills és Plugins]] | Skill rendszer, plugin-ek, testreszabás |
@@ -28,17 +28,17 @@
 | [[toolbox/google-antigravity\|Google Antigravity]] | Google agent-first IDE — Manager view, multi-agent |
 | [[toolbox/cursor-es-claude-konfiguracio\|Cursor és Claude konfiguráció]] | Cursor IDE beállítása Claude-dal |
 | [[toolbox/gemini\|Gemini]] | Google AI asszisztens — hosszú kontextus, research, multimodális képességek |
-| [[toolbox/collaborator\|Collaborator]] | AI pair programming eszköz — IDE integráció, agent orchestrálás |
+| [[github/collaborator\|Collaborator]] | AI pair programming eszköz — IDE integráció, agent orchestrálás |
 | [[toolbox/coderabbit\|CodeRabbit]] | AI-alapú code review — automatikus PR elemzés, GitHub integrációval |
-| [[toolbox/screenshot-to-code\|Screenshot to Code]] | Képernyőkép → kód generálás — design-to-code pipeline AI-val |
+| [[github/screenshot-to-code\|Screenshot to Code]] | Képernyőkép → kód generálás — design-to-code pipeline AI-val |
 | [[toolbox/ai-coding-agentek-osszehasonlitasa\|AI coding agentek összehasonlítása]] | Claude Code vs Codex vs Antigravity vs Cursor |
 
 ## Módszertanok és workflow-k
 
 | Note | Leírás |
 |------|--------|
-| [[toolbox/get-shit-done\|Get Shit Done (GSD)]] | AI-natív fejlesztési workflow — strukturált fázisok, gyors iteráció, Claude Code-ra optimalizált |
-| [[toolbox/bmad-method\|BMAD-METHOD]] | Business Model Aligned Development — üzleti célokból kiinduló fejlesztési módszertan AI-val |
+| [[github/get-shit-done\|Get Shit Done (GSD)]] | AI-natív fejlesztési workflow — strukturált fázisok, gyors iteráció, Claude Code-ra optimalizált |
+| [[github/bmad-method\|BMAD-METHOD]] | Business Model Aligned Development — üzleti célokból kiinduló fejlesztési módszertan AI-val |
 
 ## Infrastruktúra
 
@@ -139,15 +139,15 @@ graph LR
 1. **Alapok:** [[toolbox/ai-first-fejlesztoi-workflow|AI-first fejlesztői workflow]] — gondolkodásmód váltás
 2. **Bevezető:** [[toolbox/claude-code|Claude Code]] — mi ez, mire képes, hogyan indulj el
 3. **Setup:** [[toolbox/claude-code-projekt-setup|Claude Code projekt setup]] — projekt beállítás
-4. **Best practice:** [[toolbox/claude-code-best-practice|Claude Code best practice]] — hatékony használat, prompt minták
+4. **Best practice:** [[github/claude-code-best-practice|Claude Code best practice]] — hatékony használat, prompt minták
 5. **Mélyítés:** [[toolbox/claude-code-skills-es-plugins|Skills és Plugins]] + [[toolbox/mcp-model-context-protocol|MCP]]
 6. **Struktúra:** [[toolbox/claude-code-building-structure|Building Structure]] — nagyobb projektek építése
 7. **Haladó:** [[toolbox/claude-code-agent-teams|Agent Teams]] + [[toolbox/claude-agent-sdk|Agent SDK]]
-8. **Workflow:** [[toolbox/get-shit-done|GSD]] vagy [[toolbox/bmad-method|BMAD]] — válassz módszertant
+8. **Workflow:** [[github/get-shit-done|GSD]] vagy [[github/bmad-method|BMAD]] — válassz módszertant
 9. **Tájékozódás:** [[toolbox/ai-coding-agentek-osszehasonlitasa|Összehasonlítás]] — alternatívák ismerete
 
 > [!tip] Hol kezdd?
-> Ha most ismerkedsz az AI coding tool-okkal, az [[toolbox/ai-first-fejlesztoi-workflow|AI-first workflow]] jegyzettel kezdj. Ha már használsz Claude Code-ot, ugorj a [[toolbox/claude-code-best-practice|Best practice]] vagy a [[toolbox/get-shit-done|GSD]] workflow-ra.
+> Ha most ismerkedsz az AI coding tool-okkal, az [[toolbox/ai-first-fejlesztoi-workflow|AI-first workflow]] jegyzettel kezdj. Ha már használsz Claude Code-ot, ugorj a [[github/claude-code-best-practice|Best practice]] vagy a [[github/get-shit-done|GSD]] workflow-ra.
 
 ---
 
@@ -159,8 +159,8 @@ graph LR
 - [x] Antigravity
 - [x] Összehasonlító jegyzet
 - [x] Claude Code bevezető → [[toolbox/claude-code|Claude Code]]
-- [x] Claude Code best practice → [[toolbox/claude-code-best-practice|Claude Code best practice]]
-- [x] GSD workflow → [[toolbox/get-shit-done|Get Shit Done]]
+- [x] Claude Code best practice → [[github/claude-code-best-practice|Claude Code best practice]]
+- [x] GSD workflow → [[github/get-shit-done|Get Shit Done]]
 - [x] n8n automatizálás → [[toolbox/n8n|n8n]]
 - [ ] Prompt engineering best practices
 - [ ] AI-assisted testing workflow

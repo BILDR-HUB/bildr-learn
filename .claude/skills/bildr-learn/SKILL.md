@@ -306,6 +306,7 @@ Route based on content type (réteg-alapú):
 | Adatbázis | `database/` | Adatbázis, ORM, cache, BaaS |
 | Felhő | `cloud/` | Deploy, konténerizáció, orchestration, hosting platformok |
 | Eszköztár | `toolbox/` | Fejlesztői eszközök, monitoring, IDE, setup |
+| GitHub | `github/` | GitHub repókból felfedezett tool-ok, library-k, projektek |
 | Gyakorlat | `guides/` | Step-by-step hands-on útmutatók |
 | Térkép | `_moc/` | Map of Content összefoglaló (csak ha 4+ jegyzet van egy témában) |
 
@@ -420,12 +421,11 @@ Extract:
 
 **Step 3: Repo index + routing**
 - Futtasd a standard repo index + relationship discovery flow-t
-- Határozd meg a célmappát a **réteg-alapú routing** szerint (NEM URL típus szerint):
-  - GitHub repo ami CLI tool / dev tool → `toolbox/`
-  - GitHub repo ami framework → a megfelelő réteg (`frontend/`, `backend/`, stb.)
-  - GitHub repo ami cloud/infra → `cloud/`
+- Határozd meg a célmappát:
+  - **GitHub repo** → MINDIG `github/` mappába (függetlenül a repo témájától)
   - Blog post / tutorial → `guides/` vagy a téma szerinti réteg
   - Docs page → a téma szerinti réteg
+  - Tool/service website → a téma szerinti réteg (toolbox/, backend/, stb.)
 
 **Step 4: AI-natív releváns meghatározása**
 Minden URL-ből készült jegyzethez határozd meg az AI-natív kontextust:

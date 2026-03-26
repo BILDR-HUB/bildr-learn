@@ -7,9 +7,9 @@ datum: 2026-03-26
 szint: "🧱 Scout"
 kapcsolodo:
   - "[[toolbox/claude-code-projekt-setup|Claude Code]]"
-  - "[[toolbox/everything-claude-code|Everything Claude Code]]"
-  - "[[toolbox/bmad-method|BMAD-METHOD]]"
-  - "[[toolbox/get-shit-done|Get Shit Done (GSD)]]"
+  - "[[github/everything-claude-code|Everything Claude Code]]"
+  - "[[github/bmad-method|BMAD-METHOD]]"
+  - "[[github/get-shit-done|Get Shit Done (GSD)]]"
   - "[[toolbox/claude-code-agent-teams|Claude Code Agent Teams]]"
   - "[[toolbox/mcp-model-context-protocol|MCP]]"
 ---
@@ -42,7 +42,7 @@ Ez a repó nem tool és nem skill-gyűjtemény, hanem **referencia-wiki**: hogya
 ## Mikor hasznos?
 
 - **Egy adott Claude Code feature optimalizálása** - pl. hogyan írd meg a CLAUDE.md-t, hogyan használj subagent-eket, milyen hook-ok hasznosak
-- **Framework összehasonlítás** - ha [[toolbox/bmad-method|BMAD-METHOD]], [[toolbox/everything-claude-code|everything-claude-code]], Superpowers, gstack vagy más workflow-t mérlegelsz
+- **Framework összehasonlítás** - ha [[github/bmad-method|BMAD-METHOD]], [[github/everything-claude-code|everything-claude-code]], Superpowers, gstack vagy más workflow-t mérlegelsz
 - **Onboarding** - ha most kezded a Claude Code-ot, ez a legjobb kiindulópont
 
 ### Mikor NE használd
@@ -67,7 +67,7 @@ Ez a repó nem tool és nem skill-gyűjtemény, hanem **referencia-wiki**: hogya
 
 ## Összehasonlítás hasonló referencia repókkal
 
-| | claude-code-best-practice | [[toolbox/everything-claude-code|everything-claude-code]] |
+| | claude-code-best-practice | [[github/everything-claude-code|everything-claude-code]] |
 |---|---|---|
 | **Fókusz** | Tippek + framework összehasonlítás | Skill + instinct gyűjtemény |
 | **Használat** | Referencia - olvasd és válogass | Referencia - skill-ek adaptálhatók |
@@ -88,8 +88,8 @@ Ez a repó maga IS az AI-natív fejlesztés referenciája - a 84 tipp, framework
 ## Kapcsolódó
 
 - [[toolbox/claude-code-projekt-setup|Claude Code]] - az eszköz amiről a repó szól
-- [[toolbox/everything-claude-code|Everything Claude Code]] - másik nagy Claude Code referencia repó
+- [[github/everything-claude-code|Everything Claude Code]] - másik nagy Claude Code referencia repó
 - [[toolbox/claude-code-agent-teams|Claude Code Agent Teams]] - a repóban részletezett feature
 - [[toolbox/mcp-model-context-protocol|MCP]] - az MCP best practice szekció
-- [[toolbox/bmad-method|BMAD-METHOD]] - a repóban összehasonlított framework
-- [[toolbox/get-shit-done|Get Shit Done (GSD)]] - a repóban összehasonlított framework
+- [[github/bmad-method|BMAD-METHOD]] - a repóban összehasonlított framework
+- [[github/get-shit-done|Get Shit Done (GSD)]] - a repóban összehasonlított framework

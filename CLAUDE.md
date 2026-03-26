@@ -12,6 +12,7 @@ Nyilvános, open-source tudásbázis a bildr.hub közösség számára. Magyar n
 - `database/` — adatbázis réteg (SQL, Drizzle, Prisma, Redis, Supabase)
 - `cloud/` — felhő és deploy (Docker, Kubernetes, Cloudflare, Vercel, Railway, Nginx)
 - `toolbox/` — fejlesztői eszközök (tmux, Claude Code, Grafana, PostHog, fnm, Mac setup)
+- `github/` — GitHub repókból felfedezett tool-ok, library-k, projektek
 - `guides/` — hands-on gyakorlati útmutatók
 - `_moc/` — Map of Content összefoglaló hub oldalak
 
