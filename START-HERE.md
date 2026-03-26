@@ -1,13 +1,13 @@
 # Üdvözlünk a bildr.hub // learn tudásbázisban!
 
-> [!tldr] 111+ magyar nyelvű fejlesztési jegyzet, közösség által karbantartva. Obsidian vault-ként a legjobb élmény - kattintható backlinkek, színkódolt gráf, auto-szinkron.
+> [!tldr] 200+ magyar nyelvű fejlesztési jegyzet, közösség által karbantartva. Obsidian vault-ként a legjobb élmény - kattintható backlinkek, színkódolt gráf, auto-szinkron.
 
 ## Mi ez?
 
-Ez a [bildr.hub](https://bildr.hu) közösség nyílt tudásbázisa. Modern full-stack fejlesztés témakörben gyűjtünk jegyzeteket - az alapoktól a cloud deploymentig.
+Ez a [bildr.hub](https://bildr.hu) közösség nyílt tudásbázisa. Modern full-stack fejlesztés témakörben gyűjtünk jegyzeteket - az alapoktól a cloud deploymentig, AI-natív fejlesztői workflow-val.
 
-- **111+ jegyzet** 8 tematikus mappában
-- **6 Map of Content** (MOC) - témakörönkénti térképátlag
+- **200+ jegyzet** 8 tematikus mappában
+- **12 Map of Content** (MOC) - témakörönkénti térkép
 - **Közösség által karbantartott** - rendszeresen frissül, bárki hozzájárulhat
 - **Magyar nyelvű** - tegezős, közvetlenül, gyakorlatias
 
@@ -127,11 +127,17 @@ Ha most kezded, kövesd a strukturált tanulási utat:
 Ha már vannak alapjaid, válassz a MOC-ok közül:
 
 - **[[_moc/moc-environment-setup|Environment Setup]]** — fejlesztői környezet felépítése
+- **[[_moc/moc-react|React]]** — komponensek, hook-ok, state kezelés, React Native
+- **[[_moc/moc-frontend-ui|Frontend UI]]** — Tailwind, shadcn, animációk, responsive design
 - **[[_moc/moc-docker|Docker]]** — konténerizáció alapjaitól az orchestration-ig
 - **[[_moc/moc-database|Database]]** — SQL alapoktól az ORM-ekig
 - **[[_moc/moc-auth|Auth]]** — JWT-től a managed auth-ig
+- **[[_moc/moc-cloudflare|Cloudflare]]** — Workers, Pages, KV, R2, Queues
 - **[[_moc/moc-deployment|Deployment]]** — frontend hostingtól a Kubernetes-ig
+- **[[_moc/moc-monorepo|Monorepo]]** — navigáció, architektúra, package struktúra
 - **[[_moc/moc-kubernetes|Kubernetes]]** — orkesztráció és klaszterek
+- **[[_moc/moc-claude-code|Claude Code]]** — AI-natív fejlesztői workflow, skill-ek, best practice
+- **[[_moc/moc-ai-tooling|AI Tooling]]** — coding agentek, automatizálás, módszertanok
 
 ### 🏗️ Builder - Haladó témák
 
