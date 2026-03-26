@@ -11,6 +11,7 @@
 |------|--------|
 | [[cloud/vercel|Vercel]] | Next.js-re optimalizált frontend hosting — push to deploy, globális CDN, serverless functions |
 | [[cloud/cloudflare|Cloudflare]] | Edge computing platform — Workers + D1 + R2 + Access, $5/hó, belső appokra kiváló |
+| [[cloud/cloudflare-pages|Cloudflare Pages]] | Statikus és fullstack hosting — Git-integrált deploy, preview URL-ek, Workers integrációval |
 | Next.js on Cloudflare Workers | Fullstack Next.js CF Workers-ön — OpenNext adapter, SSR/SSG/ISR, $5/hó Vercel alternatíva |
 | ViNext | Next.js reimplementáció Vite-on — kísérleti, 4.4x gyorsabb build, 57% kisebb bundle, CF Workers natív |
 
@@ -20,6 +21,8 @@
 |------|--------|
 | [[cloud/railway|Railway]] | Backend és szolgáltatás hosting — Docker konténerek, adatbázisok, queue-k, cron jobok futtatása |
 | [[cloud/hostinger|Hostinger]] | Olcsó VPS hosting — saját Linux szerver felhőben, teljes root hozzáférés, fix havi ár |
+| [[cloud/hetzner|Hetzner]] | Európai VPS szolgáltató — kiváló ár/érték arány, dedikált szerverek, 3 adatközpont |
+| [[cloud/coolify|Coolify]] | Open-source Vercel/Heroku alternatíva — self-hosted PaaS, Docker-alapú, VPS-en futtatod |
 
 ## Managed services
 
@@ -53,13 +56,20 @@
 | Note | Leírás |
 |------|--------|
 | [[cloud/aws-gcp-basics|Felhő szolgáltatók alapjai]] | AWS, GCP, Azure alapok — mikor érdemes váltani managed platformokról |
+| [[cloud/aws-ses|AWS SES]] | Amazon email küldő szolgáltatás — transactional email-ek, domain verification, olcsó tömeges küldés |
+| [[cloud/cloudflare-r2|Cloudflare R2]] | S3-kompatibilis object storage — zero egress fee, Workers integrációval |
+| [[cloud/cloudflare-kv|Cloudflare KV]] | Edge key-value store — globálisan elosztott, Workers-ből olvasható, konfig és cache |
+| [[cloud/cloudflare-queues|Cloudflare Queues]] | Aszinkron üzenetsor — Workers közötti kommunikáció, háttérfeladat feldolgozás |
+| [[cloud/cloudflare-browser-rendering|Cloudflare Browser Rendering]] | Headless böngésző a CF edge-en — screenshot, scraping, PDF generálás Workers-ből |
 
 ## CI/CD és Deploy stratégiák
 
 | Note | Leírás |
 |------|--------|
 | [[cloud/ci-cd-pipelines|CI/CD Pipelines]] | GitHub Actions, automatikus testing és deploy |
+| [[cloud/github-actions|GitHub Actions]] | CI/CD platform részletesen — workflow szintaxis, matrix build, secrets, self-hosted runner |
 | [[cloud/gitops|GitOps]] | Git-alapú deployment stratégia — ArgoCD, Flux, Kubernetes-hez |
+| [[cloud/dryrun-teszteles|Dry-run tesztelés]] | Deploy és infra változtatások előzetes ellenőrzése — terraform plan, helm diff, kubectl dry-run |
 | [[cloud/saas-mvp-deployment|SaaS MVP Deployment]] | Leggyorsabb út ötlettől a production-ig, stack választás üzleti szempontból |
 | [[cloud/ai-assisted-deployment|AI-assisted Deployment]] | Claude Code automatizált deploy scriptek, Dockerfile és infra-as-code generálás |
 
@@ -84,14 +94,16 @@ Ajánlott sorrend ha nulláról kezded:
 2. [[cloud/vercel|Vercel]] — frontend deploy: Next.js app felrakása percek alatt
 3. [[cloud/railway|Railway]] — backend deploy: API szerver, adatbázis, háttérfolyamatok
 4. [[database/supabase|Supabase]] — managed backend: ha nem akarsz saját szervert üzemeltetni
-5. [[cloud/hostinger|Hostinger]] — VPS: teljes kontroll, ha a managed platformok nem elegek
+5. [[cloud/hostinger|Hostinger]] vagy [[cloud/hetzner|Hetzner]] — VPS: teljes kontroll, ha a managed platformok nem elegek
+6. [[cloud/coolify|Coolify]] — self-hosted PaaS: Vercel-élmény saját VPS-en
 
 > [!tip] Melyiket válaszd?
 > **Legolcsóbb fullstack Next.js:** Next.js on Cloudflare Workers ($5/hó) — SSR/SSG/ISR + D1 + R2 + Access, belső toolokra és landing page-ekre ideális.
 > **Legolcsóbb API-only:** Cloudflare Workers + [[backend/hono|Hono]] ($5/hó) — ha nem kell Next.js, csak API.
 > **Legegyszerűbb:** Vercel (frontend) + Supabase (backend) — zero ops.
 > **Több kontroll:** Vercel (frontend) + Railway (backend) — saját DB, háttérfolyamatok.
-> **Teljes kontroll:** Hostinger VPS — mindent te kezelsz, de olcsóbb.
+> **Self-hosted Vercel-élmény:** [[cloud/hetzner|Hetzner]] VPS + [[cloud/coolify|Coolify]] — olcsó, teljes kontroll, Docker-alapú.
+> **Teljes kontroll:** Hostinger/Hetzner VPS — mindent te kezelsz, de olcsóbb.
 
 ---
 
@@ -106,3 +118,11 @@ Ajánlott sorrend ha nulláról kezded:
 - [x] Cost estimation → [[cloud/cost-estimation|Hosting költségbecslés]] — hosting költségbecslés, mikor melyik platform éri meg (SMB szemszögből)
 - [x] SaaS MVP deployment → [[cloud/saas-mvp-deployment|SaaS MVP Deployment]] — leggyorsabb út ötlettől a production-ig, stack választás üzleti szempontból
 - [x] Statuspage és incident management → [[cloud/statuspage-es-incident-management|Statuspage és Incident Management]] — ügyfelek tájékoztatása leállásokról, postmortem kultúra
+- [x] Cloudflare Pages → [[cloud/cloudflare-pages|Cloudflare Pages]] — statikus és fullstack hosting
+- [x] Cloudflare R2, KV, Queues → [[cloud/cloudflare-r2|R2]], [[cloud/cloudflare-kv|KV]], [[cloud/cloudflare-queues|Queues]]
+- [x] Cloudflare Browser Rendering → [[cloud/cloudflare-browser-rendering|Browser Rendering]]
+- [x] AWS SES → [[cloud/aws-ses|AWS SES]] — email küldő szolgáltatás
+- [x] Hetzner → [[cloud/hetzner|Hetzner]] — európai VPS
+- [x] Coolify → [[cloud/coolify|Coolify]] — self-hosted PaaS
+- [x] GitHub Actions → [[cloud/github-actions|GitHub Actions]] — CI/CD részletesen
+- [x] Dry-run tesztelés → [[cloud/dryrun-teszteles|Dry-run tesztelés]]

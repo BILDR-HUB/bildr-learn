@@ -39,6 +39,8 @@
 | [[foundations/projekt-szintu-izolacio|Projekt-szintű izoláció]] | A Docker a legteljesebb izolációs megoldás |
 | [[cloud/railway|Railway]] | Railway alatt Docker konténerek futnak — amit Docker-ben buildelsz, Railway-en deployolod |
 | [[toolbox/tailscale|Tailscale]] | VPS-en futó Docker konténerek elérése biztonságos alagúton keresztül |
+| [[cloud/coolify|Coolify]] | Self-hosted PaaS — Docker-alapú deploy, Vercel/Heroku alternatíva saját VPS-en |
+| [[toolbox/orbstack|OrbStack]] | Docker Desktop alternatíva macOS-en — gyorsabb, kevesebb RAM, K8s support |
 | [[cloud/ci-cd-pipelines|CI/CD Pipelines]] | Docker image build és push automatizálása GitHub Actions-zel |
 | [[cloud/traefik|Traefik]] | Docker-native reverse proxy — automatikus service discovery és SSL |
 

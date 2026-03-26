@@ -20,6 +20,7 @@
 |------|--------|
 | [[backend/clerk|Clerk]] | Authentication-as-a-Service — Next.js/React integrációval, multi-tenant support, pre-built UI komponensek |
 | [[backend/auth-js-nextauth|Auth.js (NextAuth)]] | Open source auth library — 80+ OAuth provider, saját DB-ben user adatok, nincs vendor lock-in |
+| [[backend/betterauth|BetterAuth]] | Open-source, self-hosted auth framework — plugin-alapú, framework-agnosztikus, a te DB-d és adataid |
 
 ## Service és API auth
 
@@ -28,6 +29,14 @@
 | [[backend/api-key-management|API Key Management]] | Service-to-service autentikáció, API key generálás, rotation, scope-ok, rate limiting |
 | [[backend/webhook-verification|Webhook Verification]] | Bejövő webhook-ok hitelesítése — Stripe, GitHub, Clerk webhook signing (HMAC-SHA256) |
 | [[backend/ai-agent-authentication|AI Agent Authentication]] | AI agent-ek auth-olása API-khoz: MCP server auth, user-delegated token, Device Authorization Grant |
+
+---
+
+## Fizetés és auth
+
+| Note | Leírás |
+|------|--------|
+| [[backend/stripe|Stripe]] | Online fizetés feldolgozás — Checkout, subscriptions, webhook kezelés, auth flow-ba integrálva |
 
 ---
 
@@ -50,14 +59,17 @@ Ajánlott sorrend ha nulláról kezded:
 3. [[backend/oauth-2-0|OAuth 2.0]] — hogyan működik a "Login with Google" a háttérben (Authorization Code Flow, PKCE)
 4. [[backend/clerk|Clerk]] — ha érted az alapokat, a Clerk leveszi a terhet: production-ready auth percek alatt Next.js-ben
 5. [[backend/auth-js-nextauth|Auth.js (NextAuth)]] — open source alternatíva ha vendor lock-in nem opció
-6. [[backend/rbac-patterns|RBAC Patterns]] — jogosultság-kezelés: ki mit érhet el az alkalmazásodban
-7. [[backend/api-key-management|API Key Management]] — service-to-service auth: API key-ek generálása, rotation, scope-ok
-8. [[backend/ai-agent-authentication|AI Agent Authentication]] — haladó: hogyan auth-olj AI agent-eket
+6. [[backend/betterauth|BetterAuth]] — self-hosted, plugin-alapú auth: ha a te DB-dben akarod az adatokat
+7. [[backend/rbac-patterns|RBAC Patterns]] — jogosultság-kezelés: ki mit érhet el az alkalmazásodban
+8. [[backend/api-key-management|API Key Management]] — service-to-service auth: API key-ek generálása, rotation, scope-ok
+9. [[backend/stripe|Stripe]] — fizetési integráció: Checkout, subscription, webhook verification
+10. [[backend/ai-agent-authentication|AI Agent Authentication]] — haladó: hogyan auth-olj AI agent-eket
 
-> [!tip] Clerk vs Supabase Auth vs Auth.js
+> [!tip] Clerk vs Supabase Auth vs Auth.js vs BetterAuth
 > **Clerk:** ha Next.js SaaS-t építesz, multi-tenant kell, és fontos a pre-built UI.
 > **Supabase Auth:** ha már Supabase-t használsz adatbázisnak, és egy helyen akarod kezelni mindent.
 > **Auth.js:** ha open source kell, vendor lock-in nem opció, és a user adatokat a saját DB-dben akarod.
+> **BetterAuth:** ha self-hosted, plugin-alapú rendszert akarsz — teljes kontroll, framework-agnosztikus.
 
 ---
 

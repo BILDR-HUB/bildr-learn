@@ -38,6 +38,24 @@ Create and update markdown notes in the bildr.hub public knowledge base (`bildr-
   - "Mikor használd / Mikor NE" minták eszköz-jegyzeteknél
   - Bold kulcsfogalmakra az első előforduláskor
 
+## Közösségi Kontextus — AI-natív Builders
+
+A bildr.hub közössége **fiatal fejlesztőkből** áll, akik **AI-natív módon** építenek alkalmazásokat. Ez azt jelenti:
+
+### Célközönség profil
+- Claude Code, Cursor, Copilot és hasonló AI coding tool-okat használnak napi szinten
+- Nem "hagyományos" módon tanulnak kódolni — az AI az elsődleges pair programming partnerük
+- Gyorsan akarnak haladni, prototípusból production-be vinni dolgokat
+- Inkább buildelnek mint olvasnak — a jegyzeteknek **actionable** tudást kell adniuk
+
+### Írási irányelvek a közönségre szabva
+1. **AI-first kontextus** — Ahol releváns, mindig írd le hogyan kapcsolódik az AI-asszisztált fejlesztéshez. Pl. "Ezt a tool-t Claude Code-ból is vezérelheted" vagy "MCP szerveren keresztül integrálható"
+2. **Prompt-tippek** — Eszköz és framework jegyzeteknél adj `> [!tip] Hogyan használd AI-val` callout-ot: hogyan kérd el az AI coding tool-tól hogy ezt használja/konfigurálja
+3. **Gyakorlatiasság** — Ne akadémikus összefoglaló legyen, hanem "így építesz ezzel valamit" megközelítés
+4. **Döntéstámogatás** — A közönség gyakran választ eszközök között. Adj "Mikor használd / Mikor NE" szekciót és összehasonlító táblákat
+5. **Builder hangvétel** — Motiváló, de nem cringe. Nem "király lesz!" hanem "ezzel gyorsabban haladsz" típusú pozitív framing
+6. **Rövid, szkennelhető** — H2 szekciók, táblázatok, code snippet-ek, callout-ok. Hosszú bekezdések helyett strukturált tartalom
+
 ## Content Sanitization Rules
 
 **KÖTELEZŐ** — Minden jegyzet írásánál ellenőrizd:
@@ -68,6 +86,8 @@ Minden jegyzethez rendelj `szint` értéket a bildr.hub karrierút alapján:
 - "knowledge base note" / "tudasbazis"
 - "irj egy jegyzetet a learn repo-ba"
 - Any explicit mention of "bildr-learn" + create/write/update intent
+- URL beillesztése + bildr-learn kontextus (pl. "írd meg a tudásbázisba ezt a repo-t")
+- GitHub repo URL + "learn" / "tudásbázis" / "bildr" említés
 
 ### WHEN NOT to use this skill
 
@@ -358,6 +378,172 @@ Confirm with a summary:
 6. **MOC update** — If scope changed significantly
 7. **Content sanitization check** — Verify no personal references were introduced
 8. **Report to user** — Confirm changes, new links, MOC changes
+
+## Workflow: URL-to-Note (GitHub repo / URL → jegyzet)
+
+Amikor a user egy **URL-t** oszt meg (GitHub repo, blog post, docs oldal, tool website), hozz létre egy bildr-learn jegyzetet ami a bildr.hub közösség számára kontextualizálja a tartalmat.
+
+### Trigger
+
+- User beilleszt egy URL-t és azt kéri hogy legyen belőle bildr-learn jegyzet
+- Explicit: "írd meg a tudásbázisba ezt a repo-t / cikket / tool-t"
+
+### URL Type Detection
+
+| URL pattern | Típus | Note fókusz |
+|---|---|---|
+| `github.com/user/repo` | GitHub repo | Eszköz note — mi ez, mikor hasznos, AI-natív workflow integráció |
+| Blog post / cikk | Tanulás note | Kulcs tanulságok, gyakorlati alkalmazás, mikor releváns |
+| Docs oldal | Referencia note | Összefoglaló, mikor kell, fontos szekciók |
+| Tool/service website | Eszköz note | Mint GitHub repo, de a website-ról kinyerve |
+
+### Phase 1: TARTALOM KINYERÉS
+
+**Step 1: Fetch URL content**
+Preferált sorrend:
+1. `defuddle parse <url> --md` — tiszta markdown, kevesebb token
+2. WebFetch fallback
+
+Extract:
+- Title / H1
+- Main content (README, article body, product description)
+- Metadata (author, date, language/framework)
+- Ha GitHub repo: nyelv, stars, license, setup mód
+
+**Step 2: Lényeg kinyerése**
+- Egysoros összefoglaló (mi ez / miről szól?)
+- Fő funkciók vagy tanulságok (max 3-5)
+- Kapcsolódó technológiák (milyen stackbe illik)
+- AI-natív releváns (MCP, CLI, SDK, agentic workflow?)
+
+### Phase 2: KONTEXTUS ÉS ROUTING
+
+**Step 3: Repo index + routing**
+- Futtasd a standard repo index + relationship discovery flow-t
+- Határozd meg a célmappát a **réteg-alapú routing** szerint (NEM URL típus szerint):
+  - GitHub repo ami CLI tool / dev tool → `toolbox/`
+  - GitHub repo ami framework → a megfelelő réteg (`frontend/`, `backend/`, stb.)
+  - GitHub repo ami cloud/infra → `cloud/`
+  - Blog post / tutorial → `guides/` vagy a téma szerinti réteg
+  - Docs page → a téma szerinti réteg
+
+**Step 4: AI-natív releváns meghatározása**
+Minden URL-ből készült jegyzethez határozd meg az AI-natív kontextust:
+- **MCP szerver** → hogyan integrálható Claude Code-ba vagy más AI tool-ba
+- **CLI tool** → hogyan használható AI coding session-ben
+- **Library / SDK** → hogyan használható AI-asszisztált fejlesztésnél
+- **Infra tool** → hogyan segíti az AI-natív workflow-t
+- **AI/LLM tool** → hogyan egészíti ki a meglévő AI tool-okat
+- Ha NINCS közvetlen AI kapcsolat → a fejlesztői workflow kontextusban írd le
+
+### Phase 3: NOTE ÍRÁS
+
+**Step 5: Note struktúra — URL típustól függően**
+
+#### GitHub repo / Tool website → Eszköz note:
+
+```markdown
+---
+tags:
+  - [fo-tema-tag]
+  - eszkoz
+datum: YYYY-MM-DD
+szint: "[szint]"
+url: [URL]
+kapcsolodo:
+  - "[[mappa/fajlnev|Megjelenő név]]"
+---
+
+# [Eszköz neve]
+
+**Kategória:** `[kategória]`
+**URL:** [link]
+
+---
+
+## Mi ez és mire jó?
+
+> [!tldr] Egy mondatban
+> [Gyakorlati összefoglaló]
+
+[2-4 bekezdés, AI-natív builder-ek számára kontextualizálva]
+
+---
+
+## Mikor használd / Mikor NE
+
+**Mikor jó:**
+- [Konkrét szituációk]
+
+**Mikor NE használd:**
+- [Korlátok, jobb alternatívák]
+
+---
+
+## AI-natív fejlesztés
+
+[Hogyan illeszkedik az AI-asszisztált fejlesztői workflow-ba]
+
+> [!tip] Hogyan használd AI-val
+> [1-2 példa prompt vagy integráció]
+
+---
+
+## Kapcsolodo
+
+[Vault backlink-ek]
+```
+
+#### Blog post / Article → Tanulás note:
+
+```markdown
+---
+tags:
+  - [fo-tema-tag]
+  - tanulas
+datum: YYYY-MM-DD
+szint: "[szint]"
+forras: [URL]
+kapcsolodo:
+  - "[[mappa/fajlnev|Megjelenő név]]"
+---
+
+# [Téma — saját szavakkal]
+
+> [!tldr] Miért releváns
+> [1-2 mondat: miért érdemes tudni erről]
+
+---
+
+## Kulcs tanulságok
+
+[3-5 pont — actionable insight-ok, nem csak összefoglaló]
+
+---
+
+## Hogyan alkalmazd
+
+[Konkrét szituációk a bildr.hub builders számára]
+
+> [!tip] Hogyan használd AI-val
+> [Mikor hivatkozz erre a koncepcióra AI-val dolgozva]
+
+---
+
+## Kapcsolodo
+
+[Vault backlink-ek]
+```
+
+**Szekció szabályok:**
+- Az **"AI-natív fejlesztés"** vagy **"Hogyan alkalmazd"** szekció MINDIG legyen benne
+- A **"Hogyan használd AI-val"** callout mindig legyen benne
+- Max 80-120 sor — tömör, szkennelhető
+- Setup szekció CSAK ha az eszköz közvetlenül releváns a builders számára
+
+### Phase 4: GRÁF KARBANTARTÁS
+
+Futtasd a standard Phase 5 (Gráf Karbantartás) flow-t: inline linking + bidirectional updates.
 
 ## Style Guidelines
 

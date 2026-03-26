@@ -53,6 +53,7 @@
 | [[cloud/docker-compose|Docker Compose]] | A Compose egyetlen gépre való, a K8s ennek a "nagy testvére" |
 | [[foundations/halozatok-es-ip-cimek|Halozatok es IP cimek]] | K8s networking megértéséhez hálózati alapok kellenek |
 | [[foundations/machine-learning-alapok|Machine Learning alapok]] | ML koncepciók amikre az AI workload orchestration épít |
+| [[toolbox/orbstack|OrbStack]] | Docker és Kubernetes macOS-en — gyors lokális K8s cluster fejlesztéshez |
 
 ---
 

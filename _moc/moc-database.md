@@ -9,6 +9,7 @@
 
 | Note | Leírás |
 |------|--------|
+| [[database/postgresql|PostgreSQL]] | A világ legfejlettebb nyílt forráskódú relációs adatbázisa — ACID, bővíthető, iparági standard |
 | [[database/sql-adatbazisok|SQL adatbazisok]] | Adatbázisok összehasonlítása: SQLite, PostgreSQL, MySQL — mikor melyiket, hol futtatod, hosting opciók |
 | SQL Index szabályok | Mikor tegyél indexet, composite index-ek, B-tree működés, EXPLAIN használata — teljesítmény optimalizálás |
 | [[database/postgresql-specifikus|PostgreSQL specifikus tudás]] | JSONB mezők, full-text search, Row Level Security (RLS) — haladó PostgreSQL feature-ök |
@@ -41,6 +42,14 @@
 
 ---
 
+## Managed szolgáltatások
+
+| Note | Leírás |
+|------|--------|
+| [[database/neon|Neon]] | Serverless PostgreSQL — scale-to-zero, database branching (mint Git, de DB-re), instant cold start |
+
+---
+
 ## Kapcsolódó note-ok
 
 | Note | Kapcsolat |
@@ -54,13 +63,15 @@
 ## Tanulási útvonal
 
 Ajánlott sorrend ha nulláról kezded:
-1. [[database/sql-adatbazisok|SQL adatbazisok]] — melyik adatbázist válaszd, mik a különbségek, hol futtatod
-2. [[database/database-design-patterns|Database design patterns]] — normalizálás, denormalizálás, soft delete
-3. SQL Index szabályok — hogyan gyorsítsd fel a lekérdezéseket index-ekkel, mikor kell és mikor nem
-4. [[database/drizzle|Drizzle]] VAGY [[database/prisma|Prisma]] — válassz ORM-et: SQL-közelit (Drizzle) vagy magas absztrakciót (Prisma)
-5. [[database/redis|Redis]] — in-memory cache és session store: mikor kell, hogyan működik, use case-ek
-6. [[database/connection-pooling|Connection Pooling]] — ha serverless-re deploy-olsz, ez kötelező tudás
-7. [[database/postgresql-specifikus|PostgreSQL specifikus tudás]] — JSONB, full-text search, RLS haladó feature-ök
+1. [[database/postgresql|PostgreSQL]] — a legelterjedtebb relációs adatbázis, ACID, bővíthető
+2. [[database/sql-adatbazisok|SQL adatbazisok]] — melyik adatbázist válaszd, mik a különbségek, hol futtatod
+3. [[database/database-design-patterns|Database design patterns]] — normalizálás, denormalizálás, soft delete
+4. SQL Index szabályok — hogyan gyorsítsd fel a lekérdezéseket index-ekkel, mikor kell és mikor nem
+5. [[database/drizzle|Drizzle]] VAGY [[database/prisma|Prisma]] — válassz ORM-et: SQL-közelit (Drizzle) vagy magas absztrakciót (Prisma)
+6. [[database/neon|Neon]] — serverless PostgreSQL: scale-to-zero, database branching
+7. [[database/redis|Redis]] — in-memory cache és session store: mikor kell, hogyan működik, use case-ek
+8. [[database/connection-pooling|Connection Pooling]] — ha serverless-re deploy-olsz, ez kötelező tudás
+9. [[database/postgresql-specifikus|PostgreSQL specifikus tudás]] — JSONB, full-text search, RLS haladó feature-ök
 
 > [!tip] Drizzle vs Prisma döntés
 > Ha ismered az SQL-t és szereted kontrollálni a query-ket: **Drizzle**. Ha gyorsan akarsz haladni és nem baj a nagyobb bundle: **Prisma**. Mindkettő TypeScript-first és type-safe.
@@ -78,3 +89,5 @@ Ajánlott sorrend ha nulláról kezded:
 - [x] Vector adatbázisok → [[database/vector-adatbazisok|Vector adatbázisok]] — pgvector, Pinecone, embedding-ek tárolása RAG rendszerekhez
 - [x] AI-generált SQL → [[database/ai-generalt-sql|AI-generált SQL]] — LLM-ek használata SQL query íráshoz, natural language to SQL minták
 - [x] SaaS adatbázis tervezés → [[database/saas-adatbazis-tervezes|SaaS adatbázis tervezés]] — multi-tenant sémák, tenant izoláció, billing-hez kapcsolt adatmodellek
+- [x] PostgreSQL alapok → [[database/postgresql|PostgreSQL]] — relációs adatbázis alapok, ACID, típusok, telepítés
+- [x] Neon (serverless PostgreSQL) → [[database/neon|Neon]] — scale-to-zero, database branching, managed PostgreSQL
