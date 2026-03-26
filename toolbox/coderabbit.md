@@ -4,7 +4,7 @@ tags:
   - ai
   - code-review
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[foundations/git-es-github|Git és GitHub]]"
   - "[[toolbox/claude-code-projekt-setup|Claude Code]]"

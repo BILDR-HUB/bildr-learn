@@ -4,7 +4,7 @@ tags:
   - analytics
   - product-analytics
 datum: 2026-03-06
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[frontend/nextjs|Next.js]]"
   - "[[toolbox/grafana|Grafana]]"

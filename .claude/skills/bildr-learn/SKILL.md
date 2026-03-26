@@ -75,7 +75,7 @@ Minden jegyzethez rendelj `szint` értéket a bildr.hub karrierút alapján:
 | Szint | Mikor |
 |-------|-------|
 | 🌱 Newcomer | Bevezető tartalom, első lépések, alapfogalmak |
-| 🧱 Brick | Középhaladó, már van alapvető tapasztalat, építés |
+| 🧱 Scout | Középhaladó, már van alapvető tapasztalat, építés |
 | 🏗️ Builder | Haladó, architekturális döntések, összetett rendszerek |
 
 ## Trigger Rules
@@ -287,7 +287,7 @@ All bildr-learn notes use freeform format with mandatory frontmatter:
 tags:
   - [fo-tema-tag]
 datum: YYYY-MM-DD
-szint: "🌱 Newcomer"   # vagy "🧱 Brick" vagy "🏗️ Builder"
+szint: "🌱 Newcomer"   # vagy "🧱 Scout" vagy "🏗️ Builder"
 kapcsolodo:
   - "[[mappa/fajlnev|Megjeleno nev]]"
 ---

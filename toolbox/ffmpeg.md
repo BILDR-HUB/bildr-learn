@@ -3,7 +3,7 @@ tags:
   - eszkoz
   - cli
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[foundations/linux|Linux]]"
   - "[[cloud/docker-alapok|Docker]]"

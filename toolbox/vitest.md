@@ -3,7 +3,7 @@ tags:
   - eszkoz
   - testing
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[toolbox/playwright|Playwright]]"
   - "[[toolbox/claude-code-projekt-setup|Claude Code]]"

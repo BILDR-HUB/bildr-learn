@@ -4,7 +4,7 @@ tags:
   - hosting
   - frontend
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[cloud/cloudflare|Cloudflare]]"
   - "[[cloud/vercel|Vercel]]"

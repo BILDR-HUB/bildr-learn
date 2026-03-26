@@ -3,7 +3,7 @@ tags:
   - eszkoz
   - monitoring
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[frontend/nextjs|Next.js]]"
   - "[[toolbox/posthog|PostHog]]"

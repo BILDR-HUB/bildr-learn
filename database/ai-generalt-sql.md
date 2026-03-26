@@ -4,7 +4,7 @@ tags:
   - ai
   - sql
 datum: 2026-03-06
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[database/sql-adatbazisok|SQL adatbázisok]]"
   - "[[database/sql-index-szabalyok|SQL Index szabályok]]"

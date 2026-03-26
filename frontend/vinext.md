@@ -1,7 +1,7 @@
 ---
 tags: [frontend, framework, cloudflare, vite]
 datum: 2026-03-04
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[frontend/nextjs|Next.js]]"
   - "[[cloud/cloudflare|Cloudflare]]"

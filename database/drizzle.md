@@ -4,7 +4,7 @@ tags:
   - orm
   - typescript
 datum: 2026-03-06
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[database/prisma|Prisma]]"
   - "[[database/supabase|Supabase]]"

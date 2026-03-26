@@ -4,7 +4,7 @@ tags:
   - ai
   - dev-tool
 datum: 2026-03-07
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[toolbox/ai-coding-agentek-osszehasonlitasa|AI coding agentek összehasonlítása]]"
   - "[[toolbox/ai-first-fejlesztoi-workflow|AI-first fejlesztői workflow]]"

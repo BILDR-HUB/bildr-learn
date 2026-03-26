@@ -1,7 +1,7 @@
 ---
 tags: [frontend, react, spa, preact, osszehasonlitas]
 datum: 2026-03-03
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[frontend/css-vs-nextjs-vs-react|CSS vs Next.js vs React]]"
   - "[[frontend/nextjs|Next.js]]"

@@ -1,7 +1,7 @@
 ---
 tags: [backend, auth, open-source]
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[backend/clerk|Clerk]]"
   - "[[backend/jwt|JWT]]"

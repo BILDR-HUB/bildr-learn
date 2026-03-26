@@ -4,7 +4,7 @@ tags:
   - devops
   - checklist
 datum: 2026-03-06
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[_moc/moc-deployment|MOC - Deployment]]"
   - "[[cloud/12-faktoros-alkalmazas-epites|12 Faktoros alkalmazás építes]]"

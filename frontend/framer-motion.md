@@ -1,7 +1,7 @@
 ---
 tags: [frontend, animacio, framer-motion, react]
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[frontend/gsap|GSAP]]"
   - "[[frontend/react|React]]"

@@ -1,7 +1,7 @@
 ---
 tags: [frontend, cms, nextjs, headless]
 datum: 2026-03-03
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[frontend/nextjs|Next.js]]"
   - "[[cloud/docker-alapok|Docker alapok]]"

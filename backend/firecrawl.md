@@ -1,7 +1,7 @@
 ---
 tags: [backend, scraping, api]
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[backend/cloudflare-vs-firecrawl|Cloudflare vs Firecrawl]]"
   - "[[backend/headless-chrome|Headless Chrome]]"

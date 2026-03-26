@@ -4,7 +4,7 @@ tags:
   - python
 kapcsolodo: []
 datum: 2026-02-08
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 ---
 
 # Machine Learning alapok

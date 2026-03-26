@@ -1,7 +1,7 @@
 ---
 tags: [backend, auth, saas]
 datum: 2026-03-03
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[frontend/nextjs|Next.js]]"
   - "[[database/supabase|Supabase]]"

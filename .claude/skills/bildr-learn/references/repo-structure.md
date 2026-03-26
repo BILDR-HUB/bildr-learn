@@ -50,7 +50,7 @@ bildr-learn/
 tags:
   - [fo-tema-tag]
 datum: YYYY-MM-DD
-szint: "🌱 Newcomer"   # vagy "🧱 Brick" vagy "🏗️ Builder"
+szint: "🌱 Newcomer"   # vagy "🧱 Scout" vagy "🏗️ Builder"
 kapcsolodo:
   - "[[mappa/fajlnev|Megjelenő név]]"
 ---

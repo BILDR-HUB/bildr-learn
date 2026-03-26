@@ -4,7 +4,7 @@ tags:
   - storage
   - s3
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[cloud/cloudflare|Cloudflare]]"
   - "[[cloud/cloudflare-monorepo-mappastruktura|Cloudflare Monorepo Mappastruktúra]]"

@@ -1,7 +1,7 @@
 ---
 tags: [backend, payment, api]
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[backend/hono|Hono]]"
   - "[[frontend/nextjs|Next.js]]"

@@ -4,7 +4,7 @@ tags:
   - self-hosted
   - docker
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[cloud/docker-alapok|Docker]]"
   - "[[cloud/docker-compose|Docker Compose]]"

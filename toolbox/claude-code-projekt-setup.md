@@ -4,7 +4,7 @@ tags:
   - ai
   - dev-tool
 datum: 2026-03-06
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[toolbox/claude-code-agent-teams|Claude Code Agent Teams]]"
   - "[[toolbox/claude-agent-sdk|Claude Agent SDK]]"

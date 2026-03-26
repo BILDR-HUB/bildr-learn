@@ -3,7 +3,7 @@ tags:
   - nyelv
   - backend
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[foundations/nodejs|Node.js]]"
   - "[[foundations/typescript-vs-python|TypeScript vs Python]]"

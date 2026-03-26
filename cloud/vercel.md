@@ -4,7 +4,7 @@ tags:
   - deployment
   - vercel
 datum: 2026-03-06
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[database/supabase|Supabase]]"
   - "[[cloud/railway|Railway]]"

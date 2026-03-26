@@ -4,7 +4,7 @@ tags:
   - pwa
   - mobile
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[frontend/nextjs|Next.js]]"
   - "[[frontend/react-vs-spa-vs-preact|React]]"

@@ -7,7 +7,7 @@ kapcsolodo:
   - "[[cloud/cloudflare|Cloudflare]]"
   - "[[cloud/vercel|Vercel]]"
 datum: 2026-02-08
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 ---
 
 # npm run dev vs build

@@ -1,7 +1,7 @@
 ---
 tags: [backend, protokoll, real-time]
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[backend/hono|Hono]]"
   - "[[backend/express|Express]]"

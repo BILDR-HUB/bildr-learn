@@ -3,7 +3,7 @@ tags:
   - eszkoz
   - automatizalas
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[cloud/docker-alapok|Docker]]"
   - "[[toolbox/claude-code-projekt-setup|Claude Code]]"

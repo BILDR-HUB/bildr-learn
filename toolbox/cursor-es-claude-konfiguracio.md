@@ -5,7 +5,7 @@ tags:
   - dev-tool
   - konfiguracio
 datum: 2026-03-06
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[toolbox/claude-code-projekt-setup|Claude Code projekt setup]]"
   - "[[toolbox/ai-first-fejlesztoi-workflow|AI-first fejlesztői workflow]]"

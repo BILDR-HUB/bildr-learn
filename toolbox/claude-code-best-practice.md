@@ -4,7 +4,7 @@ tags:
   - claude-code
   - referencia
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[toolbox/claude-code-projekt-setup|Claude Code]]"
   - "[[toolbox/everything-claude-code|Everything Claude Code]]"

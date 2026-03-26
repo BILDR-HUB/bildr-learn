@@ -1,7 +1,7 @@
 ---
 tags: [backend, api, query-language]
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[backend/trpc|tRPC]]"
   - "[[backend/express|Express]]"

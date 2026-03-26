@@ -9,7 +9,7 @@ kapcsolodo:
   - "[[database/drizzle|Drizzle]]"
   - "[[foundations/projekt-szintu-izolacio|Projekt-szintű izolácio]]"
 datum: 2026-02-08
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 ---
 
 # TypeScript vs Python

@@ -3,7 +3,7 @@ tags:
   - nextjs
   - architektura
 datum: 2026-03-04
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[frontend/nextjs|Next.js]]"
   - "[[cloud/vercel|Vercel]]"

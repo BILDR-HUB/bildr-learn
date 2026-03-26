@@ -4,7 +4,7 @@ tags:
   - claude-code
   - konfig
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[toolbox/claude-code-projekt-setup|Claude Code projekt setup]]"
   - "[[toolbox/claude-code-rejtett-beallitasok|Claude Code rejtett beállítások]]"

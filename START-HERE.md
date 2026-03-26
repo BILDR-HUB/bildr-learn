@@ -109,7 +109,7 @@ A jegyzetek három szintre vannak bontva:
 | Emoji | Szint | Kinek |
 |-------|-------|-------|
 | 🌱 | Newcomer | Most kezded, alapfogalmak |
-| 🧱 | Brick | Van tapasztalatod, építesz |
+| 🧱 | Scout | Van tapasztalatod, építesz |
 | 🏗️ | Builder | Architektúra, összetett rendszerek |
 
 ---
@@ -122,7 +122,7 @@ Ha most kezded, kövesd a strukturált tanulási utat:
 
 **[[guides/kezdo-tanulasi-utvonal|Kezdő tanulási útvonal]]** — 18 jegyzet, 5 fázisban, logikus sorrendben.
 
-### 🧱 Brick - Válassz témát
+### 🧱 Scout - Válassz témát
 
 Ha már vannak alapjaid, válassz a MOC-ok közül:
 

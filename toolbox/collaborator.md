@@ -4,7 +4,7 @@ tags:
   - ide
   - eszkoz
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[toolbox/claude-code-projekt-setup|Claude Code]]"
   - "[[toolbox/claude-code-agent-teams|Claude Code Agent Teams]]"

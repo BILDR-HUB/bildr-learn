@@ -4,7 +4,7 @@ tags:
   - ai
   - osszehasonlitas
 datum: 2026-03-07
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[toolbox/claude-code-projekt-setup|Claude Code projekt setup]]"
   - "[[toolbox/openai-codex-cli|OpenAI Codex CLI]]"

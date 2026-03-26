@@ -1,7 +1,7 @@
 ---
 tags: [backend, scraping, osszehasonlitas]
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[backend/firecrawl|Firecrawl]]"
   - "[[backend/headless-chrome|Headless Chrome]]"

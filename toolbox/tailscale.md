@@ -4,7 +4,7 @@ tags:
   - halozat
   - vpn
 datum: 2026-03-06
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[foundations/halozatok-es-ip-cimek|Halozatok es IP cimek]]"
   - "[[foundations/bash-es-linux-parancssor|Bash es Linux parancssor]]"

@@ -51,7 +51,7 @@ Minden jegyzet elején kötelezően:
 tags:
   - [fo-tema-tag]
 datum: YYYY-MM-DD
-szint: "🌱 Newcomer"   # vagy "🧱 Brick" vagy "🏗️ Builder"
+szint: "🌱 Newcomer"   # vagy "🧱 Scout" vagy "🏗️ Builder"
 kapcsolodo:
   - "[[mappa/fajlnev|Megjelenő név]]"
 ---
@@ -60,7 +60,7 @@ kapcsolodo:
 ### Szint értékek
 
 - **🌱 Newcomer** — bevezető tartalom, első lépések
-- **🧱 Brick** — középhaladók, már van alapvető tapasztalat
+- **🧱 Scout** — középhaladók, már van alapvető tapasztalat
 - **🏗️ Builder** — haladó, architekturális döntések
 
 ---

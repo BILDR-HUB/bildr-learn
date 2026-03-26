@@ -31,7 +31,7 @@ A repo Obsidian vault-ként is megnyitható — a `[[backlink]]` szintaxis, call
 ## Kinek szól?
 
 - 🌱 **Newcomer** — most tanulod az alapokat (Bash, Git, Docker, hálózatok)
-- 🧱 **Brick** — már építesz, de kell a kontextus (Next.js, Supabase, ORM-ek, auth)
+- 🧱 **Scout** — már építesz, de kell a kontextus (Next.js, Supabase, ORM-ek, auth)
 - 🏗️ **Builder** — architekturális döntéseket hozol (12-factor, Kubernetes, migráció, monitoring)
 
 ## Mappastruktúra

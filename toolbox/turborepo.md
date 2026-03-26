@@ -3,7 +3,7 @@ tags:
   - eszkoz
   - monorepo
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[toolbox/monorepo-management|Monorepo Management]]"
   - "[[cloud/ci-cd-pipelines|CI/CD]]"

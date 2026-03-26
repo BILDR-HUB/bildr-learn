@@ -6,7 +6,7 @@ kapcsolodo:
   - "[[foundations/bash-es-linux-parancssor|Bash és Linux parancssor]]"
   - "[[cloud/docker-compose|Docker Compose]]"
 datum: 2026-02-08
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 ---
 
 # Hálózatok és IP cimek

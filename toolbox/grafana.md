@@ -4,7 +4,7 @@ tags:
   - monitoring
   - observability
 datum: 2026-03-06
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[cloud/hostinger|Hostinger]]"
   - "[[cloud/railway|Railway]]"

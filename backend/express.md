@@ -1,7 +1,7 @@
 ---
 tags: [backend, framework, nodejs]
 datum: 2026-03-03
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[backend/hono|Hono]]"
   - "[[frontend/nextjs|Next.js]]"

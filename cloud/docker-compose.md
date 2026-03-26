@@ -3,7 +3,7 @@ tags:
   - docker
   - devops
 datum: 2026-02-08
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[cloud/docker-alapok|Docker alapok]]"
   - "[[cloud/kubernetes-bevezeto|Kubernetes bevezeto]]"

@@ -1,7 +1,7 @@
 ---
 tags: [frontend, nextjs, bun, setup]
 datum: 2026-03-03
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[frontend/nextjs|Next.js]]"
   - "[[foundations/git-es-github|Git es GitHub]]"

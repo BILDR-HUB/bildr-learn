@@ -4,7 +4,7 @@ tags:
   - postgresql
   - serverless
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[database/postgresql-specifikus|PostgreSQL]]"
   - "[[database/supabase|Supabase]]"

@@ -4,7 +4,7 @@ tags:
   - devops
   - best-practice
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[foundations/git-es-github|Git]]"
   - "[[cloud/devops|DevOps]]"

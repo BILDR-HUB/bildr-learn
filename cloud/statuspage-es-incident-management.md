@@ -4,7 +4,7 @@ tags:
   - monitoring
   - communication
 datum: 2026-03-06
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[cloud/monitoring-es-logging|Monitoring és Logging]]"
   - "[[cloud/deployment-checklist|Deployment checklist]]"

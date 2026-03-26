@@ -1,7 +1,7 @@
 ---
 tags: [backend, cms, open-source]
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[frontend/nextjs|Next.js]]"
   - "[[frontend/react-vs-spa-vs-preact|React]]"

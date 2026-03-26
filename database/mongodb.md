@@ -3,7 +3,7 @@ tags:
   - adatbazis
   - nosql
 datum: 2026-03-06
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[database/sql-adatbazisok|SQL adatbázisok]]"
   - "[[database/redis|Redis]]"

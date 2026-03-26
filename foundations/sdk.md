@@ -7,7 +7,7 @@ kapcsolodo:
   - "[[backend/clerk|Clerk]]"
   - "[[database/prisma|Prisma]]"
 datum: 2026-02-08
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 ---
 
 # SDK

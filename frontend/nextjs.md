@@ -1,7 +1,7 @@
 ---
 tags: [frontend, nextjs, framework, react]
 datum: 2026-03-03
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[backend/hono|Hono]]"
   - "[[cloud/cloudflare|Cloudflare]]"

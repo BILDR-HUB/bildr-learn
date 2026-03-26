@@ -20,7 +20,7 @@ Nyilvános, open-source tudásbázis a bildr.hub közösség számára. Magyar n
 - Fájlnév: kebab-case, kisbetűs, ASCII (pl. `docker-alapok.md`, nem `Docker alapok.md`)
 - Nyelv: magyar, tegezős, közvetlen stílus; angol technikai kifejezések
 - Frontmatter: `tags`, `datum`, `szint`, `kapcsolodo`
-- Szint értékek: 🌱 Newcomer | 🧱 Brick | 🏗️ Builder
+- Szint értékek: 🌱 Newcomer | 🧱 Scout | 🏗️ Builder
 - Backlink formátum: `[[mappa/fajlnev|Megjelenő név]]`
 
 ## Content szabályok
@@ -43,7 +43,7 @@ Mermaid diagramok, calloutok (`> [!tip]`, `> [!warning]`), táblázatok — mind
 - Név: bildr.hub (kisbetűs, ponttal)
 - Szlogen: "Build. Learn. Grow."
 - Hang: motiváló, őszinte, növekedés-orientált, informális ("te")
-- Karrierszintek: 🌱 Newcomer - 🧱 Brick - 🏗️ Builder - 🏛️ Architect - ⚙️ Engineer - 🧠 Mastermind - 🌟 Mentor - 🌿 Founder
+- Karrierszintek: 🌱 Newcomer - 🧱 Scout - 🏗️ Builder - 🏛️ Architect - 🌟 Mentor - 🌿 Founder
 
 ## Kontribúció
 

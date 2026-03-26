@@ -3,7 +3,7 @@ tags:
   - runtime
   - package-manager
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[foundations/nodejs|Node.js]]"
   - "[[foundations/runtime|Runtime]]"

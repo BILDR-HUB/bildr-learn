@@ -1,7 +1,7 @@
 ---
 tags: [frontend, mdx, content, markdown]
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[frontend/react|React]]"
   - "[[frontend/nextjs|Next.js]]"

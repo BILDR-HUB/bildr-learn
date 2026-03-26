@@ -4,7 +4,7 @@ tags:
   - ui
   - referencia
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[frontend/react-vs-spa-vs-preact|React]]"
   - "[[frontend/nextjs|Next.js]]"

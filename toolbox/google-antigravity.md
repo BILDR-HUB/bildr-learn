@@ -4,7 +4,7 @@ tags:
   - ai
   - ide
 datum: 2026-03-07
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[toolbox/ai-coding-agentek-osszehasonlitasa|AI coding agentek összehasonlítása]]"
   - "[[toolbox/cursor-es-claude-konfiguracio|Cursor és Claude konfiguráció]]"

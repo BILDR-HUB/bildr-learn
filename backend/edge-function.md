@@ -1,7 +1,7 @@
 ---
 tags: [backend, edge, serverless, cloud]
 datum: 2026-02-25
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[backend/hono|Hono]]"
   - "[[cloud/cloudflare|Cloudflare]]"

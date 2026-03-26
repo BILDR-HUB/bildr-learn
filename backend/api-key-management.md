@@ -5,7 +5,7 @@ tags:
   - backend
   - api
 datum: 2026-03-06
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[backend/jwt|JWT]]"
   - "[[backend/oauth-2-0|OAuth 2.0]]"

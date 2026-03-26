@@ -4,7 +4,7 @@ tags:
   - ai
   - dev-tool
 datum: 2026-03-04
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[toolbox/tmux|tmux]]"
   - "[[toolbox/git-worktree-vs-branch|Git worktree vs branch]]"

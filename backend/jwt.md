@@ -1,7 +1,7 @@
 ---
 tags: [backend, auth, security]
 datum: 2026-03-03
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[backend/clerk|Clerk]]"
   - "[[database/supabase|Supabase]]"

@@ -1,7 +1,7 @@
 ---
 tags: [backend, scraping, testing]
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[backend/firecrawl|Firecrawl]]"
   - "[[backend/cloudflare-vs-firecrawl|Cloudflare vs Firecrawl]]"

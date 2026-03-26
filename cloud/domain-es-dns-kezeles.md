@@ -4,7 +4,7 @@ tags:
   - hosting
   - deployment
 datum: 2026-03-06
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[cloud/cloudflare|Cloudflare]]"
   - "[[cloud/vercel|Vercel]]"

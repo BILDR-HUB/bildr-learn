@@ -4,7 +4,7 @@ tags:
   - testing
   - e2e
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[toolbox/vitest|Vitest]]"
   - "[[toolbox/claude-code-projekt-setup|Claude Code]]"

@@ -1,7 +1,7 @@
 ---
 tags: [frontend, headless-ui, base-ui, radix, shadcn]
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[frontend/shadcn-ui|shadcn/ui]]"
   - "[[frontend/tailwind-css|Tailwind CSS]]"

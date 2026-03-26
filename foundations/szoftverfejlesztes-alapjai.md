@@ -13,7 +13,7 @@ kapcsolodo:
   - "[[foundations/linux|Linux]]"
   - "[[_moc/moc-deployment|MOC - Deployment]]"
 datum: 2026-02-08
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 ---
 
 # Szoftverfejlesztes alapjai

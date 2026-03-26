@@ -1,7 +1,7 @@
 ---
 tags: [frontend, react, state-management]
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[frontend/react-hooks|React Hooks]]"
   - "[[frontend/react-adatkezeles|React adatkezelés]]"

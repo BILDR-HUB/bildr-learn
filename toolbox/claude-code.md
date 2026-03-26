@@ -4,7 +4,7 @@ tags:
   - ai
   - dev-tool
 datum: 2026-03-26
-szint: "🧱 Brick"
+szint: "🧱 Scout"
 kapcsolodo:
   - "[[toolbox/claude-code-projekt-setup|Claude Code projekt setup]]"
   - "[[toolbox/claude-code-skills-es-plugins|Claude Code Skills és Plugins]]"
