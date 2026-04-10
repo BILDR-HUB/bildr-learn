@@ -22,7 +22,7 @@ Create and update markdown notes in the bildr.hub public knowledge base (`bildr-
 
 ## Repo Configuration
 
-**Path:** `/Users/kovacsbence/Projects/bildr-learn/`
+**Path:** A skill mindig az aktuális working directory-ból dolgozik (a `bildr-learn` repo gyökere).
 
 **Structure:** Reteg-alapu (layer-based) — see `references/repo-structure.md` for full details.
 
